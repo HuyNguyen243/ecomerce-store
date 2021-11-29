@@ -1,0 +1,14 @@
+.basic-form {
+    .form-group {
+        margin-bottom: $pd-sm;
+        input, textarea {
+            width: 100%;
+            border: 1px solid $color-default;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        textarea {
+            height: 100px;
+        }
+    }
+}

@@ -1,0 +1,59 @@
+// == Grid system
+@mixin col($value) {
+    flex: 0 0 #{$value +'%'};
+    max-width: #{$value +'%'};
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding: $pd-xs $pd-sm;
+    word-break: break-word;
+    box-sizing: border-box;
+}
+
+$breakpoints: ( "phone" : 400px, "phone-wide" : 480px, "phablet" : 560px, "tablet-small": 640px, "tablet" : 768px, "tablet-wide" : 1024px, "desktop" : 1248px, "desktop-wide": 1440px);
+@mixin mq($width, $type: max) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+        @if $type==max {
+            $width: $width - 1px;
+        }
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}
+
+@mixin border($color, $size : 1px) {
+    border: $size solid $color !important;
+}
+
+@mixin background($color) {
+    background-color: $color !important;
+}
+
+@mixin text($color:#fff) {
+    color: $color !important;
+}
+
+@mixin block($mg-top) {
+    margin-top: $mg-top;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+// == Text clamp
+@mixin text-clamp($row, $line-height) {
+    display: -webkit-box;
+    -webkit-line-clamp: $row;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: $line-height;
+}
+
+@mixin btn-style() {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    width: 100%;
+    color: $color-bg;
+}

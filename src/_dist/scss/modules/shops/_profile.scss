@@ -1,0 +1,99 @@
+.user_wrapper {
+    padding: $pd-md;
+    box-shadow: 0px 1px 17px 2px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    position: relative;
+    .edit {
+        position: absolute;
+        top: 0px;
+        right: 5px;
+    }
+    &.is-editing {
+        .app-input, .app-textarea {
+            border: 1px solid #dee2e6;
+            pointer-events: fill;
+        }
+        .btn-update {
+            display: block;
+        }
+        .edit {
+            color: $color-primary;
+        }
+    }
+    p.txt-danger {
+        margin: 0;
+    }
+    .app-input, .app-textarea {
+        border: none;
+        width: 100%;
+        font-size: 18px;
+        pointer-events: none;
+    }
+    .app-textarea {
+        resize: none;
+        border-radius: 5px;
+    }
+    .left {
+        width: 40%;
+    }
+    .right {
+        width: 60%;
+    }
+    .user-info {
+        .info-top {
+            .avatar {
+                border: 1px solid #dee2e6;
+                border-radius: 50%;
+                max-width: 60px;
+                width: 60px;
+                height: 60px;
+                object-fit: contain;
+            }
+            .username {
+                margin-left: $pd-md;
+                width: 100%;
+                input {
+                    font-size: $font-md;
+                }
+            }
+        }
+        .info-bot {
+            margin-top: $pd-sm;
+        }
+    }
+    .user-addresses {
+        margin-top: $pd-sm;
+        justify-content: space-between;
+        display: flex;
+        align-items: flex-start;
+        .btn-add {
+            border: 1px solid #dee2e6;
+            color: #ffffff;
+            background-color: $color-primary;
+        }
+    }
+    .address-list {
+        input {
+            width: 100%;
+            margin: $pd-sm 0;
+            &:hover, &:focus {
+                border: 1px solid #dee2e6;
+            }
+        }
+        .address-item {
+            position: relative;
+            .delete-address {
+                position: absolute;
+                top: 15px;
+                right: 5px;
+            }
+        }
+    }
+    .btn-update {
+        margin-top: $pd-md;
+        background-color: $color-primary;
+        color: #ffffff;
+        width: 100%;
+        display: none;
+    }
+}

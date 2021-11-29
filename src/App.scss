@@ -1,0 +1,18 @@
+@import './_dist/scss/all';
+@import './_dist/probot_style';
+
+body {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.hide {
+    display: none !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+input, button, textarea {
+    -webkit-appearance:none;
+}
