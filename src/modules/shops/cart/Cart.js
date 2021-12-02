@@ -8,7 +8,7 @@ import Icon from "./../../../_components/_icon.component";
 import AlertHelper from "./../../../_helpers/alert";
 import CartHelper from "./../../../_helpers/cart";
 import Alert from "./../../../_components/_alert.component";
-
+import Swal from "sweetalert2"
 const Cart = ({
   element,
   hideCart,
@@ -26,12 +26,38 @@ const Cart = ({
       code: "",
     },
   });
-
   let listItems;
   let sumPrice = 0;
 
+
   useEffect(() => {
+
     getPromotionData();
+    // Miss -offer 
+    // Swal.fire({
+    //   html: 
+    //           "<div class='Offer-Shock'>"+
+    //           "<div class='Offer-title'>"+
+    //           "<img src='/images/sale.png' alt='menu_icon' />"+
+    //           "<p>Bạn ơi bạn có quên ưu đãi này?</p>"
+    //           +
+    //           "</div>"+
+    //           "<div class='container'>"+
+    //               "<div class='Offer-Details'>"+
+    //                   "<img src='/images/QC_COCA.png'  />"+
+    //                   "<div class='Note-Details'>"+
+    //                       "<p class='Note-Details-titles'>THÙNG 24 LON COCA</p>"+
+    //                       "<p class='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>"+
+    //                       "<p class='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>"+
+    //                       "<img src='/images/Group227.svg' alt='menu_icon' />"+
+    //                   "</div>"+
+    //               "</div>"+
+    //             "</div>"
+    //            ,
+    //   showCloseButton: true,
+    //   showConfirmButton :false,
+    // })
+    // End_OFFer
   }, [showOrderForm]);
 
   const getPromotionData = () => {
@@ -149,7 +175,9 @@ const Cart = ({
         totalCart={totalCart}
       />
       <div className="main_container">
+        <div className="news-style-cart">
         {listItems}
+        </div>
         {totalCart > 0 ? (
           <div className="fix-bottom">
             {promotion.priceReduce === 0 ? price : priceUsePromotion}
@@ -160,7 +188,7 @@ const Cart = ({
               >
                 Đặt hàng
               </button>
-              <Icon name="east" />
+              {/* <Icon name="east" /> */}
             </div>
           </div>
         ) : (

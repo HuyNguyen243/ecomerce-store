@@ -1,11 +1,30 @@
 .basic-form {
     .form-group {
-        margin-bottom: $pd-sm;
+        margin:0 15px $pd-sm 15px;
+        padding: 15px 18px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
         input, textarea {
             width: 100%;
             border: 1px solid $color-default;
             padding: 5px;
             border-radius: 5px;
+        }
+        .information,
+        .shipping{
+            display: flex;
+            justify-content: space-between;
+        }
+        .information a{
+            color: #f40000;
+            font-weight: 300;
+            cursor: pointer;
+        }
+        .shipping a{
+            color: #676767;
+            font-weight: 300;
+            text-decoration: none;
+            cursor: pointer;
         }
         textarea {
             height: 100px;

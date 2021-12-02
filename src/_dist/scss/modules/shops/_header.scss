@@ -4,11 +4,9 @@
   width: 100%;
   // max-width: 768px;
   &.header-primary {
-    background-color: #424252;
+    background-color: #fff;
     color: $color-bg;
-    img {
-      width: 25px;
-    }
+    box-shadow: 0 4px 4px 0 #ccc;
     .app-input {
       font-size: $font-sm;
     }
@@ -22,12 +20,15 @@
     }
     .header-home {
       text-align: left;
+      span img{
+      width: 30px;
+      }
     }
   }
   padding: $pd-xs 0px;
   .header-home {
-    width: 12%;
-    padding-left: 15px;
+    width: 5%;
+    padding: 15px 20px 15px 15px;
     .material-icons {
       font-size: 32px;
     }
@@ -35,6 +36,7 @@
   .header-search {
     width: 76%;
     text-align: left;
+    color: #f40000;
     .form-title {
       display: none;
     }
@@ -50,7 +52,9 @@
         color: #333333;
         padding: 0;
         i {
-          font-size: 30px;
+        color: #f40000;
+        font-size: 30px;
+        text-shadow: 0 4px 4px #ccc;
         }
       }
     }
@@ -70,9 +74,9 @@
     }
   }
   .header-cart {
-    width: 12%;
+    width: 5%;
     text-align: right;
-    padding-right: 10px;
+    padding: 0 17px;
     span {
       position: relative;
       display: inherit;
@@ -89,4 +93,8 @@
       }
     }
   }
+}
+
+.form-title{
+  width: 126px;
 }

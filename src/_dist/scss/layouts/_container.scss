@@ -22,6 +22,28 @@ body {
   box-sizing: border-box;
   padding-top: 60px !important;
   height: 100%;
+  .news-style-cart{
+    .shop-item .item-info{
+      width: 77%;
+      .item-name{
+        width: 70%;
+        font-weight: 500;
+      }
+      .item-price{
+        height: 46.5px;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        .item-discount{
+          margin: 3px 0;
+        }
+        .current-price{
+          padding-top: 0;
+          color: #f40000;
+        }
+      } 
+    } 
+  } 
 }
 .blank-page {
   width: 100%;
@@ -30,8 +52,8 @@ body {
   background-color: $color-bg;
 }
 .divider {
-  border: 2px solid $color-default;
-  margin: $pd-md;
+  border: 1px solid #c1c1c1;
+  margin: $pd-md 20px;
 }
 
 .pendingChoice {

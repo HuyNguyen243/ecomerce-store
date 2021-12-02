@@ -50,7 +50,6 @@ const Order = ({
       setUser(response.data);
     }
   }
-
   const getStep = () => {
     if (step === stepSubmitInfo) {
       return (

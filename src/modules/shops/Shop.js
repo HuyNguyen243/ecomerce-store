@@ -198,7 +198,7 @@ const Shop = () => {
           hideList={hideNavigation}
           addToCart={addToCart}
         />
-        <OrderProduct params={isShowUserOderNav} hideList={hideNavigation} />
+        <OrderProduct params={isShowUserOderNav} hideList={hideNavigation}  />
         <Detail
           id={id}
           isShowDetail={isShowDetail}

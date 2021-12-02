@@ -9,7 +9,7 @@ const Header = ({ totalCart, handleSubmit, showCart = '', title = '', hasNavigat
     if (showCart !== '') {
       return (
         <span onClick={e => {  showCart() }}>
-          <Icon name="shopping_cart" styled="outlined" />
+          <img src="/images/shopping-cart.png" alt="menu_icon" />
           { totalCart > 0 ? <span className="total-cart"> {totalCart} </span> : '' }
         </span>
       )
@@ -20,8 +20,8 @@ const Header = ({ totalCart, handleSubmit, showCart = '', title = '', hasNavigat
     <div className={`flex-list flex-stretch shop-header ${headerBg}`}>
       <div className="header-home">
         {
-          hasNavigation ? <span onClick={() => doNavigation(navId)} className="pointer"><Icon name="keyboard_backspace" /></span>
-                        : <span onClick={() => showLeftNav()} className="pointer"><img src="/images/menu.svg" alt="menu_icon" /></span>
+          hasNavigation ? <span onClick={() => doNavigation(navId)} className="pointer"><img src="/images/Back-red.svg" alt="menu_icon" /></span>
+                        : <span onClick={() => showLeftNav()} className="pointer"><img src="/images/menu-red.svg" alt="menu_icon" /></span>
         }
       </div>
       <div className="header-search">

@@ -3,6 +3,10 @@ $box-shadow: 0px 1px 17px 2px $color-box-shadow;
 $line-height: 1.2;
 $text-row: 2;
 
+.shop-item:first-child{
+  padding-left: 0;
+}
+
 .shop-item {
   align-items: center;
   min-height: 150px;
@@ -13,7 +17,7 @@ $text-row: 2;
   position: relative;
   &.alt {
     display: block;
-    padding: 0 $pd-sm;
+    padding:0 20px ;
     margin: 0;
     border-radius: 0;
     box-shadow: none;
@@ -48,29 +52,28 @@ $text-row: 2;
         letter-spacing: normal;
         text-align: left;
         color: #5b5b5b;
-        margin: 10px 0 0 0;
+        margin: 20px 0 0 0;
         white-space: pre-wrap;
       }
     }
   }
   &.cart {
     padding: 0 $pd-sm;
-    margin: 0 0 $pd-xs 0;
+    margin: 0 0 20px 0;
     border-radius: 0;
     box-shadow: none;
     min-height: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     .item-thumbnail {
-      width: 30%;
+      width: 23%;
       img {
         border: 1px solid #dee2e6;
       }
     }
     .item-info {
-      padding-left: $pd-md;
-      width: 70%;
+      padding-left: 17px;
+      // width: 70%;
     }
     .item-quantity {
       justify-content: space-between;
@@ -88,7 +91,7 @@ $text-row: 2;
     img {
       width: 100%;
       object-fit: contain;
-      height: 200px;
+      height: 124px;
     }
     .thumbnail-price {
       position: absolute;
@@ -109,20 +112,24 @@ $text-row: 2;
       letter-spacing: normal;
       text-align: left;
       display: block;
+      font-size: 16px;
+
     }
     .item-discount {
+      display: flex;
       span {
         display: inline;
       }
       .item-old-price {
         color: #bbbbbb;
         text-decoration: line-through;
-        font-size: 13px;
+        font-size: 16px;
+        font-weight: 500;
       }
       .item-percentage {
         margin-left: 10px;
         background-color: $color-info;
-        color: #fff;
+        color: #f40000;
         border-radius: 5px;
         padding: 3px;
         font-weight: 600;
@@ -130,9 +137,8 @@ $text-row: 2;
       }
     }
     .item-name {
-      color: #000000;
-      opacity: 0.5;
-      font-weight: 600;
+      color: #333333;
+      font-weight: 300;
       @include text-clamp($text-row, $line-height);
     }
     .quantity {
@@ -145,6 +151,7 @@ $text-row: 2;
       font-size: 17px;
       color: #333333;
       font-weight: bold;
+      
     }
     .item-button {
       // position: absolute;
@@ -155,6 +162,7 @@ $text-row: 2;
         width: 80%;
         background-color: $color-primary;
         border-radius: 5px 0px 0px 5px;
+        padding: 3px 0;
         .btn-view {
           padding: 3px 0px;
           color: $color-bg;
@@ -168,20 +176,52 @@ $text-row: 2;
         width: 20%;
         border-radius: 0px 5px 5px 0px;
         color: #fff;
+        padding: 4px 0;
         span {
           display: inline;
         }
       }
     }
   }
+  // STYLE _FOR BTN QTY DETAILS 
+  .news-style-QTY{
+    .item-quantity .quantity-options{
+      .quatiy-title{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 17.85px;
+        padding-right: 28px;
+      }
+      
+      span:nth-child(3){
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .quantity-add,
+      .quantity-minus{
+        background: #f4f4f4;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10%;
+      }
+    }
+  }
+  // STYLE _FOR BTN QTY DETAILS 
 }
 
 .horizontal-list-item {
   .shop-item {
-    width: 300px;
+    width: 244px;
     .item-thumbnail {
       img {
-        height: 200px;
+        height: 150px;
         border: 1px solid #dee2e6;
         // object-fit: contain;
       }
@@ -189,9 +229,13 @@ $text-row: 2;
     .item-info {
       min-height: 110px;
       position: relative;
+      padding-top: 3px;
     }
     .item-discount {
       height: 24px;
+      display: flex;
+      align-items: center;
+      padding: 6px 0;
     }
     .item-name {
       height: 35px;
@@ -205,17 +249,18 @@ $text-row: 2;
 #product_detail_nav {
   .item-thumbnail {
     img {
-      min-height: 275px;
+      min-height: 546px;
       border: 1px solid #dee2e6;
     }
   }
   .item-name {
-    padding-top: $pd-sm;
+    padding: 20px 0;
+    font-weight: 600;
   }
   .quantity {
     width: 50%;
     align-self: flex-end;
-    padding: 13px 0;
+    padding: 25px 0;
   }
   .over {
     color: #fc2323;
@@ -224,8 +269,8 @@ $text-row: 2;
     font-size: $font-lg;
     width: 40%;
     .current-price {
-      color: $color-info;
-      font-size: $font-md;
+      color: #f40000;
+      font-size: 25px;
       padding: $pd-sm 0;
     }
   }
@@ -250,6 +295,13 @@ $text-row: 2;
       align-items: center;
       .btn {
         color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        padding:  12px 0;
+        border: none;
+      }
+      .btn-red{
+        color: #f40000
       }
       .material-icons {
         color: #fff;
@@ -288,5 +340,64 @@ $text-row: 2;
 
   .shop-item .item-thumbnail img {
     height: 100px;
+  }
+}
+
+.container{
+  margin: 0 15px;
+  padding: 15px 0;
+  .Offer-title{
+    img{
+      float: left;
+      padding-right: 15px;
+    }
+    color: #f40000;
+    font-weight: 600;
+    line-height: 30px;
+    font-size: 16px;
+  }
+  .Offer-Details{
+    background-color: #000;
+    color: #fff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 15px;
+    display: flex;
+    position: relative;
+    img{
+      width: 160px;
+      height: 160px;
+      // padding-right: 25px;
+    }
+  }
+  .Note-Details{
+    padding: 44px 0;
+    padding-left: 15px;
+    .Note-Details-titles{
+      font-weight: 500px;
+      font-size: 16px;
+      padding: 2px 0;
+      margin: 0;
+    }
+    .Minimum-Order{
+      font-weight: 300px;
+      font-size: 13px;
+      padding: 2px 0;
+      margin: 0;
+      color: #f40000;
+    }
+    .Product-Details{
+      font-weight: 200px;
+      font-size: 10px;
+      padding: 2px 0;
+      margin: 0;
+    }
+    img{
+      position: absolute;
+      top: -60px;
+      right: 0;
+      width: 90px;
+      padding: 5px 5px 0;
+    }
   }
 }

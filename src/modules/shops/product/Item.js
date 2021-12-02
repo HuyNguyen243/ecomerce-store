@@ -32,7 +32,8 @@ const Item = ({data, showDetail, addToCart}) => {
                 quantity        : 1,
                 image           : data.image
               })}>
-            <Icon name="add_shopping_cart" styled="outlined"/>
+            {/* <Icon name="add_shopping_cart" styled="outlined"/> */}
+            <img src="/images/shopping-cart.png" alt="menu_icon" />
           </div>
         </div>
       </div>

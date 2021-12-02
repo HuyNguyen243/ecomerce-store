@@ -5,6 +5,7 @@ import Loader from "./../../../_components/_loader.component";
 // import Blankpage from "./../../../_components/_blankpage.component";
 import { ShopContext } from "./../../../contexts/ShopContext";
 import UrlParamHelper  from './../../../_helpers/param';
+import Offer from "./Offer";
 
 const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, addToCart }) => {
   const { mostViews, productByCategories, loading, getGeneralData, login } = useContext(ShopContext);
@@ -55,6 +56,7 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
 
   return (
     <div className="main_container">
+      {Offer()}
       {isLogin ? 
         <div>
           {loading && !isHomeLoaded ? <Loader /> : mostViewProducts}

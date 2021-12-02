@@ -64,6 +64,7 @@ const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart })
     }
   }
 
+
   return (
     <div className="horizontal-wrapper">
       <div className="horizontal-header row">
