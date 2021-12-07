@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Loader from "./../../../_components/_loader.component";
 import Icon from './../../../_components/_icon.component';
+import{Link} from "react-router-dom"
 
 const OrderForm = ({ onSubmit, user, isLoading }) => {
   const { register, handleSubmit, errors } = useForm();
@@ -73,27 +74,45 @@ const OrderForm = ({ onSubmit, user, isLoading }) => {
         // ----------------------------
         <form className="basic-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <div className="information">
-              <a href="#">Chọn thông tin nhận hàng</a>
-              <img src="/images/Back-Black.svg" alt="menu_icon" />
+            <div className="nav_label">
+              <span>Thông tin giao hàng</span>
             </div>
-          </div>
-          <div className="nav_label">
+            <Link to="/user-address" >
+              <div className="information">
+                <a href="#">Chọn thông tin nhận hàng</a>
+                <img src="/images/Back-Black.svg" alt="menu_icon" />
+              </div>
+            </Link>
+            <div className="nav_label">
               <span>Phương thức vận chuyển</span>
             </div>
-          <div className="form-group">
+            <Link to="/select-shipping" >
             <div className="shipping">
               <a href="#">Phương thức vận chuyển (Giao hàng tiết kiệm)</a>
               <img src="/images/Back-Black.svg" alt="menu_icon" />
             </div>
+            </Link>
           </div>
           <div className="fix-bottom">
+            <div>
+            <div>
+            <div className="divider"></div>
+              <div className="row cart-total-info">
+                <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
+                <div className="col-6 text-bold txt-right">
+                    <input type="text" name="code"  placeholder="Nhập mã giảm giá" className="btn-discount" />
+                </div>
+              </div>
+            </div>
+            
             <div className="btn-with-icon right-icon">
-              <button type="submit" className="btn btn-primary">Tiếp tục</button>
-              {/* <Icon name="east" /> */}
+              <button type="submit" className="btn btn-primary btn-left-icon ">Quay lại</button>
+              <Link to="/oderInformation"><button type="submit" className="btn btn-primary btn-right-icon ">Tiếp tục</button></Link>
+              {/* <button type="submit" className="btn btn-primary btn-right-icon">Tiếp tục</button> */}
+            </div>
+              
             </div>
           </div>
-          
         </form>
       }
     </div>

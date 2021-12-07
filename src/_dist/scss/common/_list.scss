@@ -93,7 +93,7 @@ ul {
         margin-bottom: 7.5px;
         width: 41%;
         float: left;
-        padding: 0 25px;
+        padding: 0 4%;
         .shop-item {
             width: 100%;
             padding: 0px 0px 10px;
@@ -131,5 +131,27 @@ ul {
         &:hover .list-navigate {
             display: inline
         }
+    }
+}
+
+.qty-span{
+    width: 40px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center ;
+}
+
+@media only screen and (min-width: 700px) {
+    .btn-discount{
+        width: 265px !important;
+    }
+    .swal2-container.swal2-center > .swal2-popup{
+        width: 526px !important;
+    }
+}
+
+@media only screen and (min-width: 578px) {
+    .swal2-container.swal2-center > .swal2-popup{
+        width: 526px !important;
     }
 }

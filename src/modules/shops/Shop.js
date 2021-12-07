@@ -32,7 +32,6 @@ const Shop = () => {
   const [isShowLeftNav, setIsShowLeftNav] = useState(false);
   const [isShowUserOderNav, setIsShowUserOderNav] = useState(false);
   const [id, setId] = useState(0);
-
   let cartItems = CartHelper.get();
   const [carts, setCarts] = useState([]);
   const [totalCart, setTotalCart] = useState(0);

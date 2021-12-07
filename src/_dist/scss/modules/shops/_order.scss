@@ -24,7 +24,7 @@
     .group-btn {
         padding: 5px;
         .btn-with-icon {
-            width: 50%;
+            width: 100%;
             padding-left: 0;
             padding-right: 0;
             &.right-icon .material-icons {
@@ -128,4 +128,52 @@
             font-size: 15px;
         }
     }
+}
+
+.user_info{
+    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    color: #333;
+    margin-bottom: 27px;
+    p{
+        margin: 4px 0;
+    }
+    .name_number{
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    span,
+    .address{
+        font-size: 13px;
+        color: #333;
+    }
+    span:last-child{
+        color: #f40000;
+    }
+}
+
+.fix-bottom .new-style:nth-child(1){
+    margin-right: 5px;
+    width: 49%;
+    background-color: #ffdada;
+}
+
+.container-fluid{
+    position: relative;
+    height: 100%;
+}
+
+.btn-left-icon{
+    width: 49%;
+    background-color: #ffdada !important;
+    color: #f40;
+    margin-right: 5px;
+}
+
+.btn-right-icon{
+    width: 49%;
+    margin-left: 5px;
 }

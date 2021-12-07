@@ -48,12 +48,14 @@
 
 .btn-success {
     @include btn-style();
-    @include background($color-success)
+    background-color: #f40000;
+
 }
 
 .btn-danger {
     @include btn-style();
-    @include background($color-danger)
+    background-color: #ffdada;
+
 }
 
 .btn-default {
@@ -66,7 +68,7 @@
 
 .btn-with-icon {
     position: relative;
-    padding: $pd-md $pd-sm;
+    padding: $pd-md 15px;
     .material-icons {
         position: absolute;
         top: 25px;

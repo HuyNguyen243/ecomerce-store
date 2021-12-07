@@ -29,35 +29,31 @@ const Cart = ({
   let listItems;
   let sumPrice = 0;
 
-
   useEffect(() => {
-
     getPromotionData();
-    // Miss -offer 
-    // Swal.fire({
-    //   html: 
-    //           "<div class='Offer-Shock'>"+
-    //           "<div class='Offer-title'>"+
-    //           "<img src='/images/sale.png' alt='menu_icon' />"+
-    //           "<p>Bạn ơi bạn có quên ưu đãi này?</p>"
-    //           +
-    //           "</div>"+
-    //           "<div class='container'>"+
-    //               "<div class='Offer-Details'>"+
-    //                   "<img src='/images/QC_COCA.png'  />"+
-    //                   "<div class='Note-Details'>"+
-    //                       "<p class='Note-Details-titles'>THÙNG 24 LON COCA</p>"+
-    //                       "<p class='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>"+
-    //                       "<p class='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>"+
-    //                       "<img src='/images/Group227.svg' alt='menu_icon' />"+
-    //                   "</div>"+
-    //               "</div>"+
-    //             "</div>"
-    //            ,
-    //   showCloseButton: true,
-    //   showConfirmButton :false,
-    // })
-    // End_OFFer
+    Swal.fire({
+      html: 
+              "<div class='Offer-Shock'>"+
+              "<div class='Offer-title'>"+
+              "<img src='/images/sale.png' alt='menu_icon' />"+
+              "<p>Bạn ơi bạn có quên ưu đãi này?</p>"
+              +
+              "</div>"+
+              "<div class='container'>"+
+                  "<div class='Offer-Details'>"+
+                      "<img src='/images/QC_COCA.png'  />"+
+                      "<div class='Note-Details'>"+
+                          "<p class='Note-Details-titles'>THÙNG 24 LON COCA</p>"+
+                          "<p class='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>"+
+                          "<p class='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>"+
+                          "<img src='/images/Group227.svg' alt='menu_icon' />"+
+                      "</div>"+
+                  "</div>"+
+                "</div>"
+               ,
+      showCloseButton: true,
+      showConfirmButton :false,
+    })
   }, [showOrderForm]);
 
   const getPromotionData = () => {
@@ -85,7 +81,6 @@ const Cart = ({
   const priceFormat = (price) => {
     return NumberHelper.formatCurrency(price);
   };
-
   if (carts.length > 0) {
     listItems = carts.map((item, index) => {
       let price =
@@ -148,12 +143,7 @@ const Cart = ({
       <div className="row cart-total-info">
         <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
         <div className="col-6 text-bold txt-right">
-          <button
-            className="btn btn-promotion-submit btn-primary"
-            onClick={handleSubmitPromotion}
-          >
-            Nhập mã
-          </button>
+            <input type="text" name="code" onClick={handleSubmitPromotion} placeholder="Nhập mã giảm giá" className="btn-discount" />
         </div>
       </div>
       <div className="row cart-total">
@@ -164,6 +154,8 @@ const Cart = ({
       </div>
     </div>
   );
+
+  
 
   return (
     <div id={LIST_CART_NAV} className="overlay nav-right">

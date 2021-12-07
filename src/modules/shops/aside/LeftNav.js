@@ -39,11 +39,11 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
         </div> */}
         <div className="menu-left-item" onClick={e => toggleCategory()}>
           <img src='/images/information.svg' alt="category"/>
-          <span>Thông tin đặt hàng</span>
+          <span>THÔNG TIN ĐẶT HÀNG</span>
         </div>
         <div className="menu-left-item" onClick={e => showNavigation(USER_ORDER_NAV)}>
           <img src='/images/Shopping_list.svg' alt="order"/>
-          <span>Danh sách đơn hàng</span>
+          <span>DANH SÁCH ĐƠN HÀNG</span>
         </div>
       </div>
       <ul className={`menu-category ${ isToggled ? '' : 'hide'}`} >

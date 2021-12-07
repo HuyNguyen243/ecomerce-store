@@ -4,7 +4,6 @@ import Icon from './../../../_components/_icon.component';
 
 const Header = ({ totalCart, handleSubmit, showCart = '', title = '', hasNavigation = false
                   , doNavigation = '', showLeftNav, navId = '', headerBg = 'header-primary'}) => {
-
   const showShoppingCart = () => {
     if (showCart !== '') {
       return (

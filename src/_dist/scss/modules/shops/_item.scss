@@ -186,26 +186,23 @@ $text-row: 2;
   // STYLE _FOR BTN QTY DETAILS 
   .news-style-QTY{
     .item-quantity .quantity-options{
+      span{
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       .quatiy-title{
         font-size: 16px;
         font-weight: 600;
         line-height: 17.85px;
         padding-right: 28px;
       }
-      
-      span:nth-child(3){
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
 
       .quantity-add,
       .quantity-minus{
         background: #f4f4f4;
-        width: 40px;
-        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -345,7 +342,7 @@ $text-row: 2;
 
 .container{
   margin: 0 15px;
-  padding: 15px 0;
+  padding-bottom: 15px;
   .Offer-title{
     img{
       float: left;
@@ -398,6 +395,39 @@ $text-row: 2;
       right: 0;
       width: 90px;
       padding: 5px 5px 0;
+    }
+  }
+}
+
+
+.swal_sm{
+  .Offer-Details{
+    background-color: #fff;
+    color: #000;
+    box-sizing: border-box;
+    padding: 15px;
+    position: relative;
+    display: block;
+    height: 100%;
+    img{
+      width: 100% !important;
+      height: 50% !important;
+    }
+  }
+  .Note-Details{
+    padding: 0 !important;
+    .Note-Details-titles{
+      padding: 24px 0 7px 0 !important;
+    }
+    .Minimum-Order{
+      color: #333;
+      span{
+        color: #f40;
+      }
+    }
+    .Product-Details{
+      font-size: 13px;
+      font-weight: 300;
     }
   }
 }
