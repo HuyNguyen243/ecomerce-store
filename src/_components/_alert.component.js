@@ -54,6 +54,10 @@ const Alert = ({ message = "", getPromotionData }) => {
     }
   }
 
+  const handleclick=()=>{
+    console.log("ok")
+  }
+
   const handleClosePromotion = () => {
     setErrorMsg("")
     AlertHelper.hidePromotion();
@@ -73,6 +77,32 @@ const Alert = ({ message = "", getPromotionData }) => {
               placeholder="Nhập mã giảm giá"
             />
             <span className="txt-danger">{errorMsg}</span>
+          </div>
+          <div className="counpon" onClick={handleclick}>
+            <div className="information-counpon">
+              <img src="/images/sale2.png" alt="menu_icon" />f
+              <div className="discountcode">
+                <p>CC1PLUS1</p>
+                <p>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>
+                <p>Hạn sử dụng: 30/11/2021</p>
+              </div>
+            </div>
+            <div className="use-count">
+              <span><a href="#">Sử dụng ngay</a></span>
+            </div>
+          </div>
+          <div className="counpon">
+            <div className="information-counpon">
+              <img src="/images/sale2.png" alt="menu_icon" />
+              <div className="discountcode">
+                <p>CC1PLUS1</p>
+                <p>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>
+                <p>Hạn sử dụng: 30/11/2021</p>
+              </div>
+            </div>
+            <div className="use-count">
+              <span><a href="#">Sử dụng ngay</a></span>
+            </div>
           </div>
           <div className="flex-list flex-stretch">
             <button

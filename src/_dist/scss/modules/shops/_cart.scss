@@ -5,6 +5,104 @@
     }
   }
 }
+// CSS_SWAL 
+.swal2-container{
+  padding: 0;
+}
+.swal2-container.swal2-center>.swal2-popup{
+  border-radius: 0;
+  width: 95%;
+}
+.swal2-container.swal2-backdrop-show{
+  padding: 0;
+}
+.swal2-html-container{
+  margin: 16px !important;
+  text-align: center !important; 
+  color: #000 !important;
+  .Offer-title{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 10px;
+    p{
+      margin: 0px;
+      color: #f40000;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 22.5px;
+    }
+    img{
+      margin: 0 12px;
+    }
+  }
+  .Offer-Details {
+    >img{
+      width: 104px;
+      height: 104px;
+    }
+   .Note-Details{
+    padding: 0 0 0 27px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .Note-Details-titles{
+      padding: 6px 0 2px;
+    }
+   }
+  }
+  .container{
+    margin: 0;
+    padding: 10px 0;
+  }
+}
+.swal2-close{
+  color: #f40000 !important;
+}
+
+.swal2-icon.swal2-info{
+  border-color: #f40000 !important;
+  color: #f40000 !important;
+}
+
+.swal2-title{
+  color: #f40000 !important;
+  font-size: 20px !important;
+  padding-top: 4px !important;
+}
+
+.swal2-actions{
+  width: 100% !important;
+  padding: 0 15px !important;
+  flex-direction: row-reverse;
+  .swal2-confirm{
+    width: 46% !important;
+    color: #f40000 !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    background-color: #f4dada !important;
+  }
+  .swal2-cancel{
+    width: 46% !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    background-color: #f40000 !important;
+  }
+}
+.confirm-swal{
+  padding:  40px 55px 20px 55px;
+  h3{
+    font-size: 20px;
+    color: #f40000;
+
+  }
+  p{
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500px;
+  }
+}
+// END _SWAL
 
 #list_cart_nav {
   .main_container {
@@ -13,6 +111,10 @@
   }
   .btn-payment {
     width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 11px 0;
+    line-height: 22.5px;
   }
   .btn-promotion-submit {
     border-radius: 5px;
@@ -29,18 +131,39 @@
   }
   .quantity-options {
     span {
-      width: 28px;
+      width: 40px !important;
       text-align: center;
+      color: #000;
+      font-size: 16px;
+      width: 40px;
+      height: 40px;
     }
     .quantiy-action {
-      border-radius: 50%;
+      border-radius: 10%;
       color: #ffffff;
       &.quantity-minus {
-        background: #bdbdbd;
+        background: #f4f4f4;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       &.quantity-add {
-        background: $color-info;
+        background: #f4f4f4;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
 }
+
+.cart-total{
+  color: #333;
+  .new-text{
+    color: #f40000;
+  }
+}
+

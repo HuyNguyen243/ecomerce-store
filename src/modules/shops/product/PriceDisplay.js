@@ -21,7 +21,7 @@ const PriceDisplay = ({coupon, price}) => {
     )
   }
   return (
-    <div className="item-price">
+    <div className="item-price ">
       <div className="item-discount">
         <span className="item-old-price">{oldPrice}</span>
         {getPercentage(price, coupon)}

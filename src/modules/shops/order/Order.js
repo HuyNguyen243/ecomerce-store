@@ -50,7 +50,6 @@ const Order = ({
       setUser(response.data);
     }
   }
-
   const getStep = () => {
     if (step === stepSubmitInfo) {
       return (
@@ -145,9 +144,8 @@ const Order = ({
       {step === stepDone || totalCart > 0 ? (
         <div className="main_container">
           {step !== stepDone ? (
-            <div className="nav_label">
-              <span>Thông tin giao hàng</span>
-            </div>
+            <>
+            </>
           ) : (
             ""
           )}

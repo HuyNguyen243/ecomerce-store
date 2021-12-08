@@ -4,11 +4,9 @@
   width: 100%;
   // max-width: 768px;
   &.header-primary {
-    background-color: #424252;
+    background-color: #fff;
     color: $color-bg;
-    img {
-      width: 25px;
-    }
+    box-shadow: 0 4px 4px 0 #ccc;
     .app-input {
       font-size: $font-sm;
     }
@@ -22,12 +20,15 @@
     }
     .header-home {
       text-align: left;
+      span img{
+      width: 30px;
+      }
     }
   }
   padding: $pd-xs 0px;
   .header-home {
-    width: 12%;
-    padding-left: 15px;
+    width: 5%;
+    padding: 15px 20px 15px 15px;
     .material-icons {
       font-size: 32px;
     }
@@ -35,6 +36,8 @@
   .header-search {
     width: 76%;
     text-align: left;
+    color: #f40000;
+    font-weight: 600;
     .form-title {
       display: none;
     }
@@ -50,7 +53,9 @@
         color: #333333;
         padding: 0;
         i {
-          font-size: 30px;
+        color: #f40000;
+        font-size: 30px;
+        text-shadow: 0 4px 4px #ccc;
         }
       }
     }
@@ -70,23 +75,32 @@
     }
   }
   .header-cart {
-    width: 12%;
+    width: 5%;
     text-align: right;
-    padding-right: 10px;
+    padding: 0 17px;
     span {
       position: relative;
       display: inherit;
       font-size: 30px;
       .total-cart {
-        background: $color-danger;
-        color: $color-bg;
-        border-radius: 50%;
-        padding: 0px $pd-xs;
+        background: #dc3545;
+        color: #ffffff;
+        border-radius: 50% 50% 50% 50%;
+        padding: 0px 5px; 
         position: absolute;
         right: 6px;
         bottom: -2px;
         font-size: 18px;
+        width: 10px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
+}
+
+.form-title{
+  width: 126px;
 }

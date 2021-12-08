@@ -33,17 +33,17 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
   return (
     <div id={LEFT_MENU_NAV} className="overlay nav-left">
       <div className="menu-left-nav">
-        <div className="menu-left-item" onClick={e => showNavigation(PROFILE_NAV)}>
+        {/* <div className="menu-left-item" onClick={e => showNavigation(PROFILE_NAV)}>
           <img src='/images/user_icon.svg' alt="user"/>
           <span>Thông tin cá nhân</span>
-        </div>
+        </div> */}
         <div className="menu-left-item" onClick={e => toggleCategory()}>
-          <img src='/images/category_icon.svg' alt="category"/>
-          <span>Danh mục</span>
+          <img src='/images/information.svg' alt="category"/>
+          <span>THÔNG TIN ĐẶT HÀNG</span>
         </div>
         <div className="menu-left-item" onClick={e => showNavigation(USER_ORDER_NAV)}>
-          <img src='/images/user_orders_icon.svg' alt="order"/>
-          <span>Đơn hàng của bạn</span>
+          <img src='/images/Shopping_list.svg' alt="order"/>
+          <span>DANH SÁCH ĐƠN HÀNG</span>
         </div>
       </div>
       <ul className={`menu-category ${ isToggled ? '' : 'hide'}`} >

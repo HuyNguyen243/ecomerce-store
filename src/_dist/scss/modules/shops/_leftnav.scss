@@ -1,6 +1,6 @@
 $top-space: 44px;
 #left_menu_nav {
-    margin-top: $top-space;
+    margin-top: 74px;
     background: transparent;
     display: inline-block;
     .menu-label {
@@ -22,8 +22,11 @@ $top-space: 44px;
         background: $color-bg;
         box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.16);
         float: left;
+        .menu-left-item:last-child{
+            padding-top: 0;
+        } 
         .menu-left-item {
-            padding: $pd-md $pd-sm;
+            padding: 24px 20px;
             cursor: pointer;
             text-align: center;
             display: flex;
@@ -32,8 +35,10 @@ $top-space: 44px;
                 width: 20px;
             }
             span {
-                color: #5b5b5b;
-                margin-left: $pd-sm;
+                color: #333333;
+                margin-left: 16px;
+                font-size: 16px;
+                font-weight: 600;
             }
         }
     }

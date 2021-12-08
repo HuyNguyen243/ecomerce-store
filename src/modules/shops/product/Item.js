@@ -3,11 +3,14 @@ import PriceDisplay from './PriceDisplay';
 import ImageDisplay from './ImageDisplay';
 import Icon from './../../../_components/_icon.component';
 import { QUICK_BUY_TYPE } from './../../../_config/shop.config';
+import {Link} from "react-router-dom"
 
 const Item = ({data, showDetail, addToCart}) => {
   return (
     <div className="shop-item">
+    <Link to={"/detail"}>
       <div onClick={e => showDetail(e, data._id )}><ImageDisplay src={data.image} alt={data.name} /></div>
+    </Link>
       <div className="item-info">
         <div onClick={e => showDetail(e, data._id )}>
           <span className="item-name">{data.name}</span>
@@ -32,7 +35,8 @@ const Item = ({data, showDetail, addToCart}) => {
                 quantity        : 1,
                 image           : data.image
               })}>
-            <Icon name="add_shopping_cart" styled="outlined"/>
+            {/* <Icon name="add_shopping_cart" styled="outlined"/> */}
+            <img src="/images/shopping-cart.png" alt="menu_icon" />
           </div>
         </div>
       </div>

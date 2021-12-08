@@ -5,6 +5,7 @@ import Slideshow from "./ProductSlideshow";
 import Icon from "./../../../_components/_icon.component";
 import { QUICK_BUY_TYPE } from "./../../../_config/shop.config";
 
+
 const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
   let image;
   if (product.gallery && product.gallery.length > 1) {
@@ -12,7 +13,6 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
   } else {
     image = <ImageDisplay src={product.image} alt={product.name} />;
   }
-
   let quantityShow = product.quantity;
   let blockBtnLeft = "";
   let blockBtnRight = "";
@@ -23,6 +23,50 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
       blockBtnLeft = "button-left-block";
       blockBtnRight = "button-right-block";
     }
+  }
+  console.log(product)
+  const updateCartQuantity = (e)=>{
+    let id = e.target.id
+    if(id =="add"){
+      quantity +=1
+    }
+    if(id =="remove"){
+      quantity -=1
+      if(quantity<1){
+        quantity = 1
+      }
+    }
+    changeQuantity(quantity)
+  }
+
+
+  const btnQTY = ()=>{
+    return(
+        <div className="news-style-QTY">
+          <div className="col-7 item-quantity ">
+            <div className="flex-list quantity-options">
+              <span  className="quatiy-title">
+                <p>Chọn số lượng:</p>
+              </span>
+              <span
+                className="quantiy-action quantity-minus"
+                onClick={updateCartQuantity}
+                id="remove"
+              >
+                <img src="/images/add-.svg" alt="menu_icon" className="remove" id="remove" />
+              </span>
+              <span>{quantity}</span>
+              <span
+                className="quantiy-action quantity-add"
+                onClick={updateCartQuantity}
+                id="add"
+              >
+                <img src="/images/add+.svg" alt="menu_icon" className="add"  id="add"/>
+              </span>
+            </div>
+          </div>
+        </div>
+    )
   }
 
   return (
@@ -41,7 +85,7 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
       </div>
       <div className="group-buttons">
         <div className={`button-left item-button ${blockBtnLeft}`}>
-          <Icon name="work_outline" />
+          {/* <Icon name="work_outline" /> */}
           <button
             type="button"
             onClick={() => {
@@ -64,7 +108,9 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
           </button>
         </div>
         <div className={`button-right item-button ${blockBtnRight}`}>
-          <Icon name="add_shopping_cart" />
+          {/* <Icon name="add_shopping_cart" />
+           */}
+          <img src="/images/shopping-cart.png" alt="menu_icon" />
           <button
             type="button"
             onClick={() => {
@@ -78,12 +124,13 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
                   image: product.image,
                 });
             }}
-            className="btn"
+            className="btn btn-red"
           >
             Thêm vào giỏ
           </button>
         </div>
       </div>
+      {btnQTY()}
       <div className="item-description">
         <label>Thông tin sản phẩm</label>
         <p>{product.description}</p>
