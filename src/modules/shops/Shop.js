@@ -190,13 +190,13 @@ const Shop = () => {
           getListData={getListData}
           addToCart={addToCart}
         />
-        <List
+        {/* <List
           params={params}
           title={listTitle}
           showDetail={showDetail}
           hideList={hideNavigation}
           addToCart={addToCart}
-        />
+        /> */}
         <OrderProduct params={isShowUserOderNav} hideList={hideNavigation}  />
         <Detail
           id={id}
@@ -206,7 +206,7 @@ const Shop = () => {
           addToCart={addToCart}
           totalCart={totalCart}
         />
-        <Cart
+        {/* <Cart
           hideCart={hideNavigation}
           totalCart={totalCart}
           carts={carts}
@@ -214,7 +214,7 @@ const Shop = () => {
           removeCartItem={removeCartItem}
           showOrderForm={showNavigation}
           showDetail={showDetail}
-        />
+        /> */}
         <Order
           hideNavigation={hideNavigation}
           showNavigation={showNavigation}
@@ -222,7 +222,7 @@ const Shop = () => {
           emptyCart={emptyCart}
           carts={carts}
         />
-        <Profile hideNavigation={hideNavigation} />
+        
       </div>
       <Snackbar />
     </ShopContextProvider>

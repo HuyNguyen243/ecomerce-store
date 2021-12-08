@@ -71,6 +71,28 @@ const showheader =()=>{
   }
 }
 
+const handleSubmit = ()=>{
+  Swal.fire({
+    title: 'XÁC NHẬN ĐẶT HÀNG',
+    text: "Bạn có đồng ý đặt đơn hàng này?!",
+    icon: 'info',
+    confirmButtonText: 'Đồng ý',
+    showCancelButton: true,
+    cancelButtonText: "Huỷ bỏ"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        showConfirmButton : false,
+        html :"<div class='confirm-swal'>"
+        +"<img src='/images/thank-you.png' alt='menu_icon' />"
+        +"<h3>ĐẶT HÀNG THÀNH CÔNG</h3>"
+        +"<p>Cám ơn anh A đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>"+
+        "</div>"
+      })
+    }
+  })
+}
+
   return(
     <div className="body_wrapper ">
       {showheader()}
@@ -125,7 +147,7 @@ const showheader =()=>{
          </div>
        </div>
        <div className="btn-with-icon right-icon">
-            <button type="submit" className="btn btn-primary">Xác nhân đặt hàng</button>
+            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Xác nhân đặt hàng</button>
       </div>
      </div>
     </div>

@@ -24,7 +24,7 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
       blockBtnRight = "button-right-block";
     }
   }
-
+  console.log(product)
   const updateCartQuantity = (e)=>{
     let id = e.target.id
     if(id =="add"){
@@ -32,7 +32,6 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
     }
     if(id =="remove"){
       quantity -=1
-      
       if(quantity<1){
         quantity = 1
       }

@@ -4,6 +4,7 @@ import CartItem from '../cart/CartItem';
 import { ORDER_FORM_NAV, LIST_CART_NAV } from "./../../../_config/shop.config";
 import Alert from "./../../../_components/_alert.component";
 import{Link}from "react-router-dom"
+import { useHistory } from "react-router";
 
 
 function OderInformation(
@@ -15,7 +16,6 @@ function OderInformation(
 ) {
     const showCart=()=>{
         const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
-        console.log(getlocal)
         if(getlocal.length >0){
             return getlocal.map((item,value)=>{
                 return(
@@ -25,8 +25,12 @@ function OderInformation(
         }
         
     }
+    
 
-
+    const history = useHistory()
+    const handleBackPage=()=>{
+        history.push("/OderForm")
+    }
     return (
         
         <div className="body_wrapper ">
@@ -74,7 +78,7 @@ function OderInformation(
                     </div>
                     </div>
                     <div className="btn-with-icon right-icon">
-                        <button type="submit" className="btn btn-primary btn-left-icon " >Quay lại</button>
+                        <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBackPage}>Quay lại</button>
                         <Link to="/oderConfirm"><button type="submit" className="btn btn-primary btn-right-icon ">Tiếp tục</button></Link>
                         {/* <button type="submit" className="btn btn-primary btn-right-icon">Tiếp tục</button> */}
                     </div>

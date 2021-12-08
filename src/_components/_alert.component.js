@@ -80,7 +80,7 @@ const Alert = ({ message = "", getPromotionData }) => {
           </div>
           <div className="counpon" onClick={handleclick}>
             <div className="information-counpon">
-              <img src="/images/sale2.png" alt="menu_icon" />
+              <img src="/images/sale2.png" alt="menu_icon" />f
               <div className="discountcode">
                 <p>CC1PLUS1</p>
                 <p>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>

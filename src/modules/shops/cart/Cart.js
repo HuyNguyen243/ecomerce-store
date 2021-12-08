@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NumberHelper from "./../../../_helpers/number";
 import CartItem from "./CartItem";
 import Header from "./../header/Header";
@@ -9,11 +9,13 @@ import AlertHelper from "./../../../_helpers/alert";
 import CartHelper from "./../../../_helpers/cart";
 import Alert from "./../../../_components/_alert.component";
 import Swal from "sweetalert2"
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
+import { ShopContext } from "../../../contexts/ShopContext";
 const Cart = ({
   element,
   hideCart,
   totalCart,
-  carts,
   removeCartItem,
   updateCartQuantity,
   showOrderForm,
@@ -26,11 +28,90 @@ const Cart = ({
       code: "",
     },
   });
-  let listItems;
-  let sumPrice = 0;
+  // const {product,products} = useContext(ShopContext)
+  // const getPromotionData = () => {
+  //   let promotionTmp = CartHelper.getPromotion();
+  //   if (promotionTmp !== null) {
+  //     setPromotion(promotionTmp);
+  //   }
+  // };
 
+  // const sumPriceAfterPromotion = (sum, reduce) => {
+  //   if (reduce > sum) {
+  //     return 0;
+  //   }
+  //   return sum - reduce;
+  // };
+
+  // async function handleSubmitPromotion() {
+  //   AlertHelper.inputPromotion();
+  // }
+
+  // const handleSubmitOrder = () => {
+  //   showOrderForm(ORDER_FORM_NAV);
+  // };
+
+  // const priceFormat = (price) => {
+  //   return NumberHelper.formatCurrency(price);
+  // };
+
+
+  // const priceUsePromotion = (
+  //   <div>
+  //     <div className="divider"></div>
+  //     <div className="row cart-total-info">
+  //       <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
+  //       <div className="col-6 text-bold txt-right">
+  //         <button
+  //           className="btn btn-promotion-submit btn-primary has-promotion"
+  //           onClick={handleSubmitPromotion}
+  //         >
+  //           {promotion.promotion.code}
+  //         </button>
+  //       </div>
+  //     </div>
+  //     <div className="row cart-total">
+  //       <div className="col-6 text-bold text-sm">Giảm:</div>
+  //       <div className="col-6 text-bold txt-danger txt-right">
+  //         <span className="text-sm">
+  //           {priceFormat(-parseInt(promotion.priceReduce))}
+  //         </span>
+  //       </div>
+  //     </div>
+  //     <div className="row cart-total">
+  //       <div className="col-6 text-bold text-sm">Tổng cộng:</div>
+  //       <div className="col-6 text-bold txt-info txt-right">
+  //         <span className="text-md">
+  //           {priceFormat(
+  //             parseInt(sumPriceAfterPromotion(sumPrice, promotion.priceReduce))
+  //           )}
+  //         </span>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+  // const price = (
+  //   <div>
+  //     <div className="divider"></div>
+  //     <div className="row cart-total-info">
+  //       <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
+  //       <div className="col-6 text-bold txt-right">
+  //           <input type="text" name="code" onClick={handleSubmitPromotion} placeholder="Nhập mã giảm giá" className="btn-discount" />
+  //       </div>
+  //     </div>
+  //     <div className="row cart-total">
+  //       <div className="col-6 text-bold text-sm">Tổng cộng:</div>
+  //       <div className="col-6 text-bold txt-info txt-right">
+  //         <span className="text-md">{priceFormat(sumPrice)}</span>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+
+  const location = useLocation()
   useEffect(() => {
-    getPromotionData();
+    if(location.pathname ==  "/cart"){
+    // getPromotionData();
     Swal.fire({
       html: 
               "<div class='Offer-Shock'>"+
@@ -54,111 +135,23 @@ const Cart = ({
       showCloseButton: true,
       showConfirmButton :false,
     })
-  }, [showOrderForm]);
-
-  const getPromotionData = () => {
-    let promotionTmp = CartHelper.getPromotion();
-    if (promotionTmp !== null) {
-      setPromotion(promotionTmp);
-    }
-  };
-
-  const sumPriceAfterPromotion = (sum, reduce) => {
-    if (reduce > sum) {
-      return 0;
-    }
-    return sum - reduce;
-  };
-
-  async function handleSubmitPromotion() {
-    AlertHelper.inputPromotion();
   }
+  },);
 
-  const handleSubmitOrder = () => {
-    showOrderForm(ORDER_FORM_NAV);
-  };
-
-  const priceFormat = (price) => {
-    return NumberHelper.formatCurrency(price);
-  };
-  if (carts.length > 0) {
-    listItems = carts.map((item, index) => {
-      let price =
-        item.couponPrice > 0 ? item.couponPrice : item.pricePerProduct;
-      sumPrice += item.quantity * price;
-      return (
-        <div key={index}>
-          <CartItem
-            item={item}
-            index={index}
-            showDetail={showDetail}
-            removeCartItem={removeCartItem}
-            updateCartQuantity={updateCartQuantity}
-            priceFormat={priceFormat}
-          />
-        </div>
-      );
-    });
-  } else {
-    listItems = <Blankpage message="Giỏ hàng rỗng" />;
-  }
-
-  const priceUsePromotion = (
-    <div>
-      <div className="divider"></div>
-      <div className="row cart-total-info">
-        <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
-        <div className="col-6 text-bold txt-right">
-          <button
-            className="btn btn-promotion-submit btn-primary has-promotion"
-            onClick={handleSubmitPromotion}
-          >
-            {promotion.promotion.code}
-          </button>
-        </div>
-      </div>
-      <div className="row cart-total">
-        <div className="col-6 text-bold text-sm">Giảm:</div>
-        <div className="col-6 text-bold txt-danger txt-right">
-          <span className="text-sm">
-            {priceFormat(-parseInt(promotion.priceReduce))}
-          </span>
-        </div>
-      </div>
-      <div className="row cart-total">
-        <div className="col-6 text-bold text-sm">Tổng cộng:</div>
-        <div className="col-6 text-bold txt-info txt-right">
-          <span className="text-md">
-            {priceFormat(
-              parseInt(sumPriceAfterPromotion(sumPrice, promotion.priceReduce))
-            )}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-  const price = (
-    <div>
-      <div className="divider"></div>
-      <div className="row cart-total-info">
-        <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
-        <div className="col-6 text-bold txt-right">
-            <input type="text" name="code" onClick={handleSubmitPromotion} placeholder="Nhập mã giảm giá" className="btn-discount" />
-        </div>
-      </div>
-      <div className="row cart-total">
-        <div className="col-6 text-bold text-sm">Tổng cộng:</div>
-        <div className="col-6 text-bold txt-info txt-right">
-          <span className="text-md">{priceFormat(sumPrice)}</span>
-        </div>
-      </div>
-    </div>
-  );
 
   
-
+  const showCart=()=>{
+    const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
+    if(getlocal.length >0){
+        return getlocal.map((item,value)=>{
+            return(
+                <CartItem item={item} />
+            )
+        })
+    }
+}
   return (
-    <div id={LIST_CART_NAV} className="overlay nav-right">
+    <div id={LIST_CART_NAV} className="nav-right">
       <Header
         doNavigation={hideCart}
         navId={LIST_CART_NAV}
@@ -167,26 +160,39 @@ const Cart = ({
         totalCart={totalCart}
       />
       <div className="main_container">
-        <div className="news-style-cart">
-        {listItems}
+        <div className="news-style-cart style-for-cart">
+        {showCart()}
         </div>
-        {totalCart > 0 ? (
           <div className="fix-bottom">
-            {promotion.priceReduce === 0 ? price : priceUsePromotion}
-            <div className="btn-with-icon right-icon">
+            {/* {promotion.priceReduce === 0 ? price : priceUsePromotion} */}
+            <div>
+          <div className="divider"></div>
+            <div className="row cart-total-info">
+              <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
+              <div className="col-6 text-bold txt-right">
+                  <input type="text" name="code"  placeholder="Nhập mã giảm giá" className="btn-discount" />
+              </div>
+            </div>
+            <div className="row cart-total">
+              <div className="col-6 text-bold text-sm">Tổng cộng:</div>
+              <div className="col-6 text-bold txt-info txt-right">
+                <span className="text-md">1</span>
+              </div>
+            </div>
+          </div>
+          <div className="btn-with-icon right-icon">
+              <Link to="/OderForm">
               <button
                 className="btn btn-primary btn-payment"
-                onClick={handleSubmitOrder}
+                // onClick={handleSubmitOrder}
               >
                 Đặt hàng
               </button>
               {/* <Icon name="east" /> */}
+              </Link>
             </div>
           </div>
-        ) : (
-            ""
-          )}
-        <Alert getPromotionData={getPromotionData} />
+        {/* <Alert getPromotionData={getPromotionData} /> */}
       </div>
     </div>
   );
