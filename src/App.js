@@ -9,9 +9,10 @@ import Newaddress from './modules/shops/userInformation/Newaddress';
 import Shipping from './modules/shops/userInformation/Shipping';
 import OderInformation from './modules/shops/order/OderInformation';
 import OrderConfirm from './modules/shops/order/OrderConfirm';
-import ProductDetail from './modules/shops/product/ProductDetail';
+// import ProductDetail from './modules/shops/product/ProductDetail';
 import OrderForm from './modules/shops/order/OrderForm';
 import List from './modules/shops/List';
+import OrderProduct from './modules/shops/order/OrderProduct';
 
 function App() {
 
@@ -22,9 +23,6 @@ function App() {
       </Switch>
       <Switch>
         <Route exact path="/not-found" component={Notfound} />
-      </Switch>
-      <Switch>
-        <Route exact path= "/detail" component={ProductDetail} />
       </Switch>
       <Switch>
         <Route exact path= "/user-address" component={userAddress} />
@@ -49,6 +47,9 @@ function App() {
       </Switch>
       <Switch>
         <Route exact path= "/List-item" component={List} />
+      </Switch>
+      <Switch>
+        <Route exact path= "/order-product" component={OrderProduct} />
       </Switch>
     </Router>
   );

@@ -21,17 +21,20 @@ const Header = ({ totalCart, handleSubmit, showCart = '', title = '', hasNavigat
   const usehistory =useHistory()
   const uselocation = useLocation()
   const handleBack =()=>{
-    if(uselocation.pathname == "/cart" || uselocation.pathname == "/List-item"){
+    if(uselocation.pathname == "/cart" || uselocation.pathname == "/List-item" || uselocation.pathname == "/order-product"){
       usehistory.push("/shop"+"?botId=6149b1a9c941488634c963cf&userId=4954465131233429")
     }
     if(uselocation.pathname == "/OderForm"){
       usehistory.push("cart")
     }
-    if(uselocation.pathname == "/oderInformation"){
+    if(uselocation.pathname == "/oderInformation" || uselocation.pathname == "/user-address" || uselocation.pathname == "/select-shipping"){
       usehistory.push("/OderForm")
     }
     if(uselocation.pathname == "/oderConfirm"){
       usehistory.push("/oderInformation")
+    }
+    if(uselocation.pathname == "/news-address"){
+      usehistory.push("/user-address")
     }
   }
   return (

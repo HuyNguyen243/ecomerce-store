@@ -41,6 +41,10 @@ $top-space: 44px;
                 font-weight: 600;
             }
         }
+        a{
+            display: inline-block;
+            text-decoration: none;
+        }
     }
     .menu-category {
         position: absolute;
