@@ -93,6 +93,34 @@ const handleSubmit = ()=>{
   })
 }
 
+const showPromotion=()=>{
+  Swal.fire({
+    title: 'MÃ GIẢM GIÁ',
+    html: "<div class='promotion'>"+ 
+            "<input type='text' class='input-promotion' placeholder='Nhập mã giảm giá'/>"+
+            // 
+                "<div class='container-promotion'>"+
+                  "<div class='Offer-promotion'>"+
+                      "<img src='/images/sale2.png'  />"+
+                      "<div class='content-promotion'>"+
+                          "<p class='code-promotion'>CC1PLUS1</p>"+
+                          "<p class='Minimum-Order'>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>"+
+                          "<p class='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>"+
+                      "</div>"+
+                  "</div>"+
+                  "<div class='use-promotion'>"+
+                    "<span>Sử dụng ngay</span>"+
+                  "</div>"+
+              "</div>"+
+              // 
+          "</div>",
+
+    confirmButtonText: 'Áp dụng',
+    showCancelButton: true,
+    cancelButtonText: "Đóng"
+  })
+}
+
   return(
     <div className="body_wrapper ">
       {showheader()}
@@ -127,7 +155,7 @@ const handleSubmit = ()=>{
        <div className="row cart-total">
          <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
          <div className="col-6 text-bold txt-right">
-             <input type="text" name="code"  placeholder="Nhập mã giảm giá" className="btn-discount" />
+          <input type="text" name="code"   placeholder="Nhập mã giảm giá" className={"btn-discount"} onClick={showPromotion}  />
          </div>
          <div className="col-6  text-sm">Tổng tiền hàng:</div>
          <div className="col-6 text-bold txt-right">

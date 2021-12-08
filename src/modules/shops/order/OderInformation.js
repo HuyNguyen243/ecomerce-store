@@ -5,7 +5,7 @@ import { ORDER_FORM_NAV, LIST_CART_NAV } from "./../../../_config/shop.config";
 import Alert from "./../../../_components/_alert.component";
 import{Link}from "react-router-dom"
 import { useHistory } from "react-router";
-
+import Swal from "sweetalert2"
 
 function OderInformation(
     carts,
@@ -31,6 +31,35 @@ function OderInformation(
     const handleBackPage=()=>{
         history.push("/OderForm")
     }
+
+    const showPromotion=()=>{
+        Swal.fire({
+          title: 'MÃ GIẢM GIÁ',
+          html: "<div class='promotion'>"+ 
+                  "<input type='text' class='input-promotion' placeholder='Nhập mã giảm giá'/>"+
+                  // 
+                      "<div class='container-promotion'>"+
+                        "<div class='Offer-promotion'>"+
+                            "<img src='/images/sale2.png'  />"+
+                            "<div class='content-promotion'>"+
+                                "<p class='code-promotion'>CC1PLUS1</p>"+
+                                "<p class='Minimum-Order'>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>"+
+                                "<p class='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>"+
+                            "</div>"+
+                        "</div>"+
+                        "<div class='use-promotion'>"+
+                          "<span>Sử dụng ngay</span>"+
+                        "</div>"+
+                    "</div>"+
+                    // 
+                "</div>",
+    
+          confirmButtonText: 'Áp dụng',
+          showCancelButton: true,
+          cancelButtonText: "Đóng"
+        })
+      }
+
     return (
         
         <div className="body_wrapper ">
@@ -73,7 +102,7 @@ function OderInformation(
                     <div className="row cart-total-info">
                         <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
                         <div className="col-6 text-bold txt-right">
-                            <input type="text" name="code"  placeholder="Nhập mã giảm giá" className="btn-discount" />
+                        <input type="text" name="code"   placeholder="Nhập mã giảm giá" className={"btn-discount"} onClick={showPromotion}  />
                         </div>
                     </div>
                     </div>

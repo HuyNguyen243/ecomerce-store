@@ -20,6 +20,7 @@ const Detail = ({
 }) => {
   const { product, loading, getById } = useContext(ShopContext);
   const [quantity, setQuantity] = useState(1);
+  console.log(product)
 
   let detail;
   useEffect(() => {

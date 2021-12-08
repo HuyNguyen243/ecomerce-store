@@ -110,12 +110,18 @@ const OrderProduct = ({ params, hideList = "" }) => {
   // }
 const handleSelect= (e)=>{
   const name= e.target.className
-  
+  // $("."+name).removeClass("ok")
+  // if(name == name + " " + "ok"){
+  $("button").removeClass("ok")
+  if(name){
+    $("."+name).addClass("ok")
+  }else{
+  }
 }
 
   
   return (
-    <div id={USER_ORDER_NAV} className="overlay nav-right">
+    <div id={USER_ORDER_NAV} className="nav-right">
       <Header
         hasNavigation={true}
         doNavigation={hideList}

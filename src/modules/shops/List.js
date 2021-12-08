@@ -6,7 +6,6 @@ import Blankpage from "./../../_components/_blankpage.component";
 import { ShopContext } from "./../../contexts/ShopContext";
 import { LIST_PRODUCT_NAV } from "./../../_config/shop.config";
 
-
 const List = ({
   params,
   showDetail = "",
@@ -19,19 +18,19 @@ const List = ({
   // );
 
 
-  const [paramFake, setParamFake] = useState();
+  // const [paramFake, setParamFake] = useState();
 
   // useEffect(() => {
   //   let ele = document.getElementById(LIST_PRODUCT_NAV);
   //   ele.addEventListener("scroll", handleScroll);
   //   return () => ele.removeEventListener("scroll", handleScroll);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   eslint-disable-next-line react-hooks/exhaustive-deps
   // }, );
 
   // useEffect(() => {
   //   setParamFake(params);
-  //   // getList(params);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    // getList(params);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [params]);
 
   // const handleScroll = () => {

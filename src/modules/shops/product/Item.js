@@ -8,9 +8,7 @@ import {Link} from "react-router-dom"
 const Item = ({data, showDetail, addToCart}) => {
   return (
     <div className="shop-item">
-    <Link to={"/detail"}>
       <div onClick={e => showDetail(e, data._id )}><ImageDisplay src={data.image} alt={data.name} /></div>
-    </Link>
       <div className="item-info">
         <div onClick={e => showDetail(e, data._id )}>
           <span className="item-name">{data.name}</span>
