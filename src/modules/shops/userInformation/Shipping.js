@@ -1,24 +1,13 @@
 import React from 'react';
 import Header from "../header/Header";
-import {
-    ORDER_FORM_NAV,
-    LIST_CART_NAV,
-    PRODUCT_DETAIL_NAV,
-    USER_ORDER_NAV,
-  } from "./../../../_config/shop.config";
 
-function Shipping( carts,
-    hideNavigation,
-    showNavigation,
-    totalCart,
-    emptyCart,) {
+
+function Shipping() {
     return (
         <>
         <Header
-             hasNavigation={true}
-             doNavigation={hideNavigation}
-             navId={ORDER_FORM_NAV}
-             title="ĐỊA CHỈ GIAO HÀNG"
+            hasNavigation={true}
+            title="ĐỊA CHỈ GIAO HÀNG"
          />
          <div className="main_container">
             <form className="basic-form" >

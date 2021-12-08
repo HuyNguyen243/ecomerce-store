@@ -1,22 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import Loader from "./../../../_components/_loader.component";
-import Icon from './../../../_components/_icon.component';
+
 import{Link} from "react-router-dom"
 import Header from "./../header/Header";
-import { ORDER_FORM_NAV, LIST_CART_NAV } from "./../../../_config/shop.config";
+import { LIST_CART_NAV } from "./../../../_config/shop.config";
 import { useHistory } from "react-router";
 
-const OrderForm = ({ onSubmit, user, isLoading, element,
+const OrderForm = ({ onSubmit, isLoading,
   hideCart,
-  totalCart,
-  removeCartItem,
-  updateCartQuantity,
-  showOrderForm,
-  showDetail, }) => {
+  totalCart
+}) => {
   const { register, handleSubmit, errors } = useForm();
-  let emptyErrorTxt = 'Vui lòng điền thông tin';
-  let phoneErrorTxt = 'Số điện thoại không hợp lệ';
+  // let emptyErrorTxt = 'Vui lòng điền thông tin';
+  // let phoneErrorTxt = 'Số điện thoại không hợp lệ';
   const history = useHistory()
   const handleBack=()=>{
     history.push("/cart")
@@ -40,7 +37,7 @@ const OrderForm = ({ onSubmit, user, isLoading, element,
             </div>
             <Link to="/user-address" >
               <div className="information">
-                <a href="#">Chọn thông tin nhận hàng</a>
+                <span>Chọn thông tin nhận hàng</span>
                 <img src="/images/Back-Black.svg" alt="menu_icon" />
               </div>
             </Link>
@@ -49,7 +46,7 @@ const OrderForm = ({ onSubmit, user, isLoading, element,
             </div>
             <Link to="/select-shipping" >
             <div className="shipping">
-              <a href="#">Phương thức vận chuyển (Giao hàng tiết kiệm)</a>
+              <span>Phương thức vận chuyển (Giao hàng tiết kiệm)</span>
               <img src="/images/Back-Black.svg" alt="menu_icon" />
             </div>
             </Link>

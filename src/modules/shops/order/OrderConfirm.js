@@ -1,12 +1,7 @@
 import React, { useEffect }  from "react";
-import NumberHelper from "../../../_helpers/number";
-import CartHelper from "../../../_helpers/cart";
-import ImageDisplay from "../product/ImageDisplay";
-import PriceDisplay from "../product/PriceDisplay";
-import Icon from "./../../../_components/_icon.component";
 import CartItem from "../cart/CartItem";
 import Header from "../header/Header";
-import { ORDER_FORM_NAV, LIST_CART_NAV } from "./../../../_config/shop.config";
+import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
 import Swal from "sweetalert2"
 import { useLocation } from "react-router";
 
@@ -14,11 +9,8 @@ import { useLocation } from "react-router";
 
 
 const OderConfirm = ( 
-  carts,
-  hideNavigation,
-  showNavigation,
-  totalCart,
-  emptyCart,)=>{
+  hideNavigation
+  )=>{
   const showCart=()=>{
     const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
     console.log(getlocal)
@@ -32,7 +24,7 @@ const OderConfirm = (
 }
   const location = useLocation()
   useEffect(()=>{
-  if(location.pathname == "/oderConfirm"){
+  if(location.pathname === "/oderConfirm"){
     Swal.fire({
       html: 
               "<div class='Offer-Shock'>"+
@@ -59,11 +51,10 @@ const OderConfirm = (
   })
 
 const showheader =()=>{
-  if(location.pathname == "/oderConfirm"){
+  if(location.pathname === "/oderConfirm"){
     return(
       <Header
       hasNavigation={true}
-      doNavigation={hideNavigation}
       navId={ORDER_FORM_NAV}
       title="ĐẶT HÀNG"
       />

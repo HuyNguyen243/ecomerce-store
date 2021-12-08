@@ -1,33 +1,36 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Loader from "./../../../_components/_loader.component";
 import Header from "../header/Header";
 import Blankpage from "./../../../_components/_blankpage.component";
-import { ShopContext } from "./../../../contexts/ShopContext";
 import ProductDetail from "./ProductDetail";
 import {
   LIST_CART_NAV,
   PRODUCT_DETAIL_NAV,
 } from "./../../../_config/shop.config";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getOneProduct } from './../../../redux/actions/index';
 
 const Detail = ({
-  isShowDetail,
-  detailEl,
-  hideDetail,
   showCart,
-  id,
   addToCart,
   totalCart,
 }) => {
-  const { product, loading, getById } = useContext(ShopContext);
-  const [quantity, setQuantity] = useState(1);
 
-  let detail;
+  const [quantity, setQuantity] = useState(1);
+  let { id } = useParams();
+  const dispatch = useDispatch();
+
+  const product = useSelector(state => state.product);
+  const isLoading = useSelector(state => state.isLoading);
+
+  const productCallback = React.useCallback(() => {
+    dispatch(getOneProduct(id))
+  }, [dispatch, id]);
+
   useEffect(() => {
-    if (isShowDetail) {
-      getById(id);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+    productCallback()
+  }, [productCallback]);
 
   const changeQuantity = (quantity) => {
     if (quantity >= 1) {
@@ -35,23 +38,9 @@ const Detail = ({
     }
   };
 
-  if (product) {
-    detail = (
-      <ProductDetail
-        product={product}
-        quantity={quantity}
-        addToCart={addToCart}
-        changeQuantity={changeQuantity}
-      />
-    );
-  } else {
-    detail = <Blankpage message="Không tìm thấy dữ liệu" />;
-  }
-
   return (
-    <div id={PRODUCT_DETAIL_NAV} className="overlay nav-right">
+    <div id={PRODUCT_DETAIL_NAV}>
       <Header
-        doNavigation={hideDetail}
         hasNavigation={true}
         title="Thông tin sản phẩm"
         showCart={showCart}
@@ -59,7 +48,19 @@ const Detail = ({
         totalCart={totalCart}
       />
       <div className="main_container detail-product item-info">
-        {loading ? <Loader /> : detail}
+        { isLoading
+          ? <Loader />
+          : 
+            product?.name !== undefined
+            ?
+              <ProductDetail
+                product={product}
+                quantity={quantity}
+                addToCart={addToCart}
+                changeQuantity={changeQuantity}
+              />
+            : <Blankpage message="Không tìm thấy dữ liệu" />
+          }
       </div>
     </div>
   );

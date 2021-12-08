@@ -1,11 +1,14 @@
 import React from 'react';
 import Search from './Search';
-import Icon from './../../../_components/_icon.component';
+// import Icon from './../../../_components/_icon.component';
 import{Link}from 'react-router-dom'
-import { useHistory,useLocation,} from "react-router";
+import { useHistory } from "react-router";
 
 const Header = ({ totalCart, handleSubmit, showCart = '', title = '', hasNavigation = false
                   , doNavigation = '', showLeftNav, navId = '', headerBg = 'header-primary'}) => {
+
+  const usehistory =useHistory()
+
   const showShoppingCart = () => {
     if (showCart !== '') {
       return (
@@ -18,27 +21,20 @@ const Header = ({ totalCart, handleSubmit, showCart = '', title = '', hasNavigat
       )
     }
   }
-  const usehistory =useHistory()
-  const uselocation = useLocation()
-  const handleBack =()=>{
-    if(uselocation.pathname == "/cart" || uselocation.pathname == "/List-item"){
-      usehistory.push("/shop"+"?botId=6149b1a9c941488634c963cf&userId=4954465131233429")
-    }
-    if(uselocation.pathname == "/OderForm"){
-      usehistory.push("cart")
-    }
-    if(uselocation.pathname == "/oderInformation"){
-      usehistory.push("/OderForm")
-    }
-    if(uselocation.pathname == "/oderConfirm"){
-      usehistory.push("/oderInformation")
+
+  const handleGoBack = () => {
+    if(doNavigation !== '') {
+      doNavigation()
+    }else {
+      usehistory.goBack()
     }
   }
+
   return (
     <div className={`flex-list flex-stretch shop-header ${headerBg}`}>
       <div className="header-home">
         {
-          hasNavigation ? <span onClick={handleBack} className="pointer"><img src="/images/Back-red.svg" alt="menu_icon" /></span>
+          hasNavigation ? <span onClick={() => handleGoBack() } className="pointer"><img src="/images/Back-red.svg" alt="menu_icon" /></span>
                         : <span onClick={() => showLeftNav()} className="pointer"><img src="/images/menu-red.svg" alt="menu_icon" /></span>
         }
       </div>
