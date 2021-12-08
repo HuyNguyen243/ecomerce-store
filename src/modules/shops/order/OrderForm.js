@@ -19,7 +19,7 @@ const OrderForm = ({ onSubmit, isLoading,
   const handleBack=()=>{
     history.push("/cart")
   }
-  const [input,setInput]=useState("")
+
   const showPromotion=()=>{
     Swal.fire({
       title: 'MÃ GIẢM GIÁ',
