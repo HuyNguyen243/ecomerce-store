@@ -1,10 +1,10 @@
-import React, { useEffect, useContext, useState } from "react";
+import React from "react";
 import Header from "../header/Header";
-import Loader from "../../../_components/_loader.component";
-import { ShopContext } from "../../../contexts/ShopContext";
-import OrderItem from "./OrderItem";
+// import Loader from "../../../_components/_loader.component";
+// import { ShopContext } from "../../../contexts/ShopContext";
+// import OrderItem from "./OrderItem";
 import { USER_ORDER_NAV } from "./../../../_config/shop.config";
-import Blankpage from "./../../../_components/_blankpage.component";
+// import Blankpage from "./../../../_components/_blankpage.component";
 import $ from "jquery"
 const OrderProduct = ({ params, hideList = "" }) => {
   // const {

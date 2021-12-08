@@ -366,6 +366,8 @@ $text-row: 2;
     box-sizing: border-box;
     padding: 15px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     img{
       width: 160px;
@@ -374,7 +376,6 @@ $text-row: 2;
     }
   }
   .Note-Details{
-    padding: 44px 0;
     padding-left: 15px;
     .Note-Details-titles{
       font-weight: 500px;

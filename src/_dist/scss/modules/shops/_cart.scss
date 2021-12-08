@@ -13,6 +13,7 @@
   border-radius: 0;
   width: 95%;
   padding: 30px 0;
+  position: relative;
 }
 .swal2-container.swal2-backdrop-show{
   padding: 0;
@@ -59,6 +60,7 @@
 }
 .swal2-close{
   color: #f40000 !important;
+  position: absolute;
 }
 
 .swal2-icon.swal2-info{

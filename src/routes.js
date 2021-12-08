@@ -3,7 +3,7 @@ import Login from './Login';
 import Shop from './modules/shops/Shop';
 import Notfound from './404';
 import Cart from './modules/shops/cart/Cart';
-import UserAddress from './modules/shops/userInformation/UserAddress';
+import UserAddress from './modules/shops/userInformation/userAddress';
 import Newaddress from './modules/shops/userInformation/Newaddress';
 import Shipping from './modules/shops/userInformation/Shipping';
 import OderInformation from './modules/shops/order/OderInformation';

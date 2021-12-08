@@ -79,7 +79,7 @@ function OderInformation(
                         </div>
                         <div className="form-group">
                             <div className="shipping">
-                                <a className="shiper" href="#">Giao hàng tiết kiệm 1</a>
+                                <span className="shiper" href="#">Giao hàng tiết kiệm 1</span>
                                 <img src="/images/Back-Black.svg" alt="menu_icon" />
                             </div>
                         </div>

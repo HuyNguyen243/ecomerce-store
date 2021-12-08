@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import Loader from "./../../../_components/_loader.component";
 
 import{Link} from "react-router-dom"
@@ -12,7 +12,7 @@ const OrderForm = ({ onSubmit, isLoading,
   hideCart,
   totalCart
 }) => {
-  const { register, handleSubmit, errors } = useForm();
+  // const { register, handleSubmit, errors } = useForm();
   // let emptyErrorTxt = 'Vui lòng điền thông tin';
   // let phoneErrorTxt = 'Số điện thoại không hợp lệ';
   const history = useHistory()
@@ -59,7 +59,7 @@ const OrderForm = ({ onSubmit, isLoading,
         totalCart={totalCart}
       />
       <div className="main_container">
-        <form className="basic-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="basic-form" >
           <div className="form-group">
             <div className="nav_label">
               <span>Thông tin giao hàng</span>

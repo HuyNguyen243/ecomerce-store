@@ -133,7 +133,7 @@ const showPromotion=()=>{
         <form className="basic-form" >
          <div className="form-group">
              <div className="shipping">
-             <a className="shiper" href="#">Giao hàng tiết kiệm 1</a>
+             <span className="shiper" >Giao hàng tiết kiệm 1</span>
              </div>
          </div>
         </form>

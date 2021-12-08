@@ -7,25 +7,25 @@ function Shipping() {
         <>
         <Header
             hasNavigation={true}
-            title="ĐỊA CHỈ GIAO HÀNG"
+            title="PHƯƠNG THỨC VẬN CHUYỂN"
          />
          <div className="main_container">
             <form className="basic-form" >
                 <div className="form-group">
                     <div className="shipping">
-                    <a className="shiper" href="#">Giao hàng tiết kiệm 1</a>
+                    <span className="shiper" href="#">Giao hàng tiết kiệm 1</span>
                     <img src="/images/Back-Black.svg" alt="menu_icon" />
                     </div>
                 </div>
                 <div className="form-group">
                     <div className="shipping">
-                    <a className="shiper" href="#">Giao hàng tiết kiệm 2</a>
+                    <span className="shiper" href="#">Giao hàng tiết kiệm 2</span>
                     <img src="/images/Back-Black.svg" alt="menu_icon" />
                     </div>
                 </div>
                 <div className="form-group">
                     <div className="shipping">
-                    <a className="shiper" href="#">Giao hàng tiết kiệm 3</a>
+                    <span className="shiper" href="#">Giao hàng tiết kiệm 3</span>
                     <img src="/images/Back-Black.svg" alt="menu_icon" />
                     </div>
                 </div>
