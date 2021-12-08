@@ -1,33 +1,29 @@
-import React, { useState, useEffect, useContext } from "react";
-import NumberHelper from "./../../../_helpers/number";
+import React, { useState, useEffect } from "react";
+// import NumberHelper from "./../../../_helpers/number";
 import CartItem from "./CartItem";
 import Header from "./../header/Header";
-import Blankpage from "./../../../_components/_blankpage.component";
-import { ORDER_FORM_NAV, LIST_CART_NAV } from "./../../../_config/shop.config";
-import Icon from "./../../../_components/_icon.component";
-import AlertHelper from "./../../../_helpers/alert";
-import CartHelper from "./../../../_helpers/cart";
-import Alert from "./../../../_components/_alert.component";
+// import Blankpage from "./../../../_components/_blankpage.component";
+import { LIST_CART_NAV } from "./../../../_config/shop.config";
+// import Icon from "./../../../_components/_icon.component";
+// import AlertHelper from "./../../../_helpers/alert";
+// import CartHelper from "./../../../_helpers/cart";
+// import Alert from "./../../../_components/_alert.component";
 import Swal from "sweetalert2"
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { ShopContext } from "../../../contexts/ShopContext";
+// import { ShopContext } from "../../../contexts/ShopContext";
 const Cart = ({
-  element,
+
   hideCart,
-  totalCart,
-  removeCartItem,
-  updateCartQuantity,
-  showOrderForm,
-  showDetail,
+  totalCart
 }) => {
-  const [promotion, setPromotion] = useState({
-    priceReduce: 0,
-    priceAfterPromotion: 0,
-    promotion: {
-      code: "",
-    },
-  });
+  // const [promotion, setPromotion] = useState({
+  //   priceReduce: 0,
+  //   priceAfterPromotion: 0,
+  //   promotion: {
+  //     code: "",
+  //   },
+  // });
   // const {product,products} = useContext(ShopContext)
   // const getPromotionData = () => {
   //   let promotionTmp = CartHelper.getPromotion();
@@ -110,7 +106,7 @@ const Cart = ({
 
   const location = useLocation()
   useEffect(() => {
-    if(location.pathname ==  "/cart"){
+    if(location.pathname ===  "/cart"){
     // getPromotionData();
     Swal.fire({
       html: 
@@ -143,9 +139,9 @@ const Cart = ({
   const showCart=()=>{
     const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
     if(getlocal.length >0){
-        return getlocal.map((item,value)=>{
+        return getlocal.map((item,key)=>{
             return(
-                <CartItem item={item} />
+                <CartItem key={key} item={item} />
             )
         })
     }

@@ -1,40 +1,25 @@
 import React, { useState } from 'react';
 import Header from "../header/Header";
-import{Link} from "react-router-dom"
-import {
-  ORDER_FORM_NAV,
-  LIST_CART_NAV,
-  PRODUCT_DETAIL_NAV,
-  USER_ORDER_NAV,
-} from "./../../../_config/shop.config";
-import { useHistory } from 'react-router';
-
+import { useHistory } from "react-router-dom";
 
 function Newaddress(
-    carts,
-    hideNavigation,
-    showNavigation,
-    totalCart,
-    emptyCart,
 ) {
     const [checked,setChecked]=useState(false)
-const history = useHistory()
-const handleBack =()=>{
-    history.push("/user-address")
-}
-   
+    const history = useHistory()
+    const handleBack =()=>{
+        history.push("/user-address")
+    }
+
     return (
         <div >
             <Header
                 hasNavigation={true}
-                doNavigation={hideNavigation}
-                navId={ORDER_FORM_NAV}
                 title="THÊM ĐỊA CHỈ GIAO HÀNG MỚI"
             />
             <div className="main_container">
-             <form className="basic-form" >
-              
-          <div className="form-group">
+            <form className="basic-form" >
+
+        <div className="form-group">
                 <div className="nav_label">
                     <span>Thông tin liên hệ</span>
                 </div>
@@ -74,10 +59,9 @@ const handleBack =()=>{
                 </div>
                 <div className="setting">
                     <p>Cài đặt làm địa chỉ mặc định</p>
-                    <input type="checkbox" id="scales" name="scales" id="switch" onChange={(e)=>{setChecked(e.target.checked)}} />
+                    <input type="checkbox" name="scales" id="switch" onChange={(e)=>{setChecked(e.target.checked)}} />
                     <label for="switch"></label>
                 </div>
-               
 
           </div>
           <div className="fix-bottom">

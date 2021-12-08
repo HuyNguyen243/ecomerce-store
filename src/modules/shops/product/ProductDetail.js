@@ -2,7 +2,7 @@ import React from "react";
 import PriceDisplay from "./PriceDisplay";
 import ImageDisplay from "./ImageDisplay";
 import Slideshow from "./ProductSlideshow";
-import Icon from "./../../../_components/_icon.component";
+// import Icon from "./../../../_components/_icon.component";
 import { QUICK_BUY_TYPE } from "./../../../_config/shop.config";
 
 
@@ -24,13 +24,13 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
       blockBtnRight = "button-right-block";
     }
   }
-  console.log(product)
+
   const updateCartQuantity = (e)=>{
     let id = e.target.id
-    if(id =="add"){
+    if(id === "add"){
       quantity +=1
     }
-    if(id =="remove"){
+    if(id === "remove"){
       quantity -=1
       if(quantity<1){
         quantity = 1
@@ -76,11 +76,6 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
         <span className="item-name">{product.name}</span>
         <div className="group-price-quantity">
           <PriceDisplay coupon={product.couponPrice} price={product.price} />
-          {product.quantity === 0 ? (
-            <span className="quantity over">{quantityShow}</span>
-          ) : (
-            <span className="quantity">{quantityShow}</span>
-          )}
         </div>
       </div>
       <div className="group-buttons">

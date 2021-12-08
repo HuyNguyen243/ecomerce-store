@@ -1,18 +1,14 @@
 import Header from "../header/Header";
-import React, { useContext } from 'react';
+import React from 'react';
 import CartItem from '../cart/CartItem';
-import { ORDER_FORM_NAV, LIST_CART_NAV } from "./../../../_config/shop.config";
-import Alert from "./../../../_components/_alert.component";
+// import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
+// import Alert from "./../../../_components/_alert.component";
 import{Link}from "react-router-dom"
 import { useHistory } from "react-router";
 import Swal from "sweetalert2"
 
 function OderInformation(
-    carts,
     hideNavigation,
-    showNavigation,
-    totalCart,
-    emptyCart,
 ) {
     const showCart=()=>{
         const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
@@ -25,7 +21,6 @@ function OderInformation(
         }
         
     }
-    
 
     const history = useHistory()
     const handleBackPage=()=>{
@@ -64,10 +59,8 @@ function OderInformation(
         
         <div className="body_wrapper ">
             <Header
-                   hasNavigation={true}
-                   doNavigation={hideNavigation}
-                   navId={ORDER_FORM_NAV}
-                   title="THÔNG TIN ĐẶT GIAO HÀNG"
+                hasNavigation={true}
+                title="THÔNG TIN ĐẶT GIAO HÀNG"
             />
             <div className="main_container">
                 <form className="basic-form">

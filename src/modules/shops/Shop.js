@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
-import List from "./List";
 import Header from "./header/Header";
 import Home from "./home/Home";
-import Detail from "./product/Detail";
-import Cart from "./cart/Cart";
-import Order from "./order/Order";
 import ShopContextProvider from "./../../contexts/ShopContext";
 import CartHelper from "./../../_helpers/cart";
 import SnackbarHelper from "./../../_helpers/snackbar";
 import UrlParamHelper from "./../../_helpers/param";
 import Snackbar from "./../../_components/_snackbar.component";
-import OrderProduct from "./order/OrderProduct";
-import Profile from "./user/Profile";
+
 import {
   LIST_CART_NAV,
   PRODUCT_DETAIL_NAV,
@@ -32,7 +27,7 @@ const Shop = () => {
   const [isShowLeftNav, setIsShowLeftNav] = useState(false);
   const [isShowUserOderNav, setIsShowUserOderNav] = useState(false);
   const [id, setId] = useState(0);
-  let cartItems = CartHelper.get();
+
   const [carts, setCarts] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
 
@@ -43,27 +38,6 @@ const Shop = () => {
     setListTitle(title);
     showList();
   };
-
-  //getCart
-  useEffect(() => {
-    getCartFromApi();
-  }, []);
-
-  const getCartFromApi = () => {
-    CartHelper.getCartAPI().then((response) => {
-      let items = response.data.data.products;
-      localStorage.removeItem(CartHelper.key_storage_cartid());
-      CartHelper.saveCartId(response.data.data._id);
-      CartHelper.save(items);
-      setCarts(CartHelper.get());
-      setTotalCart(items.length)
-    })
-    .catch((error) => {
-      localStorage.removeItem(CartHelper.key_storage());
-      CartHelper.save([]);
-      setTotalCart(0)
-    });
-  }
 
   //check url
   useEffect(() => {
@@ -81,7 +55,7 @@ const Shop = () => {
     event.eventName = initEvent;
     document.dispatchEvent(event);
     setNavWidth(elementId, "100%");
-    document.getElementsByTagName("html")[0].style.overflow = "hidden";
+    document.getElementsByTagName("html")[0].style.overflow = "auto";
     if (elementId === USER_ORDER_NAV) {
       setIsShowUserOderNav(true);
     }
@@ -130,7 +104,10 @@ const Shop = () => {
   };
 
   const setNavWidth = (el, width) => {
-    document.getElementById(el).style.width = width;
+    let navEl = document.getElementById(el)
+    if(navEl) {
+      document.getElementById(el).style.width = width;
+    }
   };
 
   // Cart
@@ -147,17 +124,6 @@ const Shop = () => {
     }, 1000);
   };
 
-  const updateCartQuantity = (index, quantity) => {
-    if (quantity <= 0) {
-      removeCartItem(index);
-      return;
-    }
-    cartItems[index].quantity = quantity;
-    CartHelper.save(cartItems);
-    CartHelper.saveCartAPI(cartItems);
-    setCarts(cartItems);
-    setTotalCart(CartHelper.getTotal());
-  };
 
   const removeCartItem = (index) => {
     CartHelper.remove(index);
@@ -166,14 +132,9 @@ const Shop = () => {
     setTotalCart(CartHelper.getTotal());
   };
 
-  const emptyCart = () => {
-    CartHelper.empty();
-    setCarts([]);
-    setTotalCart(0);
-  };
   return (
     <ShopContextProvider>
-      <div className={`body_wrapper ${UrlParamHelper.isProBot() ? 'pro_bot_style' : ''}`}>
+      <div className={`body_wrapper`}>
         <Header
           handleSubmit={getListData}
           showCart={showCart}
@@ -190,39 +151,6 @@ const Shop = () => {
           getListData={getListData}
           addToCart={addToCart}
         />
-        {/* <List
-          params={params}
-          title={listTitle}
-          showDetail={showDetail}
-          hideList={hideNavigation}
-          addToCart={addToCart}
-        /> */}
-        <OrderProduct params={isShowUserOderNav} hideList={hideNavigation}  />
-        <Detail
-          id={id}
-          isShowDetail={isShowDetail}
-          hideDetail={hideDetail}
-          showCart={showCart}
-          addToCart={addToCart}
-          totalCart={totalCart}
-        />
-        {/* <Cart
-          hideCart={hideNavigation}
-          totalCart={totalCart}
-          carts={carts}
-          updateCartQuantity={updateCartQuantity}
-          removeCartItem={removeCartItem}
-          showOrderForm={showNavigation}
-          showDetail={showDetail}
-        /> */}
-        <Order
-          hideNavigation={hideNavigation}
-          showNavigation={showNavigation}
-          totalCart={totalCart}
-          emptyCart={emptyCart}
-          carts={carts}
-        />
-        
       </div>
       <Snackbar />
     </ShopContextProvider>

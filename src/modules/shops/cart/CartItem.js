@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "../../../_components/_icon.component";
+// import Icon from "../../../_components/_icon.component";
 import PriceDisplay from "./../product/PriceDisplay";
 import ImageDisplay from "./../product/ImageDisplay";
 import { LIST_CART_NAV } from "./../../../_config/shop.config";

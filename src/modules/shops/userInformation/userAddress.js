@@ -1,27 +1,15 @@
 import React from 'react';
 import Header from "../header/Header";
 import{Link} from "react-router-dom"
-import {
-  ORDER_FORM_NAV,
-  LIST_CART_NAV,
-  PRODUCT_DETAIL_NAV,
-  USER_ORDER_NAV,
-} from "./../../../_config/shop.config";
 
 
-function userAddress(
-    carts,
-    hideNavigation,
-    showNavigation,
-    totalCart,
-    emptyCart,
+
+function UserAddress(
 ) {
     return (
         <div >
             <Header
                 hasNavigation={true}
-                doNavigation={hideNavigation}
-                navId={ORDER_FORM_NAV}
                 title="ĐỊA CHỈ GIAO HÀNG"
             />
             <div className="main_container">
@@ -51,4 +39,4 @@ function userAddress(
     );
 }
 
-export default userAddress;
+export default UserAddress;

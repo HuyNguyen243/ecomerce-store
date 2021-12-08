@@ -29,7 +29,7 @@ const Search = ({handleSubmit}) => {
     <div>
       
       <form className={`app-search txt-left ${isShow ? '' : 'hide-search' }`} onSubmit={e => search(e)}>
-        <img  src="/images/Logo-coca.png"  className="form-title" />
+        <img  src="/images/Logo-coca.png" className="form-title" alt="logo" />
         <input className="app-input" type="text" placeholder="Tìm sản phẩm ..." onChange={updateSearchInput} />
         <button type="submit" className="btn search-btn"><i className="material-icons">search</i></button>
       </form>

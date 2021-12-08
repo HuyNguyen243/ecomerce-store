@@ -47,7 +47,7 @@ const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart })
     productList = data.map((product, index) => {
       return (
         <div className={`horizontal-list-item ${index === 0 ? 'active' : ''}`} key={index} item-id={index}>
-          <Item addToCart={addToCart} showDetail={showDetail} data={product} />
+          <Item addToCart={addToCart} showDetail={showDetail} id={product._id} data={product} />
         </div>
       );
     });
@@ -69,8 +69,8 @@ const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart })
   return (
     <div className="horizontal-wrapper">
       <div className="horizontal-header row">
-        <div className="col-6 header-left text-bold">{title}</div>
-        <div className="col-6 header-right txt-primary txt-right" ><Link to="List-item"><span className="pointer" onClick={() => { getByCategory(categoryId, title) }}>Xem tất cả</span></Link></div>
+        <div className="col-8 header-left text-bold">{title}</div>
+        <div className="col-4 header-right txt-primary txt-right" ><Link to="products"><span className="pointer" onClick={() => { getByCategory(categoryId, title) }}>Xem tất cả</span></Link></div>
       </div>
       <span onClick={() => {doScrolling(categoryId, 'prev')}} className="list-navigate prev hide"><Icon name="chevron_left" /></span>
       <span onClick={() => {doScrolling(categoryId, 'next')}} className={`list-navigate next next-style ${data.length < 3 ? 'hide' : ''}`}><Icon name="chevron_right" /></span>

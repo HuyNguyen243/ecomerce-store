@@ -1,11 +1,11 @@
 var UrlParamHelper = {
   prepare: () => {
-    let params = UrlParamHelper.getParams();
-    if (params.botId === null || params.userId === null) {
-      UrlParamHelper.notFound();
-    }
-    let paramsData = JSON.stringify(params);
-    sessionStorage.setItem("urlParams", paramsData);
+    // let params = UrlParamHelper.getParams();
+    // if (params.botId === null || params.userId === null) {
+    //   UrlParamHelper.notFound();
+    // }
+    // let paramsData = JSON.stringify(params);
+    // sessionStorage.setItem("urlParams", paramsData);
   },
 
   getParams: () => {
