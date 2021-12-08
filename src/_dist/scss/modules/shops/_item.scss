@@ -198,6 +198,7 @@ $text-row: 2;
         font-weight: 600;
         line-height: 17.85px;
         padding-right: 28px;
+        width: 115px !important;
       }
 
       .quantity-add,
@@ -216,6 +217,8 @@ $text-row: 2;
 .horizontal-list-item {
   .shop-item {
     width: 244px;
+    text-decoration: none;
+    display: inline-block;
     .item-thumbnail {
       img {
         height: 150px;

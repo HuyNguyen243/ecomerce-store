@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import Header from "../header/Header";
 
 
-
 function Newaddress(
 ) {
-    const [checked, setChecked]=useState(false)
+    const [checked,setChecked]=useState(false)
+    const history = useHistory()
+    const handleBack =()=>{
+        history.push("/user-address")
+    }
 
     return (
         <div >
@@ -60,12 +63,12 @@ function Newaddress(
                     <label for="switch"></label>
                 </div>
 
-        </div>
-        <div className="fix-bottom">
-            <div className="btn-with-icon right-icon">
-            <button type="submit" className="btn btn-primary">Thêm địa chỉ mới</button>
-            </div>
-        </div>
+          </div>
+          <div className="fix-bottom">
+              <div className="btn-with-icon right-icon">
+              <button type="submit" className="btn btn-primary" onClick={handleBack}>Thêm địa chỉ mới</button>
+              </div>
+          </div>
         </form>
         </div>
         </div>

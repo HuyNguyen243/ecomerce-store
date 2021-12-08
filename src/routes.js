@@ -11,6 +11,7 @@ import OrderConfirm from './modules/shops/order/OrderConfirm';
 import Detail from './modules/shops/product/Detail';
 import OrderForm from './modules/shops/order/OrderForm';
 import List from './modules/shops/List';
+import OrderProduct from './modules/shops/order/OrderProduct';
 
 export const routes = [
     {
@@ -72,6 +73,13 @@ export const routes = [
         exact: true,
         isAuth: true,
         main: () => <OrderForm/>
+    },
+    ,
+    {
+        path: "/order-product",
+        exact: true,
+        isAuth: true,
+        main: () => <OrderProduct/>
     },
     {
         path: "/products",

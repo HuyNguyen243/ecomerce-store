@@ -3,7 +3,6 @@ import Header from "./header/Header";
 import Item from "./product/Item";
 import { LIST_PRODUCT_NAV } from "./../../_config/shop.config";
 
-
 const List = ({
   hideList = "",
   title = "Sản phẩm nổi bật",

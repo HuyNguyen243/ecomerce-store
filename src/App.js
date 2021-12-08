@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { routes } from './routes';
 import './App.scss';
 
-
 function App() {
 
   const routeRenderer = (index, route) => {
