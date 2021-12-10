@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 // import NumberHelper from "./../../../_helpers/number";
 import CartItem from "./CartItem";
 import Header from "./../header/Header";
@@ -158,38 +158,28 @@ const Cart = ({
       />
       <div className="main_container">
         <div className="news-style-cart style-for-cart">
-        {showCart()}
-        </div>
-          <div className="fix-bottom">
-            {/* {promotion.priceReduce === 0 ? price : priceUsePromotion} */}
-            <div>
-          <div className="divider"></div>
-            {/* <div className="row cart-total-info">
-              <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
-              <div className="col-6 text-bold txt-right">
-                  <input type="text" name="code"  placeholder="Nhập mã giảm giá" className="btn-discount" onClick={showPromotion}/>
+          {showCart()}
+          </div>
+            <div className="fix-bottom">
+              <div>
+              <div className="divider"></div>
+                <div className="row cart-total">
+                  <div className="col-6 text-bold text-sm">Tổng cộng:</div>
+                  <div className="col-6 text-bold txt-info txt-right">
+                    <span className="text-md">1</span>
+                  </div>
+                </div>
               </div>
-            </div> */}
-            <div className="row cart-total">
-              <div className="col-6 text-bold text-sm">Tổng cộng:</div>
-              <div className="col-6 text-bold txt-info txt-right">
-                <span className="text-md">1</span>
+              <div className="btn-with-icon right-icon">
+                <Link to="/OderForm">
+                <button
+                  className="btn btn-primary btn-payment"
+                >
+                  Đặt hàng
+                </button>
+                </Link>
               </div>
             </div>
-          </div>
-          <div className="btn-with-icon right-icon">
-              <Link to="/OderForm">
-              <button
-                className="btn btn-primary btn-payment"
-                // onClick={handleSubmitOrder}
-              >
-                Đặt hàng
-              </button>
-              {/* <Icon name="east" /> */}
-              </Link>
-            </div>
-          </div>
-        {/* <Alert getPromotionData={getPromotionData} /> */}
       </div>
     </div>
   );

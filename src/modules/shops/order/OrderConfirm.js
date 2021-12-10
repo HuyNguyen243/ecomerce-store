@@ -3,7 +3,7 @@ import CartItem from "../cart/CartItem";
 import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
 import Swal from "sweetalert2"
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 
 
@@ -13,16 +13,16 @@ const OderConfirm = (
   )=>{
   const showCart=()=>{
     const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
-    console.log(getlocal)
     if(getlocal.length >0){
         return getlocal.map((item,value)=>{
             return(
-                <CartItem item={item} />
+                <CartItem item={item} key={value}/>
             )
         })
     }
 }
   const location = useLocation()
+  const history = useHistory()
   useEffect(()=>{
   if(location.pathname === "/oderConfirm"){
     Swal.fire({
@@ -80,6 +80,7 @@ const handleSubmit = ()=>{
         +"<p>Cám ơn anh A đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>"+
         "</div>"
       })
+      history.replace("/order-product")
     }
   })
 }
@@ -137,7 +138,7 @@ const showPromotion=()=>{
              </div>
          </div>
         </form>
-        <div className="news-style-cart">
+        <div className="news-style-cart ">
         {showCart()}
         </div>
       </div>

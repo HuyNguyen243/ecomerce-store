@@ -15,7 +15,7 @@ function OderInformation(
         if(getlocal.length >0){
             return getlocal.map((item,value)=>{
                 return(
-                    <CartItem item={item} />
+                    <CartItem item={item} key={value}/>
                 )
             })
         }
@@ -84,7 +84,7 @@ function OderInformation(
                             </div>
                         </div>
                 </form>
-                <div className="news-style-cart">
+                <div className="news-style-cart style-for-cart">
                 {showCart()}
                 </div>
                 {/* <Alert getPromotionData={getPromotionData} /> */}

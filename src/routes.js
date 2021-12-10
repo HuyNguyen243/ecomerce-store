@@ -12,6 +12,7 @@ import Detail from './modules/shops/product/Detail';
 import OrderForm from './modules/shops/order/OrderForm';
 import List from './modules/shops/List';
 import OrderProduct from './modules/shops/order/OrderProduct';
+import InfoProductShipping from './modules/shops/order/InfoProductShipping';
 
 export const routes = [
     {
@@ -74,13 +75,6 @@ export const routes = [
         isAuth: true,
         main: () => <OrderForm/>
     },
-    ,
-    {
-        path: "/order-product",
-        exact: true,
-        isAuth: true,
-        main: () => <OrderProduct/>
-    },
     {
         path: "/products",
         exact: true,
@@ -92,5 +86,18 @@ export const routes = [
         exact: true,
         isAuth: true,
         main: () => <Detail/>
-    }
-];
+    },
+    {
+        path: "/order-product",
+        exact: true,
+        isAuth: true,
+        main: () => <OrderProduct/>
+    },
+    {
+        path: "/product-shipping",
+        exact: true,
+        isAuth: true,
+        main: () => <InfoProductShipping/>
+    },
+    
+]
