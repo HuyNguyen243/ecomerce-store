@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from "../header/Header";
+
+const showShip =[{id:1,name:"Giao hàng tiết kiệm 1"},
+                 {id:2,name:"Giao hàng tiết kiệm 1"},
+                 {id:3,name:"Giao hàng tiết kiệm 1"}
+                ]
 
 
 function Shipping() {
+
+    const [id,setId]= useState(1)
+    const handleGetId =(e)=>{
+        setId(e.target.id)
+    }
+
     return (
         <>
         <Header
@@ -11,24 +22,17 @@ function Shipping() {
          />
          <div className="main_container">
             <form className="basic-form" >
-                <div className="form-group">
-                    <div className="shipping">
-                    <span className="shiper" href="#">Giao hàng tiết kiệm 1</span>
-                    <img src="/images/Back-Black.svg" alt="menu_icon" />
-                    </div>
-                </div>
-                <div className="form-group">
-                    <div className="shipping">
-                    <span className="shiper" href="#">Giao hàng tiết kiệm 2</span>
-                    <img src="/images/Back-Black.svg" alt="menu_icon" />
-                    </div>
-                </div>
-                <div className="form-group">
-                    <div className="shipping">
-                    <span className="shiper" href="#">Giao hàng tiết kiệm 3</span>
-                    <img src="/images/Back-Black.svg" alt="menu_icon" />
-                    </div>
-                </div>
+               
+                {showShip.map((item,value)=>{
+                    return(
+                        <div className="form-group" key={value}>
+                            <div className="shipping" id={item.id} onClick={handleGetId}>
+                                <span className="shiper" href="#">{item.name}</span>
+                                <img src="/images/tickV.svg" alt="menu_icon" className={item.id == id ? "show" : "hide"}/>
+                            </div>
+                        </div>
+                    )
+                })}
             </form>
         </div>
         </>

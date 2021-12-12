@@ -4,7 +4,7 @@ import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
-
+import $ from"jquery"
 const MySwal = withReactContent(Swal)
 
 function InfoProductShipping(props) {
@@ -32,14 +32,17 @@ function InfoProductShipping(props) {
   }
 
  const [confirmCancel,setConfirmCancel]=useState(false)
- const [id,setId]= useState("")
+ const [checked,setChecked]= useState({})
+ const [id,setId]= useState()
 
+  const cancelReasons =[ {id:0,title: "Muốn thay đổi địa chỉ giao hàng",checked:(id == 0 ?true :false)},
+                        {id:1,title: "Thay đổi phương thức vận chuyển",checked:(id == 1 ?true :false)},
+                        {id:2,title: "Đổi ý không muốn mua nữa / Khác",checked:(id == 2 ?true :false)},
+                      ];
+  const handleSelectCancel =(e)=>{
+    setId(e.target.id)
+  }
 
-  const cancelReasons =[ {id:1,title: "Muốn thay đổi địa chỉ giao hàng"},
-                        {id:2,title: "Thay đổi phương thức vận chuyển"},
-                        {id:3,title: "Đổi ý không muốn mua nữa / Khác"},
-                      ]
-   console.log(id)                    
   const handleSubmit = ()=>{
    if(!confirmCancel){
       MySwal.fire({
@@ -48,19 +51,21 @@ function InfoProductShipping(props) {
         confirmButtonText: 'Đồng ý',
         showCancelButton: true,
         cancelButtonText: "Huỷ bỏ",
-        html :  <div class='cancel-swal'>
-                  <p class='cancel-title'>Tôi muốn huỷ đơn hàng này vì lí do:</p>
-                    {cancelReasons.map((item,value)=>{
-                      return(
-                        <div className='radio-item' key={value}>
-                          <div>
-                            <input type='checkbox' id={item.id} onChange={(event)=>{setId(event.target.id)}} defaultChecked={id==item.id ? true : false}/>
-                            <label htmlFor={item.id} ></label >
+        html :  <div className='cancel-swal'>
+                  <p className='cancel-title'>Tôi muốn huỷ đơn hàng này vì lí do:</p>
+                    <div>
+                      {cancelReasons.map((item,value)=>{
+                        return(
+                          <div className='radio' key={value}>
+                              <div>
+                              <input id={item.id} name="radio" type="radio" />
+                              <label for={item.id} className="radio-label"></label>
+                              </div>
+                              <span>{item.title}</span>
                           </div>
-                            <p>{item.title}</p>
-                        </div>
-                      )
+                        )
                     })}
+                    </div>
                 </div>
       }).then((result) => {
         if (result.isConfirmed) {
@@ -70,8 +75,8 @@ function InfoProductShipping(props) {
     }else{
       setConfirmCancel(false)
     }
-  }
-
+} 
+  
   const showheader =()=>{
     return(
       <Header
