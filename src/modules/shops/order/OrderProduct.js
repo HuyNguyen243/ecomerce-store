@@ -1,11 +1,11 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useState } from "react";
 import Header from "../header/Header";
-import Loader from "../../../_components/_loader.component";
-import { ShopContext } from "../../../contexts/ShopContext";
-import OrderItem from "./OrderItem";
+// import Loader from "../../../_components/_loader.component";
+// import { ShopContext } from "../../../contexts/ShopContext";
+// import OrderItem from "./OrderItem";
+// import Blankpage from "./../../../_components/_blankpage.component";
 import { USER_ORDER_NAV } from "./../../../_config/shop.config";
-import Blankpage from "./../../../_components/_blankpage.component";
-import $ from "jquery"
+import {Link} from "react-router-dom"
 const OrderProduct = ({ params, hideList = "" }) => {
   // const {
   //   orderByUserId,
@@ -108,17 +108,43 @@ const OrderProduct = ({ params, hideList = "" }) => {
   //     <Blankpage message="Chưa có đơn hàng nào" />
   //   );
   // }
-const handleSelect= (e)=>{
-  const name= e.target.className
-  // $("."+name).removeClass("ok")
-  // if(name == name + " " + "ok"){
-  $("button").removeClass("ok")
-  if(name){
-    $("."+name).addClass("ok")
-  }else{
-  }
+  const showCart = () => {
+    const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
+    if(getlocal.length >0){
+        return getlocal.map((item,value)=>{
+            return(
+              <div className="oder-item">
+                <div key={value} className="oder-container">
+                  <Link to="/product-shipping">
+                            <div className ="shop-item cart">
+                                <div className ="item-thumbnail">
+                                <img className ="thumbnail-img" src={item.image} />
+                                </div>
+                                <div className ="item-info">
+                                    <span className ="id-product">Mã đơn hàng: {item.id}</span>
+                                    <span className ="item-name">{item.name}</span>
+                                    <span className ="item-price">{item.pricePerProduct}</span>
+                                    <span className ="item-qty">Số lượng: {item.quantity}</span>
+                                </div>
+                                <img src="/images/Back-Black.svg" />
+                            </div>
+                            <div className ="day-shipping">
+                                <span>Thời gian giao hàng dự kiến: 15-11-2021 20:00</span>
+                            </div>
+                  </Link>
+                </div>
+              </div>
+            )
+        })
+    }
 }
-
+  const TABS = [
+    {id: 1, name: 'Chờ xác nhận', },
+    {id: 2, name: 'Chờ lấy hàng' , },
+    {id: 3, name: 'Đang giao hàng' , },
+    {id: 4, name: 'Đã giao hàng' , },
+  ]
+  const[active,setActive] = useState(1)
   
   return (
     <div id={USER_ORDER_NAV} className="nav-right">
@@ -129,33 +155,24 @@ const handleSelect= (e)=>{
         title="DANH SÁCH ĐƠN HÀNG"
       />
       <div className="main_container">
-        <div className="btn-Oder-list">
-          <button onClick={handleSelect} className="btn1"  >Chờ xác nhận</button>
-          <button onClick={handleSelect} className="btn2"  >Chờ lấy hàng</button>
-          <button onClick={handleSelect} className="btn3"  >Đang giao hàng</button>
-          <button onClick={handleSelect} className="btn4"  >Đã giao hàng</button>
+        <div className="horizontal-wrapper">
+          <div id="mostView" className="horizontal-list btn-Oder-list">
+              {
+                TABS.map((item, index) => {
+                  return (
+                    <div className="horizontal-list-item ">
+                      <div className="shop-item style-item">
+                        <button key={index}  onClick={e => setActive(item.id)} className={`btn ${item.id === active ? 'active' : ''}`}>{item.name}</button>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+          </div>
         </div>
-        {/* <div style={{ textAlign: "center" }}>
-          <button
-            id="pending"
-            className={`pendingChoice ${
-              status === "pending" ? "choice-active" : ""
-            }`}
-            onClick={switchTypeProduct}
-            disabled={disabled}
-          >
-            {pendingOrderTxt}
-          </button>
-          <button
-            id="expire"
-            className="expireChoice placeChoice"
-            onClick={switchTypeProduct}
-            disabled={disabled}
-          >
-            {doneOrderTxt}
-          </button>
+      <div className="news-style-cart style-for-cart style-product">
+          {showCart()}
         </div>
-        { loading ? <Loader /> : orderList } */}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import Loader from "./../../../_components/_loader.component";
 
 import{Link} from "react-router-dom"
@@ -7,41 +7,40 @@ import Header from "./../header/Header";
 import { LIST_CART_NAV } from "./../../../_config/shop.config";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+
 
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
   totalCart
 }) => {
-  const { register, handleSubmit, errors } = useForm();
-  // let emptyErrorTxt = 'Vui lòng điền thông tin';
-  // let phoneErrorTxt = 'Số điện thoại không hợp lệ';
+
   const history = useHistory()
   const handleBack=()=>{
     history.push("/cart")
   }
 
   const showPromotion=()=>{
-    Swal.fire({
+    MySwal.fire({
       title: 'MÃ GIẢM GIÁ',
-      html: "<div class='promotion'>"+ 
-              "<input type='text' class='input-promotion' placeholder='Nhập mã giảm giá'/>"+
-              // 
-                  "<div class='container-promotion'>"+
-                    "<div class='Offer-promotion'>"+
-                        "<img src='/images/sale2.png'  />"+
-                        "<div class='content-promotion'>"+
-                            "<p class='code-promotion'>CC1PLUS1</p>"+
-                            "<p class='Minimum-Order'>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>"+
-                            "<p class='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>"+
-                        "</div>"+
-                    "</div>"+
-                    "<div class='use-promotion'>"+
-                      "<span>Sử dụng ngay</span>"+
-                    "</div>"+
-                "</div>"+
-                // 
-            "</div>",
-
+      html: <div class='promotion'> 
+                  <input type='text' class='input-promotion' placeholder='Nhập mã giảm giá'/>
+                  <div class='container-promotion'>
+                    <div class='Offer-promotion'>
+                        <img src='/images/sale2.png'  />
+                        <div class='content-promotion'>
+                            <p class='code-promotion'>CC1PLUS1</p>
+                            <p class='Minimum-Order'>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>
+                            <p class='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>
+                        </div>
+                    </div>
+                    <div class='use-promotion'>
+                      <span>Sử dụng ngay</span>
+                    </div>
+                  </div>
+            </div>,
       confirmButtonText: 'Áp dụng',
       showCancelButton: true,
       cancelButtonText: "Đóng"
@@ -59,7 +58,7 @@ const OrderForm = ({ onSubmit, isLoading,
         totalCart={totalCart}
       />
       <div className="main_container">
-        <form className="basic-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="basic-form" >
           <div className="form-group">
             <div className="nav_label">
               <span>Thông tin giao hàng</span>

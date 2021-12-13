@@ -3,49 +3,47 @@ import CartItem from "../cart/CartItem";
 import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
 import Swal from "sweetalert2"
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
+import withReactContent from 'sweetalert2-react-content'
 
-
-
+const MySwal = withReactContent(Swal)
 
 const OderConfirm = ( 
   hideNavigation
   )=>{
   const showCart=()=>{
     const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
-    console.log(getlocal)
     if(getlocal.length >0){
         return getlocal.map((item,value)=>{
             return(
-                <CartItem item={item} />
+                <CartItem item={item} key={value}/>
             )
         })
     }
-}
+  }
   const location = useLocation()
+  const history = useHistory()
   useEffect(()=>{
   if(location.pathname === "/oderConfirm"){
-    Swal.fire({
-      html: 
-              "<div class='Offer-Shock'>"+
-              "<div class='Offer-title'>"+
-              "<img src='/images/sale.png' alt='menu_icon' />"+
-              "<p>Bạn ơi bạn có quên ưu đãi này?</p>"
-              +
-              "</div>"+
-              "<div class='container swal_sm'>"+
-                  "<div class='Offer-Details'>"+
-                      "<img src='/images/lg-coca.png'  />"+
-                      "<div class='Note-Details'>"+
-                          "<p class='Note-Details-titles'>THÙNG 24 LON COCA</p>"+
-                          "<p class='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>"+
-                          "<p class='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>"+
-                      "</div>"+
-                  "</div>"+
-                "</div>"
-               ,
+    MySwal.fire({
       showCloseButton: true,
       showConfirmButton :false,
+      html:       <div className='Offer-Shock'>
+                    <div className='Offer-title'>
+                      <img src='/images/sale.png' alt='menu_icon' />
+                      <p>Bạn ơi bạn có quên ưu đãi này?</p>                    
+                    </div>
+                    <div className='container swal_sm'>
+                        <div className='Offer-Details'>
+                            <img src='/images/lg-coca.png'  />
+                            <div className='Note-Details'>
+                                <p className='Note-Details-titles'>THÙNG 24 LON COCA</p>
+                                <p className='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>
+                                <p className='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>,
     })
   }
   })
@@ -72,40 +70,38 @@ const handleSubmit = ()=>{
     cancelButtonText: "Huỷ bỏ"
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire({
+      MySwal.fire({
         showConfirmButton : false,
-        html :"<div class='confirm-swal'>"
-        +"<img src='/images/thank-you.png' alt='menu_icon' />"
-        +"<h3>ĐẶT HÀNG THÀNH CÔNG</h3>"
-        +"<p>Cám ơn anh A đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>"+
-        "</div>"
+        html :  <div class='confirm-swal'>
+                  <img src='/images/thank-you.png' alt='menu_icon' />
+                  <h3>ĐẶT HÀNG THÀNH CÔNG</h3>
+                  <p>Cám ơn anh A đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>
+                </div>
       })
+      history.replace("/order-product")
     }
   })
 }
 
 const showPromotion=()=>{
-  Swal.fire({
+  MySwal.fire({
     title: 'MÃ GIẢM GIÁ',
-    html: "<div class='promotion'>"+ 
-            "<input type='text' class='input-promotion' placeholder='Nhập mã giảm giá'/>"+
-            // 
-                "<div class='container-promotion'>"+
-                  "<div class='Offer-promotion'>"+
-                      "<img src='/images/sale2.png'  />"+
-                      "<div class='content-promotion'>"+
-                          "<p class='code-promotion'>CC1PLUS1</p>"+
-                          "<p class='Minimum-Order'>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>"+
-                          "<p class='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>"+
-                      "</div>"+
-                  "</div>"+
-                  "<div class='use-promotion'>"+
-                    "<span>Sử dụng ngay</span>"+
-                  "</div>"+
-              "</div>"+
-              // 
-          "</div>",
-
+    html: <div class='promotion'> 
+                <input type='text' class='input-promotion' placeholder='Nhập mã giảm giá'/>
+                <div class='container-promotion'>
+                  <div class='Offer-promotion'>
+                      <img src='/images/sale2.png'  />
+                      <div class='content-promotion'>
+                          <p class='code-promotion'>CC1PLUS1</p>
+                          <p class='Minimum-Order'>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>
+                          <p class='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>
+                      </div>
+                  </div>
+                  <div class='use-promotion'>
+                    <span>Sử dụng ngay</span>
+                  </div>
+                </div>
+          </div>,
     confirmButtonText: 'Áp dụng',
     showCancelButton: true,
     cancelButtonText: "Đóng"
@@ -133,11 +129,11 @@ const showPromotion=()=>{
         <form className="basic-form" >
          <div className="form-group">
              <div className="shipping">
-             <a className="shiper" href="#">Giao hàng tiết kiệm 1</a>
+             <span className="shiper" >Giao hàng tiết kiệm 1</span>
              </div>
          </div>
         </form>
-        <div className="news-style-cart">
+        <div className="news-style-cart ">
         {showCart()}
         </div>
       </div>

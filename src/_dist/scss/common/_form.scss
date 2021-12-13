@@ -1,6 +1,10 @@
 .basic-form {
     .form-group {
-      
+        a{
+            display: inline-block;
+            text-decoration: none;
+            width: 100%;
+        }
         .shipping,
         .information{
             padding: 15px 18px;
@@ -36,9 +40,13 @@
         .shipping{
             display: flex;
             justify-content: space-between;
+            span{
+                color: #676767;
+            }
         }
-        .information a{
+        .information span{
             color: #f40000;
+            text-decoration:underline;
         }
         .shipping a{
             color: #676767;
@@ -87,7 +95,6 @@
                     font-weight: 300;
                     box-sizing: border-box;
                     padding-left: 15px;
-                    margin-bottom: 15px;
                 }
             }
         }

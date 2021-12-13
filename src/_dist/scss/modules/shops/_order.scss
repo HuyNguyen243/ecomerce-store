@@ -153,6 +153,7 @@
     span:last-child{
         color: #f40000;
     }
+   
 }
 
 .fix-bottom .new-style:nth-child(1){
@@ -176,4 +177,21 @@
 .btn-right-icon{
     width: 49%;
     margin-left: 1%;
+}
+
+.name-shipping{
+    color: #B0B0B0;
+}
+
+.style-title{
+    display: flex;
+    justify-content: space-between;
+    span:nth-child(2){
+        font-size: 13px;
+        font-weight: 400;
+        color: #f40000;
+        padding: 5px 25px;
+        background-color: #ffdada;
+        border-radius: 10px;
+    }
 }

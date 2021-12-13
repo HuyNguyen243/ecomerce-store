@@ -20,15 +20,18 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
   return (
     <div id={LEFT_MENU_NAV} className="overlay nav-left">
       <div className="menu-left-nav">
-        <div className="menu-left-item" onClick={e => toggleCategory()}>
-          <img src='/images/information.svg' alt="category"/>
-          <span>THÔNG TIN ĐẶT HÀNG</span>
-        </div>
+        <Link to="/product-shipping">
+          <div className="menu-left-item" onClick={e => toggleCategory()}>
+            <img src='/images/information.svg' alt="category"/>
+            <span>THÔNG TIN ĐẶT HÀNG</span>
+          </div>
+        </Link>
+
         <Link to="/order-product">
-        <div className="menu-left-item" onClick={e => showNavigation(USER_ORDER_NAV)}>
-          <img src='/images/Shopping_list.svg' alt="order"/>
-          <span>DANH SÁCH ĐƠN HÀNG</span>
-        </div>
+          <div className="menu-left-item" onClick={e => showNavigation(USER_ORDER_NAV)}>
+            <img src='/images/Shopping_list.svg' alt="order"/>
+            <span>DANH SÁCH ĐƠN HÀNG</span>
+          </div>
         </Link>
       </div>
       <div onClick={e => hideLeftNav()} className="empty-space"></div>

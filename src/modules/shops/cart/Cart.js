@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react";
-// import NumberHelper from "./../../../_helpers/number";
+import React, { useEffect } from "react";
 import CartItem from "./CartItem";
 import Header from "./../header/Header";
-// import Blankpage from "./../../../_components/_blankpage.component";
 import { LIST_CART_NAV } from "./../../../_config/shop.config";
+// import Blankpage from "./../../../_components/_blankpage.component";
+// import NumberHelper from "./../../../_helpers/number";
 // import Icon from "./../../../_components/_icon.component";
 // import AlertHelper from "./../../../_helpers/alert";
 // import CartHelper from "./../../../_helpers/cart";
 // import Alert from "./../../../_components/_alert.component";
+// import { ShopContext } from "../../../contexts/ShopContext";
 import Swal from "sweetalert2"
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-// import { ShopContext } from "../../../contexts/ShopContext";
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 const Cart = ({
 
   hideCart,
@@ -108,28 +111,27 @@ const Cart = ({
   useEffect(() => {
     if(location.pathname ===  "/cart"){
     // getPromotionData();
-    Swal.fire({
-      html: 
-              "<div class='Offer-Shock'>"+
-              "<div class='Offer-title'>"+
-              "<img src='/images/sale.png' alt='menu_icon' />"+
-              "<p>Bạn ơi bạn có quên ưu đãi này?</p>"
-              +
-              "</div>"+
-              "<div class='container'>"+
-                  "<div class='Offer-Details'>"+
-                      "<img src='/images/QC_COCA.png'  />"+
-                      "<div class='Note-Details'>"+
-                          "<p class='Note-Details-titles'>THÙNG 24 LON COCA</p>"+
-                          "<p class='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>"+
-                          "<p class='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>"+
-                          "<img src='/images/Group227.svg' alt='menu_icon' />"+
-                      "</div>"+
-                  "</div>"+
-                "</div>"
-               ,
+    MySwal.fire({
       showCloseButton: true,
       showConfirmButton :false,
+      html:  <div className='Offer-Shock'>
+                <div className='Offer-title'> 
+                  <img src='/images/sale.png' alt='menu_icon' />
+                  <p>Bạn ơi bạn có quên ưu đãi này?</p>
+                </div>
+                <div className='container'>
+                  <div className='Offer-Details'>
+                      <img src='/images/QC_COCA.png'  />
+                      <div className='Note-Details'>
+                          <p className='Note-Details-titles'>THÙNG 24 LON COCA</p>
+                          <p className='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>
+                          <p className='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>
+                          <img src='/images/Group227.svg' alt='menu_icon' />
+                      </div>
+                  </div>
+                </div>
+              </div>
+       ,
     })
   }
   },);
@@ -158,38 +160,28 @@ const Cart = ({
       />
       <div className="main_container">
         <div className="news-style-cart style-for-cart">
-        {showCart()}
-        </div>
-          <div className="fix-bottom">
-            {/* {promotion.priceReduce === 0 ? price : priceUsePromotion} */}
-            <div>
-          <div className="divider"></div>
-            {/* <div className="row cart-total-info">
-              <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
-              <div className="col-6 text-bold txt-right">
-                  <input type="text" name="code"  placeholder="Nhập mã giảm giá" className="btn-discount" onClick={showPromotion}/>
+          {showCart()}
+          </div>
+            <div className="fix-bottom">
+              <div>
+              <div className="divider"></div>
+                <div className="row cart-total">
+                  <div className="col-6 text-bold text-sm">Tổng cộng:</div>
+                  <div className="col-6 text-bold txt-info txt-right">
+                    <span className="text-md">1</span>
+                  </div>
+                </div>
               </div>
-            </div> */}
-            <div className="row cart-total">
-              <div className="col-6 text-bold text-sm">Tổng cộng:</div>
-              <div className="col-6 text-bold txt-info txt-right">
-                <span className="text-md">1</span>
+              <div className="btn-with-icon right-icon">
+                <Link to="/OderForm">
+                <button
+                  className="btn btn-primary btn-payment"
+                >
+                  Đặt hàng
+                </button>
+                </Link>
               </div>
             </div>
-          </div>
-          <div className="btn-with-icon right-icon">
-              <Link to="/OderForm">
-              <button
-                className="btn btn-primary btn-payment"
-                // onClick={handleSubmitOrder}
-              >
-                Đặt hàng
-              </button>
-              {/* <Icon name="east" /> */}
-              </Link>
-            </div>
-          </div>
-        {/* <Alert getPromotionData={getPromotionData} /> */}
       </div>
     </div>
   );

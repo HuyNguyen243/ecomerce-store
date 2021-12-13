@@ -3,7 +3,7 @@ import Login from './Login';
 import Shop from './modules/shops/Shop';
 import Notfound from './404';
 import Cart from './modules/shops/cart/Cart';
-import UserAddress from './modules/shops/userInformation/UserAddress';
+import UserAddress from './modules/shops/userInformation/userAddress';
 import Newaddress from './modules/shops/userInformation/Newaddress';
 import Shipping from './modules/shops/userInformation/Shipping';
 import OderInformation from './modules/shops/order/OderInformation';
@@ -12,6 +12,7 @@ import Detail from './modules/shops/product/Detail';
 import OrderForm from './modules/shops/order/OrderForm';
 import List from './modules/shops/List';
 import OrderProduct from './modules/shops/order/OrderProduct';
+import InfoProductShipping from './modules/shops/order/InfoProductShipping';
 
 export const routes = [
     {
@@ -74,13 +75,6 @@ export const routes = [
         isAuth: true,
         main: () => <OrderForm/>
     },
-    ,
-    {
-        path: "/order-product",
-        exact: true,
-        isAuth: true,
-        main: () => <OrderProduct/>
-    },
     {
         path: "/products",
         exact: true,
@@ -92,5 +86,18 @@ export const routes = [
         exact: true,
         isAuth: true,
         main: () => <Detail/>
-    }
-];
+    },
+    {
+        path: "/order-product",
+        exact: true,
+        isAuth: true,
+        main: () => <OrderProduct/>
+    },
+    {
+        path: "/product-shipping",
+        exact: true,
+        isAuth: true,
+        main: () => <InfoProductShipping/>
+    },
+    
+]

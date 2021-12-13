@@ -21,7 +21,6 @@ const Header = ({ totalCart, handleSubmit, showCart = '', title = '', hasNavigat
       )
     }
   }
-
   const handleGoBack = () => {
     if(doNavigation !== '') {
       doNavigation()
