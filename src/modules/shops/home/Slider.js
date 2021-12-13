@@ -6,7 +6,6 @@ import{ useHistory } from "react-router-dom"
 
 
 const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart }) => {
-
   let productList;
   const history = useHistory()
 
