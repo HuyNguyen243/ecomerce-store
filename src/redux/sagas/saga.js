@@ -63,9 +63,9 @@ function authenticate(body) {
 
 function getInitData() {
   let shouldAuth = false;
-  return get(`${API_URL_V2}/bots/${Auth.get().bot_id}?token=${Auth.get().token}`, shouldAuth);
+  return get(`${API_URL_V2}/?token=${Auth.get().token}`, shouldAuth);
 }
 
 function getOneProduct(id) {
-  return get(`${API_URL_V2}/bots/${Auth.get().bot_id}/products/${id}`);
+  return get(`${API_URL_V2}/products/${id}`);
 }

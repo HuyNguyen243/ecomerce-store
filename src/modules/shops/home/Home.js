@@ -32,8 +32,8 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
         : 
           <>
             {
-              generalData?.mostViews?.data?.length > 0
-              && <Slider categoryId={'mostView'} addToCart={addToCart} data={generalData?.mostViews?.data} getListData={getListData} title="Sản phẩm đang khuyến mãi" showDetail={showDetail} />
+              generalData?.productByPromotion?.length > 0
+              && <Slider categoryId={'mostView'} addToCart={addToCart} data={generalData?.productByPromotion} getListData={getListData} title="Sản phẩm đang khuyến mãi" showDetail={showDetail} />
             }
             {
               generalData?.productByCategory?.length > 0
