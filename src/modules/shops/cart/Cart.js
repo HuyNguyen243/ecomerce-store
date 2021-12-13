@@ -77,10 +77,11 @@ const Cart = ({
         totalCart={totalCart}
       />
       <div className="main_container">
-        <div className="news-style-cart style-for-cart">
+        <div className="news-style-cart style-for-cart stl-botom-cart list-cart">
           {showCart()}
           </div>
-            {
+      </div>
+      {
               carts.length > 0
               && <div className="fix-bottom">
                   <div>
@@ -103,7 +104,6 @@ const Cart = ({
                   </div>
                 </div>
             }
-      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ function InfoProductShipping(props) {
         return getlocal.map((item,value)=>{
             return(
               <div key={value}>
-                <div className ="shop-item cart">
+                <div className ="shop-item cart ">
                     <div className ="item-thumbnail">
                     <img className ="thumbnail-img" src={item.image} alt="thumb" />
                     </div>
@@ -116,30 +116,32 @@ function InfoProductShipping(props) {
         <div className="nav_label">
             <span>Thông tin sản phẩm</span>
         </div>
-        <div className="news-style-cart">
+        <div className="news-style-cart style-for-cart list-cart">
           {showCart()}
         </div>
-        <div className="divider"></div>
-          <div className="row cart-total">
-            <div className="col-6  text-sm">Tổng tiền hàng:</div>
+        <div className="fix-bottom">
+          <div className="divider"></div>
+            <div className="row cart-total">
+              <div className="col-6  text-sm">Tổng tiền hàng:</div>
+              <div className="col-6 text-bold txt-right">
+              <span className="text-nm">1</span>
+            </div>
+            <div className="col-6  text-sm">Phí vận chuyển:</div>
             <div className="col-6 text-bold txt-right">
-            <span className="text-nm">1</span>
+              <span className="text-nm">1</span>
+            </div>
+            <div className="col-6  text-sm">Mã giảm giá</div>
+            <div className="col-6 text-bold txt-right">
+              <span className="text-nm">1</span>
+            </div>
+            <div className="col-6 text-bold text-sm new-text">Tổng cộng:</div>
+            <div className="col-6 text-bold txt-right">
+              <span className="text-nm new-text">1</span>
+            </div>
           </div>
-          <div className="col-6  text-sm">Phí vận chuyển:</div>
-          <div className="col-6 text-bold txt-right">
-            <span className="text-nm">1</span>
+          <div className="btn-with-icon right-icon">
+                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? "Huỷ đơn hàng" : "Đặt lại đơn"}</button>
           </div>
-          <div className="col-6  text-sm">Mã giảm giá</div>
-          <div className="col-6 text-bold txt-right">
-            <span className="text-nm">1</span>
-          </div>
-          <div className="col-6 text-bold text-sm new-text">Tổng cộng:</div>
-          <div className="col-6 text-bold txt-right">
-            <span className="text-nm new-text">1</span>
-          </div>
-        </div>
-        <div className="btn-with-icon right-icon">
-              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? "Huỷ đơn hàng" : "Đặt lại đơn"}</button>
         </div>
       </div>
       

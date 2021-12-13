@@ -25,7 +25,6 @@ body {
   overflow: auto;
   .news-style-cart{
     .shop-item .item-info{
-      width: 77%;
       .item-name{
         width: 70%;
         font-weight: 500;
@@ -138,19 +137,42 @@ body {
   }
 }
 
-.oder-item{
-  width: 100%;
-  overflow-y: auto;
-}
+
 .oder-item::-webkit-scrollbar{
   display: none;
 }
 
 .style-for-cart{
-  height: 450px;
+      .shop-item{
+        .item-thumbnail{
+          width: 15%;
+          img{
+            height: inherit;
+          }
+        }
+        .item-info{
+          width: 5%;
+        }
+    }
 }
 
 .main_container::-webkit-scrollbar{
   display: none;
+}
+
+.oder-container{
+  margin-bottom: 10px;
+}
+
+.list-cart{
+  div:last-child {
+    .shop-item{
+      padding-bottom: 240px;
+    }
+  }
+}
+
+.list_cart_nav{
+  position: relative;
 }
 

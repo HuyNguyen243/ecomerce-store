@@ -66,14 +66,14 @@ $text-row: 2;
     display: flex;
     align-items: center;
     .item-thumbnail {
-      width: 23%;
+      width: 10%;
       img {
         border: 1px solid #dee2e6;
       }
     }
     .item-info {
       padding-left: 17px;
-      width: 75%;
+      width: 90%;
     }
     .item-quantity {
       justify-content: space-between;
@@ -221,7 +221,6 @@ $text-row: 2;
     display: inline-block;
     .item-thumbnail {
       img {
-        height: 150px;
         border: 1px solid #dee2e6;
         // object-fit: contain;
       }

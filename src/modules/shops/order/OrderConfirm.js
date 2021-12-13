@@ -133,8 +133,8 @@ const showPromotion=()=>{
              </div>
          </div>
         </form>
-        <div className="news-style-cart ">
-        {showCart()}
+        <div className="news-style-cart style-for-cart list-cart oderinformation new-bottom">
+          {showCart()}
         </div>
       </div>
       <div className="fix-bottom">
