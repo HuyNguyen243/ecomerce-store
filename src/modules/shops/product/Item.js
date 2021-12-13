@@ -1,11 +1,35 @@
 import React from 'react';
 import PriceDisplay from './PriceDisplay';
 import ImageDisplay from './ImageDisplay';
-// import Icon from './../../../_components/_icon.component';
-import { QUICK_BUY_TYPE } from './../../../_config/shop.config';
 import {Link} from "react-router-dom"
+import CartService from '../../../_services/cart';
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addCart } from './../../../redux/actions/index';
+import SnackbarHelper from './../../../_helpers/snackbar';
 
-const Item = ({id, data, addToCart}) => {
+const Item = ({id, data}) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const addToCart = (showCart = false) => {
+    CartService.add({
+      id          : data._id,
+      name        : data.name,
+      image       : data.image,
+      price       : data.price,
+      couponPrice : data.couponPrice,
+      weight      : data.weight,
+      minOrder    : data.minOrder,
+      quantity    : 1
+    })
+    SnackbarHelper.show('Thêm vào giỏ hàng thành công')
+    dispatch(addCart())
+    if(showCart) {
+      history.push('/cart')
+    }
+  }
+
   return (
       <div className="shop-item">
         <Link to={"/product/"+id}>
@@ -20,23 +44,9 @@ const Item = ({id, data, addToCart}) => {
           </Link>
           <div className="item-button flex-list row">
             <div className="button-text">
-              <button type="button" onClick={() => addToCart({
-                  id              : data._id,
-                  name            : data.name,
-                  couponPrice     : data.couponPrice,
-                  pricePerProduct : data.price,
-                  quantity        : 1,
-                  image           : data.image
-                }, QUICK_BUY_TYPE)} className="btn btn-view">Mua ngay</button>
+              <button type="button" onClick={() => addToCart(true)} className="btn btn-view">Mua ngay</button>
             </div>
-            <div className="button-icon txt-center" onClick={() => addToCart({
-                  id              : data._id,
-                  name            : data.name,
-                  couponPrice     : data.couponPrice,
-                  pricePerProduct : data.price,
-                  quantity        : 1,
-                  image           : data.image
-                })}>
+            <div className="button-icon txt-center" onClick={() => addToCart()}>
               <img src="/images/shopping-cart.png" alt="menu_icon" />
             </div>
           </div>

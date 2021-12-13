@@ -51,10 +51,10 @@ const Detail = ({
         { isLoading
           ? <Loader />
           : 
-            product?.name !== undefined
+            product?.data?.name !== undefined
             ?
               <ProductDetail
-                product={product}
+                product={product?.data}
                 quantity={quantity}
                 addToCart={addToCart}
                 changeQuantity={changeQuantity}

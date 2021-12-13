@@ -2,6 +2,7 @@ import {
     AUTHENTICATE_USER,
     GET_GENERAL_DATA,
     GET_ONE_PRODUCT,
+    ADD_TO_CART
 
 } from '../constants';
 
@@ -15,4 +16,8 @@ export const getInitData = () => {
 
 export const getOneProduct = (id) => {
     return { type: GET_ONE_PRODUCT , payload: id};
+}
+
+export const addCart = () => {
+    return { type: ADD_TO_CART , payload: ''};
 }

@@ -1,13 +1,14 @@
 import React from 'react';
 import Search from './Search';
-// import Icon from './../../../_components/_icon.component';
 import{Link}from 'react-router-dom'
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
-const Header = ({ totalCart, handleSubmit, showCart = '', title = '', hasNavigation = false
-                  , doNavigation = '', showLeftNav, navId = '', headerBg = 'header-primary'}) => {
+const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation = false
+                  , doNavigation = '', showLeftNav, headerBg = 'header-primary'}) => {
 
   const usehistory =useHistory()
+  const carts = useSelector(state => state.carts);
 
   const showShoppingCart = () => {
     if (showCart !== '') {
@@ -15,7 +16,7 @@ const Header = ({ totalCart, handleSubmit, showCart = '', title = '', hasNavigat
         <Link to="/cart">
           <span onClick={e => {  showCart() }}>
             <img src="/images/shopping-cart.png" alt="menu_icon" />
-            { totalCart > 0 ? <span className="total-cart"> {totalCart} </span> : '' }
+            { carts.length > 0 ? <span className="total-cart"> {carts.length} </span> : '' }
           </span>
         </Link>
       )

@@ -18,7 +18,7 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
 }, [dispatch]);
 
   useEffect(() => {
-    if(Object.keys(generalData).length === 0) {
+    if(!generalData.isLoaded) {
       getGeneralDataCallback()
     }
   }, [getGeneralDataCallback, generalData]);
@@ -32,12 +32,12 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
         : 
           <>
             {
-              generalData?.productByPromotion?.length > 0
-              && <Slider categoryId={'mostView'} addToCart={addToCart} data={generalData?.productByPromotion} getListData={getListData} title="Sản phẩm đang khuyến mãi" showDetail={showDetail} />
+              generalData?.data?.productByPromotion?.length > 0
+              && <Slider categoryId={'mostView'} addToCart={addToCart} data={generalData?.data?.productByPromotion} getListData={getListData} title="Sản phẩm đang khuyến mãi" showDetail={showDetail} />
             }
             {
-              generalData?.productByCategory?.length > 0
-              && generalData?.productByCategory.map((category, index) => {
+              generalData?.data?.productByCategory?.length > 0
+              && generalData?.data?.productByCategory.map((category, index) => {
                 return (
                   <Slider key={index} categoryId={category._id} addToCart={addToCart} getListData={getListData} data={category.products} title={category.name} showDetail={showDetail} />
                 );
