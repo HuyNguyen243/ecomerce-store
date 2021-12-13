@@ -28,7 +28,7 @@ function Shipping() {
                         <div className="form-group" key={value}>
                             <div className="shipping" id={item.id} onClick={handleGetId}>
                                 <span className="shiper" href="#">{item.name}</span>
-                                <img src="/images/tickV.svg" alt="menu_icon" className={item.id == id ? "show" : "hide"}/>
+                                <img src="/images/tickV.svg" alt="menu_icon" className={item.id === id ? "show" : "hide"}/>
                             </div>
                         </div>
                     )

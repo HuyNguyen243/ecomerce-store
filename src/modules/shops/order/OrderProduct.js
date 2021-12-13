@@ -118,7 +118,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
                   <Link to="/product-shipping">
                             <div className ="shop-item cart">
                                 <div className ="item-thumbnail">
-                                <img className ="thumbnail-img" src={item.image} />
+                                <img className ="thumbnail-img" src={item.image} alt="thumbnail" />
                                 </div>
                                 <div className ="item-info">
                                     <span className ="id-product">Mã đơn hàng: {item.id}</span>
@@ -126,7 +126,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
                                     <span className ="item-price">{item.pricePerProduct}</span>
                                     <span className ="item-qty">Số lượng: {item.quantity}</span>
                                 </div>
-                                <img src="/images/Back-Black.svg" />
+                                <img src="/images/Back-Black.svg" alt="back" />
                             </div>
                             <div className ="day-shipping">
                                 <span>Thời gian giao hàng dự kiến: 15-11-2021 20:00</span>

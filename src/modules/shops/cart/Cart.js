@@ -121,7 +121,7 @@ const Cart = ({
                 </div>
                 <div className='container'>
                   <div className='Offer-Details'>
-                      <img src='/images/QC_COCA.png'  />
+                      <img src='/images/QC_COCA.png' alt="logo" />
                       <div className='Note-Details'>
                           <p className='Note-Details-titles'>THÙNG 24 LON COCA</p>
                           <p className='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>

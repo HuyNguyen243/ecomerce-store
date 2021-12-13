@@ -35,7 +35,7 @@ const OderConfirm = (
                     </div>
                     <div className='container swal_sm'>
                         <div className='Offer-Details'>
-                            <img src='/images/lg-coca.png'  />
+                            <img src='/images/lg-coca.png' alt="logo" />
                             <div className='Note-Details'>
                                 <p className='Note-Details-titles'>THÙNG 24 LON COCA</p>
                                 <p className='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>
@@ -90,7 +90,7 @@ const showPromotion=()=>{
                 <input type='text' class='input-promotion' placeholder='Nhập mã giảm giá'/>
                 <div class='container-promotion'>
                   <div class='Offer-promotion'>
-                      <img src='/images/sale2.png'  />
+                      <img src='/images/sale2.png' alt="sale" />
                       <div class='content-promotion'>
                           <p class='code-promotion'>CC1PLUS1</p>
                           <p class='Minimum-Order'>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>
