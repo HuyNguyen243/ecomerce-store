@@ -32,7 +32,7 @@ function UserAddress() {
                                         </div>
                                         <div className="infor-icon newstyle">
                                             <Link  to="/news-address"><img src="/images/fix.svg" alt="menu_icon" /></Link>
-                                            <img src="/images/tickV.svg" alt="menu_icon" className={item.id == idUser ? "show":"hide"}/>
+                                            <img src="/images/tickV.svg" alt="menu_icon" className={item.id === idUser ? "show":"hide"}/>
                                         </div>
                                     </div>
                                 </div>

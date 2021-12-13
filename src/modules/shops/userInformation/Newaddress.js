@@ -9,6 +9,12 @@ function Newaddress() {
     const handleBack=()=>{
         history.push("/OderForm")
     }
+
+    const setDefaultAddress=(value)=>{
+        setChecked(value)
+        console.log(checked)
+    }
+
     return (
         <div >
             <Header
@@ -57,7 +63,7 @@ function Newaddress() {
                             </div>
                             <div className="setting">
                                 <p>Cài đặt làm địa chỉ mặc định</p>
-                                <input type="checkbox" name="scales" id="switch" onChange={(e)=>{setChecked(e.target.checked)}} />
+                                <input type="checkbox" name="scales" id="switch" onChange={(e)=>{setDefaultAddress(e.target.checked)}} />
                                 <label htmlFor="switch"></label>
                             </div>
                     </div>

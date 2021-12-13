@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const ImageDisplay = ({src, alt}) => {
     return (

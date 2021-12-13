@@ -1,10 +1,8 @@
-import React, { useEffect, useState }  from "react";
-import CartItem from "../cart/CartItem";
+import React, { useState }  from "react";
 import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
-import $ from"jquery"
 const MySwal = withReactContent(Swal)
 
 function InfoProductShipping(props) {
@@ -17,7 +15,7 @@ function InfoProductShipping(props) {
               <div key={value}>
                 <div className ="shop-item cart">
                     <div className ="item-thumbnail">
-                    <img className ="thumbnail-img" src={item.image} />
+                    <img className ="thumbnail-img" src={item.image} alt="thumb" />
                     </div>
                     <div className ="item-info">
                         <span className ="item-name">{item.name}</span>
@@ -31,20 +29,20 @@ function InfoProductShipping(props) {
     }
   }
 
- const [confirmCancel,setConfirmCancel]=useState(false)
- const [checked,setChecked]= useState({})
- const [id,setId]= useState()
+  const [confirmCancel,setConfirmCancel]=useState(false)
+  //  const [checked,setChecked]= useState({})
+  const [id]= useState()
 
-  const cancelReasons =[ {id:0,title: "Muốn thay đổi địa chỉ giao hàng",checked:(id == 0 ?true :false)},
-                        {id:1,title: "Thay đổi phương thức vận chuyển",checked:(id == 1 ?true :false)},
-                        {id:2,title: "Đổi ý không muốn mua nữa / Khác",checked:(id == 2 ?true :false)},
+  const cancelReasons =[ {id:0,title: "Muốn thay đổi địa chỉ giao hàng",checked:(id === 0 ?true :false)},
+                        {id:1,title: "Thay đổi phương thức vận chuyển",checked:(id === 1 ?true :false)},
+                        {id:2,title: "Đổi ý không muốn mua nữa / Khác",checked:(id === 2 ?true :false)},
                       ];
-  const handleSelectCancel =(e)=>{
-    setId(e.target.id)
-  }
+  // const handleSelectCancel =(e)=>{
+  //   setId(e.target.id)
+  // }
 
   const handleSubmit = ()=>{
-   if(!confirmCancel){
+    if(!confirmCancel){
       MySwal.fire({
         title: 'HUỶ ĐƠN HÀNG',
         text: "Tôi muốn huỷ đơn hàng này vì lí do:",
