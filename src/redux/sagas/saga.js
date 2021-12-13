@@ -8,10 +8,14 @@ import {
 
   GET_ONE_PRODUCT,
   GET_ONE_PRODUCT_SUCCESS,
+  
+  ADD_TO_CART,
+  ADD_TO_CART_SUCCESS,
 
 } from '../constants';
-import { API_URL_V2 } from '../../_config/api.config';
+import { API_URL_V1, API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
+import CartService from "../../_services/cart";
 
 import { get, post } from './../../api';
 
@@ -19,6 +23,7 @@ export default function* watcherSaga() {
   yield takeLatest(AUTHENTICATE_USER, workerSaga);
   yield takeLatest(GET_GENERAL_DATA, workerSaga);
   yield takeLatest(GET_ONE_PRODUCT, workerSaga);
+  yield takeLatest(ADD_TO_CART, workerSaga);
 }
 
 function* workerSaga(param) {
@@ -41,6 +46,10 @@ function* workerSaga(param) {
       action = getOneProduct;
       type   = GET_ONE_PRODUCT_SUCCESS;
       break;
+    case ADD_TO_CART:
+      action = addToCart;
+      type   = ADD_TO_CART_SUCCESS;
+      break;
     default:
       action = '';
       type   = '';
@@ -58,7 +67,7 @@ function* workerSaga(param) {
 
 function authenticate(body) {
   let shouldAuth = false;
-  return post(`${API_URL_V2}/login`, body, shouldAuth);
+  return post(`${API_URL_V1}/login`, body, shouldAuth);
 }
 
 function getInitData() {
@@ -67,5 +76,12 @@ function getInitData() {
 }
 
 function getOneProduct(id) {
-  return get(`${API_URL_V2}/products/${id}`);
+  return get(`${API_URL_V2}/products/${id}?token=${Auth.get().token}`);
+}
+
+function addToCart() {
+  let shouldAuth = false;
+  let formData = new FormData();
+  formData.append('products', JSON.stringify(CartService.get()))
+  return post(`${API_URL_V2}/carts?token=${Auth.get().token}`, formData, shouldAuth);
 }

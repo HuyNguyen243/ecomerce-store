@@ -1,8 +1,7 @@
 import Header from "../header/Header";
 import React from 'react';
 import CartItem from '../cart/CartItem';
-// import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
-// import Alert from "./../../../_components/_alert.component";
+import { useSelector } from "react-redux";
 import{Link}from "react-router-dom"
 import { useHistory } from "react-router";
 import Swal from "sweetalert2"
@@ -10,19 +9,20 @@ import Swal from "sweetalert2"
 function OderInformation(
     hideNavigation,
 ) {
+    const history = useHistory()
+    const carts = useSelector(state => state.carts);
+
     const showCart=()=>{
-        const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
-        if(getlocal.length >0){
-            return getlocal.map((item,value)=>{
+        if(carts.length >0){
+            return carts.map((item, key)=>{
                 return(
-                    <CartItem item={item} key={value}/>
+                    <CartItem index={key} item={item} key={key}/>
                 )
             })
         }
         
     }
 
-    const history = useHistory()
     const handleBackPage=()=>{
         history.push("/OderForm")
     }
