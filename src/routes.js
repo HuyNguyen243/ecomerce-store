@@ -13,6 +13,7 @@ import OrderForm from './modules/shops/order/OrderForm';
 import List from './modules/shops/List';
 import OrderProduct from './modules/shops/order/OrderProduct';
 import InfoProductShipping from './modules/shops/order/InfoProductShipping';
+import ListCategory from './modules/shops/category/List';
 
 export const routes = [
     {
@@ -99,5 +100,11 @@ export const routes = [
         isAuth: true,
         main: () => <InfoProductShipping/>
     },
+    {
+        path: "/categories/:id",
+        exact: true,
+        isAuth: true,
+        main: () => <ListCategory/>
+    }
     
 ]

@@ -2,7 +2,8 @@ import {
     AUTHENTICATE_USER,
     GET_GENERAL_DATA,
     GET_ONE_PRODUCT,
-    ADD_TO_CART
+    ADD_TO_CART,
+    GET_CATEGORIES
 
 } from '../constants';
 
@@ -20,4 +21,8 @@ export const getOneProduct = (id) => {
 
 export const addCart = () => {
     return { type: ADD_TO_CART , payload: ''};
+}
+
+export const getCategoriesByParentId = (id) => {
+    return { type: GET_CATEGORIES , payload: id};
 }
