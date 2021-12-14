@@ -8,7 +8,7 @@ import{ useHistory } from "react-router-dom"
 const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart }) => {
   let productList;
   const history = useHistory()
-
+  console.log(categoryId)
   const doScrolling = (cateId, type) => {
     let scrollElement = document.getElementById(cateId)
     let scrollItems = scrollElement.getElementsByClassName('active')[0];
@@ -58,7 +58,7 @@ const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart })
 
   const getByCategory = (id, listTitle) => {
     if (id !== null) {
-      history.push(`/categories/${categoryId}`);
+      history.push(`/products/${categoryId}`);
     } else {
       let params = `?mostView=1`;
       getListData(params, listTitle);

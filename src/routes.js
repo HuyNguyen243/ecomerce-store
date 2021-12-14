@@ -101,7 +101,7 @@ export const routes = [
         main: () => <InfoProductShipping/>
     },
     {
-        path: "/categories/:id",
+        path: "/products/:id",
         exact: true,
         isAuth: true,
         main: () => <ListCategory/>
