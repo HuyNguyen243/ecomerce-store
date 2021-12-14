@@ -21,7 +21,6 @@ const ListCategory = () => {
       getCategoriesCallback()
     }
   }, [getCategoriesCallback, categories]);
-
   return (
     <div>
       <Header
@@ -39,7 +38,7 @@ const ListCategory = () => {
                 categories?.data?.length > 0
                 && categories?.data?.map((category, index) => {
                   return (
-                    <Slider key={index} categoryId={category._id} data={category.products} title={category.name} />
+                    <Slider key={index} type={'products'} categoryId={category._id} data={category.products} title={category.name} />
                   );
                 })
               }

@@ -3,7 +3,8 @@ import {
     GET_GENERAL_DATA,
     GET_ONE_PRODUCT,
     ADD_TO_CART,
-    GET_CATEGORIES
+    GET_CATEGORIES,
+    MOST_VIEW,
 
 } from '../constants';
 
@@ -25,4 +26,8 @@ export const addCart = () => {
 
 export const getCategoriesByParentId = (id) => {
     return { type: GET_CATEGORIES , payload: id};
+}
+
+export const getIdMosview = (params) => {
+    return { type: MOST_VIEW , payload: params};
 }

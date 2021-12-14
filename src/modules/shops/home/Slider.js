@@ -5,10 +5,9 @@ import Icon from './../../../_components/_icon.component';
 import{ useHistory } from "react-router-dom"
 
 
-const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart }) => {
+const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, addToCart }) => {
   let productList;
   const history = useHistory()
-  console.log(categoryId)
   const doScrolling = (cateId, type) => {
     let scrollElement = document.getElementById(cateId)
     let scrollItems = scrollElement.getElementsByClassName('active')[0];
@@ -57,11 +56,14 @@ const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart })
   }
 
   const getByCategory = (id, listTitle) => {
-    if (id !== null) {
-      history.push(`/products/${categoryId}`);
-    } else {
-      let params = `?mostView=1`;
-      getListData(params, listTitle);
+    if(type === "products"){
+      let url = '/products';
+      if(categoryId !== '') {
+        url += '?category_id='+categoryId;
+      }
+      history.push(url);
+    }else{
+      history.push(`/categories/${categoryId}`);
     }
   }
 

@@ -14,6 +14,9 @@ import {
 
   GET_CATEGORIES,
   GET_CATEGORIES_SUCCESS,
+  
+  MOST_VIEW,
+  MOST_VIEW_SUCCESS,
 
 } from '../constants';
 import { API_URL_V1, API_URL_V2 } from '../../_config/api.config';
@@ -28,6 +31,7 @@ export default function* watcherSaga() {
   yield takeLatest(GET_ONE_PRODUCT, workerSaga);
   yield takeLatest(ADD_TO_CART, workerSaga);
   yield takeLatest(GET_CATEGORIES, workerSaga);
+  yield takeLatest(MOST_VIEW, workerSaga);
 }
 
 function* workerSaga(param) {
@@ -58,6 +62,10 @@ function* workerSaga(param) {
       action = getCategoriesByParentId;
       type   = GET_CATEGORIES_SUCCESS;
       break;
+    case MOST_VIEW:
+        action = getIdMosview;
+        type   = MOST_VIEW_SUCCESS;
+        break;
     default:
       action = '';
       type   = '';
@@ -96,4 +104,8 @@ function addToCart() {
 
 function getCategoriesByParentId(id) {
   return get(`${API_URL_V2}/categories/${id}?token=${Auth.get().token}`);
+}
+
+function getIdMosview(params) {
+  return get(`${API_URL_V2}/products/?token=${Auth.get().token}${params}`);
 }

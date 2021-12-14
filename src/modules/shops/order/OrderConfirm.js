@@ -50,7 +50,7 @@ const OderConfirm = (
                   </div>,
     })
   }
-  },[])
+  },)
 
 const showheader =()=>{
   if(location.pathname === "/oderConfirm"){

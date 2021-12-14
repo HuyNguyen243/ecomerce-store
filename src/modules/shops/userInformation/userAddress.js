@@ -23,16 +23,16 @@ function UserAddress() {
                     {
                         user.map((item,value)=>{
                             return(
-                                <div className="form-group" key={value} >
+                                <div className="form-group" key={value}>
                                     <div className="information" onClick={handleGetId} id={item.id} >
-                                        <div className="infor-user newstyle">
-                                            <p>{item.name}<span>{item.id === 1 ? "[Mặc định]":""}</span></p>
-                                            <p>{item.number}</p>
-                                            <p>{item.address}</p>
+                                        <div className="infor-user newstyle" id={item.id}>
+                                            <p id={item.id}>{item.name}<span id={item.id}>{item.id === 1 ? "[Mặc định]":""}</span></p>
+                                            <p id={item.id}>{item.number}</p>
+                                            <p id={item.id}>{item.address}</p>
                                         </div>
-                                        <div className="infor-icon newstyle">
+                                        <div className="infor-icon newstyle" >
                                             <Link  to="/news-address"><img src="/images/fix.svg" alt="menu_icon" /></Link>
-                                            <img src="/images/tickV.svg" alt="menu_icon" className={item.id === idUser ? "show":"hide"}/>
+                                            <img id={item.id} src="/images/tickV.svg" alt="menu_icon" className={item.id === parseInt(idUser) ? "show":"hide"}/>
                                         </div>
                                     </div>
                                 </div>
