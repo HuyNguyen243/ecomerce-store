@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Header from "../header/Header";
 
 const showShip =[{id:1,name:"Giao hàng tiết kiệm 1"},
-                 {id:2,name:"Giao hàng tiết kiệm 1"},
-                 {id:3,name:"Giao hàng tiết kiệm 1"}
+                 {id:2,name:"Giao hàng tiết kiệm 2"},
+                 {id:3,name:"Giao hàng tiết kiệm 3"}
                 ]
 
 

@@ -123,7 +123,7 @@ $text-row: 2;
       .item-old-price {
         color: #bbbbbb;
         text-decoration: line-through;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 500;
       }
       .item-percentage {
@@ -249,13 +249,13 @@ $text-row: 2;
 #product_detail_nav {
   .item-thumbnail {
     img {
-      min-height: 546px;
       border: 1px solid #dee2e6;
     }
   }
   .item-name {
-    padding: 20px 0;
+    padding: 15px 0;
     font-weight: 600;
+    font-size: 15px;
   }
   .quantity {
     width: 50%;
@@ -270,8 +270,8 @@ $text-row: 2;
     width: 40%;
     .current-price {
       color: #f40000;
-      font-size: 25px;
-      padding: $pd-sm 0;
+      font-size: 20px;
+      padding: 15px 0;
     }
   }
   .item-button {
@@ -288,14 +288,13 @@ $text-row: 2;
     margin-bottom: 10px;
     overflow: hidden;
     .item-button {
-      width: 50%;
       box-sizing: border-box;
       display: flex;
       justify-content: center;
       align-items: center;
       .btn {
         color: #fff;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 600;
         padding:  12px 0;
         border: none;
@@ -310,6 +309,7 @@ $text-row: 2;
     .button-left {
       border-radius: 5px 0px 0px 5px;
       background: $color-primary;
+      width: 80%;
     }
     .button-left-block {
       background: #8086dfc4 !important;
@@ -324,6 +324,8 @@ $text-row: 2;
     .button-right {
       border-radius: 0px 5px 5px 0px;
       background: $color-info;
+      width: 20%;
+      padding: 11px 0;
       img{
         margin-right: 10px;
       }
