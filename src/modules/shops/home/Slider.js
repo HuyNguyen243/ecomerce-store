@@ -2,12 +2,12 @@ import React from "react";
 import Item from "./../product/Item";
 import Blankpage from "./../../../_components/_blankpage.component";
 import Icon from './../../../_components/_icon.component';
-import{Link} from "react-router-dom"
+import{ useHistory } from "react-router-dom"
 
-const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart }) => {
 
+const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, addToCart }) => {
   let productList;
-
+  const history = useHistory()
   const doScrolling = (cateId, type) => {
     let scrollElement = document.getElementById(cateId)
     let scrollItems = scrollElement.getElementsByClassName('active')[0];
@@ -56,12 +56,14 @@ const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart })
   }
 
   const getByCategory = (id, listTitle) => {
-    if (id !== null) {
-      let params = `?categoryId=${id}`;
-      getListData(params, listTitle);
-    } else {
-      let params = `?mostView=1`;
-      getListData(params, listTitle);
+    if(type === "products"){
+      let url = '/products';
+      if(categoryId !== '') {
+        url += '?category_id='+categoryId;
+      }
+      history.push(url);
+    }else{
+      history.push(`/categories/${categoryId}`);
     }
   }
 
@@ -70,7 +72,7 @@ const Slider = ({ data, categoryId, title, showDetail, getListData, addToCart })
     <div className="horizontal-wrapper">
       <div className="horizontal-header row">
         <div className="col-8 header-left text-bold">{title}</div>
-        <div className="col-4 header-right txt-primary txt-right" ><Link to="products"><span className="pointer" onClick={() => { getByCategory(categoryId, title) }}>Xem tất cả</span></Link></div>
+        <div className="col-4 header-right txt-primary txt-right" ><span className="pointer" onClick={() => { getByCategory(categoryId, title) }}>Xem tất cả</span></div>
       </div>
       <span onClick={() => {doScrolling(categoryId, 'prev')}} className="list-navigate prev hide"><Icon name="chevron_left" /></span>
       <span onClick={() => {doScrolling(categoryId, 'next')}} className={`list-navigate next next-style ${data.length < 3 ? 'hide' : ''}`}><Icon name="chevron_right" /></span>

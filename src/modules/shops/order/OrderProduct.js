@@ -113,8 +113,8 @@ const OrderProduct = ({ params, hideList = "" }) => {
     if(getlocal.length >0){
         return getlocal.map((item,value)=>{
             return(
-              <div className="oder-item">
-                <div key={value} className="oder-container">
+              <div className="oder-item" key={value}>
+                <div className="oder-container">
                   <Link to="/product-shipping">
                             <div className ="shop-item cart">
                                 <div className ="item-thumbnail">
@@ -160,9 +160,9 @@ const OrderProduct = ({ params, hideList = "" }) => {
               {
                 TABS.map((item, index) => {
                   return (
-                    <div className="horizontal-list-item ">
+                    <div className="horizontal-list-item " key={index}>
                       <div className="shop-item style-item">
-                        <button key={index}  onClick={e => setActive(item.id)} className={`btn ${item.id === active ? 'active' : ''}`}>{item.name}</button>
+                        <button   onClick={e => setActive(item.id)} className={`btn ${item.id === active ? 'active' : ''}`}>{item.name}</button>
                       </div>
                     </div>
                   )

@@ -7,6 +7,10 @@ import {
   GET_ONE_PRODUCT_SUCCESS,
   ADD_TO_CART,
   ADD_TO_CART_SUCCESS,
+  GET_CATEGORIES,
+  GET_CATEGORIES_SUCCESS,
+  MOST_VIEW,
+  MOST_VIEW_SUCCESS,
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -23,7 +27,15 @@ const initState = {
     isLoaded : false,
     data: {}
   },
-  carts: CartService.get()
+  carts: CartService.get(),
+  categories: {
+    isLoaded : false,
+    data: {}
+  },
+  mostview: {
+    isLoaded : false,
+    data: {}
+  },
 };
 
 const rootReducer = (state = initState, action) => {
@@ -33,6 +45,8 @@ const rootReducer = (state = initState, action) => {
     case AUTHENTICATE_USER:
     case GET_ONE_PRODUCT:
     case GET_GENERAL_DATA:
+    case GET_CATEGORIES:
+    case MOST_VIEW:
       return Object.assign({}, state, {
         isLoading: true,
       });
@@ -69,6 +83,22 @@ const rootReducer = (state = initState, action) => {
         carts: CartService.get(),
         isLoading: false,
       });
+    case GET_CATEGORIES_SUCCESS:
+      return Object.assign({}, state, {
+        categories: {
+          isLoaded: true,
+          data: payload.data
+        },
+        isLoading: false,
+      });
+      case MOST_VIEW_SUCCESS:
+        return Object.assign({}, state, {
+          mostview: {
+            isLoaded: true,
+            data: payload.data
+          },
+          isLoading: false,
+        });
     default:
       return Object.assign({}, state, {
         isLoading: false

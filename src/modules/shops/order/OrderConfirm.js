@@ -4,25 +4,29 @@ import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
 import Swal from "sweetalert2"
 import { useHistory, useLocation } from "react-router";
-import withReactContent from 'sweetalert2-react-content'
+import withReactContent from 'sweetalert2-react-content';
+import { useSelector } from "react-redux"; 
+import NumberHelper from "./../../../_helpers/number";
 
 const MySwal = withReactContent(Swal)
 
 const OderConfirm = ( 
   hideNavigation
   )=>{
-  const showCart=()=>{
-    const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
-    if(getlocal.length >0){
-        return getlocal.map((item,value)=>{
-            return(
-                <CartItem item={item} key={value}/>
-            )
-        })
+    const carts = useSelector(state => state.carts);
+    const location = useLocation()
+    const history = useHistory()
+
+    const showCart=()=>{
+      if(carts.length >0){
+          return carts.map((item,key)=>{
+              return(
+                  <CartItem index={key} key={key} item={item} />
+              )
+          })
+      }
     }
-  }
-  const location = useLocation()
-  const history = useHistory()
+
   useEffect(()=>{
   if(location.pathname === "/oderConfirm"){
     MySwal.fire({
@@ -46,7 +50,7 @@ const OderConfirm = (
                   </div>,
     })
   }
-  })
+  },)
 
 const showheader =()=>{
   if(location.pathname === "/oderConfirm"){
@@ -57,6 +61,17 @@ const showheader =()=>{
       title="ĐẶT HÀNG"
       />
     )
+  }
+}
+
+const calcTotalPrice = () => {
+  if(carts.length >0){
+    let total = 0;
+    for (let i = 0; i < carts.length; i++) {
+      let price = carts[i].couponPrice > 0 ? carts[i].couponPrice : carts[i].price
+      total += price * carts[i].quantity
+    }
+    return NumberHelper.formatCurrency(total)
   }
 }
 
@@ -133,8 +148,8 @@ const showPromotion=()=>{
              </div>
          </div>
         </form>
-        <div className="news-style-cart ">
-        {showCart()}
+        <div className="news-style-cart style-for-cart list-cart oderinformation new-bottom">
+          {showCart()}
         </div>
       </div>
       <div className="fix-bottom">
@@ -146,7 +161,7 @@ const showPromotion=()=>{
          </div>
          <div className="col-6  text-sm">Tổng tiền hàng:</div>
          <div className="col-6 text-bold txt-right">
-           <span className="text-nm">1</span>
+           <span className="text-nm">{calcTotalPrice()}</span>
          </div>
          <div className="col-6  text-sm">Phí vận chuyển:</div>
          <div className="col-6 text-bold txt-right">

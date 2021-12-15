@@ -79,7 +79,10 @@ const OrderForm = ({ onSubmit, isLoading,
             </div>
             </Link>
           </div>
-          <div className="fix-bottom">
+        
+        </form>
+      </div>
+      <div className="fix-bottom">
             <div>
             <div>
             <div className="divider"></div>
@@ -98,8 +101,6 @@ const OrderForm = ({ onSubmit, isLoading,
             </div>
               
             </div>
-          </div>
-        </form>
       </div>
       {isLoading 
         ? 

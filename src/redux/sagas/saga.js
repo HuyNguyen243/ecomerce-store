@@ -12,6 +12,12 @@ import {
   ADD_TO_CART,
   ADD_TO_CART_SUCCESS,
 
+  GET_CATEGORIES,
+  GET_CATEGORIES_SUCCESS,
+  
+  MOST_VIEW,
+  MOST_VIEW_SUCCESS,
+
 } from '../constants';
 import { API_URL_V1, API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
@@ -24,6 +30,8 @@ export default function* watcherSaga() {
   yield takeLatest(GET_GENERAL_DATA, workerSaga);
   yield takeLatest(GET_ONE_PRODUCT, workerSaga);
   yield takeLatest(ADD_TO_CART, workerSaga);
+  yield takeLatest(GET_CATEGORIES, workerSaga);
+  yield takeLatest(MOST_VIEW, workerSaga);
 }
 
 function* workerSaga(param) {
@@ -50,6 +58,14 @@ function* workerSaga(param) {
       action = addToCart;
       type   = ADD_TO_CART_SUCCESS;
       break;
+    case GET_CATEGORIES:
+      action = getCategoriesByParentId;
+      type   = GET_CATEGORIES_SUCCESS;
+      break;
+    case MOST_VIEW:
+        action = getIdMosview;
+        type   = MOST_VIEW_SUCCESS;
+        break;
     default:
       action = '';
       type   = '';
@@ -84,4 +100,12 @@ function addToCart() {
   let formData = new FormData();
   formData.append('products', JSON.stringify(CartService.get()))
   return post(`${API_URL_V2}/carts?token=${Auth.get().token}`, formData, shouldAuth);
+}
+
+function getCategoriesByParentId(id) {
+  return get(`${API_URL_V2}/categories/${id}?token=${Auth.get().token}`);
+}
+
+function getIdMosview(params) {
+  return get(`${API_URL_V2}/products/?token=${Auth.get().token}${params}`);
 }

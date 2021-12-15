@@ -10,9 +10,11 @@ import OderInformation from './modules/shops/order/OderInformation';
 import OrderConfirm from './modules/shops/order/OrderConfirm';
 import Detail from './modules/shops/product/Detail';
 import OrderForm from './modules/shops/order/OrderForm';
-import List from './modules/shops/List';
+// import List from './modules/shops/List';
 import OrderProduct from './modules/shops/order/OrderProduct';
 import InfoProductShipping from './modules/shops/order/InfoProductShipping';
+import ListCategory from './modules/shops/category/List';
+import ProductMostview from './modules/shops/product/ProductMostview';
 
 export const routes = [
     {
@@ -75,12 +77,12 @@ export const routes = [
         isAuth: true,
         main: () => <OrderForm/>
     },
-    {
-        path: "/products",
-        exact: true,
-        isAuth: true,
-        main: () => <List/>
-    },
+    // {
+    //     path: "/products",
+    //     exact: true,
+    //     isAuth: true,
+    //     main: () => <List/>
+    // },
     {
         path: "/product/:id",
         exact: true,
@@ -98,6 +100,18 @@ export const routes = [
         exact: true,
         isAuth: true,
         main: () => <InfoProductShipping/>
+    },
+    {
+        path: "/categories/:id",
+        exact: true,
+        isAuth: true,
+        main: () => <ListCategory/>
+    },
+    {
+        path: "/products",
+        exact: true,
+        isAuth: true,
+        main: () => <ProductMostview/>
     },
     
 ]

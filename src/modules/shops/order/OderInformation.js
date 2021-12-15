@@ -84,7 +84,7 @@ function OderInformation(
                             </div>
                         </div>
                 </form>
-                <div className="news-style-cart style-for-cart">
+                <div className="news-style-cart style-for-cart list-cart oderinformation">
                 {showCart()}
                 </div>
                 {/* <Alert getPromotionData={getPromotionData} /> */}

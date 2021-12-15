@@ -7,9 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getInitData } from './../../../redux/actions/index';
 
 const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, addToCart }) => {
-
   const dispatch = useDispatch();
-
   const isLoading = useSelector(state => state.isLoading);
   const generalData = useSelector(state => state.generalData);
 
@@ -33,13 +31,13 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
           <>
             {
               generalData?.data?.productByPromotion?.length > 0
-              && <Slider categoryId={'mostView'} addToCart={addToCart} data={generalData?.data?.productByPromotion} getListData={getListData} title="Sản phẩm đang khuyến mãi" showDetail={showDetail} />
+              && <Slider type={'products'} addToCart={addToCart} data={generalData?.data?.productByPromotion} getListData={getListData} title="Sản phẩm đang khuyến mãi" showDetail={showDetail} />
             }
             {
               generalData?.data?.productByCategory?.length > 0
               && generalData?.data?.productByCategory.map((category, index) => {
                 return (
-                  <Slider key={index} categoryId={category._id} addToCart={addToCart} getListData={getListData} data={category.products} title={category.name} showDetail={showDetail} />
+                  <Slider key={index} type={'categories'} categoryId={category._id} addToCart={addToCart} getListData={getListData} data={category.products} title={category.name} showDetail={showDetail} />
                 );
               })
             }

@@ -43,6 +43,10 @@
     }
     .app-search {
       position: relative;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       .app-input {
         width: 100%;
       }
@@ -102,5 +106,5 @@
 }
 
 .form-title{
-  width: 126px;
+  width: 90px;
 }
