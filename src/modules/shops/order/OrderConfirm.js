@@ -30,26 +30,26 @@ const OderConfirm = (
 
   useEffect(()=>{
   if(location.pathname === "/oderConfirm"){
-    MySwal.fire({
-      showCloseButton: true,
-      showConfirmButton :false,
-      html:       <div className='Offer-Shock'>
-                    <div className='Offer-title'>
-                      <img src='/images/sale.png' alt='menu_icon' />
-                      <p>Bạn ơi bạn có quên ưu đãi này?</p>                    
-                    </div>
-                    <div className='container swal_sm'>
-                        <div className='Offer-Details'>
-                            <img src='/images/lg-coca.png' alt="logo" />
-                            <div className='Note-Details'>
-                                <p className='Note-Details-titles'>THÙNG 24 LON COCA</p>
-                                <p className='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>
-                                <p className='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>
-                            </div>
-                        </div>
-                    </div>
-                  </div>,
-    })
+    // MySwal.fire({
+    //   showCloseButton: true,
+    //   showConfirmButton :false,
+    //   html:       <div className='Offer-Shock'>
+    //                 <div className='Offer-title'>
+    //                   <img src='/images/sale.png' alt='menu_icon' />
+    //                   <p>Bạn ơi bạn có quên ưu đãi này?</p>                    
+    //                 </div>
+    //                 <div className='container swal_sm'>
+    //                     <div className='Offer-Details'>
+    //                         <img src='/images/lg-coca.png' alt="logo" />
+    //                         <div className='Note-Details'>
+    //                             <p className='Note-Details-titles'>THÙNG 24 LON COCA</p>
+    //                             <p className='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>
+    //                             <p className='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //               </div>,
+    // })
   }
   },[location.pathname ])
 
