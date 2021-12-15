@@ -3,6 +3,7 @@ import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
+import TotalBottom from "./TotalBottom";
 const MySwal = withReactContent(Swal)
 
 function InfoProductShipping(props) {
@@ -30,16 +31,12 @@ function InfoProductShipping(props) {
   }
 
   const [confirmCancel,setConfirmCancel]=useState(false)
-  //  const [checked,setChecked]= useState({})
   const [id]= useState()
 
   const cancelReasons =[ {id:0,title: "Muốn thay đổi địa chỉ giao hàng",checked:(id === 0 ?true :false)},
                         {id:1,title: "Thay đổi phương thức vận chuyển",checked:(id === 1 ?true :false)},
                         {id:2,title: "Đổi ý không muốn mua nữa / Khác",checked:(id === 2 ?true :false)},
                       ];
-  // const handleSelectCancel =(e)=>{
-  //   setId(e.target.id)
-  // }
 
   const handleSubmit = ()=>{
     if(!confirmCancel){
@@ -121,7 +118,7 @@ function InfoProductShipping(props) {
         </div>
         <div className="fix-bottom">
           <div className="divider"></div>
-            <div className="row cart-total">
+            {/* <div className="row cart-total">
               <div className="col-6  text-sm">Tổng tiền hàng:</div>
               <div className="col-6 text-bold txt-right">
               <span className="text-nm">1</span>
@@ -138,7 +135,8 @@ function InfoProductShipping(props) {
             <div className="col-6 text-bold txt-right">
               <span className="text-nm new-text">1</span>
             </div>
-          </div>
+          </div> */}
+          <TotalBottom />
           <div className="btn-with-icon right-icon">
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? "Huỷ đơn hàng" : "Đặt lại đơn"}</button>
           </div>

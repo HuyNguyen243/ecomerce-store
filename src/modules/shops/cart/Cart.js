@@ -5,17 +5,18 @@ import { LIST_CART_NAV } from "./../../../_config/shop.config";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux"; 
 import NumberHelper from "./../../../_helpers/number";
-
+import { useLocation } from "react-router";
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
+import TotalBottom from "../order/TotalBottom";
 const MySwal = withReactContent(Swal)
-
 
 const Cart = ({
   hideCart,
   totalCart
 }) => {
   const carts = useSelector(state => state.carts);
+  const location = useLocation()
 
   const promotionAd = () => {
     MySwal.fire({
@@ -44,7 +45,7 @@ const Cart = ({
 
   useEffect(() => {
     promotionAd()
-  },);
+  },[location]);
 
   const showCart=()=>{
     if(carts.length >0){
@@ -86,12 +87,7 @@ const Cart = ({
               && <div className="fix-bottom">
                   <div>
                   <div className="divider"></div>
-                    <div className="row cart-total">
-                      <div className="col-6 text-bold text-sm">Tổng cộng:</div>
-                      <div className="col-6 text-bold txt-info txt-right">
-                        <span className="text-md">{ calcTotalPrice() }</span>
-                      </div>
-                    </div>
+                    <TotalBottom totalPrice={calcTotalPrice()}/>
                   </div>
                   <div className="btn-with-icon right-icon">
                     <Link to="/OderForm">

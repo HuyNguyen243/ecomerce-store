@@ -1,6 +1,7 @@
 .row {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
     .col-12 {
         @include col($col-12);
     }
