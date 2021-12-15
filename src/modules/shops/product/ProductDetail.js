@@ -121,7 +121,6 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
             }}
             className="btn btn-red"
           >
-            Thêm vào giỏ
           </button>
         </div>
       </div>
