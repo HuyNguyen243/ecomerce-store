@@ -7,6 +7,7 @@ import { useHistory, useLocation } from "react-router";
 import withReactContent from 'sweetalert2-react-content';
 import { useSelector } from "react-redux"; 
 import NumberHelper from "./../../../_helpers/number";
+import TotalBottom from "./TotalBottom";
 
 const MySwal = withReactContent(Swal)
 
@@ -50,7 +51,7 @@ const OderConfirm = (
                   </div>,
     })
   }
-  },)
+  },[location.pathname ])
 
 const showheader =()=>{
   if(location.pathname === "/oderConfirm"){
@@ -87,7 +88,7 @@ const handleSubmit = ()=>{
     if (result.isConfirmed) {
       MySwal.fire({
         showConfirmButton : false,
-        html :  <div class='confirm-swal'>
+        html :  <div className='confirm-swal'>
                   <img src='/images/thank-you.png' alt='menu_icon' />
                   <h3>ĐẶT HÀNG THÀNH CÔNG</h3>
                   <p>Cám ơn anh A đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>
@@ -98,30 +99,6 @@ const handleSubmit = ()=>{
   })
 }
 
-const showPromotion=()=>{
-  MySwal.fire({
-    title: 'MÃ GIẢM GIÁ',
-    html: <div class='promotion'> 
-                <input type='text' class='input-promotion' placeholder='Nhập mã giảm giá'/>
-                <div class='container-promotion'>
-                  <div class='Offer-promotion'>
-                      <img src='/images/sale2.png' alt="sale" />
-                      <div class='content-promotion'>
-                          <p class='code-promotion'>CC1PLUS1</p>
-                          <p class='Minimum-Order'>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>
-                          <p class='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>
-                      </div>
-                  </div>
-                  <div class='use-promotion'>
-                    <span>Sử dụng ngay</span>
-                  </div>
-                </div>
-          </div>,
-    confirmButtonText: 'Áp dụng',
-    showCancelButton: true,
-    cancelButtonText: "Đóng"
-  })
-}
 
   return(
     <div className="body_wrapper ">
@@ -153,32 +130,11 @@ const showPromotion=()=>{
         </div>
       </div>
       <div className="fix-bottom">
-       <div className="divider"></div>
-       <div className="row cart-total">
-         <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
-         <div className="col-6 text-bold txt-right">
-          <input type="text" name="code"   placeholder="Nhập mã giảm giá" className={"btn-discount"} onClick={showPromotion}  />
-         </div>
-         <div className="col-6  text-sm">Tổng tiền hàng:</div>
-         <div className="col-6 text-bold txt-right">
-           <span className="text-nm">{calcTotalPrice()}</span>
-         </div>
-         <div className="col-6  text-sm">Phí vận chuyển:</div>
-         <div className="col-6 text-bold txt-right">
-           <span className="text-nm">1</span>
-         </div>
-         <div className="col-6  text-sm">Mã giảm giá</div>
-         <div className="col-6 text-bold txt-right">
-           <span className="text-nm">1</span>
-         </div>
-         <div className="col-6 text-bold text-sm new-text">Tổng cộng:</div>
-         <div className="col-6 text-bold txt-right">
-           <span className="text-nm new-text">1</span>
-         </div>
-       </div>
-       <div className="btn-with-icon right-icon">
+        <div className="divider"></div>
+        <TotalBottom totalPrice={calcTotalPrice()}/>
+        <div className="btn-with-icon right-icon">
             <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Xác nhân đặt hàng</button>
-      </div>
+        </div>
      </div>
     </div>
   )
