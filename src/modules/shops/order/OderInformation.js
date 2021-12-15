@@ -4,7 +4,7 @@ import CartItem from '../cart/CartItem';
 import { useSelector } from "react-redux";
 import{Link}from "react-router-dom"
 import { useHistory } from "react-router";
-import Swal from "sweetalert2"
+import TotalBottom from "./TotalBottom";
 
 function OderInformation(
     hideNavigation,
@@ -26,34 +26,6 @@ function OderInformation(
     const handleBackPage=()=>{
         history.push("/OderForm")
     }
-
-    const showPromotion=()=>{
-        Swal.fire({
-          title: 'MÃ GIẢM GIÁ',
-          html: "<div class='promotion'>"+ 
-                  "<input type='text' class='input-promotion' placeholder='Nhập mã giảm giá'/>"+
-                  // 
-                      "<div class='container-promotion'>"+
-                        "<div class='Offer-promotion'>"+
-                            "<img src='/images/sale2.png'  />"+
-                            "<div class='content-promotion'>"+
-                                "<p class='code-promotion'>CC1PLUS1</p>"+
-                                "<p class='Minimum-Order'>MUA 1 TẶNG 1 (Đơn tối thiểu 100.000đ)</p>"+
-                                "<p class='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>"+
-                            "</div>"+
-                        "</div>"+
-                        "<div class='use-promotion'>"+
-                          "<span>Sử dụng ngay</span>"+
-                        "</div>"+
-                    "</div>"+
-                    // 
-                "</div>",
-    
-          confirmButtonText: 'Áp dụng',
-          showCancelButton: true,
-          cancelButtonText: "Đóng"
-        })
-      }
 
     return (
         
@@ -87,22 +59,15 @@ function OderInformation(
                 <div className="news-style-cart style-for-cart list-cart oderinformation">
                 {showCart()}
                 </div>
-                {/* <Alert getPromotionData={getPromotionData} /> */}
             </div>
             <div className="fix-bottom">
                 <div>
                     <div className="divider"></div>
-                    <div className="row cart-total-info">
-                        <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
-                        <div className="col-6 text-bold txt-right">
-                        <input type="text" name="code"   placeholder="Nhập mã giảm giá" className={"btn-discount"} onClick={showPromotion}  />
-                        </div>
-                    </div>
+                    <TotalBottom />
                     </div>
                     <div className="btn-with-icon right-icon">
                         <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBackPage}>Quay lại</button>
                         <Link to="/oderConfirm"><button type="submit" className="btn btn-primary btn-right-icon ">Tiếp tục</button></Link>
-                        {/* <button type="submit" className="btn btn-primary btn-right-icon">Tiếp tục</button> */}
                     </div>
             </div>
         </div>

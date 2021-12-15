@@ -5,6 +5,7 @@ import {
     ADD_TO_CART,
     GET_CATEGORIES,
     MOST_VIEW,
+    HEADER_TITLE,
 
 } from '../constants';
 
@@ -30,4 +31,8 @@ export const getCategoriesByParentId = (id) => {
 
 export const getIdMosview = (params) => {
     return { type: MOST_VIEW , payload: params};
+}
+
+export const headTitles = (title) => {
+    return { type: HEADER_TITLE , payload: title};
 }

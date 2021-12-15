@@ -7,9 +7,9 @@ import List from "../List";
 
 const ProductMostview = () => {
   const dispatch = useDispatch();
-
   const isLoading = useSelector(state => state.isLoading);
   const mostview = useSelector(state => state.mostview);
+  const headerTitles = useSelector(state => state.headerTitles);
 
   const getMostviewCallback = React.useCallback(() => {
     let params = '';
@@ -26,7 +26,6 @@ const ProductMostview = () => {
   useEffect(() => {
     getMostviewCallback()
   }, [getMostviewCallback]);
-  
   const DataMostView = ()=>{
     if(mostview.data.length > 0){
             return(
@@ -40,7 +39,7 @@ const ProductMostview = () => {
     <div>
       <Header
         hasNavigation={true}
-        title="Danh sách sản phẩm"
+        title={headerTitles}
         
       />
       <div className="main_container">

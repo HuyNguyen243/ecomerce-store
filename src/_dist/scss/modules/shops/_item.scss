@@ -162,9 +162,7 @@ $text-row: 2;
         width: 80%;
         background-color: $color-primary;
         border-radius: 5px 0px 0px 5px;
-        padding: 3px 0;
         .btn-view {
-          padding: 3px 0px;
           color: $color-bg;
           font-size: $font-sm;
           font-weight: bold;
@@ -176,7 +174,10 @@ $text-row: 2;
         width: 20%;
         border-radius: 0px 5px 5px 0px;
         color: #fff;
-        padding: 4px 0;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         span {
           display: inline;
         }

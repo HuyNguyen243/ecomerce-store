@@ -12,6 +12,7 @@ const ListCategory = () => {
 
   const isLoading = useSelector(state => state.isLoading);
   const categories = useSelector(state => state.categories);
+  const headerTitles = useSelector(state => state.headerTitles);
   const getCategoriesCallback = React.useCallback(() => {
     dispatch(getCategoriesByParentId(id))
 }, [dispatch, id]);
@@ -25,7 +26,7 @@ const ListCategory = () => {
     <div>
       <Header
         hasNavigation={true}
-        title="Danh sách sản phẩm"
+        title={headerTitles}
         
       />
       <div className="main_container">

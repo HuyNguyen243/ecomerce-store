@@ -22,7 +22,6 @@ import {
 import { API_URL_V1, API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
 import CartService from "../../_services/cart";
-
 import { get, post } from './../../api';
 
 export default function* watcherSaga() {
@@ -67,9 +66,6 @@ function* workerSaga(param) {
         type   = MOST_VIEW_SUCCESS;
         break;
     default:
-      action = '';
-      type   = '';
-      break;
   }
   if (action !== '' && type !== '') {
     try {
@@ -109,3 +105,4 @@ function getCategoriesByParentId(id) {
 function getIdMosview(params) {
   return get(`${API_URL_V2}/products/?token=${Auth.get().token}${params}`);
 }
+
