@@ -1,16 +1,16 @@
 import React, { useState }  from "react";
 import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
+import { useSelector } from "react-redux"; 
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 
 function InfoProductShipping(props) {
-
+  const carts = useSelector(state => state.carts);
   const showCart=()=>{
-    const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
-    if(getlocal.length >0){
-        return getlocal.map((item,value)=>{
+    if(carts.length >0){
+        return carts.map((item,value)=>{
             return(
               <div key={value}>
                 <div className ="shop-item cart ">
@@ -19,7 +19,7 @@ function InfoProductShipping(props) {
                     </div>
                     <div className ="item-info">
                         <span className ="item-name">{item.name}</span>
-                        <span className ="item-price style-price">{item.pricePerProduct}</span>
+                        <span className ="item-price style-price">{item.price}</span>
                         <span className ="item-qty">Số lượng: {item.quantity}</span>
                     </div>
                 </div>
