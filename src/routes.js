@@ -111,7 +111,7 @@ export const routes = [
         path: "/products",
         exact: true,
         isAuth: true,
-        main: () => <ProductMostview/>
+        main: () => <ProductMostview />
     },
     
 ]

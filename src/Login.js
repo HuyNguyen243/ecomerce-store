@@ -57,7 +57,6 @@ function Login() {
                 ?
                     <div className="text-center">
                         <div className="loader"></div>
-                        Loading
                     </div>
                 :
                     !isAuthenticated && 'No data'

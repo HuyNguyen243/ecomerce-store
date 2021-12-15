@@ -84,9 +84,7 @@ function InfoProductShipping(props) {
 
   return (
     <div className="body_wrapper ">
-
       {showheader()}
-
       <div className="main_container">
         <div className="title-inforShip">
           <div className="nav_label">
@@ -118,24 +116,6 @@ function InfoProductShipping(props) {
         </div>
         <div className="fix-bottom">
           <div className="divider"></div>
-            {/* <div className="row cart-total">
-              <div className="col-6  text-sm">Tổng tiền hàng:</div>
-              <div className="col-6 text-bold txt-right">
-              <span className="text-nm">1</span>
-            </div>
-            <div className="col-6  text-sm">Phí vận chuyển:</div>
-            <div className="col-6 text-bold txt-right">
-              <span className="text-nm">1</span>
-            </div>
-            <div className="col-6  text-sm">Mã giảm giá</div>
-            <div className="col-6 text-bold txt-right">
-              <span className="text-nm">1</span>
-            </div>
-            <div className="col-6 text-bold text-sm new-text">Tổng cộng:</div>
-            <div className="col-6 text-bold txt-right">
-              <span className="text-nm new-text">1</span>
-            </div>
-          </div> */}
           <TotalBottom />
           <div className="btn-with-icon right-icon">
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? "Huỷ đơn hàng" : "Đặt lại đơn"}</button>

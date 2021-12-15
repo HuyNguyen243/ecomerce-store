@@ -11,6 +11,7 @@ import {
   GET_CATEGORIES_SUCCESS,
   MOST_VIEW,
   MOST_VIEW_SUCCESS,
+  HEADER_TITLE,
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -36,6 +37,8 @@ const initState = {
     isLoaded : false,
     data: {}
   },
+  headerTitles: ""
+  ,
 };
 
 const rootReducer = (state = initState, action) => {
@@ -63,11 +66,13 @@ const rootReducer = (state = initState, action) => {
         isLoading: false,
       });
     case GET_GENERAL_DATA_SUCCESS:
+      CartService.save(payload?.data?.carts)
       return Object.assign({}, state, {
         generalData: {
           isLoaded : true,
-          data : payload.data
+          data : payload?.data
         },
+        carts: payload?.data?.carts,
         isLoading: false,
       });
     case GET_ONE_PRODUCT_SUCCESS:
@@ -99,6 +104,10 @@ const rootReducer = (state = initState, action) => {
           },
           isLoading: false,
         });
+        case HEADER_TITLE:
+          return Object.assign({}, state, {
+            headerTitles: payload
+          });
     default:
       return Object.assign({}, state, {
         isLoading: false

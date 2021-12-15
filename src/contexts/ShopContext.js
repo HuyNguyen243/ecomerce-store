@@ -182,6 +182,11 @@ const ShopContextProvider = (props) => {
     }
   }
 
+  const title =(title) =>{
+    // localStorage.setItem("title",title)
+    console.log(title)
+  }
+
   return (
     <ShopContext.Provider
       value={{
@@ -208,6 +213,7 @@ const ShopContextProvider = (props) => {
         login,
         getUserInfo,
         submitUserInfo,
+        title,
       }}
     >
       {props.children}
