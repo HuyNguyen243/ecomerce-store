@@ -63,11 +63,13 @@ const rootReducer = (state = initState, action) => {
         isLoading: false,
       });
     case GET_GENERAL_DATA_SUCCESS:
+      CartService.save(payload?.data?.carts)
       return Object.assign({}, state, {
         generalData: {
           isLoaded : true,
-          data : payload.data
+          data : payload?.data
         },
+        carts: payload?.data?.carts,
         isLoading: false,
       });
     case GET_ONE_PRODUCT_SUCCESS:
