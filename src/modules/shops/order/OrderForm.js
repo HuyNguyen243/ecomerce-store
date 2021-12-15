@@ -40,7 +40,7 @@ const OrderForm = ({ onSubmit, isLoading,
               <span>Phương thức vận chuyển</span>
             </div>
             <Link to="/select-shipping" >
-            <div className="shipping">
+            <div className="shipping height">
               <span>Phương thức vận chuyển (Giao hàng tiết kiệm)</span>
               <img src="/images/Back-Black.svg" alt="menu_icon" />
             </div>

@@ -30,8 +30,8 @@ function UserAddress() {
                                             <p id={item.id}>{item.number}</p>
                                             <p id={item.id}>{item.address}</p>
                                         </div>
-                                        <div className="infor-icon newstyle" >
-                                            <Link  to="/news-address"><img src="/images/fix.svg" alt="menu_icon" /></Link>
+                                        <div className="infor-icon newstyle" id={item.id} >
+                                            <Link to="/news-address"><img src="/images/fix.svg" alt="menu_icon" /></Link>
                                             <img id={item.id} src="/images/tickV.svg" alt="menu_icon" className={item.id === parseInt(idUser) ? "show":"hide"}/>
                                         </div>
                                     </div>
