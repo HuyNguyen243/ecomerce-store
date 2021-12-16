@@ -57,6 +57,8 @@ const Cart = ({
     }
   }
 
+  console.log(carts)
+
   const calcTotalPrice = () => {
     if(carts.length >0){
       let total = 0;

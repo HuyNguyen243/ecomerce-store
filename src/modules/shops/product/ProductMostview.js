@@ -16,6 +16,11 @@ const ProductMostview = () => {
     let fullUrl = window.location.href;
     let url = new URL(fullUrl);
     let categoryId = url.searchParams.get("category_id");
+    let keyword = url.searchParams.get("keyword");
+
+    if(keyword){
+      params = '&keyword='+ keyword
+    }
 
     if(categoryId) {
       params = '&category_id='+categoryId
