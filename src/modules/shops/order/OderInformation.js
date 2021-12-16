@@ -56,7 +56,7 @@ function OderInformation(
                             </div>
                         </div>
                 </form>
-                <div className="news-style-cart style-for-cart list-cart oderinformation">
+                <div className="news-style-cart style-for-cart stl-botom-cart list-cart new-bottom1">
                 {showCart()}
                 </div>
             </div>

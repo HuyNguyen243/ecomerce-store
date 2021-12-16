@@ -4,7 +4,7 @@ import{Link}from 'react-router-dom'
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 
-const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation = false
+const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
                   , doNavigation = '', showLeftNav, headerBg = 'header-primary'}) => {
 
   const usehistory =useHistory()
@@ -35,7 +35,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation = false
       <div className="header-home">
         {
           hasNavigation ? <span onClick={() => handleGoBack() } className="pointer"><img src="/images/Back-red.svg" alt="menu_icon" /></span>
-                        : <span onClick={() => showLeftNav()} className="pointer"><img src="/images/menu-red.svg" alt="menu_icon" /></span>
+                        : <span onClick={() => showLeftNav()} className="pointer fix_icon"><img src="/images/menu-red.svg" alt="menu_icon" /></span>
         }
       </div>
       <div className="header-search">

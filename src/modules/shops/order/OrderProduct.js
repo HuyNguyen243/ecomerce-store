@@ -121,8 +121,8 @@ const OrderProduct = ({ params, hideList = "" }) => {
                                 <img className ="thumbnail-img" src={item.image} alt="thumbnail" />
                                 </div>
                                 <div className ="item-info">
-                                    <span className ="id-product">Mã đơn hàng: {item.id}</span>
-                                    <span className ="item-name">{item.name}</span>
+                                    <span className ="id-product ">Mã đơn hàng: 321111</span>
+                                    <span className ="item-name title_order">{item.name}</span>
                                     <span className ="item-price">{item.pricePerProduct}</span>
                                     <span className ="item-qty">Số lượng: {item.quantity}</span>
                                 </div>
@@ -161,7 +161,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
                 TABS.map((item, index) => {
                   return (
                     <div className="horizontal-list-item " key={index}>
-                      <div className="shop-item style-item">
+                      <div className=" style-item">
                         <button   onClick={e => setActive(item.id)} className={`btn ${item.id === active ? 'active' : ''}`}>{item.name}</button>
                       </div>
                     </div>

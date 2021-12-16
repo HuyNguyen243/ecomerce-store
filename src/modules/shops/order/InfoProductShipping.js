@@ -19,7 +19,7 @@ function InfoProductShipping(props) {
                     <img className ="thumbnail-img" src={item.image} alt="thumb" />
                     </div>
                     <div className ="item-info">
-                        <span className ="item-name">{item.name}</span>
+                        <span className ="item-name ">{item.name}</span>
                         <span className ="item-price style-price">{item.pricePerProduct}</span>
                         <span className ="item-qty">Số lượng: {item.quantity}</span>
                     </div>

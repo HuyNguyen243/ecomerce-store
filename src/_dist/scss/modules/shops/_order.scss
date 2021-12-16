@@ -4,11 +4,11 @@
     }
 }
 .nav_label {
-    padding:0 15px 15px 15px;
+    padding:0 15px 10px 15px;
     // margin-bottom: $pd-md;
     line-height: 22.5px;
     span {
-        font-size: $font-sm;
+        font-size: 14px;
         font-weight: 600;
     }
 }
@@ -138,20 +138,22 @@
     margin-bottom: 27px;
     p{
         margin: 4px 0;
+        font-size: 13px;
     }
     .name_number{
         display: flex;
         align-items: center;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 400;
     }
     span,
     .address{
-        font-size: 13px;
+        font-size: 12px;
         color: #333;
     }
     span:last-child{
         color: #f40000;
+        padding-top: 4px ;
     }
    
 }
