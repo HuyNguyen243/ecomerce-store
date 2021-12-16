@@ -19,7 +19,7 @@ import {
   MOST_VIEW_SUCCESS,
 
 } from '../constants';
-import { API_URL_V1, API_URL_V2 } from '../../_config/api.config';
+import { API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
 import CartService from "../../_services/cart";
 import { get, post } from './../../api';
@@ -79,7 +79,7 @@ function* workerSaga(param) {
 
 function authenticate(body) {
   let shouldAuth = false;
-  return post(`${API_URL_V1}/login`, body, shouldAuth);
+  return post(`${API_URL_V2}/login`, body, shouldAuth);
 }
 
 function getInitData() {

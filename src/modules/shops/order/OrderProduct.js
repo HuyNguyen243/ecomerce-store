@@ -1,117 +1,13 @@
 import React, { useState } from "react";
 import Header from "../header/Header";
-// import Loader from "../../../_components/_loader.component";
-// import { ShopContext } from "../../../contexts/ShopContext";
-// import OrderItem from "./OrderItem";
-// import Blankpage from "./../../../_components/_blankpage.component";
+import { useSelector } from "react-redux"; 
 import { USER_ORDER_NAV } from "./../../../_config/shop.config";
 import {Link} from "react-router-dom"
 const OrderProduct = ({ params, hideList = "" }) => {
-  // const {
-  //   orderByUserId,
-  //   getListOrders,
-  //   hasMoreOrder,
-  //   getListOrdersMore,
-  //   pageOrder,
-  //   loading
-  // } = useContext(ShopContext);
-  // const pendingOrderStatus = 0;
-  // const doneOrderStatus = 1;
-  // const pendingOrderTxt = "Đang xử lý";
-  // const doneOrderTxt = "Đã xử lý";
-
-  // var disabled = false;
-  // var currentButton = "";
-  // var currentActive = [];
-  
-  // const [status, setStatus] = useState('pending');
-
-  // const statusACTIVE = "ACTIVE";
-  // const statusINACTIVE = "INACTIVE";
-  // const defaultOption = `status=${statusINACTIVE}`;
-
-  // useEffect(() => {
-  //   getListOrders(defaultOption);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [params]);
-
-  // useEffect(() => {
-  //   let ele = document.getElementById(USER_ORDER_NAV);
-  //   ele.addEventListener("scroll", handleScroll);
-  //   return () => ele.removeEventListener("scroll", handleScroll);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [params, hasMoreOrder, orderByUserId]);
-
-  // const handleScroll = () => {
-  //   let ele = document.getElementById(USER_ORDER_NAV);
-  //   if (ele.scrollTop + ele.offsetHeight === ele.scrollHeight) {
-  //     if (hasMoreOrder) {
-  //       let mainContain = ele.children[1];
-  //       mainContain.insertAdjacentHTML(
-  //         "beforeend",
-  //         '<div id="load" class="loader"></div>'
-  //       );
-  //       if (status === "pending") {
-  //         getListOrdersMore(`status=${statusINACTIVE}&page=${pageOrder + 1}`);
-  //       } else {
-  //         getListOrdersMore(`status=${statusACTIVE}&page=${pageOrder + 1}`);
-  //       }
-  //       document.getElementById("load").remove();
-  //     } else {
-  //       ele.removeEventListener("scroll", handleScroll);
-  //     }
-  //   }
-  // };
-
-  // const switchTypeProduct = (e) => {
-  //   let activeOrderEl = document.getElementsByClassName('order-active');
-  //   if (activeOrderEl.length > 0) {
-  //     activeOrderEl[0].classList.remove('order-active');
-  //   }
-  //   currentButton = document.getElementById(e.target.id);
-  //   currentActive = document.getElementsByClassName(" choice-active");
-  //   if (currentActive.length) {
-  //     currentActive[0].disabled = false;
-  //     currentActive[0].className = currentActive[0].className.replace(
-  //       " choice-active",
-  //       ""
-  //     );
-  //   }
-  //   currentButton.disabled = true;
-  //   currentButton.className += " choice-active";
-  //   setStatus(e.target.id);
-  //   if (e.target.id === "pending") {
-  //     getListOrders(`status=${statusINACTIVE}`);
-  //   } else {
-  //     getListOrders(`status=${statusACTIVE}`);
-  //   }
-  // };
-
-  // var orderList;
-
-  // if (orderByUserId.length > 0) {
-  //   orderList = orderByUserId.map((order, index) => {
-  //     return (
-  //       <div key={index}>
-  //         <OrderItem
-  //           order={order}
-  //           pendingOrderStatus={pendingOrderStatus}
-  //           doneOrderStatus={doneOrderStatus}
-  //           pendingOrderTxt={pendingOrderTxt}
-  //           doneOrderTxt={doneOrderTxt}
-  //         />
-  //       </div>
-  //     );
-  //   });
-  // } else {
-  //   orderList = (
-  //     <Blankpage message="Chưa có đơn hàng nào" />
-  //   );
-  // }
+  const carts = useSelector(state => state.carts);
   const showCart = () => {
-    const getlocal = JSON.parse(localStorage.getItem("order_6149b1a9c941488634c963cf_4954465131233429"))
-    if(getlocal.length >0){
-        return getlocal.map((item,value)=>{
+    if(carts.length >0){
+        return carts.map((item,value)=>{
             return(
               <div className="oder-item" key={value}>
                 <div className="oder-container">
@@ -121,9 +17,9 @@ const OrderProduct = ({ params, hideList = "" }) => {
                                 <img className ="thumbnail-img" src={item.image} alt="thumbnail" />
                                 </div>
                                 <div className ="item-info">
-                                    <span className ="id-product ">Mã đơn hàng: 321111</span>
-                                    <span className ="item-name title_order">{item.name}</span>
-                                    <span className ="item-price">{item.pricePerProduct}</span>
+                                    <span className ="id-product">Mã đơn hàng: {item.id}</span>
+                                    <span className ="item-name">{item.name}</span>
+                                    <span className ="item-price">{item.price}</span>
                                     <span className ="item-qty">Số lượng: {item.quantity}</span>
                                 </div>
                                 <img src="/images/Back-Black.svg" alt="back" />
