@@ -14,6 +14,8 @@ import {
   HEADER_TITLE,
   POST_INFORMATION_DELIVERY_USER,
   POST_INFORMATION_DELIVERY_USER_SUCCESS,
+  GET_INFORMATION_DELIVERY_USER,
+  GET_INFORMATION_DELIVERY_USER_SUCCESS,
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -45,6 +47,10 @@ const initState = {
     isLoaded : false,
     data: {}
   },
+  userAddress: {
+    isLoaded : false,
+    data: {}
+  },
 };
 
 const rootReducer = (state = initState, action) => {
@@ -57,6 +63,7 @@ const rootReducer = (state = initState, action) => {
     case GET_CATEGORIES:
     case MOST_VIEW:
     case POST_INFORMATION_DELIVERY_USER:
+    case GET_INFORMATION_DELIVERY_USER:
       return Object.assign({}, state, {
         isLoading: true,
       });
@@ -115,14 +122,27 @@ const rootReducer = (state = initState, action) => {
         return Object.assign({}, state, {
           headerTitles: payload
         });
-        case POST_INFORMATION_DELIVERY_USER_SUCCESS:
-          return Object.assign({}, state, {
-            deliveryUser: {
-              isLoaded: true,
-              data: payload.data
-            },
-            isLoading: false,
-          });
+      case POST_INFORMATION_DELIVERY_USER_SUCCESS:
+        let currentAddress = this.state.userAddress.data
+        currentAddress.push(payload.data)
+        return Object.assign({}, state, {
+          deliveryUser: {
+            isLoaded: true,
+            data: payload.data
+          },
+          userAddress: {
+            data: currentAddress
+          },
+          isLoading: false,
+        });
+      case GET_INFORMATION_DELIVERY_USER_SUCCESS:
+        return Object.assign({}, state, {
+          userAddress: {
+            isLoaded: true,
+            data: payload.data
+          },
+          isLoading: false,
+        });
     default:
       return Object.assign({}, state, {
         isLoading: false

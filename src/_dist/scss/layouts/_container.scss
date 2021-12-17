@@ -176,3 +176,19 @@ body {
   position: relative;
 }
 
+
+.main-relative{
+  position: relative;
+  .basic-form{
+    width: 100%;
+    overflow: auto;
+    .form-group:last-child{
+      margin-bottom: 100px;
+    }
+  }
+
+}
+
+.fixed{
+  position: fixed;
+}

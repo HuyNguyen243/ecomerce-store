@@ -20,7 +20,7 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
   return (
     <div id={LEFT_MENU_NAV} className="overlay nav-left">
       <div className="menu-left-nav">
-        <Link to="/product-shipping">
+        <Link to="/user-address">
           <div className="menu-left-item" onClick={e => toggleCategory()}>
             <img src='/images/information.svg' alt="category"/>
             <span>THÔNG TIN ĐẶT HÀNG</span>

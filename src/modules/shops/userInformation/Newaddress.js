@@ -84,11 +84,9 @@ function Newaddress() {
         })
     }
 
-    
     const onSubmit =(data)=>{
-
        if(data){
-           if((data.city) === "9999"||  data.district === "9999" || data.ward === "9999"){
+           if((data.city) === "9999"||  data.district === "9999"){
                 setAddressDelivery(false)
            }else{
                 setAddressDelivery(true)
@@ -120,7 +118,7 @@ function Newaddress() {
                 hasNavigation={true}
                 title="THÊM ĐỊA CHỈ GIAO HÀNG MỚI"
             />
-            <div className="main_container">
+            <div className="main_container ">
                 <form className="basic-form" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
                             <div className="nav_label">
@@ -197,12 +195,13 @@ function Newaddress() {
                                 <label htmlFor="switch"></label>
                             </div>
                     </div>
-                    <div className="fix-bottom fix-style">
-                        <div className="btn-with-icon right-icon">
-                        <button type="submit"  className="btn btn-primary" >Thêm địa chỉ mới</button>
-                        </div>
-                    </div>
+                            <div className="fix-bottom fix-style">
+                                <div className="btn-with-icon right-icon">
+                                <button type="submit"  className="btn btn-primary" >Thêm địa chỉ mới</button>
+                                </div>
+                            </div>
                 </form>
+               
         </div>
         </div>
     );
