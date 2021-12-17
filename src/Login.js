@@ -22,7 +22,6 @@ function Login() {
         let formData = new FormData();
         formData.append('botId', botId)
         formData.append('userId', userId)
-
         Auth.init(botId, userId)
         dispatch(authenticateUser(formData))
     }, [dispatch]);

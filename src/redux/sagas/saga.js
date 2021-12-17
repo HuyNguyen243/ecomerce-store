@@ -18,6 +18,9 @@ import {
   MOST_VIEW,
   MOST_VIEW_SUCCESS,
 
+  POST_INFORMATION_DELIVERY_USER,
+  POST_INFORMATION_DELIVERY_USER_SUCCESS,
+
 } from '../constants';
 import { API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
@@ -31,6 +34,7 @@ export default function* watcherSaga() {
   yield takeLatest(ADD_TO_CART, workerSaga);
   yield takeLatest(GET_CATEGORIES, workerSaga);
   yield takeLatest(MOST_VIEW, workerSaga);
+  yield takeLatest(POST_INFORMATION_DELIVERY_USER, workerSaga);
 }
 
 function* workerSaga(param) {
@@ -64,6 +68,10 @@ function* workerSaga(param) {
     case MOST_VIEW:
         action = getIdMosview;
         type   = MOST_VIEW_SUCCESS;
+        break;
+    case POST_INFORMATION_DELIVERY_USER:
+        action = postDeliveryUser;
+        type   = POST_INFORMATION_DELIVERY_USER_SUCCESS;
         break;
     default:
   }
@@ -105,4 +113,9 @@ function getCategoriesByParentId(id) {
 function getIdMosview(params) {
   return get(`${API_URL_V2}/products/?token=${Auth.get().token}${params}`);
 }
+
+function postDeliveryUser(user) {
+  return post(`${API_URL_V2}/users/address?token=${Auth.get().token}`,user);
+}
+
 

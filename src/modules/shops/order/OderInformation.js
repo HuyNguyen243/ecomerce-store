@@ -24,7 +24,7 @@ function OderInformation(
     }
 
     const handleBackPage=()=>{
-        history.push("/OderForm")
+        history.goBack()
     }
 
     return (

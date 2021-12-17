@@ -12,7 +12,7 @@ const OrderForm = ({ onSubmit, isLoading,
 
   const history = useHistory()
   const handleBack=()=>{
-    history.push("/cart")
+    history.goBack()
   }
 
   return (

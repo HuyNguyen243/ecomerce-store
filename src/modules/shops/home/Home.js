@@ -15,12 +15,12 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
     dispatch(getInitData())
 }, [dispatch]);
 
+
   useEffect(() => {
     if(!generalData.isLoaded) {
       getGeneralDataCallback()
     }
   }, [getGeneralDataCallback, generalData]);
-
   return (
     <div className="main_container">
       {Offer()}

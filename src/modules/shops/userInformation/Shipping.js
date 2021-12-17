@@ -8,7 +8,6 @@ const showShip =[{id:1,name:"Giao hàng tiết kiệm 1"},
 
 
 function Shipping() {
-
     const [id,setId]= useState(1)
     const handleGetId =(e)=>{
         setId(e.target.id)

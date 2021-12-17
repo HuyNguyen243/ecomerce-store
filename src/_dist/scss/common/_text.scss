@@ -12,6 +12,8 @@
 }
 .txt-danger {
   @include text($color-danger);
+  font-size: 12px;
+  padding: 5px 0;
 }
 .txt-success {
   @include text($color-success);

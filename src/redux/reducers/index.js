@@ -12,6 +12,8 @@ import {
   MOST_VIEW,
   MOST_VIEW_SUCCESS,
   HEADER_TITLE,
+  POST_INFORMATION_DELIVERY_USER,
+  POST_INFORMATION_DELIVERY_USER_SUCCESS,
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -39,6 +41,10 @@ const initState = {
   },
   headerTitles: ""
   ,
+  deliveryUser: {
+    isLoaded : false,
+    data: {}
+  },
 };
 
 const rootReducer = (state = initState, action) => {
@@ -50,6 +56,7 @@ const rootReducer = (state = initState, action) => {
     case GET_GENERAL_DATA:
     case GET_CATEGORIES:
     case MOST_VIEW:
+    case POST_INFORMATION_DELIVERY_USER:
       return Object.assign({}, state, {
         isLoading: true,
       });
@@ -108,6 +115,14 @@ const rootReducer = (state = initState, action) => {
         return Object.assign({}, state, {
           headerTitles: payload
         });
+        case POST_INFORMATION_DELIVERY_USER_SUCCESS:
+          return Object.assign({}, state, {
+            deliveryUser: {
+              isLoaded: true,
+              data: payload.data
+            },
+            isLoading: false,
+          });
     default:
       return Object.assign({}, state, {
         isLoading: false
