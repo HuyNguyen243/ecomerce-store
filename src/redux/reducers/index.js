@@ -104,10 +104,10 @@ const rootReducer = (state = initState, action) => {
           },
           isLoading: false,
         });
-        case HEADER_TITLE:
-          return Object.assign({}, state, {
-            headerTitles: payload
-          });
+      case HEADER_TITLE:
+        return Object.assign({}, state, {
+          headerTitles: payload
+        });
     default:
       return Object.assign({}, state, {
         isLoading: false

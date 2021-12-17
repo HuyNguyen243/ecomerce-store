@@ -1,6 +1,6 @@
 $top-space: 44px;
 #left_menu_nav {
-    margin-top: 74px;
+    margin-top: 66px;
     background: transparent;
     display: inline-block;
     .menu-label {
@@ -71,7 +71,9 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
-    
+    .btn-discount {
+        font-size: 11px;
+    }
     #left_menu_nav {
         .menu-left-nav {
             .menu-left-item {
@@ -105,13 +107,56 @@ $top-space: 44px;
         display: none;
     }
     .style-product .shop-item.cart .item-info span{
-        font-size: 11px;
+        font-size: 13px;
     }
     .day-shipping{
-        font-size: 9px !important;
+        font-size: 11px !important;
+    }
+    .Offer-promotion{
+        img{
+            width: 60px;
+        }
     }
     .content-promotion p {
-        font-size: 10px !important;
+        font-size: 12px !important;
+    }
+    .btn-Oder-list button{
+        font-size: 13px;
+    }
+    .style-item {
+        width: 115px !important;
+    }
+   
+    .quantity-options span{
+        width: 25px !important;
+        height: 25px !important;
+    }
+    .col-2{
+        img{
+            width: 15px !important;
+        }
+    }
+    .shop-item .item-info {
+        span ,
+        .current-price,
+        .item-name{
+            font-size: 13px !important;
+            line-height: 1.4 !important;
+        }
+    }
+    .header-search{
+        font-size: 15px;
+    }
+    .item-percentage {
+        padding: 0 !important;
+    }
+    .row .col-6{
+        font-size: 13px;
+    }
+    .use-promotion{
+        span{
+            font-size: 11px !important;
+        }
     }
 }
 
@@ -172,21 +217,17 @@ $top-space: 44px;
     .style-for-cart .oder-item .oder-container .shop-item .item-info {
         width: 60%;
     }
-    .style-product .shop-item.cart .item-info span {
-        font-size: 10px;
+   
+    .list-cart .shop-item .item-thumbnail{
+        width: 50% !important;
     }
-    .day-shipping {
-    font-size: 9px !important;
-}
-.list-cart .shop-item .item-thumbnail{
-    width: 50% !important;
-}
-}
+    }
 
-@media (max-width: 376px) {
-    .content-promotion p {
-        font-size: 8px !important;
-    }
+    @media (max-width: 376px) {
+        .content-promotion p {
+            font-size: 9px !important;
+        }
+       
 }
 
 

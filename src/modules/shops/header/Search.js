@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
-
+import { useHistory } from 'react-router';
+import { useDispatch } from "react-redux";
+import { headTitles } from './../../../redux/actions/index';
 
 const Search = ({handleSubmit}) => {
   const [searchEntry, setSearchEntry] = useState("");
   const [isShow, setIsShow] = useState(false);
+  const history = useHistory()
+  const dispatch = useDispatch()
 
   // update search text state
   const updateSearchInput = e => {
@@ -20,8 +24,9 @@ const Search = ({handleSubmit}) => {
         setIsShow(false)
         return 
       }
-      let params = `?keyword=${searchEntry}`;
-      handleSubmit(params, 'Kết quả tìm kiếm')
+      let params = `/products/?keyword=${searchEntry}`;
+      history.push(params)
+      dispatch(headTitles("kết quả tiềm kiếm"))
     }
   }
 

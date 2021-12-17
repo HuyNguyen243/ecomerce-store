@@ -5,6 +5,21 @@ import { useHistory } from "react-router-dom";
 function Newaddress() {
     const [checked,setChecked]=useState(false)
     const history = useHistory()
+    const dataCity = [  {value :0 ,city: "Tỉnh/Thành phố "},
+                        {value :1 ,city: "Đà Nẵng "},
+                        {value :2 ,city: "Quảng nam "},
+                        {value :3 ,city: "THà Nội "},
+                        ]
+    const dataDistrist = [  {value :0 ,district: "Quận/Huyện"},
+                            {value :1 ,district: "Quận 1"},
+                            {value :2 ,district: "Quận 2"},
+                            {value :3 ,district: "Quận 3"},
+                            ]
+    const dataArea =     [  {value :0 ,area: "Phường/Xã"},
+                            {value :1 ,area: "Phường Bến Nghé"},
+                            {value :2 ,area: "Phường Ông Lãnh"},
+                            {value :3 ,area: "Phường Tân Định"},
+                            ]
 
     const handleBack=()=>{
         history.push("/OderForm")
@@ -13,6 +28,30 @@ function Newaddress() {
     const setDefaultAddress=(value)=>{
         setChecked(value)
         console.log(checked)
+    }
+
+    const showNameCity = () =>{
+        return dataCity.map((item,value)=>{
+            return(
+                <option value= {item.value} key={value}>{item.city}</option>
+            )
+        })
+    }
+
+    const showDistrict = () =>{
+        return dataDistrist.map((item,value)=>{
+            return(
+                <option value= {item.value} key={value}>{item.district}</option>
+            )
+        })
+    }
+
+    const showArea = () =>{
+        return dataArea.map((item,value)=>{
+            return(
+                <option value= {item.value} key={value}>{item.area}</option>
+            )
+        })
     }
 
     return (
@@ -36,22 +75,13 @@ function Newaddress() {
                             </div>
                             <div className="user-information">
                                 <select>
-                                    <option value="0">Tỉnh/Thành phố </option>
-                                    <option value="1">Đà Nẵng </option>
-                                    <option value="2">Quảng nam </option>
-                                    <option value="3">Hà Nội</option>
+                                    {showNameCity()}
                                 </select>
                                 <select>
-                                    <option value="0">Quận/Huyện</option>
-                                    <option value="1">Quận 1</option>
-                                    <option value="1">Quận 2</option>
-                                    <option value="1">Quận 3</option>
+                                    {showDistrict()}
                                 </select>
                                 <select>
-                                    <option value="0">Phường/Xã</option>
-                                    <option value="1">Phường Bến Nghé</option>
-                                    <option value="2">Phường Ông Lãnh</option>
-                                    <option value="3">Phường Tân Định</option>
+                                    {showArea()}
                                 </select>
                             </div>
                             <div className="user-information">

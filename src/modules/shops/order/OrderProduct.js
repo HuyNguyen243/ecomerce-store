@@ -57,7 +57,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
                 TABS.map((item, index) => {
                   return (
                     <div className="horizontal-list-item " key={index}>
-                      <div className="shop-item style-item">
+                      <div className=" style-item">
                         <button   onClick={e => setActive(item.id)} className={`btn ${item.id === active ? 'active' : ''}`}>{item.name}</button>
                       </div>
                     </div>

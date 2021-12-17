@@ -6,7 +6,6 @@ import {
     GET_CATEGORIES,
     MOST_VIEW,
     HEADER_TITLE,
-
 } from '../constants';
 
 export const authenticateUser = (id) => {
@@ -33,6 +32,6 @@ export const getIdMosview = (params) => {
     return { type: MOST_VIEW , payload: params};
 }
 
-export const headTitles = (title) => {
-    return { type: HEADER_TITLE , payload: title};
+export const headTitles = (key) => {
+    return { type: HEADER_TITLE , payload: key};
 }

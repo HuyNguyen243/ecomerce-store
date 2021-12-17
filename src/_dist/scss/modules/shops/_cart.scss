@@ -12,7 +12,6 @@
 .swal2-container.swal2-center>.swal2-popup{
   border-radius: 0;
   width: 95%;
-  padding: 30px 0;
   position: relative;
 }
 .swal2-container.swal2-backdrop-show{
@@ -22,6 +21,7 @@
   margin: 16px 16px 9px 16px !important;
   text-align: center !important; 
   color: #000 !important;
+  font-size: 15px;
   .Offer-title{
     display: flex;
     justify-content: center;
@@ -66,12 +66,17 @@
 .swal2-icon.swal2-info{
   border-color: #f40000 !important;
   color: #f40000 !important;
+  width: 60px !important;
+  height: 60px !important;
+  margin-bottom: 15px !important;
+  margin-top: 30px !important;
 }
 
 .swal2-title{
   color: #f40000 !important;
   font-size: 20px !important;
   padding-top: 4px !important;
+  font-size: 18px !important;
 }
 
 .swal2-actions{
@@ -98,15 +103,15 @@
   }
 }
 .confirm-swal{
-  padding:  40px 55px 20px 55px;
+  padding:  25px 55px 10px 55px;
   h3{
-    font-size: 20px;
+    font-size: 16px;
     color: #f40000;
-
+    margin: 13px 0 !important;
   }
   p{
     margin: 0;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 500px;
   }
 }
@@ -140,7 +145,7 @@
   }
   .quantity-options {
     span {
-      width: 40px !important;
+      width: 40px ;
       text-align: center;
       color: #000;
       font-size: 16px;
@@ -316,7 +321,7 @@
 }
 
 .style-item{
-  width: 143px !important;
+  width: 143px ;
   padding: 0;
   min-height: 45px;
 }
@@ -352,5 +357,11 @@
 .new-bottom{
   .shop-item:last-child{
     margin-bottom: 300px;
+  }
+}
+
+.fix_icon{
+  img{
+    width: 25px;
   }
 }
