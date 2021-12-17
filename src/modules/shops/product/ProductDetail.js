@@ -2,11 +2,20 @@ import React from "react";
 import PriceDisplay from "./PriceDisplay";
 import ImageDisplay from "./ImageDisplay";
 import Slideshow from "./ProductSlideshow";
-// import Icon from "./../../../_components/_icon.component";
-import { QUICK_BUY_TYPE } from "./../../../_config/shop.config";
+import { useDispatch } from "react-redux";
+import { addCart } from './../../../redux/actions/index';
+import CartService from '../../../_services/cart';
+import { useHistory } from "react-router";
+import SnackbarHelper from './../../../_helpers/snackbar';
+import Snackbar from "../../../_components/_snackbar.component";
 
 
-const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
+
+const ProductDetail = ({ product, quantity, changeQuantity, }) => {
+  const history = useHistory()
+  const dispatch = useDispatch();
+
+  
   let image;
   if (product.gallery && product.gallery.length > 1) {
     image = <Slideshow gallery={product.gallery} />;
@@ -37,6 +46,24 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
       }
     }
     changeQuantity(quantity)
+  }
+
+  const addToCart = (showCart = false) =>{
+    CartService.add({
+      id          : product._id,
+      name        : product.name,
+      image       : product.image,
+      price       : product.price,
+      couponPrice : product.couponPrice,
+      weight      : product.weight,
+      minOrder    : product.minOrder,
+      quantity    : quantity
+    })
+    SnackbarHelper.show('Thêm vào giỏ hàng thành công')
+    dispatch(addCart())
+    if(showCart) {
+      history.push('/cart')
+    }
   }
 
 
@@ -79,49 +106,15 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
         </div>
       </div>
       <div className="group-buttons">
-        <div className={`button-left item-button ${blockBtnLeft}`}>
+        <div className={`button-left item-button ${blockBtnLeft}`} onClick={()=>addToCart(true)}>
           {/* <Icon name="work_outline" /> */}
-          <button
-            type="button"
-            onClick={() => {
-              if (product.quantity !== 0)
-                addToCart(
-                  {
-                    id: product._id,
-                    name: product.name,
-                    couponPrice: product.couponPrice,
-                    pricePerProduct: product.price,
-                    quantity: quantity,
-                    image: product.image,
-                  },
-                  QUICK_BUY_TYPE
-                );
-            }}
-            className="btn"
-          >
-            Mua ngay
-          </button>
+          <button type="button" className="btn" >Mua ngay</button>
         </div>
-        <div className={`button-right item-button ${blockBtnRight}`}>
+        <div className={`button-right item-button ${blockBtnRight}`} onClick={()=>addToCart()}>
           {/* <Icon name="add_shopping_cart" />
            */}
           <img src="/images/shopping-cart.png" alt="menu_icon" />
-          <button
-            type="button"
-            onClick={() => {
-              if (product.quantity !== 0)
-                addToCart({
-                  id: product._id,
-                  name: product.name,
-                  couponPrice: product.couponPrice,
-                  pricePerProduct: product.price,
-                  quantity: quantity,
-                  image: product.image,
-                });
-            }}
-            className="btn btn-red"
-          >
-          </button>
+          <button type="button" className="btn btn-red" ></button>
         </div>
       </div>
       {btnQTY()}
@@ -129,6 +122,7 @@ const ProductDetail = ({ product, quantity, changeQuantity, addToCart }) => {
         <label>Thông tin sản phẩm</label>
         <p>{product.description}</p>
       </div>
+      <Snackbar />
     </div>
   );
 };

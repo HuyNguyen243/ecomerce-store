@@ -30,6 +30,7 @@ const Item = ({id, data}) => {
     }
   }
 
+
   return (
       <div className="shop-item">
         <Link to={"/product/"+id}>
