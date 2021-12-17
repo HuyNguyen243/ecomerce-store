@@ -6,6 +6,8 @@ import {
     GET_CATEGORIES,
     MOST_VIEW,
     HEADER_TITLE,
+    POST_INFORMATION_DELIVERY_USER,
+    GET_INFORMATION_DELIVERY_USER,
 } from '../constants';
 
 export const authenticateUser = (id) => {
@@ -34,4 +36,12 @@ export const getIdMosview = (params) => {
 
 export const headTitles = (key) => {
     return { type: HEADER_TITLE , payload: key};
+}
+
+export const postDeliveryUser = (user) => {
+    return { type: POST_INFORMATION_DELIVERY_USER , payload: user};
+}
+
+export const getDeliveryUser = (id) => {
+    return { type: GET_INFORMATION_DELIVERY_USER , payload: id};
 }

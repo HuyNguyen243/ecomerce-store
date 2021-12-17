@@ -11,6 +11,7 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
   let productList;
   const history = useHistory()
   const dispatch = useDispatch();
+
   
   const doScrolling = (cateId, type) => {
     let scrollElement = document.getElementById(cateId)

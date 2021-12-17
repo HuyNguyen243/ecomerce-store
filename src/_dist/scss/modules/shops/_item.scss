@@ -141,7 +141,7 @@ $text-row: 2;
     }
     .item-name {
       color: #333333;
-      font-weight: 300;
+      font-weight: 500;
       @include text-clamp($text-row, $line-height);
     }
     .quantity {

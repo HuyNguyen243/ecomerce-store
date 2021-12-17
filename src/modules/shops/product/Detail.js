@@ -38,12 +38,28 @@ const Detail = ({
     }
   };
 
+  var event;
+  // Navigation
+  const showNavigation = (elementId) => {
+    event = document.createEvent("HTMLEvents");
+    let initEvent = `open_navigation_${elementId}`;
+    event.initEvent(initEvent, true, true);
+    event.eventName = initEvent;
+    document.dispatchEvent(event);
+    document.getElementsByTagName("html")[0].style.overflow = "auto";
+  
+  };
+
+  const showIconcart =()=>{
+    showNavigation(LIST_CART_NAV);
+  }
+  //
   return (
     <div id={PRODUCT_DETAIL_NAV}>
       <Header
         hasNavigation={true}
         title="Thông tin sản phẩm"
-        showCart={showCart}
+        showCart={showIconcart}
         navId={LIST_CART_NAV}
         totalCart={totalCart}
       />
