@@ -23,11 +23,15 @@ import {
 
   GET_INFORMATION_DELIVERY_USER,
   GET_INFORMATION_DELIVERY_USER_SUCCESS,
+
+  PUT_INFORMATION_DELIVERY_USER,
+  PUT_INFORMATION_DELIVERY_USER_SUCCESS,
+  
 } from '../constants';
 import { API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
 import CartService from "../../_services/cart";
-import { get, post } from './../../api';
+import { get, post , put as api_put } from './../../api';
 
 export default function* watcherSaga() {
   yield takeLatest(AUTHENTICATE_USER, workerSaga);
@@ -38,6 +42,7 @@ export default function* watcherSaga() {
   yield takeLatest(MOST_VIEW, workerSaga);
   yield takeLatest(POST_INFORMATION_DELIVERY_USER, workerSaga);
   yield takeLatest(GET_INFORMATION_DELIVERY_USER, workerSaga);
+  yield takeLatest(PUT_INFORMATION_DELIVERY_USER, workerSaga);
 }
 
 function* workerSaga(param) {
@@ -79,6 +84,10 @@ function* workerSaga(param) {
     case GET_INFORMATION_DELIVERY_USER:
       action = getDeliveryUser;
       type   = GET_INFORMATION_DELIVERY_USER_SUCCESS;
+      break;
+    case PUT_INFORMATION_DELIVERY_USER:
+      action = putDeliveryUser;
+      type   = PUT_INFORMATION_DELIVERY_USER_SUCCESS;
       break;
     default:
   }
@@ -129,4 +138,8 @@ function getDeliveryUser(id) {
   return get(`${API_URL_V2}/users/address/${id}?token=${Auth.get().token}`);
 }
 
+function putDeliveryUser(param) {
+  console.log(param)
+  return api_put(`${API_URL_V2}/users/address/${param.id}?token=${Auth.get().token}`,param.address);
+}
 

@@ -28,6 +28,14 @@ export const get =  (url, isAuth = true) => {
     return apiRequest(url, requestOptions, isAuth);
 }
 
+export const del =  (url, isAuth = true) => {
+    var requestOptions = {
+        method: "delete",
+        redirect: "follow",
+    };
+    return apiRequest(url, requestOptions, isAuth);
+}
+
 function apiRequest(url, requestOptions, isAuth = true) {
     const controller = new AbortController();
     const signal = controller.signal;
