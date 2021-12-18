@@ -16,6 +16,9 @@ import {
   POST_INFORMATION_DELIVERY_USER_SUCCESS,
   GET_INFORMATION_DELIVERY_USER,
   GET_INFORMATION_DELIVERY_USER_SUCCESS,
+  TARGET_ONE_INFORMATION_DELIVERY_USER,
+  PUT_INFORMATION_DELIVERY_USER,
+  PUT_INFORMATION_DELIVERY_USER_SUCCESS,
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -51,6 +54,11 @@ const initState = {
     isLoaded : false,
     data: {}
   },
+  oneDeliveryUser :"",
+  putDeliveryUser: {
+    isLoaded : false,
+    data: {}
+  },
 };
 
 const rootReducer = (state = initState, action) => {
@@ -64,6 +72,7 @@ const rootReducer = (state = initState, action) => {
     case MOST_VIEW:
     case POST_INFORMATION_DELIVERY_USER:
     case GET_INFORMATION_DELIVERY_USER:
+    case PUT_INFORMATION_DELIVERY_USER:
       return Object.assign({}, state, {
         isLoading: true,
       });
@@ -143,10 +152,23 @@ const rootReducer = (state = initState, action) => {
           },
           isLoading: false,
         });
+      case TARGET_ONE_INFORMATION_DELIVERY_USER:
+        return Object.assign({}, state, {
+          oneDeliveryUser: payload
+        });
+      case PUT_INFORMATION_DELIVERY_USER_SUCCESS:
+        return Object.assign({}, state, {
+          putDeliveryUser: {
+            isLoaded: true,
+            data: payload.data
+          },
+          isLoading: false,
+        });
     default:
       return Object.assign({}, state, {
         isLoading: false
       });
+      
   }
 };
 
