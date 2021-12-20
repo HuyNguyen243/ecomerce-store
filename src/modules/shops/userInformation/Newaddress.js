@@ -5,8 +5,10 @@ import { useForm } from "react-hook-form";
 import { useDispatch,useSelector } from "react-redux";
 import { postDeliveryUser } from './../../../redux/actions/index';
 import { putDeliveryUser } from './../../../redux/actions/index';
+import { useHistory } from 'react-router-dom';
 
 function Newaddress() {
+    const history = useHistory()
     const dispatch = useDispatch();
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const UNSELECTED_KEY = -1;
@@ -48,7 +50,6 @@ function Newaddress() {
         let cityKeyCode = Number(oneDeliveryUser?.province?.code);
         let districtKeyCode = Number(oneDeliveryUser?.district?.code);
         let wardKeyCode = Number(oneDeliveryUser?.ward?.code);
-
         setCityKey(cityKeyCode)
         setSelectCity(data[cityKeyCode]?.name)
 
@@ -133,6 +134,7 @@ function Newaddress() {
                     dispatch(postDeliveryUser(formData))
                 }
             }
+            history.goBack()
         }
     }
 
@@ -246,10 +248,10 @@ function Newaddress() {
                                 <label htmlFor="switch"></label>
                             </div>
                     </div>
-                            <div className="fix-bottom fix-style">
-                                <div className="btn-with-icon right-icon">
-                                <button type="submit"  className="btn btn-primary" >{oneDeliveryUser!=="" ? "Thay đổi địa chỉ":"Thêm địa chỉ mới"}</button>
-                                </div>
+                                    <div className="fix-bottom fix-style">
+                                        <div className="btn-with-icon right-icon">
+                                        <button type="submit"  className="btn btn-primary" >{oneDeliveryUser !== "" ? "Thay đổi địa chỉ":"Thêm địa chỉ mới"}</button>
+                                    </div>
                             </div>
                 </form>
             </div>
