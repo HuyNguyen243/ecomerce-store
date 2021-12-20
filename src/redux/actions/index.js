@@ -1,4 +1,5 @@
 import {
+    RESET_MODAL_POPUP,
     AUTHENTICATE_USER,
     GET_GENERAL_DATA,
     GET_ONE_PRODUCT,
@@ -11,6 +12,10 @@ import {
     TARGET_ONE_INFORMATION_DELIVERY_USER,
     PUT_INFORMATION_DELIVERY_USER,
 } from '../constants';
+
+export const resetPopup = (id) => {
+    return { type: RESET_MODAL_POPUP , payload: ''};
+}
 
 export const authenticateUser = (id) => {
     return { type: AUTHENTICATE_USER , payload: id};

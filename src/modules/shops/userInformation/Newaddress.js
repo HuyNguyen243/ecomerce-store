@@ -3,12 +3,17 @@ import Header from "../header/Header";
 import $ from "jquery"
 import { useForm } from "react-hook-form";
 import { useDispatch,useSelector } from "react-redux";
-import { postDeliveryUser } from './../../../redux/actions/index';
-import { putDeliveryUser } from './../../../redux/actions/index';
+import { postDeliveryUser, putDeliveryUser, resetPopup } from './../../../redux/actions/index';
+import { useHistory } from 'react-router';
+import ModalService from './../../../_services/modal';
 
 function Newaddress() {
     const dispatch = useDispatch();
+    const history = useHistory()
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
+    const modalPopup = useSelector(state => state.modalPopup);
+    const isLoading = useSelector(state => state.isLoading);
+
     const UNSELECTED_KEY = -1;
 
     async function readLocaleData(){
@@ -147,6 +152,18 @@ function Newaddress() {
         setPhone(e.target.value)
     }
 
+    const handleAfterSubmit =  React.useCallback(() => {
+        if(modalPopup.data.success) {
+            ModalService.success('Lưu thành công')
+        }else {
+            ModalService.error('Lưu thất bại')
+        }
+        setTimeout(() => {
+            history.goBack()
+            dispatch(resetPopup())
+        }, 1000);
+    }, [modalPopup, history, dispatch])
+
     React.useEffect(() => {
         if(city.length === 0) {
             readLocaleData()
@@ -163,10 +180,16 @@ function Newaddress() {
             setAddress(oneDeliveryUser.address)
             setChecked(oneDeliveryUser.is_default)
         }
-    }, [city, setCity, oneDeliveryUser, defaultAddressData])
+        if(modalPopup.active) {
+            handleAfterSubmit()
+        }
+    }, [city, setCity, oneDeliveryUser, defaultAddressData, modalPopup, handleAfterSubmit])
 
     return (
         <div >
+            {
+                isLoading && <div className="overlay-spinner"></div>
+            }
             <Header
                 hasNavigation={true}
                 title="THÊM ĐỊA CHỈ GIAO HÀNG MỚI"
