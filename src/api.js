@@ -4,7 +4,12 @@ export const post = (url, body, isAuth = true) => {
     var requestOptions = {
         method: "POST",
         body: body,
-        redirect: "follow"
+        redirect: "follow",
+        headers : new Headers(
+            {
+                'Accept': 'application/json',
+            }
+        )
     };
 
     return apiRequest(url, requestOptions, isAuth);
@@ -15,6 +20,12 @@ export const put = (url, body, isAuth = true) => {
         method: "PUT",
         body: body,
         redirect: "follow",
+        headers : new Headers(
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        )
     };
 
     return apiRequest(url, requestOptions, isAuth);
@@ -24,13 +35,18 @@ export const get =  (url, isAuth = true) => {
     var requestOptions = {
         method: "GET",
         redirect: "follow",
+        headers : new Headers(
+            {
+                'Accept': 'application/json'
+            }
+        )
     };
     return apiRequest(url, requestOptions, isAuth);
 }
 
 export const del =  (url, isAuth = true) => {
     var requestOptions = {
-        method: "delete",
+        method: "DELETE",
         redirect: "follow",
     };
     return apiRequest(url, requestOptions, isAuth);
@@ -40,18 +56,6 @@ function apiRequest(url, requestOptions, isAuth = true) {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    let headers = {
-        'Accept': 'application/json',
-        // 'Content-Type': 'application/json'
-    }
-
-    if(isAuth) {
-        // headers["Authorization"] = "Bearer "+ Auth.get().token;
-    }
-
-    var myHeaders = new Headers(headers);
-
-    requestOptions["headers"] = myHeaders;
     requestOptions["signal"] = signal;
 
     let maxRequestTimeout = 15000;

@@ -50,7 +50,7 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
   if (data.length > 0) {
     productList = data.map((product, index) => {
       return (
-        <div className={`horizontal-list-item ${index === 0 ? 'active' : ''}`} key={index} item-id={index}>
+        <div className={`horizontal-list-item`} key={index} item-id={index}>
           <Item addToCart={addToCart} showDetail={showDetail} id={product._id} data={product} />
         </div>
       );

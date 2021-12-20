@@ -52,9 +52,9 @@ const initState = {
   },
   userAddress: {
     isLoaded : false,
-    data: {}
+    data: []
   },
-  oneDeliveryUser :"",
+  oneDeliveryUser : {},
   putDeliveryUser: {
     isLoaded : false,
     data: {}

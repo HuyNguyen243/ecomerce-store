@@ -16,7 +16,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
         <Link to="/cart">
           <span onClick={e => {  showCart() }}>
             <img src="/images/shopping-cart.png" alt="menu_icon" />
-            { carts.length > 0 ? <span className="total-cart"> {carts.length} </span> : '' }
+            { carts?.length > 0 ? <span className="total-cart"> {carts?.length} </span> : '' }
           </span>
         </Link>
       )
