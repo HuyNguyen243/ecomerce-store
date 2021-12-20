@@ -1,4 +1,5 @@
 import {
+  RESET_MODAL_POPUP,
   AUTHENTICATE_USER,
   AUTHENTICATE_USER_SUCCESS,
   GET_GENERAL_DATA,
@@ -44,8 +45,7 @@ const initState = {
     isLoaded : false,
     data: {}
   },
-  headerTitles: ""
-  ,
+  headerTitles: "",
   deliveryUser: {
     isLoaded : false,
     data: {}
@@ -59,12 +59,23 @@ const initState = {
     isLoaded : false,
     data: {}
   },
+  modalPopup : {
+    active : false,
+    data : {}
+  }
 };
 
 const rootReducer = (state = initState, action) => {
   let type = action.type;
   let payload = action.payload;
   switch (type) {
+    case RESET_MODAL_POPUP:
+      return Object.assign({}, state, {
+        modalPopup: {
+          active : false,
+          data : {}
+        }
+      });
     case AUTHENTICATE_USER:
     case GET_ONE_PRODUCT:
     case GET_GENERAL_DATA:
@@ -132,7 +143,7 @@ const rootReducer = (state = initState, action) => {
           headerTitles: payload
         });
       case POST_INFORMATION_DELIVERY_USER_SUCCESS:
-        let currentAddress = this.state.userAddress.data
+        let currentAddress = state.userAddress.data
         currentAddress.push(payload.data)
         return Object.assign({}, state, {
           deliveryUser: {
@@ -143,6 +154,13 @@ const rootReducer = (state = initState, action) => {
             data: currentAddress
           },
           isLoading: false,
+          modalPopup: {
+            active : true,
+            data : {
+              success : payload.success,
+              message : payload.message
+            }
+          }
         });
       case GET_INFORMATION_DELIVERY_USER_SUCCESS:
         return Object.assign({}, state, {
@@ -163,6 +181,13 @@ const rootReducer = (state = initState, action) => {
             data: payload.data
           },
           isLoading: false,
+          modalPopup: {
+            active : true,
+            data : {
+              success : payload.success,
+              message : payload.message
+            }
+          }
         });
     default:
       return Object.assign({}, state, {
