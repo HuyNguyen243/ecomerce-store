@@ -31,7 +31,7 @@ import {
 import { API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
 import CartService from "../../_services/cart";
-import { get, post , put as api_put } from './../../api';
+import { get, post } from './../../api';
 
 export default function* watcherSaga() {
   yield takeLatest(AUTHENTICATE_USER, workerSaga);
@@ -139,7 +139,6 @@ function getDeliveryUser(id) {
 }
 
 function putDeliveryUser(param) {
-  console.log(param)
-  return api_put(`${API_URL_V2}/users/address/${param.id}?token=${Auth.get().token}`,param.address);
+  return post(`${API_URL_V2}/users/address/${param.id}/update?token=${Auth.get().token}`,param.body);
 }
 
