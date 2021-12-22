@@ -159,6 +159,26 @@ $top-space: 44px;
             font-size: 11px !important;
         }
     }
+
+    .radio label{
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 15px !important;
+    }
+    
+    .radio{
+        margin-bottom: 10px !important;
+    }
+
+    .cancel-swal .radio input:checked + label::after{
+        width: 10px !important;
+        height: 10px  !important;
+        top : 3px  !important;
+        left: 3px  !important;
+    }
+    .radio span{
+        font-size: 13px;
+    }
 }
 
 @media (max-height: 700px) {

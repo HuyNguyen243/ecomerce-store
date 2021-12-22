@@ -13,6 +13,7 @@ function UserAddress() {
     const userAddress = useSelector(state => state.userAddress);
     const isLoading = useSelector(state => state.isLoading);
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
+    const checkGetDeliveryUser = useSelector(state => state.checkGetDeliveryUser);
 
     const getUserAddress = React.useCallback(() => {
         dispatch(getDeliveryUser(userID))
@@ -22,22 +23,14 @@ function UserAddress() {
         if(!userAddress.isLoaded) {
             getUserAddress()
         }
-        if(oneDeliveryUser ===""){
-             userAddress.data.map((item,value)=>{
-                if(item.is_default === 1 ){
-                     dispatch(getParentInformationDeviveryUser(item))
-                }
-            })
-        }
-    }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
-
+    }, [getUserAddress, userAddress,]);
     const handleFixUserAddress = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
         dispatch(getParentInformationDeviveryUser(DeliveryUser))
         history.push("/news-address")
     }
 
-    const handleClick = ()=>{
+    const handleAddNewAddress = ()=>{
         dispatch(getParentInformationDeviveryUser(""))
         history.push("/news-address")
     }
@@ -45,6 +38,9 @@ function UserAddress() {
     const handleGetDelivery = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
         dispatch(getParentInformationDeviveryUser(DeliveryUser))
+       if( checkGetDeliveryUser === true){
+            history.goBack()
+       }
     }
     
     const showUserAddress = (item, key)=>{
@@ -108,7 +104,7 @@ function UserAddress() {
             </div>
                 <div className="fix-bottom fixed">
                     <div className="btn-with-icon right-icon">
-                        <button type="submit" className="btn btn-primary" onClick={handleClick}>Thêm địa chỉ mới</button>
+                        <button type="submit" className="btn btn-primary" onClick={handleAddNewAddress}>Thêm địa chỉ mới</button>
                     </div>
                 </div>
         </div>

@@ -20,6 +20,7 @@ import {
   TARGET_ONE_INFORMATION_DELIVERY_USER,
   PUT_INFORMATION_DELIVERY_USER,
   PUT_INFORMATION_DELIVERY_USER_SUCCESS,
+  CHECK_HANDLE_GET_DELIVERY_USER,
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -60,6 +61,10 @@ const initState = {
     data: {}
   },
   modalPopup : {
+    active : false,
+    data : {}
+  },
+  checkGetDeliveryUser : {
     active : false,
     data : {}
   },
@@ -189,6 +194,10 @@ const rootReducer = (state = initState, action) => {
             }
           }
         });
+      case CHECK_HANDLE_GET_DELIVERY_USER:
+          return Object.assign({}, state, {
+            checkGetDeliveryUser: payload
+          });
     default:
       return Object.assign({}, state, {
         isLoading: false

@@ -3,8 +3,11 @@ import { USER_ORDER_NAV, LEFT_MENU_NAV } from './../../../_config/shop.config';
 // import Icon from './../../../_components/_icon.component';
 import{Link} from "react-router-dom"
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { checkGetDelivetyUser } from "../../../redux/actions";
 
 const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
+  const dispatch = useDispatch()
 
   const [isToggled, setIsToggled] = useState(false);
   const history = useHistory()
@@ -13,6 +16,7 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
     let state = !isToggled;
     setIsToggled(state);
     history.push("/user-address")
+    dispatch(checkGetDelivetyUser(false))
   }
 
   const hideLeftNav = () => {

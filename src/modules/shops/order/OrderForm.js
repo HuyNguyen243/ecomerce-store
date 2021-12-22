@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./../header/Header";
 import { LIST_CART_NAV } from "./../../../_config/shop.config";
 import { useHistory } from "react-router";
 import TotalBottom from "./TotalBottom";
-import {  useSelector } from "react-redux";
+import {  useSelector, useDispatch } from "react-redux";
 import CartItem from '../cart/CartItem';
+import Auth from "../../../_services/auth";
+import { getDeliveryUser } from './../../../redux/actions/index';
+import { getParentInformationDeviveryUser } from "../../../redux/actions";
+import { checkGetDelivetyUser } from "../../../redux/actions";
 
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
   totalCart
 }) => {
-
+  const dispatch = useDispatch()
   let dangerTxt = "vui lòng chọn thông tin nhận hàng"        
   const [condition, setCondition] = useState("")
   const history = useHistory()
@@ -19,6 +23,29 @@ const OrderForm = ({ onSubmit, isLoading,
   }
   const carts = useSelector(state => state.carts);
   const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
+  const userAddress = useSelector(state => state.userAddress);
+  
+  const userID = Auth.get().user_id
+
+  const getUserAddress = React.useCallback(() => {
+    dispatch(getDeliveryUser(userID))
+  }, [dispatch, userID]);
+
+  useEffect(() => {
+    if(!userAddress.isLoaded) {
+        getUserAddress()
+    }else{
+      userAddress.data.map((item)=>{
+        if(item.is_default === 1){
+          if(oneDeliveryUser ===""){
+            dispatch(getParentInformationDeviveryUser(item))
+          }
+        }
+      })
+    }
+}, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
+
+
   const showCart=()=>{
     if(carts.length >0){
         return carts.map((item, key)=>{
@@ -44,7 +71,7 @@ const OrderForm = ({ onSubmit, isLoading,
                   , {oneDeliveryUser.province !== undefined && oneDeliveryUser.province["name"]}
                   </p>
               </div>
-              <div className="infor-icon newstyle">
+              <div className="infor-icon newstyle new-display">
                 <img src="/images/Back-Black.svg" alt="menu_icon" />
               </div>
           </div>
@@ -64,6 +91,7 @@ const OrderForm = ({ onSubmit, isLoading,
 
   const handleSlcInforUser =()=>{
     history.push("/user-address")
+    dispatch(checkGetDelivetyUser(true))
   }
 
   return (
