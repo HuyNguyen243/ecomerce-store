@@ -44,11 +44,13 @@ const Item = ({id, data}) => {
           </div>
           </Link>
           <div className="item-button flex-list row">
-            <div className="button-text">
-              <button type="button" onClick={() => addToCart(true)} className="btn btn-view">Mua ngay</button>
+            <div className="button-left">
+              <button type="button" onClick={() => addToCart(true)}>Mua ngay</button>
             </div>
-            <div className="button-icon txt-center" onClick={() => addToCart()}>
-              <img src="/images/shopping-cart.png" alt="menu_icon" />
+            <div className="button-right" >
+              <button type="button" onClick={() => addToCart()}>
+                <img src="/images/shopping-cart.png" alt="menu_icon" />
+              </button>
             </div>
           </div>
         </div>

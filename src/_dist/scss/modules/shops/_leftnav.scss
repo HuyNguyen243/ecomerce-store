@@ -71,6 +71,9 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
+    .basic-form .form-group .shipping span{
+        font-size: 11px;
+    }
     .btn-discount {
         font-size: 11px;
     }
@@ -96,10 +99,18 @@ $top-space: 44px;
     .container .Note-Details .Product-Details {
         font-size: 8px !important;
     }
+    .Offer-promotion img{
+        width: 50px !important;
+        padding-right: 10px !important;
+    }
+    .content-promotion p{
+        font-size: 8px !important;
+    }
 }
 
 
 @media (max-width: 420px) {
+ 
     .container{
         overflow-y: auto;
     }
@@ -110,7 +121,7 @@ $top-space: 44px;
         font-size: 13px;
     }
     .day-shipping{
-        font-size: 11px !important;
+        font-size: 9px !important;
     }
     .Offer-promotion{
         img{
@@ -118,7 +129,7 @@ $top-space: 44px;
         }
     }
     .content-promotion p {
-        font-size: 12px !important;
+        font-size: 10px;
     }
     .btn-Oder-list button{
         font-size: 13px;
@@ -134,14 +145,7 @@ $top-space: 44px;
     .col-2{
         img{
             width: 15px !important;
-        }
-    }
-    .shop-item .item-info {
-        span ,
-        .current-price,
-        .item-name{
-            font-size: 13px !important;
-            line-height: 1.4 !important;
+            padding-top: 15px;
         }
     }
     .header-search{
@@ -149,9 +153,6 @@ $top-space: 44px;
     }
     .item-percentage {
         padding: 0 !important;
-    }
-    .row .col-6{
-        font-size: 13px;
     }
     .use-promotion{
         span{
@@ -179,13 +180,15 @@ $top-space: 44px;
     .btn-Oder-list {
         justify-content: center;
     }
-}
-
-@media(min-height :700px)and(max-height :850px) {
-    .row .col-6{
-        font-size: 12px;
+    .group-buttons .button-l button,
+    .group-buttons .button-r button{
+        font-size: 25px !important;
+        img{
+            width: 40px !important;
+        }
     }
 }
+
 
 @media(max-width:450px){
     .container .Offer-Details > img {
@@ -197,17 +200,20 @@ $top-space: 44px;
     .style-for-cart .oder-item .oder-container .shop-item .item-thumbnail {
         width: 20%;
     }
-    .list-cart .shop-item .item-thumbnail{
-        width: 25% !important;
+    .quantity-options{
+        padding-top: 0px;
+        span{
+            width: 30px !important;
+            height: 30px !important;
+        }
     }
+
 }
 @media(max-width:550px){
     .style-for-cart .oder-item .oder-container .shop-item .item-thumbnail {
         width: 30%;
     }
-    .list-cart .shop-item .item-thumbnail{
-        width: 30% !important;
-    }
+  
 }
 
 @media(max-width:380px){
@@ -225,9 +231,13 @@ $top-space: 44px;
 
     @media (max-width: 376px) {
         .content-promotion p {
-            font-size: 9px !important;
+            font-size: 8px;
         }
-       
+        .button-right{
+            span{
+                font-size: 14px;
+            }
+        }
 }
 
 

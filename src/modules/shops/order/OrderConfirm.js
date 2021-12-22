@@ -1,4 +1,4 @@
-import React, { useEffect }  from "react";
+import React, { useEffect, useState }   from "react";
 import CartItem from "../cart/CartItem";
 import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
@@ -15,8 +15,19 @@ const OderConfirm = (
   hideNavigation
   )=>{
     const carts = useSelector(state => state.carts);
+    const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
+
+    useEffect(()=>{
+      if(oneDeliveryUser ===""){
+        history.goBack()
+      }
+    })
+
     const location = useLocation()
     const history = useHistory()
+
+    const [condition, setCondition] = useState("")
+     let dangerTxt = "vui lòng chọn thông tin nhận hàng"        
 
     const showCart=()=>{
       if(carts.length >0){
@@ -28,103 +39,100 @@ const OderConfirm = (
       }
     }
 
-  useEffect(()=>{
-  if(location.pathname === "/oderConfirm"){
-    // MySwal.fire({
-    //   showCloseButton: true,
-    //   showConfirmButton :false,
-    //   html:       <div className='Offer-Shock'>
-    //                 <div className='Offer-title'>
-    //                   <img src='/images/sale.png' alt='menu_icon' />
-    //                   <p>Bạn ơi bạn có quên ưu đãi này?</p>                    
-    //                 </div>
-    //                 <div className='container swal_sm'>
-    //                     <div className='Offer-Details'>
-    //                         <img src='/images/lg-coca.png' alt="logo" />
-    //                         <div className='Note-Details'>
-    //                             <p className='Note-Details-titles'>THÙNG 24 LON COCA</p>
-    //                             <p className='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p>
-    //                             <p className='Product-Details'>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet </p>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //               </div>,
-    // })
-  }
-  },[location.pathname ])
-
-const showheader =()=>{
-  if(location.pathname === "/oderConfirm"){
-    return(
-      <Header
-      hasNavigation={true}
-      navId={ORDER_FORM_NAV}
-      title="ĐẶT HÀNG"
-      />
-    )
-  }
-}
-
-const calcTotalPrice = () => {
-  if(carts.length >0){
-    let total = 0;
-    for (let i = 0; i < carts.length; i++) {
-      let price = carts[i].couponPrice > 0 ? carts[i].couponPrice : carts[i].price
-      total += price * carts[i].quantity
+  const showheader =()=>{
+    if(location.pathname === "/oderConfirm"){
+      return(
+        <Header
+        hasNavigation={true}
+        navId={ORDER_FORM_NAV}
+        title="ĐẶT HÀNG"
+        />
+      )
     }
-    return NumberHelper.formatCurrency(total)
   }
-}
 
-const handleSubmit = ()=>{
-  Swal.fire({
-    title: 'XÁC NHẬN ĐẶT HÀNG',
-    text: "Bạn có đồng ý đặt đơn hàng này?!",
-    icon: 'info',
-    confirmButtonText: 'Đồng ý',
-    showCancelButton: true,
-    cancelButtonText: "Huỷ bỏ"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      MySwal.fire({
-        showConfirmButton : false,
-        html :  <div className='confirm-swal'>
-                  <img src='/images/thank-you.png' alt='menu_icon' />
-                  <h3>ĐẶT HÀNG THÀNH CÔNG</h3>
-                  <p>Cám ơn anh A đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>
-                </div>
+  const calcTotalPrice = () => {
+    if(carts.length >0){
+      let total = 0;
+      for (let i = 0; i < carts.length; i++) {
+        let price = carts[i].couponPrice > 0 ? carts[i].couponPrice : carts[i].price
+        total += price * carts[i].quantity
+      }
+      return NumberHelper.formatCurrency(total)
+    }
+  }
+
+  const handleSubmit = ()=>{
+    if(oneDeliveryUser ==="" ){
+      setCondition(false)
+    }else{
+      Swal.fire({
+        title: 'XÁC NHẬN ĐẶT HÀNG',
+        text: "Bạn có đồng ý đặt đơn hàng này?!",
+        icon: 'info',
+        confirmButtonText: 'Đồng ý',
+        showCancelButton: true,
+        cancelButtonText: "Huỷ bỏ"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          MySwal.fire({
+            showConfirmButton : false,
+            html :  <div className='confirm-swal'>
+                      <img src='/images/thank-you.png' alt='menu_icon' />
+                      <h3>ĐẶT HÀNG THÀNH CÔNG</h3>
+                      <p>Cám ơn anh A đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>
+                    </div>
+          })
+           setCondition(true)
+          history.replace("/order-product")
+        }
       })
-      history.replace("/order-product")
     }
-  })
-}
+  }
 
+  console.log(oneDeliveryUser)
+
+  const showUserInfo = ()=>{
+    if(oneDeliveryUser !== "" ){
+        return(
+          <div className="user_info">
+            <div className="name_number">
+              <p>{oneDeliveryUser.fullname}</p> 
+              <span>|</span> 
+              <p>{oneDeliveryUser.phone}</p>
+            </div>
+              <p className="address">{oneDeliveryUser?.geo_address?.formatted_address}</p>
+              <span>Giao hàng hỏa tốc</span>
+              <span> Dự kiến giao hàng trước 20h00 ngày 15/11/2021</span>
+        </div>
+        )
+    }
+  }
 
   return(
     <div className="body_wrapper ">
       {showheader()}
-     
       <div className="main_container">
         <div className="nav_label">
           <span>Thông tin nhận hàng</span>
         </div>
-        <div className="user_info">
-        <div className="name_number">
-          <p>Nguyen Van A</p>
-          <span>|</span>
-          <p>(+84) 905459483</p>
-        </div>
-          <p className="address">117 Nguyễn Đình Chính, phường 5, quận Phú Nhuận, Hồ Chí Minh</p>
-          <span>Giao hàng hỏa tốc</span>
-          <span> Dự kiến giao hàng trước 20h00 ngày 15/11/2021</span>
-        </div>
+        {showUserInfo()}
+        {condition === false &&(
+          <span className="txt-danger fix-txt">{dangerTxt}</span>
+            )}
         <form className="basic-form" >
          <div className="form-group">
-             <div className="shipping">
-             <span className="shiper" >Giao hàng tiết kiệm 1</span>
+         <div className="nav_label">
+              <span>Phương thức vận chuyển</span>
+            </div>
+             <div className="shipping fix-shipping">
+            <span className="shiper" >Giao hàng tiết kiệm</span>
              </div>
          </div>
         </form>
+        <div className="nav_label">
+              <span>Thông tin sản phẩm</span>
+        </div>
         <div className="news-style-cart style-for-cart list-cart oderinformation new-bottom">
           {showCart()}
         </div>

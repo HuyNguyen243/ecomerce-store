@@ -29,10 +29,10 @@ const ListCategory = () => {
         title={headerTitles}
         
       />
-      <div className="main_container">
+      <div className="main_container fix-image">
         {
           isLoading
-          ? <div className="overlay-spinner"></div>
+          ? <div className="overlay-spinner "></div>
           : 
             <>
               {

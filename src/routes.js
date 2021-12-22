@@ -5,8 +5,6 @@ import Notfound from './404';
 import Cart from './modules/shops/cart/Cart';
 import UserAddress from './modules/shops/userInformation/userAddress';
 import Newaddress from './modules/shops/userInformation/Newaddress';
-import Shipping from './modules/shops/userInformation/Shipping';
-import OderInformation from './modules/shops/order/OderInformation';
 import OrderConfirm from './modules/shops/order/OrderConfirm';
 import Detail from './modules/shops/product/Detail';
 import OrderForm from './modules/shops/order/OrderForm';
@@ -52,18 +50,6 @@ export const routes = [
         exact: true,
         isAuth: true,
         main: () => <Newaddress/>
-    },
-    {
-        path: "/select-shipping",
-        exact: true,
-        isAuth: true,
-        main: () => <Shipping/>
-    },
-    {
-        path: "/oderInformation",
-        exact: true,
-        isAuth: true,
-        main: () => <OderInformation/>
     },
     {
         path: "/oderConfirm",

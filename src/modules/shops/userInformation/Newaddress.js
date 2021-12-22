@@ -3,16 +3,18 @@ import Header from "../header/Header";
 import $ from "jquery"
 import { useForm } from "react-hook-form";
 import { useDispatch,useSelector } from "react-redux";
-import { postDeliveryUser } from './../../../redux/actions/index';
-import { putDeliveryUser } from './../../../redux/actions/index';
-import { useHistory } from 'react-router-dom';
+import { postDeliveryUser, putDeliveryUser, resetPopup } from './../../../redux/actions/index';
+import { useHistory } from 'react-router';
+import ModalService from './../../../_services/modal';
 
 function Newaddress() {
     const history = useHistory()
     const dispatch = useDispatch();
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
-    const UNSELECTED_KEY = -1;
+    const modalPopup = useSelector(state => state.modalPopup);
+    const isLoading = useSelector(state => state.isLoading);
 
+    const UNSELECTED_KEY = -1;
     async function readLocaleData(){
         return $.getJSON( "data/local.json", function( data ) {
             return data;
@@ -26,6 +28,7 @@ function Newaddress() {
     let emptyErrorTxt = 'Vui lòng điền thông tin';
     let phoneErrorTxt = 'Số điện thoại không hợp lệ';
     let addressDeliveryErrorTxt = 'vui lòng chọn địa chỉ giao hàng';
+    console.log(errors)
 
     const [checked,setChecked]=useState(0)
     const[note,setNote]=useState("")
@@ -134,7 +137,6 @@ function Newaddress() {
                     dispatch(postDeliveryUser(formData))
                 }
             }
-            history.goBack()
         }
     }
 
@@ -148,6 +150,18 @@ function Newaddress() {
     const handlePhone = (e)=>{
         setPhone(e.target.value)
     }
+
+    const handleAfterSubmit =  React.useCallback(() => {
+        if(modalPopup.data.success) {
+            ModalService.success('Lưu thành công')
+        }else {
+            ModalService.error('Lưu thất bại')
+        }
+        setTimeout(() => {
+            history.goBack()
+            dispatch(resetPopup())
+        }, 1000);
+    }, [modalPopup, history, dispatch])
 
     React.useEffect(() => {
         if(city.length === 0) {
@@ -165,10 +179,16 @@ function Newaddress() {
             setAddress(oneDeliveryUser.address)
             setChecked(oneDeliveryUser.is_default)
         }
-    }, [city, setCity, oneDeliveryUser, defaultAddressData])
+        if(modalPopup.active) {
+            handleAfterSubmit()
+        }
+    }, [city, setCity, oneDeliveryUser, defaultAddressData, modalPopup, handleAfterSubmit])
 
     return (
         <div >
+            {
+                isLoading && <div className="overlay-spinner"></div>
+            }
             <Header
                 hasNavigation={true}
                 title="THÊM ĐỊA CHỈ GIAO HÀNG MỚI"
@@ -202,7 +222,7 @@ function Newaddress() {
                                 <span>Địa chỉ giao hàng</span>
                             </div>
                             <div className="user-information" >
-                                <select value={cityKey} onChange={getCityKey} name="city" ref={register({ required: true })} 
+                                <select value={cityKey} onChange={getCityKey} name="city" ref={register({ required : true })} 
                                 >
                                     <option  value={UNSELECTED_KEY} >Tỉnh/Thành phố</option>
                                         {showNameCity()}

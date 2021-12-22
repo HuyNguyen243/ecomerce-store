@@ -2,14 +2,17 @@ import React, {useState} from "react";
 import { USER_ORDER_NAV, LEFT_MENU_NAV } from './../../../_config/shop.config';
 // import Icon from './../../../_components/_icon.component';
 import{Link} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 
 const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
 
   const [isToggled, setIsToggled] = useState(false);
+  const history = useHistory()
 
   const toggleCategory = () => {
     let state = !isToggled;
     setIsToggled(state);
+    history.push("/user-address")
   }
 
   const hideLeftNav = () => {
@@ -20,12 +23,10 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
   return (
     <div id={LEFT_MENU_NAV} className="overlay nav-left">
       <div className="menu-left-nav">
-        <Link to="/user-address">
           <div className="menu-left-item" onClick={e => toggleCategory()}>
             <img src='/images/information.svg' alt="category"/>
             <span>THÔNG TIN ĐẶT HÀNG</span>
           </div>
-        </Link>
 
         <Link to="/order-product">
           <div className="menu-left-item" onClick={e => showNavigation(USER_ORDER_NAV)}>

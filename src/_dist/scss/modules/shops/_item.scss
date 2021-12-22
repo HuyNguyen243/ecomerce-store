@@ -37,7 +37,7 @@ $text-row: 2;
       float: left;
     }
     .item-description {
-      margin-top: $pd-sm;
+      margin-top: 15px;
       label {
         font-size: 16px;
         font-weight: bold;
@@ -66,7 +66,6 @@ $text-row: 2;
     display: flex;
     align-items: center;
     .item-thumbnail {
-      width: 10%;
       img {
         border: 1px solid #dee2e6;
       }
@@ -91,7 +90,6 @@ $text-row: 2;
     img {
       width: 100%;
       object-fit: contain;
-      height: 124px;
     }
     .thumbnail-price {
       position: absolute;
@@ -177,7 +175,7 @@ $text-row: 2;
         width: 20%;
         border-radius: 0px 5px 5px 0px;
         color: #fff;
-        height: 40px;
+        height: 42px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -198,7 +196,7 @@ $text-row: 2;
         align-items: center;
       }
       .quatiy-title{
-        font-size: 16px;
+        font-size: 13px;
         font-weight: 600;
         line-height: 17.85px;
         padding-right: 28px;
@@ -256,7 +254,7 @@ $text-row: 2;
     }
   }
   .item-name {
-    padding: 15px 0;
+    padding: 10px 0;
     font-weight: 600;
     font-size: 15px;
   }
@@ -273,8 +271,8 @@ $text-row: 2;
     width: 40%;
     .current-price {
       color: #f40000;
-      font-size: 20px;
-      padding: 15px 0;
+      font-size: 20px !important;
+      padding: 10px 0;
     }
   }
   .item-button {
@@ -297,7 +295,7 @@ $text-row: 2;
       align-items: center;
       .btn {
         color: #fff;
-        font-size: 16px;
+        font-size: 3.5vw;
         font-weight: 600;
         padding:  12px 0;
         border: none;
@@ -312,7 +310,7 @@ $text-row: 2;
     .button-left {
       border-radius: 5px 0px 0px 5px;
       background: $color-primary;
-      width: 80%;
+      width: 50%;
     }
     .button-left-block {
       background: #8086dfc4 !important;
@@ -327,10 +325,12 @@ $text-row: 2;
     .button-right {
       border-radius: 0px 5px 5px 0px;
       background: $color-info;
-      width: 20%;
-      padding: 11px 0;
+      width: 50%;
+      color: #f40000;
       img{
+        width: 5.2vw;
         margin-right: 10px;
+        padding: 12px 0;
       }
     }
   }
@@ -461,5 +461,40 @@ $text-row: 2;
 .new-bottom1{
   .shop-item:last-child{
     margin-bottom: 150px;
+  }
+}
+
+.group-buttons{
+  display: flex;
+  .button-l{
+    width: 50%;
+    background-color: #f40000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px 0 0 5px;
+    button{
+      color: #fff;
+      font-size: 4.5vw;
+    }
+  }
+  .button-r{
+    width: 50%;
+    background-color: #ffdada;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:0 5px  5px 0;
+    button{
+      img{
+        width: 5.5vw;
+        padding-right: 5px;
+      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f40000;
+      font-size: 4.5vw;
+    }
   }
 }

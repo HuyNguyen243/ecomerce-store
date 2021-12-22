@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Header from "../header/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { getDeliveryUser } from './../../../redux/actions/index';
@@ -12,6 +12,7 @@ function UserAddress() {
     const userID = Auth.get().user_id
     const userAddress = useSelector(state => state.userAddress);
     const isLoading = useSelector(state => state.isLoading);
+    const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
 
     const getUserAddress = React.useCallback(() => {
         dispatch(getDeliveryUser(userID))
@@ -21,8 +22,14 @@ function UserAddress() {
         if(!userAddress.isLoaded) {
             getUserAddress()
         }
-    }, [getUserAddress, userAddress]);
-
+        if(oneDeliveryUser ===""){
+             userAddress.data.map((item,value)=>{
+                if(item.is_default === 1 ){
+                     dispatch(getParentInformationDeviveryUser(item))
+                }
+            })
+        }
+    }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
 
     const handleFixUserAddress = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
@@ -38,15 +45,13 @@ function UserAddress() {
     const handleGetDelivery = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
         dispatch(getParentInformationDeviveryUser(DeliveryUser))
-        history.goBack()
     }
     
     const showUserAddress = (item, key)=>{
-        console.log(item)
         return(
-            <div className="form-group" key={key} id={key} onClick={handleGetDelivery}>
-                <div className="information"  id={key}>
-                    <div className="infor-user newstyle" id={key}>
+            <div className="form-group" key={key} id={key} >
+                <div className="information"  id={key} >
+                    <div className="infor-user newstyle" id={key} onClick={handleGetDelivery}>
                         <p id={key}>
                             {item["fullname"]}
                             { item["is_default"] === 1 && <span>[Mặc định]</span>}
@@ -59,11 +64,11 @@ function UserAddress() {
                     </div>
                     <div className="infor-icon newstyle" id={key}>
                         <div>
-                        <img  src="/images/fix.png" alt="menu_icon" id={key} onClick={handleFixUserAddress}/>
+                            <img  src="/images/fix.png" alt="menu_icon" id={key} onClick={handleFixUserAddress}/>
                         <img src="/images/delete.svg" alt="menu_icon" />
                         </div>
                         <img src="/images/tickV.svg" alt="menu_icon" id={key} 
-                        className={"hide"}/>
+                        className={oneDeliveryUser._id !== undefined && oneDeliveryUser._id === item._id ? "show" : "hide"}/>
                     </div>
                 </div>
             </div>

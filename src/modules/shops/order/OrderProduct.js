@@ -19,7 +19,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
                                 <div className ="item-info">
                                     <span className ="id-product">Mã đơn hàng: {item.id}</span>
                                     <span className ="item-name">{item.name}</span>
-                                    <span className ="item-price">{item.price}</span>
+                                    <span className ="item-price">{item.price}đ</span>
                                     <span className ="item-qty">Số lượng: {item.quantity}</span>
                                 </div>
                                 <img src="/images/Back-Black.svg" alt="back" />
