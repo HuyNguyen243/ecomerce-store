@@ -1,0 +1,49 @@
+.txt-main {
+  @include text($color-bg);
+}
+.txt-primary {
+  @include text($color-primary);
+}
+.txt-secondary {
+  @include text($color-secondary);
+}
+.txt-info {
+  @include text($color-info);
+}
+.txt-danger {
+  @include text($color-danger);
+  font-size: 12px;
+  padding: 5px 0;
+}
+.txt-success {
+  @include text($color-success);
+}
+.txt-error {
+  @include text($color-error);
+}
+.txt-center {
+  text-align: center;
+}
+.txt-left {
+  text-align: left;
+}
+.txt-right {
+  text-align: right;
+}
+.text-bold {
+  font-weight: bold;
+}
+.text-xl {
+  font-size: $font-xl;
+}
+.text-lg {
+  font-size: $font-lg;
+}
+.text-md {
+  font-size: $font-md;
+  color: #f40000;
+}
+.text-sm {
+  font-size: $font-sm;
+  margin: auto 0;
+}

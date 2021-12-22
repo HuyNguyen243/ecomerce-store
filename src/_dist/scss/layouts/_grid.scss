@@ -1,0 +1,52 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    .col-12 {
+        @include col($col-12);
+    }
+    .col-8 {
+        @include col($col-8);
+    }
+    .col-7 {
+        @include col($col-7);
+    }
+    .col-6 {
+        @include col($col-6);
+    }
+    .col-5 {
+        @include col($col-5);
+    }
+    .col-4 {
+        @include col($col-4);
+    }
+    .col-3 {
+        @include col($col-3);
+    }
+    .col-2 {
+        @include col($col-2);
+    }
+    // @include mq('tablet-wide', 'max') {
+    //     .col-8, .col-6, .col-4 {
+    //         @include col($col-12);
+    //     }
+    //     .col-2 {
+    //         @include col($col-3);
+    //     }
+    // }
+
+    // @include mq('tablet', 'max') {
+    //     .col-3 {
+    //         @include col($col-6);
+    //     }
+    // }
+
+    // @include mq('phone-wide', 'max') {
+    //     .col-3 {
+    //         @include col($col-12);
+    //     }
+    //     .col-2 {
+    //         @include col($col-6);
+    //     }
+    // }
+}

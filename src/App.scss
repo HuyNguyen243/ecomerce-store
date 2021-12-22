@@ -1,0 +1,22 @@
+@import './_dist/scss/all';
+@import './_dist/probot_style';
+
+body {
+    // font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.hide {
+    display: none !important;
+}
+.show {
+    display: block !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+input, button, textarea {
+    // -webkit-appearance:none;
+}

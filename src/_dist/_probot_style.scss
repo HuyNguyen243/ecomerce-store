@@ -1,0 +1,32 @@
+$primary-color: #CC3366;
+$secondary-color: #B81F52;
+.pro_bot_style {
+    .shop-item .item-info .item-button {
+        .button-text {
+            background-color: $primary-color
+        }
+        .button-icon {
+            background-color: $secondary-color
+        }
+    }
+
+    #product_detail_nav {
+        .group-buttons {
+            .button-left {
+                background: $primary-color;
+            }
+            .button-right {
+                background: $secondary-color;
+            }
+        }
+        .current-price {
+            color: $primary-color;
+        }
+    }
+    .btn-primary, .item-percentage, .quantity-add {
+        background-color: $primary-color !important;
+    }
+    .txt-info {
+        color: $primary-color !important;
+    }
+}

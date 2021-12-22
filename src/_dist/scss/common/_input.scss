@@ -1,0 +1,22 @@
+.app-input {
+    height: 34px;
+    border: 1px solid $color-default;
+    padding: $pd-xs;
+    border-radius: $pd-xs;
+    box-sizing: border-box
+}
+input, textarea {
+    &:active, &:focus {
+        border: none;
+        outline: none;
+    }
+}
+textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    font: caption;
+}

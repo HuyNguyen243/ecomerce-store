@@ -1,0 +1,28 @@
+.overlay {
+  height: 100%;
+  width: 0%;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  background-color: $color-bg;
+  overflow-x: hidden;
+  transition: 0.2s;
+  &.nav-left {
+    left: 0;
+  }
+  &.nav-right {
+    right: 0;
+  }
+
+  .overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .main_container {
+    // padding: $pd-sm;
+    background-color: $color-bg;
+  }
+}

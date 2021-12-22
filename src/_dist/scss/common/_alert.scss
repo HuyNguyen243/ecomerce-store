@@ -1,0 +1,124 @@
+#myModal {
+  visibility: hidden;
+  border-radius: 5%;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 70%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+
+  &.show {
+    visibility: visible;
+  }
+  &.hide {
+    visibility: hidden;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 3s;
+    animation: fadein 0.5s, fadeout 0.5s 3s;
+  }
+}
+
+#promotion {
+  visibility: hidden;
+  border-radius: 5%;
+  position: absolute; /* Stay in place */
+  z-index: 999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+
+  &.show {
+    visibility: visible;
+    padding-top: 10%; /* Location of the box */
+    height: 95%;
+    border-radius: 0;
+  }
+  &.hide {
+    visibility: hidden;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 3s;
+    animation: fadein 0.5s, fadeout 0.5s 3s;
+  }
+}
+.input-code {
+  width: 100%;
+}
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 80%;
+  span{
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+.modal-header,
+.modal-body {
+  padding-bottom: $pd-sm ;
+}
+.modal-header{
+  padding-top: 23px;
+} 
+/* The Close Button */
+.btn-danger{
+   margin-right: 7.5px;
+   color:  #f40000;
+}
+.btn-success{
+  margin-left: 7.5px;
+}
+
+
+.counpon{
+  background: url("/images/grey-bg-discount.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 23px;
+  cursor: pointer;
+  .information-counpon{
+    display: flex;
+    align-items: center;
+    padding: 25px 25px 0 25px;
+    box-sizing: border-box;
+  }
+  img{
+    margin-right: 20px;
+  }
+  p{
+    margin: 6px 0;
+    font-weight: 600;
+  }
+  p:first-child{
+    color: #f40000;
+  }
+  p:nth-child(3){
+    font-size: 13px;
+    color: #ccc;
+    font-weight: 300;
+  }
+  .use-count{
+    display: flex;
+    justify-content: flex-end;
+    span{
+      padding: 0 23px 10px 0;
+      a{
+        font-size: 13px;
+        color: #f40000;
+        font-weight: 600;
+        text-decoration: none;
+        text-transform: lowercase;
+      }
+    }
+  }
+}

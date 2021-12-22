@@ -1,0 +1,111 @@
+.shop-header {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  // max-width: 768px;
+  &.header-primary {
+    background-color: #fff;
+    color: $color-bg;
+    box-shadow: 0 4px 4px 0 #ccc;
+    .app-input {
+      font-size: $font-sm;
+    }
+  }
+  &.header-default {
+    color: $color-primary;
+    background-color: $color-bg;
+    .header-search {
+      font-weight: bold;
+      color: #5b5b5b;
+    }
+    .header-home {
+      text-align: left;
+      span img{
+      width: 30px;
+      }
+    }
+  }
+  padding: $pd-xs 0px;
+  .header-home {
+    width: 5%;
+    padding: 15px 20px 15px 15px;
+    .material-icons {
+      font-size: 32px;
+    }
+  }
+  .header-search {
+    width: 76%;
+    text-align: left;
+    color: #f40000;
+    font-weight: 600;
+    text-transform: uppercase;
+    .form-title {
+      display: none;
+    }
+    .app-search {
+      position: relative;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .app-input {
+        width: 100%;
+      }
+      .search-btn {
+        position: absolute;
+        top: 15%;
+        right: 0;
+        color: #333333;
+        padding: 0;
+        i {
+        color: #f40000;
+        font-size: 30px;
+        text-shadow: 0 4px 4px #ccc;
+        }
+      }
+    }
+    .hide-search {
+      .app-input {
+        width: 0%;
+        padding: 0;
+        border: 0;
+        color: #fff;
+      }
+      .search-btn {
+        color: #ffffff;
+      }
+      .form-title {
+        display: inline;
+      }
+    }
+  }
+  .header-cart {
+    width: 5%;
+    text-align: right;
+    padding: 0 17px;
+    span {
+      position: relative;
+      display: inherit;
+      font-size: 30px;
+      .total-cart {
+        background: #dc3545;
+        color: #ffffff;
+        border-radius: 50% 50% 50% 50%;
+        padding: 0px 5px; 
+        position: absolute;
+        right: 6px;
+        bottom: -2px;
+        font-size: 18px;
+        width: 10px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.form-title{
+  width: 90px;
+}
