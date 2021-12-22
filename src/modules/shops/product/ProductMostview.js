@@ -47,7 +47,7 @@ const ProductMostview = () => {
         title={headerTitles}
         
       />
-      <div className="main_container">
+      <div className="main_container fix-images">
         {
           isLoading
           ? <div className="overlay-spinner"></div>

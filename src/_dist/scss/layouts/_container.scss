@@ -112,7 +112,7 @@ body {
   left: 0;
   width: 100%;
   bottom: 0;
-  background-color: $color-bg;
+  background-color: #fff;
   
 }
 
@@ -137,23 +137,27 @@ body {
   }
 }
 
+.day-shipping{
+  padding-bottom: 5px !important;
+  border-bottom: 1px solid #ccc;
+}
 
 .oder-item::-webkit-scrollbar{
   display: none;
 }
+.item-thumbnail  > img{
+  width: 124px !important;
+  height: 124px;
+}
 
 .style-for-cart{
       .shop-item{
-        .item-thumbnail{
-          width: 15%;
-          img{
-            height: inherit;
-          }
-        }
+   
         .item-info{
           width: 5%;
         }
     }
+ 
 }
 
 .main_container::-webkit-scrollbar{
@@ -191,4 +195,81 @@ body {
 
 .fixed{
   position: fixed;
+}
+
+.infor-icon{
+    div{
+      display: flex;
+      justify-content: center;
+      img:first-child{
+        width: 24px;
+      }
+      img:nth-child(2){
+        width: 17px;
+        padding-left: 10px !important;
+      }
+    }
+
+}
+
+.fix-image{
+  .horizontal-wrapper{
+    .horizontal-list .horizontal-list-item .shop-item a div .item-thumbnail  img{
+      width: 100% !important;
+    }
+  }
+}
+
+.fix-images .horizontal-list-item .shop-item a div .item-thumbnail  img{
+  width: 100% !important;
+}
+
+.item-button{
+  .button-left{
+    padding: 10px 0;
+    background-color: #f40000;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:  5px 0 0 5px;
+    button{
+      font-size: 16px;
+      background-color:  transparent;
+      border : none;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+  .button-right{
+    padding: 10px 0;
+    background-color: #ffdada;
+    width: 20%;
+    border-radius:0 5px  5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+      background-color:  transparent;
+      border : none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        width: 20px;
+      }
+    }
+  }
+}
+
+.button-right{
+  span{
+    font-size: 3.5vw;
+  }
+}
+
+.information {
+  img {
+    padding-right: 10px;
+  }
 }

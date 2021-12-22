@@ -54,7 +54,7 @@ const initState = {
     isLoaded : false,
     data: []
   },
-  oneDeliveryUser : {},
+  oneDeliveryUser : "",
   putDeliveryUser: {
     isLoaded : false,
     data: {}
@@ -62,7 +62,7 @@ const initState = {
   modalPopup : {
     active : false,
     data : {}
-  }
+  },
 };
 
 const rootReducer = (state = initState, action) => {
@@ -193,7 +193,6 @@ const rootReducer = (state = initState, action) => {
       return Object.assign({}, state, {
         isLoading: false
       });
-      
   }
 };
 

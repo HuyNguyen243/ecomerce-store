@@ -9,6 +9,11 @@
 
 .mySlides {
     display: none;
+    .item-thumbnail {
+        img{
+            width: 100% !important;
+        }
+    }
 }
 
 .prev, .next {

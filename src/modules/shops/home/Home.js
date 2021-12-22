@@ -22,7 +22,7 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
     }
   }, [getGeneralDataCallback, generalData]);
   return (
-    <div className="main_container">
+    <div className="main_container fix-image">
       {Offer()}
       {
         isLoading

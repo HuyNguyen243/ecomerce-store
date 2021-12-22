@@ -8,14 +8,13 @@ import { useHistory } from 'react-router';
 import ModalService from './../../../_services/modal';
 
 function Newaddress() {
-    const dispatch = useDispatch();
     const history = useHistory()
+    const dispatch = useDispatch();
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const modalPopup = useSelector(state => state.modalPopup);
     const isLoading = useSelector(state => state.isLoading);
 
     const UNSELECTED_KEY = -1;
-
     async function readLocaleData(){
         return $.getJSON( "data/local.json", function( data ) {
             return data;
@@ -29,6 +28,7 @@ function Newaddress() {
     let emptyErrorTxt = 'Vui lòng điền thông tin';
     let phoneErrorTxt = 'Số điện thoại không hợp lệ';
     let addressDeliveryErrorTxt = 'vui lòng chọn địa chỉ giao hàng';
+    console.log(errors)
 
     const [checked,setChecked]=useState(0)
     const[note,setNote]=useState("")
@@ -53,7 +53,6 @@ function Newaddress() {
         let cityKeyCode = Number(oneDeliveryUser?.province?.code);
         let districtKeyCode = Number(oneDeliveryUser?.district?.code);
         let wardKeyCode = Number(oneDeliveryUser?.ward?.code);
-
         setCityKey(cityKeyCode)
         setSelectCity(data[cityKeyCode]?.name)
 
@@ -223,7 +222,7 @@ function Newaddress() {
                                 <span>Địa chỉ giao hàng</span>
                             </div>
                             <div className="user-information" >
-                                <select value={cityKey} onChange={getCityKey} name="city" ref={register({ required: true })} 
+                                <select value={cityKey} onChange={getCityKey} name="city" ref={register({ required : true })} 
                                 >
                                     <option  value={UNSELECTED_KEY} >Tỉnh/Thành phố</option>
                                         {showNameCity()}
@@ -269,10 +268,10 @@ function Newaddress() {
                                 <label htmlFor="switch"></label>
                             </div>
                     </div>
-                            <div className="fix-bottom fix-style">
-                                <div className="btn-with-icon right-icon">
-                                <button type="submit"  className="btn btn-primary" >{oneDeliveryUser!=="" ? "Thay đổi địa chỉ":"Thêm địa chỉ mới"}</button>
-                                </div>
+                                    <div className="fix-bottom fix-style">
+                                        <div className="btn-with-icon right-icon">
+                                        <button type="submit"  className="btn btn-primary" >{oneDeliveryUser !== "" ? "Thay đổi địa chỉ":"Thêm địa chỉ mới"}</button>
+                                    </div>
                             </div>
                 </form>
             </div>

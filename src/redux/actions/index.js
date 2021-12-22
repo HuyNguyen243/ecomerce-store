@@ -60,3 +60,4 @@ export const getParentInformationDeviveryUser= (user) => {
 export const putDeliveryUser = (id,address) => {
     return { type: PUT_INFORMATION_DELIVERY_USER , payload: {id: id, body: address}};
 }
+

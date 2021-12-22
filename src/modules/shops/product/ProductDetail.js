@@ -70,9 +70,9 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
   const btnQTY = ()=>{
     return(
         <div className="news-style-QTY">
-          <div className="col-7 item-quantity ">
+          <div className=" item-quantity ">
             <div className="flex-list quantity-options">
-              <span  className="quatiy-title">
+              <span  className="quatiy-title ">
                 <p>Chọn số lượng:</p>
               </span>
               <span
@@ -106,15 +106,18 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
         </div>
       </div>
       <div className="group-buttons">
-        <div className={`button-left item-button ${blockBtnLeft}`} onClick={()=>addToCart(true)}>
+        <div className={`button-l ${blockBtnLeft}`} onClick={()=>addToCart(true)}>
           {/* <Icon name="work_outline" /> */}
           <button type="button" className="btn" >Mua ngay</button>
         </div>
-        <div className={`button-right item-button ${blockBtnRight}`} onClick={()=>addToCart()}>
+        <div className={`button-r ${blockBtnRight}`} onClick={()=>addToCart()}>
           {/* <Icon name="add_shopping_cart" />
            */}
+        
+          <button type="button" className="btn btn-red" >
           <img src="/images/shopping-cart.png" alt="menu_icon" />
-          <button type="button" className="btn btn-red" ></button>
+          <span>Thêm vào giỏ</span>
+          </button>
         </div>
       </div>
       {btnQTY()}

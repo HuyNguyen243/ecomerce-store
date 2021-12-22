@@ -1,18 +1,69 @@
-import React from "react";
-import{Link} from "react-router-dom"
+import React, { useState } from "react";
 import Header from "./../header/Header";
 import { LIST_CART_NAV } from "./../../../_config/shop.config";
 import { useHistory } from "react-router";
 import TotalBottom from "./TotalBottom";
+import {  useSelector } from "react-redux";
+import CartItem from '../cart/CartItem';
 
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
   totalCart
 }) => {
 
+  let dangerTxt = "vui lòng chọn thông tin nhận hàng"        
+  const [condition, setCondition] = useState("")
   const history = useHistory()
   const handleBack=()=>{
     history.goBack()
+  }
+  const carts = useSelector(state => state.carts);
+  const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
+  const showCart=()=>{
+    if(carts.length >0){
+        return carts.map((item, key)=>{
+            return(
+                <CartItem index={key} item={item} key={key}/>
+            )
+        })
+    }
+  }
+
+  const showDeliveryUser = ()=>{
+    if(oneDeliveryUser !== ""){
+      return(
+        <div className="form-group"  >
+          <div className="information">
+              <div className="infor-user newstyle">
+                  <p>
+                      {oneDeliveryUser.fullname}
+                  </p>
+                  <p>{oneDeliveryUser.phone}</p>
+                  <p>{oneDeliveryUser.address},phường {oneDeliveryUser.ward !== undefined && oneDeliveryUser.ward["name"]},
+                  quận {oneDeliveryUser.district !== undefined && oneDeliveryUser.district["name"]}
+                  , {oneDeliveryUser.province !== undefined && oneDeliveryUser.province["name"]}
+                  </p>
+              </div>
+              <div className="infor-icon newstyle">
+                <img src="/images/Back-Black.svg" alt="menu_icon" />
+              </div>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  const handleOnClick =()=>{
+    if(oneDeliveryUser === "" ){
+      setCondition(false)
+    }else{
+      setCondition(true)
+      history.push("/oderConfirm")
+    }
+  }
+
+  const handleSlcInforUser =()=>{
+    history.push("/user-address")
   }
 
   return (
@@ -21,33 +72,42 @@ const OrderForm = ({ onSubmit, isLoading,
         doNavigation={hideCart}
         navId={LIST_CART_NAV}
         hasNavigation={true}
-        title="Giỏ hàng"
+        title="THÔNG TIN ĐẶT GIAO HÀNG"
         totalCart={totalCart}
       />
       <div className="main_container">
         <form className="basic-form" >
-          <div className="form-group">
+          <div className="form-group fix-information">
             <div className="nav_label">
               <span>Thông tin giao hàng</span>
             </div>
-            <Link to="/user-address" >
-              <div className="information">
-                <span>Chọn thông tin nhận hàng</span>
-                <img src="/images/Back-Black.svg" alt="menu_icon" />
-              </div>
-            </Link>
+            <div onClick={handleSlcInforUser}>
+                  {oneDeliveryUser._id  !== undefined ? showDeliveryUser()
+                  :   
+                  <div className="information ">
+                     <span>Chọn thông tin nhận hàng</span>
+                    <img src="/images/Back-Black.svg" alt="menu_icon" />
+                  </div>
+                   }
+            </div>
+            {condition === false &&(
+          <span className="txt-danger">{dangerTxt}</span>
+            )}
             <div className="nav_label">
               <span>Phương thức vận chuyển</span>
             </div>
-            <Link to="/select-shipping" >
             <div className="shipping height">
-              <span>Phương thức vận chuyển (Giao hàng tiết kiệm)</span>
-              <img src="/images/Back-Black.svg" alt="menu_icon" />
+                    <span>Giao hàng tiết kiệm</span>
             </div>
-            </Link>
-          </div>
         
+          </div>
         </form>
+        <div className="nav_label">
+              <span>Thông tin sản phẩm</span>
+        </div>
+        <div className="news-style-cart style-for-cart stl-botom-cart list-cart new-bottom1">
+                {showCart()}
+      </div>
       </div>
       <div className="fix-bottom">
             <div>
@@ -58,8 +118,7 @@ const OrderForm = ({ onSubmit, isLoading,
             
             <div className="btn-with-icon right-icon">
               <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBack}>Quay lại</button>
-              <Link to="/oderInformation"><button type="submit" className="btn btn-primary btn-right-icon ">Tiếp tục</button></Link>
-              {/* <button type="submit" className="btn btn-primary btn-right-icon">Tiếp tục</button> */}
+              <button type="submit" className="btn btn-primary btn-right-icon " onClick ={handleOnClick}>Tiếp tục</button>
             </div>
               
             </div>
