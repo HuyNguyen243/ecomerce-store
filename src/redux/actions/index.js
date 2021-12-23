@@ -11,6 +11,7 @@ import {
     GET_INFORMATION_DELIVERY_USER,
     TARGET_ONE_INFORMATION_DELIVERY_USER,
     PUT_INFORMATION_DELIVERY_USER,
+    CHECK_HANDLE_GET_DELIVERY_USER,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -59,5 +60,9 @@ export const getParentInformationDeviveryUser= (user) => {
 
 export const putDeliveryUser = (id,address) => {
     return { type: PUT_INFORMATION_DELIVERY_USER , payload: {id: id, body: address}};
+}
+
+export const checkGetDelivetyUser = (param) => {
+    return { type: CHECK_HANDLE_GET_DELIVERY_USER , payload: param};
 }
 

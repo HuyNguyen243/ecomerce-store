@@ -90,8 +90,6 @@ const OderConfirm = (
     }
   }
 
-  console.log(oneDeliveryUser)
-
   const showUserInfo = ()=>{
     if(oneDeliveryUser !== "" ){
         return(
