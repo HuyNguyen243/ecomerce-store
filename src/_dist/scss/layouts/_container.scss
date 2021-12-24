@@ -25,8 +25,9 @@ body {
   overflow: auto;
   .news-style-cart{
     .shop-item .item-info{
+      
       .item-name{
-        width: 70%;
+        width: 80%;
         font-weight: 500;
       }
       .item-price{
@@ -146,8 +147,8 @@ body {
   display: none;
 }
 .item-thumbnail  > img{
-  width: 124px !important;
-  height: 124px;
+  width: 100px !important;
+  height: 100px;
 }
 
 .style-for-cart{

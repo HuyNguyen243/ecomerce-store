@@ -5,6 +5,7 @@ import { getDeliveryUser } from './../../../redux/actions/index';
 import Auth from '../../../_services/auth';
 import { useHistory } from 'react-router';
 import { getParentInformationDeviveryUser } from './../../../redux/actions/index';
+import { deleteDeliveryUSer } from './../../../redux/actions/index';
 
 function UserAddress() {
     const history = useHistory()
@@ -14,6 +15,9 @@ function UserAddress() {
     const isLoading = useSelector(state => state.isLoading);
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const checkGetDeliveryUser = useSelector(state => state.checkGetDeliveryUser);
+    const delDeliveryUser = useSelector(state => state.delDeliveryUser)
+    const putDeliveryUser = useSelector(state => state.putDeliveryUser)
+
 
     const getUserAddress = React.useCallback(() => {
         dispatch(getDeliveryUser(userID))
@@ -23,6 +27,7 @@ function UserAddress() {
         if(!userAddress.isLoaded) {
             getUserAddress()
         }
+        
     }, [getUserAddress, userAddress,]);
     const handleFixUserAddress = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
@@ -42,14 +47,30 @@ function UserAddress() {
             history.goBack()
        }
     }
-    
+
+    const handleDelDeliver = (e) =>{
+        dispatch(deleteDeliveryUSer(e.target.id))
+    }
+
     const showUserAddress = (item, key)=>{
+        if(putDeliveryUser?.isLoaded){
+            if(putDeliveryUser.data._id === item._id){
+                (userAddress?.data).splice((userAddress?.data).indexOf(item),1,putDeliveryUser.data)
+            }
+        }
+
+        if(delDeliveryUser?.isLoaded){
+            if(delDeliveryUser.data.data.id === item._id){
+                (userAddress?.data).splice((userAddress?.data).indexOf(item),1)
+            }
+        }
+
         return(
             <div className="form-group" key={key} id={key} >
                 <div className="information"  id={key} >
                     <div className="infor-user newstyle" id={key} onClick={handleGetDelivery}>
                         <p id={key}>
-                            {item["fullname"]}
+                            {item["fullname"]} {" "}
                             { item["is_default"] === 1 && <span>[Mặc định]</span>}
                         </p>
                         <p id={key}>{item["phone"]}</p>
@@ -61,7 +82,7 @@ function UserAddress() {
                     <div className="infor-icon newstyle" id={key}>
                         <div>
                             <img  src="/images/fix.png" alt="menu_icon" id={key} onClick={handleFixUserAddress}/>
-                        <img src="/images/delete.svg" alt="menu_icon" />
+                        <img src="/images/delete.svg" alt="menu_icon" id={item._id} onClick={handleDelDeliver}/>
                         </div>
                         <img src="/images/tickV.svg" alt="menu_icon" id={key} 
                         className={oneDeliveryUser._id !== undefined && oneDeliveryUser._id === item._id ? "show" : "hide"}/>
@@ -75,7 +96,7 @@ function UserAddress() {
         <div >
             <Header
                 hasNavigation={true}
-                title="ĐỊA CHỈ GIAO HÀNG"
+                title="THÔNG TIN ĐẶT HÀNG"
             />
             <div className="main_container main-relative">
                 {
@@ -83,6 +104,7 @@ function UserAddress() {
                     ? <div className="overlay-spinner"></div>
                     : 
                         <form className="basic-form ">
+                        {(userAddress.data).length === 0 ? <span>vui lòng tạo thông tin đặt giao hàng!</span>:""}
                         {
                             userAddress?.data.map((item,key)=> {
                                 if(item.is_default) {

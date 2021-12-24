@@ -28,7 +28,6 @@ function Newaddress() {
     let emptyErrorTxt = 'Vui lòng điền thông tin';
     let phoneErrorTxt = 'Số điện thoại không hợp lệ';
     let addressDeliveryErrorTxt = 'vui lòng chọn địa chỉ giao hàng';
-    console.log(errors)
 
     const [checked,setChecked]=useState(0)
     const[note,setNote]=useState("")
@@ -158,8 +157,8 @@ function Newaddress() {
             ModalService.error('Lưu thất bại')
         }
         setTimeout(() => {
-            history.goBack()
             dispatch(resetPopup())
+            history.goBack()
         }, 1000);
     }, [modalPopup, history, dispatch])
 
@@ -200,12 +199,12 @@ function Newaddress() {
                                 <span>Thông tin liên hệ</span>
                             </div>
                             <div className="user-information">
-                                <input placeholder="Họ và tên" type="text" name="name" ref={register({ required: true })}
+                                <input placeholder="Họ và tên ***" type="text" name="name" ref={register({ required: true })}
                                 defaultValue={name} onChange={handleTargetName} />
                                     { errors.name && errors.name.type === "required" ?
                                         <span className="txt-danger">{emptyErrorTxt}</span> :""
                                     }
-                                <input placeholder="Số điện thoại" type="number" name="phone" defaultValue={phone} onChange={handlePhone}
+                                <input placeholder="Số điện thoại  ***" type="number" name="phone" defaultValue={phone} onChange={handlePhone}
                                     ref={register({
                                         required: true,
                                         pattern: /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/
@@ -252,7 +251,7 @@ function Newaddress() {
                                 )}
                             </div>
                             <div className="user-information">
-                                <input placeholder="Tên đường, số nhà, toà nhà" type="text" name="address" ref={register({ required: true })} defaultValue={address}
+                                <input placeholder="Tên đường, số nhà, toà nhà***" type="text" name="address" ref={register({ required: true })} defaultValue={address}
                                 onChange={handleTargetAddress}></input>
                                 {errors.address && errors.address.type === "required" && (
                                 <span className="txt-danger">{emptyErrorTxt}</span>

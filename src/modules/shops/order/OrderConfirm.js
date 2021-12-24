@@ -99,9 +99,11 @@ const OderConfirm = (
               <span>|</span> 
               <p>{oneDeliveryUser.phone}</p>
             </div>
-              <p className="address">{oneDeliveryUser?.geo_address?.formatted_address}</p>
+              <p className="address">
+                    {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}
+              </p>
               <span>Giao hàng hỏa tốc</span>
-              <span> Dự kiến giao hàng trước 20h00 ngày 15/11/2021</span>
+              <span> Dự kiến giao hàng từ 1 đến 2 ngày!</span>
         </div>
         )
     }
@@ -124,7 +126,7 @@ const OderConfirm = (
               <span>Phương thức vận chuyển</span>
             </div>
              <div className="shipping fix-shipping">
-            <span className="shiper" >Giao hàng tiết kiệm</span>
+            <span className="shiper" >AhaMove</span>
              </div>
          </div>
         </form>

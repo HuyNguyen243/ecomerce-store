@@ -48,6 +48,11 @@ export const del =  (url, isAuth = true) => {
     var requestOptions = {
         method: "DELETE",
         redirect: "follow",
+        headers : new Headers(
+            {
+                'Accept': 'application/json'
+            }
+        )
     };
     return apiRequest(url, requestOptions, isAuth);
 }

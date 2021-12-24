@@ -37,7 +37,7 @@ const OrderForm = ({ onSubmit, isLoading,
     }else{
       userAddress.data.map((item)=>{
         if(item.is_default === 1){
-          if(oneDeliveryUser ===""){
+          if(oneDeliveryUser === "" ){
             dispatch(getParentInformationDeviveryUser(item))
           }
         }
@@ -125,7 +125,7 @@ const OrderForm = ({ onSubmit, isLoading,
               <span>Phương thức vận chuyển</span>
             </div>
             <div className="shipping height">
-                    <span>Giao hàng tiết kiệm</span>
+                    <span>AhaMove</span>
             </div>
         
           </div>

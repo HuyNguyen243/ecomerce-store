@@ -12,6 +12,7 @@ const Item = ({id, data}) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+
   const addToCart = (showCart = false) => {
     CartService.add({
       id          : data._id,

@@ -71,7 +71,7 @@ $text-row: 2;
       }
     }
     .item-info {
-      padding-left: 17px;
+      padding-left: 10px;
       width: 90%;
     }
     .item-quantity {
@@ -110,7 +110,7 @@ $text-row: 2;
       letter-spacing: normal;
       text-align: left;
       display: block;
-      font-size: 16px;
+      font-size: 13px;
 
     }
     .item-discount {
@@ -140,6 +140,7 @@ $text-row: 2;
     .item-name {
       color: #333333;
       font-weight: 500;
+      font-size: 13px;
       @include text-clamp($text-row, $line-height);
     }
     .quantity {
@@ -369,6 +370,7 @@ $text-row: 2;
     display: flex;
     align-items: center;
     position: relative;
+    margin-bottom: 5px;
     img{
       width: 160px;
       height: 160px;
@@ -379,7 +381,7 @@ $text-row: 2;
     padding-left: 15px;
     .Note-Details-titles{
       font-weight: 500px;
-      font-size: 15px;
+      font-size: 11px;
       padding: 2px 0;
       margin: 0;
     }

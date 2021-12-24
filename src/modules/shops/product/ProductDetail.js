@@ -14,7 +14,6 @@ import Snackbar from "../../../_components/_snackbar.component";
 const ProductDetail = ({ product, quantity, changeQuantity, }) => {
   const history = useHistory()
   const dispatch = useDispatch();
-
   
   let image;
   if (product.gallery && product.gallery.length > 1) {

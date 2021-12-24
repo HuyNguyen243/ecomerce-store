@@ -56,7 +56,7 @@ function InfoProductShipping(props) {
                           <div className='radio' key={value}>
                               <div>
                               <input id={item.id} name="radio" type="radio" />
-                              <label for={item.id} className="radio-label"></label>
+                              <label htmlFor={item.id} className="radio-label"></label>
                               </div>
                               <span>{item.title}</span>
                           </div>
@@ -99,7 +99,9 @@ function InfoProductShipping(props) {
                     <span>|</span>
                     <p>{oneDeliveryUser.phone}</p>
                   </div>
-                  <p className="address">{oneDeliveryUser?.geo_address?.formatted_address}</p>
+                  <p className="address">
+                    {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}
+                  </p>
               </div>
           )}
           <div className="nav_label style-title">
@@ -107,9 +109,9 @@ function InfoProductShipping(props) {
             <span className={!confirmCancel ? "hide" : ""}>Đơn đã huỷ</span>
           </div>
           <div className="user_info ">
-              <p className="name-shipping">Giao hàng tiết kiệm - Vận chuyển hoả tốc</p>
+              <p className="name-shipping">AhaMove - Vận chuyển hoả tốc</p>
               <p className="code-product">Mã đơn hàng: 321231</p>
-              <p>Thời gian đặt hàng: 12-11-2021 15:00:23</p>
+              <p>Thời gian đặt hàng từ 1 đến 2 ngày</p>
           </div>
         </div>
         <div className="nav_label">

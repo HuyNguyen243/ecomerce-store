@@ -12,6 +12,9 @@ import {
     TARGET_ONE_INFORMATION_DELIVERY_USER,
     PUT_INFORMATION_DELIVERY_USER,
     CHECK_HANDLE_GET_DELIVERY_USER,
+    GET_PROMOTION_VOUCHERS,
+    GET_CODE_PROMOTION,
+    DELETE_DELIVERY_USER,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -64,5 +67,17 @@ export const putDeliveryUser = (id,address) => {
 
 export const checkGetDelivetyUser = (param) => {
     return { type: CHECK_HANDLE_GET_DELIVERY_USER , payload: param};
+}
+
+export const getPromotionvouchers = () => {
+    return { type: GET_PROMOTION_VOUCHERS , payload: ""};
+}
+
+export const getCodePromotion = (code) => {
+    return { type: GET_CODE_PROMOTION , payload: code};
+}
+
+export const deleteDeliveryUSer = (id) => {
+    return { type: DELETE_DELIVERY_USER , payload: id};
 }
 
