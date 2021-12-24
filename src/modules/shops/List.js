@@ -6,7 +6,7 @@ import { LIST_PRODUCT_NAV } from "./../../_config/shop.config";
 const List = ({
   data,
   addToCart,
-}) => { 
+}) => {
   const showCart=()=>{
       if (data.length > 0) {
           return  data.map((product, index) => {

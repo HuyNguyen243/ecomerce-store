@@ -1,25 +1,46 @@
 import {
   RESET_MODAL_POPUP,
+
   AUTHENTICATE_USER,
   AUTHENTICATE_USER_SUCCESS,
+
   GET_GENERAL_DATA,
   GET_GENERAL_DATA_SUCCESS,
+
   GET_ONE_PRODUCT,
   GET_ONE_PRODUCT_SUCCESS,
+
   ADD_TO_CART,
   ADD_TO_CART_SUCCESS,
+
   GET_CATEGORIES,
   GET_CATEGORIES_SUCCESS,
+
   MOST_VIEW,
   MOST_VIEW_SUCCESS,
+
   HEADER_TITLE,
+
   POST_INFORMATION_DELIVERY_USER,
   POST_INFORMATION_DELIVERY_USER_SUCCESS,
+
   GET_INFORMATION_DELIVERY_USER,
   GET_INFORMATION_DELIVERY_USER_SUCCESS,
+
   TARGET_ONE_INFORMATION_DELIVERY_USER,
+
   PUT_INFORMATION_DELIVERY_USER,
   PUT_INFORMATION_DELIVERY_USER_SUCCESS,
+
+  CHECK_HANDLE_GET_DELIVERY_USER,
+
+  GET_PROMOTION_VOUCHERS,
+  GET_PROMOTION_VOUCHERS_SUCCESS,
+
+  GET_CODE_PROMOTION,
+  
+  DELETE_DELIVERY_USER,
+  DELETE_DELIVERY_USER_SUCCESS,
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -54,7 +75,7 @@ const initState = {
     isLoaded : false,
     data: []
   },
-  oneDeliveryUser : {},
+  oneDeliveryUser : "",
   putDeliveryUser: {
     isLoaded : false,
     data: {}
@@ -62,7 +83,21 @@ const initState = {
   modalPopup : {
     active : false,
     data : {}
-  }
+  },
+  checkGetDeliveryUser : {
+    active : false,
+    data : {}
+  },
+  promotionVoucher : {
+    isLoaded : false,
+    data : {}
+  },
+  codePromotion : "",
+  delDeliveryUser : {
+    isLoaded : false,
+    data : {}
+  },
+
 };
 
 const rootReducer = (state = initState, action) => {
@@ -84,6 +119,8 @@ const rootReducer = (state = initState, action) => {
     case POST_INFORMATION_DELIVERY_USER:
     case GET_INFORMATION_DELIVERY_USER:
     case PUT_INFORMATION_DELIVERY_USER:
+    case GET_PROMOTION_VOUCHERS:
+    case DELETE_DELIVERY_USER:
       return Object.assign({}, state, {
         isLoading: true,
       });
@@ -144,7 +181,9 @@ const rootReducer = (state = initState, action) => {
         });
       case POST_INFORMATION_DELIVERY_USER_SUCCESS:
         let currentAddress = state.userAddress.data
-        currentAddress.push(payload.data)
+        if(payload.data !== undefined){
+          currentAddress.push(payload.data)
+        }
         return Object.assign({}, state, {
           deliveryUser: {
             isLoaded: true,
@@ -189,11 +228,34 @@ const rootReducer = (state = initState, action) => {
             }
           }
         });
+      case CHECK_HANDLE_GET_DELIVERY_USER:
+          return Object.assign({}, state, {
+            checkGetDeliveryUser: payload
+          });
+      case GET_PROMOTION_VOUCHERS_SUCCESS:
+        return Object.assign({}, state, {
+          promotionVoucher: {
+            isLoaded: true,
+            data: payload
+          },
+          isLoading: false,
+        });
+      case GET_CODE_PROMOTION:
+        return Object.assign({}, state, {
+          codePromotion: payload
+        });
+      case DELETE_DELIVERY_USER_SUCCESS:
+        return Object.assign({}, state, {
+          delDeliveryUser: {
+            isLoaded: true,
+            data: payload
+          },
+          isLoading: false,
+        });
     default:
       return Object.assign({}, state, {
         isLoading: false
       });
-      
   }
 };
 

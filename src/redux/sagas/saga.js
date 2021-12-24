@@ -26,7 +26,12 @@ import {
 
   PUT_INFORMATION_DELIVERY_USER,
   PUT_INFORMATION_DELIVERY_USER_SUCCESS,
-  
+
+  GET_PROMOTION_VOUCHERS,
+  GET_PROMOTION_VOUCHERS_SUCCESS,
+
+  DELETE_DELIVERY_USER,
+  DELETE_DELIVERY_USER_SUCCESS,
 } from '../constants';
 import { API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
@@ -43,6 +48,8 @@ export default function* watcherSaga() {
   yield takeLatest(POST_INFORMATION_DELIVERY_USER, workerSaga);
   yield takeLatest(GET_INFORMATION_DELIVERY_USER, workerSaga);
   yield takeLatest(PUT_INFORMATION_DELIVERY_USER, workerSaga);
+  yield takeLatest(GET_PROMOTION_VOUCHERS, workerSaga);
+  yield takeLatest(DELETE_DELIVERY_USER, workerSaga);
 }
 
 function* workerSaga(param) {
@@ -88,6 +95,14 @@ function* workerSaga(param) {
     case PUT_INFORMATION_DELIVERY_USER:
       action = putDeliveryUser;
       type   = PUT_INFORMATION_DELIVERY_USER_SUCCESS;
+      break;
+    case GET_PROMOTION_VOUCHERS:
+      action = getPromotionvouchers;
+      type   = GET_PROMOTION_VOUCHERS_SUCCESS;
+      break;
+    case DELETE_DELIVERY_USER:
+      action = deleteDeliveryUSer;
+      type   = DELETE_DELIVERY_USER_SUCCESS;
       break;
     default:
   }
@@ -140,5 +155,13 @@ function getDeliveryUser(id) {
 
 function putDeliveryUser(param) {
   return post(`${API_URL_V2}/users/address/${param.id}/update?token=${Auth.get().token}`,param.body);
+}
+
+function getPromotionvouchers() {
+  return get(`${API_URL_V2}/promotions/vouchers/?token=${Auth.get().token}`);
+}
+
+function deleteDeliveryUSer(id) {
+  return post(`${API_URL_V2}/users/address/${id}/delete?token=${Auth.get().token}`);
 }
 

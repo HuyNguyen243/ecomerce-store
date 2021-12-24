@@ -63,7 +63,7 @@ const Detail = ({
         navId={LIST_CART_NAV}
         totalCart={totalCart}
       />
-      <div className="main_container detail-product item-info">
+      <div className="main_container detail-product item-info fix-image">
         { isLoading
           ? <Loader />
           : 

@@ -8,7 +8,9 @@ import TotalBottom from "./TotalBottom";
 const MySwal = withReactContent(Swal)
 
 function InfoProductShipping(props) {
+
   const carts = useSelector(state => state.carts);
+  const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
   const showCart=()=>{
     if(carts.length >0){
         return carts.map((item,value)=>{
@@ -20,7 +22,7 @@ function InfoProductShipping(props) {
                     </div>
                     <div className ="item-info">
                         <span className ="item-name">{item.name}</span>
-                        <span className ="item-price style-price">{item.price}</span>
+                        <span className ="item-price style-price">{item.price}đ</span>
                         <span className ="item-qty">Số lượng: {item.quantity}</span>
                     </div>
                 </div>
@@ -54,7 +56,7 @@ function InfoProductShipping(props) {
                           <div className='radio' key={value}>
                               <div>
                               <input id={item.id} name="radio" type="radio" />
-                              <label for={item.id} className="radio-label"></label>
+                              <label htmlFor={item.id} className="radio-label"></label>
                               </div>
                               <span>{item.title}</span>
                           </div>
@@ -90,22 +92,26 @@ function InfoProductShipping(props) {
           <div className="nav_label">
             <span>Thông tin nhận hàng</span>
           </div>
-          <div className="user_info">
-            <div className="name_number">
-              <p>Nguyen Van A</p>
-              <span>|</span>
-              <p>(+84) 905459483</p>
-            </div>
-              <p className="address">117 Nguyễn Đình Chính, phường 5, quận Phú Nhuận, Hồ Chí Minh</p>
-          </div>
+          {oneDeliveryUser !== "" &&(
+              <div className="user_info">
+                  <div className="name_number">
+                    <p>{oneDeliveryUser.fullname}</p>
+                    <span>|</span>
+                    <p>{oneDeliveryUser.phone}</p>
+                  </div>
+                  <p className="address">
+                    {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}
+                  </p>
+              </div>
+          )}
           <div className="nav_label style-title">
             <span>Thông tin vận chuyển</span>
             <span className={!confirmCancel ? "hide" : ""}>Đơn đã huỷ</span>
           </div>
           <div className="user_info ">
-              <p className="name-shipping">Giao hàng tiết kiệm - Vận chuyển hoả tốc</p>
+              <p className="name-shipping">AhaMove - Vận chuyển hoả tốc</p>
               <p className="code-product">Mã đơn hàng: 321231</p>
-              <p>Thời gian đặt hàng: 12-11-2021 15:00:23</p>
+              <p>Thời gian đặt hàng từ 1 đến 2 ngày</p>
           </div>
         </div>
         <div className="nav_label">

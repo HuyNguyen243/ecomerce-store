@@ -15,15 +15,14 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
     dispatch(getInitData())
 }, [dispatch]);
 
-
   useEffect(() => {
     if(!generalData.isLoaded) {
       getGeneralDataCallback()
     }
   }, [getGeneralDataCallback, generalData]);
   return (
-    <div className="main_container">
-      {Offer()}
+    <div className="main_container fix-image">
+      <Offer data={generalData?.data?.banners}/>
       {
         isLoading
         ? <div className="overlay-spinner"></div>

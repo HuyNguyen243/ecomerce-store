@@ -4,6 +4,7 @@ import Loader from './../../../_components/_loader.component';
 import Blankpage from './../../../_components/_blankpage.component';
 import {ShopContext} from './../../../contexts/ShopContext';
 
+
 const Product = ({params, showDetail, showCart}) => {
   const { products, loading, getList } = useContext(ShopContext);
 

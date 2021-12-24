@@ -4,11 +4,31 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategoriesByParentId } from './../../../redux/actions/index';
 import Header from "./../header/Header";
+import {
+  LIST_CART_NAV,
+} from "./../../../_config/shop.config";
 
 
 const ListCategory = () => {
   let { id } = useParams();
   const dispatch = useDispatch();
+
+  var event;
+  // Navigation
+  const showNavigation = (elementId) => {
+    event = document.createEvent("HTMLEvents");
+    let initEvent = `open_navigation_${elementId}`;
+    event.initEvent(initEvent, true, true);
+    event.eventName = initEvent;
+    document.dispatchEvent(event);
+    document.getElementsByTagName("html")[0].style.overflow = "auto";
+  
+  };
+
+  const showIconcart =()=>{
+    showNavigation(LIST_CART_NAV);
+  }
+  //
 
   const isLoading = useSelector(state => state.isLoading);
   const categories = useSelector(state => state.categories);
@@ -27,12 +47,13 @@ const ListCategory = () => {
       <Header
         hasNavigation={true}
         title={headerTitles}
-        
+        showCart={showIconcart}
+
       />
-      <div className="main_container">
+      <div className="main_container fix-image">
         {
           isLoading
-          ? <div className="overlay-spinner"></div>
+          ? <div className="overlay-spinner "></div>
           : 
             <>
               {
@@ -45,6 +66,7 @@ const ListCategory = () => {
               }
             </>
         }
+        <div id="snackbar" class="">Thêm vào giỏ hàng thành công</div>
       </div>
     </div>
   );
