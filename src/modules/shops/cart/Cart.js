@@ -4,7 +4,9 @@ import Header from "./../header/Header";
 import { LIST_CART_NAV } from "./../../../_config/shop.config";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux"; 
-import NumberHelper from "./../../../_helpers/number";
+import { useDispatch } from "react-redux";
+import { getUserCarts } from './../../../redux/actions/index';
+
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 import TotalBottom from "../order/TotalBottom";
@@ -14,16 +16,11 @@ const Cart = ({
   hideCart,
   totalCart
 }) => {
-
   const generalData = useSelector(state => state.generalData);
   const carts = useSelector(state => state.carts);
   const [advertisement,setAdevertisement]= useState("")
-  
-  React.useEffect(()=>{
-    if(generalData?.data.banners){
-      setAdevertisement(generalData.data.banners)
-    }
-  },[setAdevertisement,generalData.data.banners])
+  const dispatch = useDispatch();
+  const [cartLoaded, setCartLoaded] = useState(false);
 
 
   useEffect(() => {
@@ -77,16 +74,17 @@ const Cart = ({
     }
   }
 
-  const calcTotalPrice = () => {
-    if(carts.length >0){
-      let total = 0;
-      for (let i = 0; i < carts.length; i++) {
-        let price = carts[i].couponPrice > 0 ? carts[i].couponPrice : carts[i].price
-        total += price * carts[i].quantity
-      }
-      return NumberHelper.formatCurrency(total)
+
+  React.useEffect(()=>{
+    if(generalData?.data.banners?.length > 0){
+      setAdevertisement(generalData.data.banners)
     }
-  }
+    if(!cartLoaded) {
+      setCartLoaded(true)
+      dispatch(getUserCarts())
+    }
+    
+  },[setAdevertisement,generalData.data.banners, dispatch, cartLoaded, setCartLoaded])
 
   return (
     <div id={LIST_CART_NAV} className="nav-right">
@@ -107,10 +105,10 @@ const Cart = ({
               && <div className="fix-bottom">
                   <div>
                   <div className="divider"></div>
-                    <TotalBottom totalPrice={calcTotalPrice()}/>
+                    <TotalBottom/>
                   </div>
                   <div className="btn-with-icon right-icon">
-                    <Link to="/OderForm">
+                    <Link to="/order-infomation">
                     <button
                       className="btn btn-primary btn-payment"
                     >

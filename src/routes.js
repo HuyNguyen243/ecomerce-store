@@ -52,13 +52,13 @@ export const routes = [
         main: () => <Newaddress/>
     },
     {
-        path: "/oderConfirm",
+        path: "/order-confirmation",
         exact: true,
         isAuth: true,
         main: () => <OrderConfirm/>
     },
     {
-        path: "/OderForm",
+        path: "/order-infomation",
         exact: true,
         isAuth: true,
         main: () => <OrderForm/>

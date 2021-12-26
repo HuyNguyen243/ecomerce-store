@@ -15,6 +15,9 @@ import {
     GET_PROMOTION_VOUCHERS,
     GET_CODE_PROMOTION,
     DELETE_DELIVERY_USER,
+    APPLY_PROMOTION,
+    GET_CART,
+    GET_SHIPPING_FEE
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -81,3 +84,14 @@ export const deleteDeliveryUSer = (id) => {
     return { type: DELETE_DELIVERY_USER , payload: id};
 }
 
+export const applyPromotion = (body) => {
+    return { type: APPLY_PROMOTION , payload: body};
+}
+
+export const getUserCarts = () => {
+    return { type: GET_CART , payload: ""};
+}
+
+export const getOrderShippingFee = (params) => {
+    return { type: GET_SHIPPING_FEE, payload: params};
+}
