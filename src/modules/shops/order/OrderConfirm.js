@@ -40,7 +40,7 @@ const OderConfirm = (
     }
 
   const showheader =()=>{
-    if(location.pathname === "/oderConfirm"){
+    if(location.pathname === "/order-confirmation"){
       return(
         <Header
         hasNavigation={true}
