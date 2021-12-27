@@ -109,12 +109,8 @@ body {
 }
 
 .fix-bottom {
-  position: absolute;
-  left: 0;
   width: 100%;
-  bottom: 0;
   background-color: #fff;
-  
 }
 
 .btn-discount{
@@ -166,14 +162,6 @@ body {
 
 .oder-container{
   margin-bottom: 10px;
-}
-
-.list-cart{
-  div:last-child {
-    .shop-item{
-      padding-bottom: 240px;
-    }
-  }
 }
 
 .list_cart_nav{
@@ -290,4 +278,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   margin: 0 15px;
+}
+#list_cart_nav{
+  height: 100%;
 }

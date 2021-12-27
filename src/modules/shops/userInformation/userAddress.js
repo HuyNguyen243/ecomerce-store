@@ -123,42 +123,44 @@ function UserAddress() {
     }
 
     return (
-        <div >
+        <div id='list_cart_nav' className='body_wrapper'>
             <Header
                 hasNavigation={true}
                 title="THÔNG TIN ĐẶT HÀNG"
             />
-            <div className="main_container main-relative">
-                {
-                    isLoading
-                    ? <div className="overlay-spinner"></div>
-                    : 
-                        <form className="basic-form ">
-                        {(userAddress.data).length === 0 ? <span>vui lòng tạo thông tin đặt giao hàng!</span>:""}
-                        {
-                            userAddress?.data.map((item,key)=> {
-                                if(item.is_default) {
-                                    return showUserAddress(item, key)
-                                }
-                                return ''
-                            })
-                        }
-                        {
-                            userAddress?.data.map((item,key)=> {
-                                if(!item.is_default) {
-                                    return showUserAddress(item, key)
-                                }
-                                return ''
-                            })
-                        }
-                    </form>
-                }
-            </div>
-                <div className="fix-bottom fixed">
-                    <div className="btn-with-icon right-icon">
-                        <button type="submit" className="btn btn-primary" onClick={handleAddNewAddress}>Thêm địa chỉ mới</button>
-                    </div>
+            <div className='display-flex'>
+                <div className="main_container">
+                    {
+                        isLoading
+                        ? <div className="overlay-spinner"></div>
+                        : 
+                            <form className="basic-form ">
+                            {(userAddress.data).length === 0 ? <span>vui lòng tạo thông tin đặt giao hàng!</span>:""}
+                            {
+                                userAddress?.data.map((item,key)=> {
+                                    if(item.is_default) {
+                                        return showUserAddress(item, key)
+                                    }
+                                    return ''
+                                })
+                            }
+                            {
+                                userAddress?.data.map((item,key)=> {
+                                    if(!item.is_default) {
+                                        return showUserAddress(item, key)
+                                    }
+                                    return ''
+                                })
+                            }
+                        </form>
+                    }
                 </div>
+                <div className="fix-bottom ">
+                        <div className="btn-with-icon right-icon">
+                            <button type="submit" className="btn btn-primary" onClick={handleAddNewAddress}>Thêm địa chỉ mới</button>
+                        </div>
+                </div>
+            </div>
         </div>
     );
 }
