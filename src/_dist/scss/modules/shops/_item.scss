@@ -11,7 +11,7 @@ $text-row: 2;
   align-items: center;
   min-height: 150px;
   box-sizing: border-box;
-  padding: 0px $pd-md $pd-sm;
+  padding: 0px $pd-md 10px;
   background-color: $color-bg;
   // border-radius: 15px;
   position: relative;
@@ -59,7 +59,7 @@ $text-row: 2;
   }
   &.cart {
     padding: 0 $pd-sm;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
     border-radius: 0;
     box-shadow: none;
     min-height: auto;
@@ -121,7 +121,7 @@ $text-row: 2;
       .item-old-price {
         color: #bbbbbb;
         text-decoration: line-through;
-        font-size: 14px;
+        font-size: 11px;
         font-weight: 500;
       }
       .item-percentage {
@@ -141,7 +141,12 @@ $text-row: 2;
       color: #333333;
       font-weight: 500;
       font-size: 13px;
-      @include text-clamp($text-row, $line-height);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      line-height: 1.4;
     }
     .quantity {
       color: #000000;
@@ -150,7 +155,7 @@ $text-row: 2;
       font-weight: 600;
     }
     .item-price {
-      font-size: 17px;
+      font-size: 16px;
       color: #333333;
       font-weight: bold;
       
@@ -219,7 +224,7 @@ $text-row: 2;
 
 .horizontal-list-item {
   .shop-item {
-    width: 244px;
+    width: 200px;
     text-decoration: none;
     display: inline-block;
     .item-thumbnail {
@@ -338,11 +343,6 @@ $text-row: 2;
 }
 
 @media screen and (max-width: 500px) {
-  .horizontal-list-item {
-    .shop-item {
-      width: 160px;
-    }
-  }
   .horizontal-list-item .shop-item .item-thumbnail img {
     height: 120px;
   }
@@ -352,6 +352,9 @@ $text-row: 2;
   margin: 0 15px;
   padding-bottom: 15px;
   .Offer-title{
+    p{
+      margin: 0px;
+    }
     img{
       float: left;
       padding-right: 15px;
@@ -499,4 +502,14 @@ $text-row: 2;
       font-size: 4.5vw;
     }
   }
+}
+
+.swal-promotion {
+  margin: 5px;
+  span{
+    color: #f40000;
+  }
+}
+.default{
+  display: flex;
 }

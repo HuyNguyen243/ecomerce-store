@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
 import TotalBottom from "./TotalBottom";
+import NumberHelper from "./../../../_helpers/number";
+
 const MySwal = withReactContent(Swal)
 
 function InfoProductShipping(props) {
@@ -14,6 +16,7 @@ function InfoProductShipping(props) {
   const showCart=()=>{
     if(carts.length >0){
         return carts.map((item,value)=>{
+        let oldPrice = NumberHelper.formatCurrency(item.price)
             return(
               <div key={value}>
                 <div className ="shop-item cart ">
@@ -22,13 +25,17 @@ function InfoProductShipping(props) {
                     </div>
                     <div className ="item-info">
                         <span className ="item-name">{item.name}</span>
-                        <span className ="item-price style-price">{item.price}đ</span>
+                        <span className ="item-price style-price">{oldPrice}</span>
                         <span className ="item-qty">Số lượng: {item.quantity}</span>
                     </div>
                 </div>
               </div>
             )
         })
+      }else{
+      return(
+        <span className="error-messenger">Không có sản phẩm nào trong giỏ hàng!</span>
+      )
     }
   }
 
@@ -96,8 +103,10 @@ function InfoProductShipping(props) {
               <div className="user_info">
                   <div className="name_number">
                     <p>{oneDeliveryUser.fullname}</p>
-                    <span>|</span>
-                    <p>{oneDeliveryUser.phone}</p>
+                    <div>
+                      <span>|</span>
+                      <p>{oneDeliveryUser.phone}</p>
+                    </div>
                   </div>
                   <p className="address">
                     {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}

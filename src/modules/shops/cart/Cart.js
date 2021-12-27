@@ -18,7 +18,6 @@ const Cart = ({
   const generalData = useSelector(state => state.generalData);
   const carts = useSelector(state => state.carts);
   const [advertisement,setAdevertisement]= useState("")
-  
   React.useEffect(()=>{
     if(generalData?.data.banners){
       setAdevertisement(generalData.data.banners)
@@ -74,6 +73,10 @@ const Cart = ({
                 <CartItem index={key} key={key} item={item} />
             )
         })
+    }else{
+      return(
+        <span className="error-messenger">Không có sản phẩm nào trong giỏ hàng!</span>
+      )
     }
   }
 

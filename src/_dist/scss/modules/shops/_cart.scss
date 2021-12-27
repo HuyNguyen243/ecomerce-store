@@ -18,7 +18,7 @@
   padding: 0;
 }
 .swal2-html-container{
-  margin: 16px 16px 9px 16px !important;
+  margin: 10px 16px 9px 16px !important;
   text-align: center !important; 
   color: #000 !important;
   font-size: 15px;
@@ -27,6 +27,7 @@
     justify-content: center;
     align-items: flex-start;
     padding-bottom: 10px;
+    margin-top: 25px;
     p{
       margin: 0px;
       color: #f40000;
@@ -61,9 +62,8 @@
 .swal2-close{
   color: #f40000 !important;
   position: absolute;
-  justify-content: flex-end;
-  align-items:flex-start;
-  top: -10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .swal2-icon.swal2-info{
@@ -71,8 +71,8 @@
   color: #f40000 !important;
   width: 60px !important;
   height: 60px !important;
-  margin-bottom: 15px !important;
-  margin-top: 20px !important;
+  margin-bottom: 5px !important;
+  margin-top: 10px !important;
 }
 
 .swal2-title{
@@ -80,6 +80,7 @@
   font-size: 20px !important;
   padding-top: 15px !important;
   font-size: 16px !important;
+  padding-bottom: 5p;
 }
 
 .swal2-actions{
@@ -92,7 +93,8 @@
     font-weight: 500 !important;
     background-color: #f40000 !important;
     margin: 0 0 0 1%;
-    font-size: 19px !important;
+    font-size: 16px !important;
+    padding: 10px 5px;
 
   }
   .swal2-cancel{
@@ -102,11 +104,15 @@
     background-color: #f4dada !important;
     color: #f40000;
     margin: 0 1% 0 0;
-    font-size: 19px !important;
+    font-size: 16px !important;
+    padding: 10px 5px;
   }
 }
+.confirm-swal > img{
+  width: 60px;
+}
 .confirm-swal{
-  padding:  20px 55px 10px 55px;
+  padding:  10px 40px 10px 40px;
   h3{
     font-size: 16px;
     color: #f40000;
@@ -148,12 +154,12 @@
   }
   .quantity-options {
     span {
-      width: 40px ;
+      width: 30px ;
       text-align: center;
       color: #000;
       font-size: 16px;
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
     }
     .quantiy-action {
       border-radius: 10%;
@@ -167,8 +173,8 @@
       }
       &.quantity-add {
         background: #f4f4f4;
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -374,4 +380,14 @@
     // height: 215px;
     overflow: auto;
   }
+}
+.swal2-container.swal2-center > .swal2-popup {
+  padding-bottom: 10px;
+}
+.code{
+  color: #ccc;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 8px 5px;
 }

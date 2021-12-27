@@ -14,9 +14,8 @@ import Snackbar from "../../../_components/_snackbar.component";
 const ProductDetail = ({ product, quantity, changeQuantity, }) => {
   const history = useHistory()
   const dispatch = useDispatch();
-  
   let image;
-  if (product.gallery && product.gallery.length > 1) {
+  if (product.gallery && product.gallery.length > 0) {
     image = <Slideshow gallery={product.gallery} />;
   } else {
     image = <ImageDisplay src={product.image} alt={product.name} />;
@@ -37,6 +36,9 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
     let id = e.target.id
     if(id === "add"){
       quantity +=1
+      if(quantity > 99){
+        quantity = 99
+      }
     }
     if(id === "remove"){
       quantity -=1

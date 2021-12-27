@@ -21,10 +21,10 @@ ul {
 }
 
 .horizontal-wrapper {
-    width:100%;
+    // width:100%;
     position: relative;
     box-sizing: border-box;
-    margin: 0 15px;
+    margin-left: 15px;    
     .horizontal-header {
         font-stretch: condensed;
         font-style: normal;
@@ -32,9 +32,14 @@ ul {
         padding-bottom: 10px;
         .header-left {
             font-size: 15px;
-            line-height: 1.19;
+            line-height: 1.6;
             color: #333333;
             padding-left: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
         .header-right {
             font-size: 12px;
@@ -50,7 +55,7 @@ ul {
     }
     .horizontal-list {
         display: flex;
-        overflow-y:auto;
+        overflow:auto;
         width:100%;
         position: relative;
         scroll-behavior: smooth;
@@ -157,9 +162,10 @@ ul {
 }
 
 @media only screen and (min-width: 700px) {
-    .btn-discount{
+    .border-promotion{
         width: 265px !important;
     }
+   
     .swal2-container.swal2-center > .swal2-popup{
         width: 526px !important;
     }

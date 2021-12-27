@@ -35,13 +35,17 @@ const OrderForm = ({ onSubmit, isLoading,
     if(!userAddress.isLoaded) {
         getUserAddress()
     }else{
-      userAddress.data.map((item)=>{
-        if(item.is_default === 1){
-          if(oneDeliveryUser === "" ){
-            dispatch(getParentInformationDeviveryUser(item))
-          }
-        }
-      })
+      if(userAddress.data.length > 0){
+          userAddress.data.map((item)=>{
+            if(item.is_default === 1){
+              if(oneDeliveryUser === "" ){
+                dispatch(getParentInformationDeviveryUser(item))
+              }
+            }
+          })
+      }else{
+        dispatch(getParentInformationDeviveryUser(""))
+      }
     }
 }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
 
@@ -112,7 +116,7 @@ const OrderForm = ({ onSubmit, isLoading,
             <div onClick={handleSlcInforUser}>
                   {oneDeliveryUser._id  !== undefined ? showDeliveryUser()
                   :   
-                  <div className="information ">
+                  <div className="information-slc">
                      <span>Chọn thông tin nhận hàng</span>
                     <img src="/images/Back-Black.svg" alt="menu_icon" />
                   </div>

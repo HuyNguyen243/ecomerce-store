@@ -26,7 +26,7 @@ const Search = ({handleSubmit}) => {
       }
       let params = `/products/?keyword=${searchEntry}`;
       history.push(params)
-      dispatch(headTitles("kết quả tiềm kiếm"))
+      dispatch(headTitles("kết quả tìm kiếm"))
     }
   }
 
@@ -35,7 +35,9 @@ const Search = ({handleSubmit}) => {
       
       <form className={`app-search txt-left ${isShow ? '' : 'hide-search' }`} onSubmit={e => search(e)}>
         <img  src="/images/Logo-coca.png" className="form-title" alt="logo" />
+        <span className={isShow ? 'show' :  "hide"}>
         <input className="app-input" type="text" placeholder="Tìm sản phẩm ..." onChange={updateSearchInput} />
+        </span >
         <button type="submit" className="btn search-btn"><i className="material-icons">search</i></button>
       </form>
     </div>

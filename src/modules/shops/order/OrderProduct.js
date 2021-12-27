@@ -3,11 +3,13 @@ import Header from "../header/Header";
 import { useSelector } from "react-redux"; 
 import { USER_ORDER_NAV } from "./../../../_config/shop.config";
 import {Link} from "react-router-dom"
+import NumberHelper from "./../../../_helpers/number";
 const OrderProduct = ({ params, hideList = "" }) => {
   const carts = useSelector(state => state.carts);
   const showCart = () => {
     if(carts.length >0){
         return carts.map((item,value)=>{
+        let oldPrice = NumberHelper.formatCurrency(item.price)
             return(
               <div className="oder-item" key={value}>
                 <div className="oder-container">
@@ -19,7 +21,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
                                 <div className ="item-info">
                                     <span className ="id-product">Mã đơn hàng: {item.id}</span>
                                     <span className ="item-name">{item.name}</span>
-                                    <span className ="item-price">{item.price}đ</span>
+                                    <span className ="item-price">{oldPrice}</span>
                                     <span className ="item-qty">Số lượng: {item.quantity}</span>
                                 </div>
                                 <img src="/images/Back-Black.svg" alt="back" />
@@ -39,6 +41,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
     {id: 2, name: 'Chờ lấy hàng' , },
     {id: 3, name: 'Đang giao hàng' , },
     {id: 4, name: 'Đã giao hàng' , },
+    {id: 5, name: 'Đã hủy     ' , },
   ]
   const[active,setActive] = useState(1)
   

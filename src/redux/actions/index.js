@@ -70,7 +70,7 @@ export const checkGetDelivetyUser = (param) => {
 }
 
 export const getPromotionvouchers = () => {
-    return { type: GET_PROMOTION_VOUCHERS , payload: ""};
+    return { type: GET_PROMOTION_VOUCHERS , payload: ''};
 }
 
 export const getCodePromotion = (code) => {
