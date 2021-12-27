@@ -72,6 +72,12 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
+    .shop-header .header-search .app-search span{
+        width: 85%;
+    }
+    .shop-header .header-search .app-search .search-btn {
+        width: 15%;
+    }
     .code{
         font-size: 11px;
     }
@@ -195,7 +201,7 @@ $top-space: 44px;
         }
     }
     .header-search{
-        font-size: 13px;
+        font-size: 12px;
     }
     .item-percentage {
         padding: 0 !important;

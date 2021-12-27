@@ -4,23 +4,32 @@ import { useSelector,useDispatch } from 'react-redux';
 import withReactContent from 'sweetalert2-react-content';
 import { useLocation } from 'react-router';
 import { getPromotionvouchers } from '../../../redux/actions';
-import { getCodePromotion } from '../../../redux/actions';
+import { getCodePromotion, getOrderShippingFee } from '../../../redux/actions';
+import NumberHelper from "./../../../_helpers/number";
+
 const MySwal = withReactContent(Swal)
-
-
 
 function TotalBottom(props) {
     const dispatch = useDispatch()
     const location = useLocation()
 
-    const codePromotion = useSelector(state=>state.codePromotion)
+    const codePromotion = useSelector(state => state.codePromotion)
+    const appliedPromotion = useSelector(state => state.appliedPromotion)
+    const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
+    const promotionVoucher = useSelector(state => state.promotionVoucher);
+    const shippingFee = useSelector(state => state.shippingFee);
+    const isLoading = useSelector(state => state.isLoading);
+    const totalCartPrice = useSelector(state => state.totalCartPrice);
 
     useEffect(()=>{
-        dispatch(getPromotionvouchers())
-    },[dispatch])
+        if(!promotionVoucher?.isLoaded){
+            dispatch(getPromotionvouchers())
+        }
+        if(oneDeliveryUser !== "" && shippingFee === 0 ) {
+            dispatch(getOrderShippingFee({address_id : oneDeliveryUser?._id}))
+        }
+    },[dispatch,promotionVoucher, oneDeliveryUser, shippingFee ])
 
-    const promotionVoucher = useSelector(state=>state.promotionVoucher)
-    
     const handleUsePromotion =(e)=>{
         dispatch(getCodePromotion(e.target.id))
         MySwal.clickCancel()
@@ -53,7 +62,7 @@ function TotalBottom(props) {
         }
     }
 
-    const showPromotion =()=>{
+    const showPromotion = () =>{
         MySwal.fire({
             title: 'MÃ GIẢM GIÁ',
             html: <div className='promotion'> 
@@ -61,16 +70,20 @@ function TotalBottom(props) {
                         <div className="swal-promotion">
                             {data()}
                         </div>
-                  </div>,
+                </div>,
             showConfirmButton:false,
-            showCancelButton: false,
-            showCloseButton: true,
-
-          })
+            confirmButton: false,
+            showCancelButton: true,
+            cancelButtonText: "Đóng"
+        })
     }
 
     return (
         <>
+            {
+                isLoading
+                && <div className="overlay-spinner"></div>
+            }
             <div className="row cart-total">
             <div className={location.pathname === "/cart" || location.pathname === "/product-shipping" ? "row hide" : "row"}>  
                 <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
@@ -81,28 +94,42 @@ function TotalBottom(props) {
                     </div>
                 </div>
             </div>  
-            <div className={location.pathname === "/oderInformation"|| location.pathname === "/OderForm"||location.pathname === "/cart" ? "row hide" : "row"}>
+            <div className={ location.pathname === "/cart" ? "row hide" : "row"}>
                 <div className="col-6  text-sm ">Tổng tiền hàng:</div>
                 <div className="col-6 text-bold txt-right">
-                    <span className="text-nm">{props.totalPrice}</span>
+                    <span className="text-nm">{NumberHelper.formatCurrency(totalCartPrice)}</span>
                 </div>
-                <div className="col-6  text-sm">Phí vận chuyển:</div>
-                <div className="col-6 text-bold txt-right">
-                    <span className="text-nm">0</span>
-                </div>
-                <div className="col-6  text-sm">Mã giảm giá</div>
-                <div className="col-6 text-bold txt-right">
-                    <span className="text-nm">0</span>
-                </div>
+                {
+                    shippingFee > 0
+                    &&
+                    <>
+                        <div className="col-6  text-sm">Phí vận chuyển:</div>
+                        <div className="col-6 text-bold txt-right">
+                            <span className="text-nm">{ NumberHelper.formatCurrency(shippingFee) }</span>
+                        </div>
+                    </>
+                }
+                {
+                    appliedPromotion?.discount
+                    && <>
+                            <div className="col-6  text-sm">Mã giảm giá</div>
+                            <div className="col-6 text-bold txt-right">
+                                <span className="text-nm">-{ NumberHelper.formatCurrency(appliedPromotion?.discount) }</span>
+                            </div>
+                        </>
+                }
+                
             </div>
-            <div className={location.pathname === "/oderInformation"|| location.pathname === "/OderForm" ? "row hide" : "row"}>
+            <div className="row">
                 <div className="col-6 text-bold text-sm new-text">Tổng cộng:</div>
                 <div className="col-6 text-bold txt-right">
-                    <span className="text-nm new-text">{props.totalPrice}</span>
+                    <span className="text-nm new-text">{ NumberHelper.formatCurrency(
+                        (totalCartPrice + shippingFee) - (appliedPromotion?.discount ? appliedPromotion?.discount : 0)
+                    ) }</span>
                 </div>
             </div>   
             </div> 
-     </>
+        </>
     );
 }
 

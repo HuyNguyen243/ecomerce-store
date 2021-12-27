@@ -41,6 +41,15 @@ import {
   
   DELETE_DELIVERY_USER,
   DELETE_DELIVERY_USER_SUCCESS,
+
+  GET_CART,
+  GET_CART_SUCCESS,
+
+  APPLY_PROMOTION,
+  APPLY_PROMOTION_SUCCESS,
+
+  GET_SHIPPING_FEE,
+  GET_SHIPPING_FEE_SUCCESS
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -58,6 +67,7 @@ const initState = {
     data: {}
   },
   carts: CartService.get(),
+  totalCartPrice: CartService.getTotalPrice(),
   categories: {
     isLoaded : false,
     data: {}
@@ -97,7 +107,8 @@ const initState = {
     isLoaded : false,
     data : {}
   },
-
+  appliedPromotion : {},
+  shippingFee: 0
 };
 
 const rootReducer = (state = initState, action) => {
@@ -121,12 +132,16 @@ const rootReducer = (state = initState, action) => {
     case PUT_INFORMATION_DELIVERY_USER:
     case GET_PROMOTION_VOUCHERS:
     case DELETE_DELIVERY_USER:
+    case APPLY_PROMOTION:
+    case GET_CART:
+    case GET_SHIPPING_FEE:
       return Object.assign({}, state, {
         isLoading: true,
       });
     case ADD_TO_CART:
       return Object.assign({}, state, {
         carts: CartService.get(),
+        totalCartPrice : CartService.getTotalPrice()
       });
     case AUTHENTICATE_USER_SUCCESS:
       if (payload.success) {
@@ -145,6 +160,7 @@ const rootReducer = (state = initState, action) => {
         },
         carts: payload?.data?.carts,
         isLoading: false,
+        totalCartPrice : CartService.getTotalPrice()
       });
     case GET_ONE_PRODUCT_SUCCESS:
       return Object.assign({}, state, {
@@ -211,7 +227,8 @@ const rootReducer = (state = initState, action) => {
         });
       case TARGET_ONE_INFORMATION_DELIVERY_USER:
         return Object.assign({}, state, {
-          oneDeliveryUser: payload
+          oneDeliveryUser: payload,
+          shippingFee : 0
         });
       case PUT_INFORMATION_DELIVERY_USER_SUCCESS:
         return Object.assign({}, state, {
@@ -251,6 +268,32 @@ const rootReducer = (state = initState, action) => {
             isLoaded: true,
             data: payload
           },
+          isLoading: false,
+        });
+      case APPLY_PROMOTION_SUCCESS:
+        let appliedPromotionCode = payload.success ? payload.data?.code : ''
+        return Object.assign({}, state, {
+          codePromotion: appliedPromotionCode,
+          appliedPromotion: payload.data,
+          isLoading: false,
+          modalPopup: {
+            active : true,
+            data : {
+              success : payload.success,
+              message : payload.message
+            }
+          }
+        });
+      case GET_CART_SUCCESS:
+        CartService.save(payload?.data)
+        return Object.assign({}, state, {
+          carts: payload.data,
+          isLoading: false,
+          totalCartPrice : CartService.getTotalPrice()
+        });
+      case GET_SHIPPING_FEE_SUCCESS:
+        return Object.assign({}, state, {
+          shippingFee: payload.success ? payload.data?.shipping_fee : 0,
           isLoading: false,
         });
     default:

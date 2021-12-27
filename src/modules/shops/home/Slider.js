@@ -83,8 +83,8 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
             <div className="col-4 header-right txt-primary txt-right" ><span className="pointer" onClick={() => { getByCategory(categoryId, title) }}>Xem tất cả</span></div>
         </div>
         <div>
-            <span onClick={() => {doScrolling(categoryId, 'prev')}} className="list-navigate prev hide"><Icon name="chevron_left" /></span>
-            <span onClick={() => {doScrolling(categoryId, 'next')}} className={`list-navigate next next-style ${data.length < 3 ? 'hide' : ''}`}><Icon name="chevron_right" /></span>
+            {/* <span onClick={() => {doScrolling(categoryId, 'prev')}} className="list-navigate prev hide"><Icon name="chevron_left" /></span> */}
+            {/* <span onClick={() => {doScrolling(categoryId, 'next')}} className={`list-navigate next next-style ${data.length < 3 ? 'hide' : ''}`}><Icon name="chevron_right" /></span> */}
             <div id={categoryId} className="horizontal-list">
               {productList}
             </div>

@@ -35,16 +35,13 @@ const OrderForm = ({ onSubmit, isLoading,
     if(!userAddress.isLoaded) {
         getUserAddress()
     }else{
-      if(userAddress.data.length > 0){
-          userAddress.data.map((item)=>{
-            if(item.is_default === 1){
-              if(oneDeliveryUser === "" ){
-                dispatch(getParentInformationDeviveryUser(item))
-              }
-            }
-          })
-      }else{
-        dispatch(getParentInformationDeviveryUser(""))
+      for (let i = 0; i < userAddress?.data.length; i++) {
+        if(userAddress?.data[i].is_default === 1){
+          if(oneDeliveryUser === "" ){
+            dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
+            break;
+          }
+        }
       }
     }
 }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
@@ -89,7 +86,7 @@ const OrderForm = ({ onSubmit, isLoading,
       setCondition(false)
     }else{
       setCondition(true)
-      history.push("/oderConfirm")
+      history.push("/order-confirmation")
     }
   }
 

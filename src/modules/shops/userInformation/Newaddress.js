@@ -203,7 +203,7 @@ function Newaddress() {
                                     { errors.name && errors.name.type === "required" ?
                                         <span className="txt-danger">{emptyErrorTxt}</span> :""
                                     }
-                                <input placeholder="Số điện thoại  ***" type="number" name="phone" defaultValue={phone} onChange={handlePhone}
+                                <input placeholder="Số điện thoại  ***" type="text" name="phone" defaultValue={phone} onChange={handlePhone}
                                     ref={register({
                                         required: true,
                                         pattern: /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/

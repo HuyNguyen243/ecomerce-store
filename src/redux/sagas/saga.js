@@ -32,6 +32,15 @@ import {
 
   DELETE_DELIVERY_USER,
   DELETE_DELIVERY_USER_SUCCESS,
+
+  GET_CART,
+  GET_CART_SUCCESS,
+
+  APPLY_PROMOTION,
+  APPLY_PROMOTION_SUCCESS,
+
+  GET_SHIPPING_FEE,
+  GET_SHIPPING_FEE_SUCCESS
 } from '../constants';
 import { API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
@@ -50,6 +59,9 @@ export default function* watcherSaga() {
   yield takeLatest(PUT_INFORMATION_DELIVERY_USER, workerSaga);
   yield takeLatest(GET_PROMOTION_VOUCHERS, workerSaga);
   yield takeLatest(DELETE_DELIVERY_USER, workerSaga);
+  yield takeLatest(APPLY_PROMOTION, workerSaga);
+  yield takeLatest(GET_CART, workerSaga);
+  yield takeLatest(GET_SHIPPING_FEE, workerSaga);
 }
 
 function* workerSaga(param) {
@@ -104,7 +116,20 @@ function* workerSaga(param) {
       action = deleteDeliveryUSer;
       type   = DELETE_DELIVERY_USER_SUCCESS;
       break;
+    case APPLY_PROMOTION:
+      action = usePromotion;
+      type   = APPLY_PROMOTION_SUCCESS;
+      break;
+    case GET_CART:
+      action = getUserCarts;
+      type   = GET_CART_SUCCESS;
+      break;
+    case GET_SHIPPING_FEE:
+      action = getOrderShippingFee;
+      type   = GET_SHIPPING_FEE_SUCCESS;
+      break;
     default:
+      break;
   }
   if (action !== '' && type !== '') {
     try {
@@ -165,3 +190,14 @@ function deleteDeliveryUSer(id) {
   return post(`${API_URL_V2}/users/address/${id}/delete?token=${Auth.get().token}`);
 }
 
+function getUserCarts() {
+  return get(`${API_URL_V2}/carts/?token=${Auth.get().token}&user_id=${Auth.get().user_id}`);
+}
+
+function usePromotion(body) {
+  return post(`${API_URL_V2}/promotions/actions/apply?token=${Auth.get().token}`, body);
+}
+
+function getOrderShippingFee(param){
+  return get(`${API_URL_V2}/orders/shipping-fee/?token=${Auth.get().token}&address_id=${param.address_id}`);
+}
