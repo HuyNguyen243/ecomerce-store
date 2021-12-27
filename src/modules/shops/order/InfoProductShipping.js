@@ -94,50 +94,51 @@ function InfoProductShipping(props) {
   return (
     <div className="body_wrapper ">
       {showheader()}
-      <div className="main_container">
-        <div className="title-inforShip">
-          <div className="nav_label">
-            <span>Thông tin nhận hàng</span>
-          </div>
-          {oneDeliveryUser !== "" &&(
-              <div className="user_info">
-                  <div className="name_number">
-                    <p>{oneDeliveryUser.fullname}</p>
-                    <div>
-                      <span>|</span>
-                      <p>{oneDeliveryUser.phone}</p>
+      <div className="display-flex">
+        <div className="main_container">
+          <div className="title-inforShip">
+            <div className="nav_label">
+              <span>Thông tin nhận hàng</span>
+            </div>
+            {oneDeliveryUser !== "" &&(
+                <div className="user_info">
+                    <div className="name_number">
+                      <p>{oneDeliveryUser.fullname}</p>
+                      <div>
+                        <span>|</span>
+                        <p>{oneDeliveryUser.phone}</p>
+                      </div>
                     </div>
-                  </div>
-                  <p className="address">
-                    {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}
-                  </p>
-              </div>
-          )}
-          <div className="nav_label style-title">
-            <span>Thông tin vận chuyển</span>
-            <span className={!confirmCancel ? "hide" : ""}>Đơn đã huỷ</span>
+                    <p className="address">
+                      {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}
+                    </p>
+                </div>
+            )}
+            <div className="nav_label style-title">
+              <span>Thông tin vận chuyển</span>
+              <span className={!confirmCancel ? "hide" : ""}>Đơn đã huỷ</span>
+            </div>
+            <div className="user_info ">
+                <p className="name-shipping">AhaMove - Vận chuyển hoả tốc</p>
+                <p className="code-product">Mã đơn hàng: 321231</p>
+                <p>Thời gian đặt hàng từ 1 đến 2 ngày</p>
+            </div>
           </div>
-          <div className="user_info ">
-              <p className="name-shipping">AhaMove - Vận chuyển hoả tốc</p>
-              <p className="code-product">Mã đơn hàng: 321231</p>
-              <p>Thời gian đặt hàng từ 1 đến 2 ngày</p>
+          <div className="nav_label">
+              <span>Thông tin sản phẩm</span>
           </div>
-        </div>
-        <div className="nav_label">
-            <span>Thông tin sản phẩm</span>
-        </div>
-        <div className="news-style-cart style-for-cart list-cart">
-          {showCart()}
+          <div className="news-style-cart style-for-cart list-cart">
+            {showCart()}
+          </div>
         </div>
         <div className="fix-bottom">
-          <div className="divider"></div>
-          <TotalBottom />
-          <div className="btn-with-icon right-icon">
-                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? "Huỷ đơn hàng" : "Đặt lại đơn"}</button>
-          </div>
+            <div className="divider"></div>
+            <TotalBottom />
+            <div className="btn-with-icon right-icon">
+                  <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? "Huỷ đơn hàng" : "Đặt lại đơn"}</button>
+            </div>
         </div>
       </div>
-      
     </div>
   );
 }

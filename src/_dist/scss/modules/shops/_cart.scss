@@ -128,9 +128,7 @@
 
 #list_cart_nav {
   .main_container {
-    height: calc(100% - 125px);
     overflow: auto;
-    position: absolute;
   }
   .btn-payment {
     width: 100%;
@@ -357,19 +355,6 @@
   position: relative;
 }
 
-.oderinformation{
-  .shop-item:last-child{
-    margin-bottom: 150px;
-  }
-}
-
-
-.new-bottom{
-  .shop-item:last-child{
-    margin-bottom: 300px;
-  }
-}
-
 .fix_icon{
   img{
     width: 25px;
@@ -391,4 +376,11 @@
   background: transparent;
   border: none;
   padding: 8px 5px;
+}
+
+.display-flex{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

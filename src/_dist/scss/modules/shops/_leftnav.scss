@@ -365,5 +365,14 @@ $top-space: 44px;
   
 }
 
+@media(min-width: 1920px){
+    .basic-form .form-group .information .newstyle{
+        width: 95%;
+    }
+    .basic-form .form-group .information .newstyle:nth-child(2) {
+        width: 5%;
+    }
+}
+
 
 
