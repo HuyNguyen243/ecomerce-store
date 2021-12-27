@@ -250,6 +250,7 @@ const rootReducer = (state = initState, action) => {
             checkGetDeliveryUser: payload
           });
       case GET_PROMOTION_VOUCHERS_SUCCESS:
+        console.log(payload)
         return Object.assign({}, state, {
           promotionVoucher: {
             isLoaded: true,

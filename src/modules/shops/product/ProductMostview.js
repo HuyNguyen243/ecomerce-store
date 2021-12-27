@@ -59,6 +59,13 @@ const ProductMostview = () => {
                <List data={mostview.data}/>
                </>
             )
+    }else{
+    
+        return(
+          <span className="error-messenger">không hiện kết quả tìm kiếm phù hợp!</span>
+          )
+         
+        
     }
   }
   return (
@@ -71,7 +78,7 @@ const ProductMostview = () => {
       <div className="main_container fix-images">
                 {DataMostView()}
       </div>
-      <div id="snackbar" class="">Thêm vào giỏ hàng thành công</div>
+      <div id="snackbar" className="">Thêm vào giỏ hàng thành công</div>
     </div>
   );
 };

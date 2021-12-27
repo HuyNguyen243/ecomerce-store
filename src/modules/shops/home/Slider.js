@@ -5,6 +5,7 @@ import Icon from './../../../_components/_icon.component';
 import{ useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { headTitles } from './../../../redux/actions/index';
+import { getCategoriesByParentId } from "./../../../redux/actions/index";
 
 
 const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, addToCart }) => {
@@ -69,6 +70,7 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
       history.push(url);
     }else{
       history.push(`/categories/${categoryId}`);
+      dispatch(getCategoriesByParentId(id))
     }
 
   }
@@ -76,15 +78,17 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
 
   return (
     <div className="horizontal-wrapper">
-      <div className="horizontal-header row">
-        <div className="col-8 header-left text-bold">{title}</div>
-        <div className="col-4 header-right txt-primary txt-right" ><span className="pointer" onClick={() => { getByCategory(categoryId, title) }}>Xem tất cả</span></div>
-      </div>
-      <span onClick={() => {doScrolling(categoryId, 'prev')}} className="list-navigate prev hide"><Icon name="chevron_left" /></span>
-      <span onClick={() => {doScrolling(categoryId, 'next')}} className={`list-navigate next next-style ${data.length < 3 ? 'hide' : ''}`}><Icon name="chevron_right" /></span>
-      <div id={categoryId} className="horizontal-list">
-        {productList}
-      </div>
+        <div className="horizontal-header row">
+            <div className="col-8 header-left text-bold">{title}</div>
+            <div className="col-4 header-right txt-primary txt-right" ><span className="pointer" onClick={() => { getByCategory(categoryId, title) }}>Xem tất cả</span></div>
+        </div>
+        <div>
+            {/* <span onClick={() => {doScrolling(categoryId, 'prev')}} className="list-navigate prev hide"><Icon name="chevron_left" /></span> */}
+            {/* <span onClick={() => {doScrolling(categoryId, 'next')}} className={`list-navigate next next-style ${data.length < 3 ? 'hide' : ''}`}><Icon name="chevron_right" /></span> */}
+            <div id={categoryId} className="horizontal-list">
+              {productList}
+            </div>
+        </div>
     </div>
   );
 }

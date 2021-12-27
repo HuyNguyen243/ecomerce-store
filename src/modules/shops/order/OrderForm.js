@@ -113,7 +113,7 @@ const OrderForm = ({ onSubmit, isLoading,
             <div onClick={handleSlcInforUser}>
                   {oneDeliveryUser._id  !== undefined ? showDeliveryUser()
                   :   
-                  <div className="information ">
+                  <div className="information-slc">
                      <span>Chọn thông tin nhận hàng</span>
                     <img src="/images/Back-Black.svg" alt="menu_icon" />
                   </div>

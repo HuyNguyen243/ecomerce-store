@@ -95,9 +95,11 @@ const OderConfirm = (
         return(
           <div className="user_info">
             <div className="name_number">
-              <p>{oneDeliveryUser.fullname}</p> 
-              <span>|</span> 
-              <p>{oneDeliveryUser.phone}</p>
+              <p>{oneDeliveryUser.fullname}</p>
+              <div>
+                <span>|</span> 
+                <p>{oneDeliveryUser.phone}</p>
+              </div> 
             </div>
               <p className="address">
                     {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}
@@ -141,7 +143,7 @@ const OderConfirm = (
         <div className="divider"></div>
         <TotalBottom totalPrice={calcTotalPrice()}/>
         <div className="btn-with-icon right-icon">
-            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Xác nhân đặt hàng</button>
+            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Xác nhận đặt hàng</button>
         </div>
      </div>
     </div>

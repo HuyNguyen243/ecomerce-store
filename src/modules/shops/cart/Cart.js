@@ -71,6 +71,10 @@ const Cart = ({
                 <CartItem index={key} key={key} item={item} />
             )
         })
+    }else{
+      return(
+        <span className="error-messenger">Không có sản phẩm nào trong giỏ hàng!</span>
+      )
     }
   }
 

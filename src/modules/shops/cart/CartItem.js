@@ -14,6 +14,9 @@ const CartItem = ({item,index}) => {
     if(quantity === 0) {
       CartService.remove(index);
     }else {
+      if(quantity > 99){
+        quantity = 99
+      }
       CartService.updateQuantity(index, quantity)
     }
     dispatch(addCart())

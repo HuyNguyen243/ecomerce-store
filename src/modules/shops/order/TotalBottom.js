@@ -88,7 +88,10 @@ function TotalBottom(props) {
             <div className={location.pathname === "/cart" || location.pathname === "/product-shipping" ? "row hide" : "row"}>  
                 <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
                 <div className="col-6 text-bold txt-right">
-                    <input type="text" name="code"   placeholder="Nhập mã giảm giá" className={"btn-discount"} onClick={showPromotion} defaultValue={codePromotion? codePromotion.toUpperCase():""}/>
+                    <div className='border-promotion'>
+                        {/* <input type="text" name="code"   placeholder="Nhập mã giảm giá" className={"btn-discount"} onClick={showPromotion} value={codePromotion? codePromotion.toUpperCase():""}/> */}
+                        <button className='code' onClick={showPromotion}>{codePromotion? codePromotion.toUpperCase():"Nhập mã giảm giá"}</button>
+                    </div>
                 </div>
             </div>  
             <div className={ location.pathname === "/cart" ? "row hide" : "row"}>

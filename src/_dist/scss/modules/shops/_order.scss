@@ -139,12 +139,25 @@
     p{
         margin: 4px 0;
         font-size: 13px;
+        color: #333;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
     .name_number{
+       
         display: flex;
         align-items: center;
         font-size: 13px;
         font-weight: 400;
+        div{
+            display: flex;
+            p{
+                margin: 0;
+            }
+        }
     }
     span,
     .address{
@@ -200,4 +213,10 @@
         background-color: #ffdada;
         border-radius: 10px;
     }
+}
+
+.border-promotion{
+    border-radius: 10px;
+    border-style: dashed;
+    border-color: #f40000;
 }

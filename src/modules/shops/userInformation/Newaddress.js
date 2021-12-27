@@ -132,7 +132,6 @@ function Newaddress() {
                 if(oneDeliveryUser?._id){
                     dispatch(putDeliveryUser(oneDeliveryUser._id, formData))
                 }else{
-                    
                     dispatch(postDeliveryUser(formData))
                 }
             }
@@ -140,7 +139,7 @@ function Newaddress() {
     }
 
     const handleTargetName =(e)=>{
-        setName(e.target.value)
+            setName(e.target.value)
     }
 
     const handleTargetAddress = (e)=>{
@@ -153,12 +152,12 @@ function Newaddress() {
     const handleAfterSubmit =  React.useCallback(() => {
         if(modalPopup.data.success) {
             ModalService.success('Lưu thành công')
+            history.goBack()
         }else {
-            ModalService.error('Lưu thất bại')
+            ModalService.error('Lưu thất bại , vui lòng điền thông tin bắt buộc!')
         }
         setTimeout(() => {
             dispatch(resetPopup())
-            history.goBack()
         }, 1000);
     }, [modalPopup, history, dispatch])
 
@@ -199,12 +198,12 @@ function Newaddress() {
                                 <span>Thông tin liên hệ</span>
                             </div>
                             <div className="user-information">
-                                <input placeholder="Họ và tên ***" type="text" name="name" ref={register({ required: true })}
+                                <input maxLength={60} placeholder="Họ và tên ***" type="text" name="name" ref={register({ required: true })}
                                 defaultValue={name} onChange={handleTargetName} />
                                     { errors.name && errors.name.type === "required" ?
                                         <span className="txt-danger">{emptyErrorTxt}</span> :""
                                     }
-                                <input placeholder="Số điện thoại  ***" type="number" name="phone" defaultValue={phone} onChange={handlePhone}
+                                <input placeholder="Số điện thoại  ***" type="text" name="phone" defaultValue={phone} onChange={handlePhone}
                                     ref={register({
                                         required: true,
                                         pattern: /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/
@@ -251,12 +250,12 @@ function Newaddress() {
                                 )}
                             </div>
                             <div className="user-information">
-                                <input placeholder="Tên đường, số nhà, toà nhà***" type="text" name="address" ref={register({ required: true })} defaultValue={address}
+                                <input maxLength={60} placeholder="Tên đường, số nhà, toà nhà***" type="text" name="address" ref={register({ required: true })} defaultValue={address}
                                 onChange={handleTargetAddress}></input>
                                 {errors.address && errors.address.type === "required" && (
                                 <span className="txt-danger">{emptyErrorTxt}</span>
                                 )}
-                                <input placeholder="Ghi chú (chỉ giao giờ hành chính, giao cả tuần ...)" defaultValue={note} type="text" name="note" onChange={(e)=>setNote(e.target.value)}></input>
+                                <input maxLength={60} placeholder="Ghi chú (chỉ giao giờ hành chính, giao cả tuần ...)" defaultValue={note} type="text" name="note" onChange={(e)=>setNote(e.target.value)}></input>
                             </div>
                             <div className="nav_label">
                                 <span>Cài đặt</span>
