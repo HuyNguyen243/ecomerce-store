@@ -38,7 +38,7 @@ function TotalBottom(props) {
     const data =()=>{
         if((promotionVoucher?.data).length === 0){
             return(
-                <span>chưa có voucher nào cả !</span>
+                <span>Chưa có voucher nào cả !</span>
             )
         }
         if(promotionVoucher?.isLoaded){

@@ -384,3 +384,9 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.swal2-styled.swal2-confirm:focus,
+.swal2-styled.swal2-cancel:focus {
+  box-shadow: none !important;
+}
+

@@ -81,9 +81,6 @@ $top-space: 44px;
     .code{
         font-size: 11px;
     }
-    .basic-form .form-group .shipping .newstyle p, .basic-form .form-group .information .newstyle p{
-        width: 65%;
-    }
     .basic-form .form-group .information .newstyle{
         width: 70%;
     }
@@ -312,11 +309,16 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
+    .is_default{
+        p{
+            width: 60%;
+        }
+        span{
+            width: 40%;
+        }
+    }
     .row .col-6 {
         padding: 5px 15px;
-    }
-    .basic-form .form-group .shipping .newstyle p, .basic-form .form-group .information .newstyle p{
-        width: 60%;
     }
     
     .shop-item.alt .item-description p{
