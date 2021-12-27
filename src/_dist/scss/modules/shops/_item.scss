@@ -387,6 +387,12 @@ $text-row: 2;
       font-size: 11px;
       padding: 2px 0;
       margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      line-height: 1.4;
     }
     .Minimum-Order{
       font-weight: 300px;
@@ -401,6 +407,12 @@ $text-row: 2;
       padding: 2px 0;
       margin: 0;
       text-align: start;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      line-height: 1.4;
     }
     img{
       position: absolute;

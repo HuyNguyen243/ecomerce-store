@@ -53,7 +53,7 @@ a{
                 -webkit-box-orient: vertical;
                 text-overflow: ellipsis;
                 overflow: hidden;
-                width: 70%;
+                // width: 70%;
             }
             img{
                 padding:2px 0;
@@ -245,6 +245,14 @@ a{
     display: flex;
     width: 100%;
     justify-content: space-between;
+    p{
+        width: 65%;
+    }
+    span{
+        width: 35%;
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 
 .txt-right{
