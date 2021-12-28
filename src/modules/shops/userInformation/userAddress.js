@@ -30,14 +30,13 @@ function UserAddress() {
         if(!userAddress.isLoaded) {
             getUserAddress()
         }else{
-            for (let i = 0; i < userAddress?.data?.length; i++) {
-                if(userAddress?.data[i].is_default === 1){
-                    if(oneDeliveryUser === "" ){
-                        dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
-                        break;
-                    }
-                }
+          userAddress.data.map((item)=>{
+            if(item.is_default === 1){
+              if(oneDeliveryUser === "" ){
+                dispatch(getParentInformationDeviveryUser(item))
+              }
             }
+          })
         }
     }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
 
@@ -89,6 +88,9 @@ function UserAddress() {
         if(delDeliveryUser?.isLoaded){
             if(delDeliveryUser.data.data.id === item._id){
                 (userAddress?.data).splice((userAddress?.data).indexOf(item),1)
+            }
+            if(item.is_default === 1){
+                dispatch(getParentInformationDeviveryUser(item))
             }
         }
 

@@ -7,9 +7,7 @@ import {  useSelector, useDispatch } from "react-redux";
 import CartItem from '../cart/CartItem';
 import Auth from "../../../_services/auth";
 import { getDeliveryUser, checkGetDelivetyUser, getParentInformationDeviveryUser  } from "../../../redux/actions";
-// import UserAddress from "../userInformation/userAddress";
-
-
+import PopUpAdventisement from "./PopUpAdventisement";
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
   totalCart
@@ -25,8 +23,7 @@ const OrderForm = ({ onSubmit, isLoading,
   const carts = useSelector(state => state.carts);
   const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
   const userAddress = useSelector(state => state.userAddress);
-  // const delDeliveryUser = useSelector(state => state.delDeliveryUser)
-  console.log(oneDeliveryUser.id)
+  const delDeliveryUser = useSelector(state => state.delDeliveryUser)
   const userID = Auth.get().user_id
 
   const getUserAddress = React.useCallback(() => {
@@ -45,9 +42,13 @@ const OrderForm = ({ onSubmit, isLoading,
           }
         }
       }
+      if(delDeliveryUser?.isLoaded || oneDeliveryUser?.isLoaded){
+        if(delDeliveryUser.data.data.id === oneDeliveryUser._id){
+          dispatch(getParentInformationDeviveryUser(""))
+        }
+      }
     }
-}, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
-
+}, [getUserAddress, userAddress,dispatch,oneDeliveryUser,delDeliveryUser]);
   const showCart=()=>{
     if(carts.length >0){
         return carts.map((item, key)=>{
@@ -59,7 +60,7 @@ const OrderForm = ({ onSubmit, isLoading,
   }
 
   const showDeliveryUser = ()=>{
-    if(oneDeliveryUser !== ""){
+    if(oneDeliveryUser !== "" ){
       return(
         <div className="form-group"  >
           <div className="information">
@@ -98,6 +99,7 @@ const OrderForm = ({ onSubmit, isLoading,
 
   return (
     <div id={LIST_CART_NAV} className="nav-right">
+      {PopUpAdventisement()}
       <Header
         doNavigation={hideCart}
         navId={LIST_CART_NAV}
