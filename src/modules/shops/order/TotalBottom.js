@@ -8,6 +8,7 @@ import { getOrderShippingFee, applyPromotion, resetPopup  } from '../../../redux
 import NumberHelper from "./../../../_helpers/number";
 import ModalService from './../../../_services/modal';
 
+
 const MySwal = withReactContent(Swal)
 
 function TotalBottom(props) {
@@ -95,21 +96,21 @@ function TotalBottom(props) {
     }
 
     const showPromotion = () =>{
-        MySwal.fire({
-            title: 'MÃ GIẢM GIÁ',
-            html:        <div className='promotion'>
-                                <input type='text' className='input-promotion' placeholder='Nhập mã giảm giá' 
-                                onChange={(e)=>setSearchPromotion(e.target.value)} />
+        // MySwal.fire({
+        //     title: 'MÃ GIẢM GIÁ',
+        //     html:        <div className='promotion'>
+        //                         <input type='text' className='input-promotion' placeholder='Nhập mã giảm giá' 
+        //                         onChange={(e)=>setSearchPromotion(e.target.value)} />
                         
-                                <div className="swal-promotion">
-                                    {data()}
-                                </div>
-                        </div>,
-            showConfirmButton:false,
-            confirmButton: false,
-            showCancelButton: true,
-            cancelButtonText: "Đóng"
-        })
+        //                         <div className="swal-promotion">
+        //                             {data()}
+        //                         </div>
+        //                 </div>,
+        //     showConfirmButton:false,
+        //     confirmButton: false,
+        //     showCancelButton: true,
+        //     cancelButtonText: "Đóng"
+        // })
     }
 
     return (
