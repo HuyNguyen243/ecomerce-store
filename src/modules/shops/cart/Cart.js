@@ -71,6 +71,10 @@ const Cart = ({
                 <CartItem index={key} key={key} item={item} />
             )
         })
+    }else{
+      return(
+        <span className="error-messenger">Không có sản phẩm nào trong giỏ hàng!</span>
+      )
     }
   }
 
@@ -95,29 +99,31 @@ const Cart = ({
         title="Giỏ hàng"
         totalCart={totalCart}
       />
-      <div className="main_container">
-        <div className="news-style-cart style-for-cart stl-botom-cart list-cart">
-          {showCart()}
+      <div className="display-flex">
+          <div className="main_container">
+            <div className="news-style-cart style-for-cart stl-botom-cart list-cart">
+              {showCart()}
+              </div>
           </div>
-      </div>
-      {
-              carts.length > 0
-              && <div className="fix-bottom">
-                  <div>
-                  <div className="divider"></div>
-                    <TotalBottom/>
-                  </div>
-                  <div className="btn-with-icon right-icon">
-                    <Link to="/order-infomation">
-                    <button
-                      className="btn btn-primary btn-payment"
-                    >
-                      Đặt hàng
-                    </button>
-                    </Link>
-                  </div>
-                </div>
-            }
+          {
+                  carts.length > 0
+                  && <div className="fix-bottom">
+                      <div>
+                      <div className="divider"></div>
+                        <TotalBottom/>
+                      </div>
+                      <div className="btn-with-icon right-icon">
+                        <Link to="/order-infomation">
+                        <button
+                          className="btn btn-primary btn-payment"
+                        >
+                          Đặt hàng
+                        </button>
+                        </Link>
+                      </div>
+                    </div>
+                }
+          </div>
     </div>
   );
 };

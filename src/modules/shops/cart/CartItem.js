@@ -5,8 +5,11 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import CartService from '../../../_services/cart';
 import { addCart } from './../../../redux/actions/index';
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content';
 
 const CartItem = ({item,index}) => {
+  const MySwal = withReactContent(Swal)
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -14,14 +17,28 @@ const CartItem = ({item,index}) => {
     if(quantity === 0) {
       CartService.remove(index);
     }else {
+      if(quantity > 99){
+        quantity = 99
+      }
       CartService.updateQuantity(index, quantity)
     }
     dispatch(addCart())
   }
 
   const removeCartItem = () => {
-    CartService.remove(index);
-    dispatch(addCart())
+    MySwal.fire({
+      text: "Bạn có đồng ý xóa sản phẩm này khỏi giỏ hàng ?!",
+      icon: 'info',
+      confirmButtonText: 'Đồng ý',
+      showCancelButton: true,
+      cancelButtonText: "Huỷ bỏ"
+    }).then((result)=>{
+        if(result.isConfirmed){
+          CartService.remove(index);
+          dispatch(addCart())
+        }
+    })
+
   }
 
   return (

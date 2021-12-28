@@ -52,7 +52,7 @@ const ListCategory = () => {
       />
       <div className="main_container fix-image">
         {
-          isLoading
+          isLoading && categories.isLoaded
           ? <div className="overlay-spinner "></div>
           : 
             <>
@@ -66,7 +66,7 @@ const ListCategory = () => {
               }
             </>
         }
-        <div id="snackbar" class="">Thêm vào giỏ hàng thành công</div>
+        <div id="snackbar" className="">Thêm vào giỏ hàng thành công</div>
       </div>
     </div>
   );

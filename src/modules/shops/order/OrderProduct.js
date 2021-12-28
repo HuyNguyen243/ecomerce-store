@@ -17,6 +17,8 @@ import {
   STATUS_CANCELLED
 } from './../../../_config/shop.config';
 
+import NumberHelper from "./../../../_helpers/number";
+
 const OrderProduct = ({ params, hideList = "" }) => {
   const[active,setActive] = useState(0)
   const dispatch = useDispatch();

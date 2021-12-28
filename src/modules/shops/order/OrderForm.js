@@ -108,51 +108,50 @@ const OrderForm = ({ onSubmit, isLoading,
             <div className="nav_label">
               <span>Thông tin giao hàng</span>
             </div>
-            <div onClick={handleSlcInforUser}>
-                  {
-                    oneDeliveryUser._id  !== undefined ? showDeliveryUser()
-                    :   
-                    <div className="information ">
-                      <span>Chọn thông tin nhận hàng</span>
-                      <img src="/images/Back-Black.svg" alt="menu_icon" />
-                    </div>
-                  }
+              <div onClick={handleSlcInforUser}>
+                    {
+                      oneDeliveryUser._id  !== undefined ? showDeliveryUser()
+                      :   
+                      <div className="information ">
+                        <span>Chọn thông tin nhận hàng</span>
+                        <img src="/images/Back-Black.svg" alt="menu_icon" />
+                      </div>
+                    }
+              </div>
+              {condition === false &&(
+                <span className="txt-danger">{dangerTxt}</span>
+              )}
+              <div className="nav_label">
+                <span>Phương thức vận chuyển</span>
+              </div>
+              <div className="shipping height">
+                      <span>AhaMove</span>
+              </div>
             </div>
-            {condition === false &&(
-          <span className="txt-danger">{dangerTxt}</span>
-            )}
-            <div className="nav_label">
-              <span>Phương thức vận chuyển</span>
-            </div>
-            <div className="shipping height">
-                    <span>AhaMove</span>
-            </div>
-        
+          </form>
+          <div className="nav_label">
+                <span>Thông tin sản phẩm</span>
           </div>
-        </form>
-        <div className="nav_label">
-              <span>Thông tin sản phẩm</span>
+          <div className="news-style-cart style-for-cart stl-botom-cart list-cart new-bottom1">
+                  {showCart()}
+                  
+          </div>
         </div>
-        <div className="news-style-cart style-for-cart stl-botom-cart list-cart new-bottom1">
-                {showCart()}
-      </div>
-      </div>
-      <div className="fix-bottom">
-            <div>
-            <div>
-            <div className="divider"></div>
-              <TotalBottom />
-            </div>
-            
-            <div className="btn-with-icon right-icon">
-              <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBack}>Quay lại</button>
-              <button type="submit" className="btn btn-primary btn-right-icon " onClick ={handleOnClick}>Tiếp tục</button>
-            </div>
+        <div className="fix-bottom">
+              <div>
+              <div>
+              <div className="divider"></div>
+                <TotalBottom />
+              </div>
               
-            </div>
+              <div className="btn-with-icon right-icon">
+                <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBack}>Quay lại</button>
+                <button type="submit" className="btn btn-primary btn-right-icon " onClick ={handleOnClick}>Tiếp tục</button>
+              </div>
+                
+              </div>
+        </div>
       </div>
-    </div>
-    
   );
 };
 
