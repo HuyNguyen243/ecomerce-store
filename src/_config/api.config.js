@@ -1,7 +1,7 @@
 export const apiUrl = "https://api.messnow.com//api/";
 
-export const API_URL_V1 = "https://api.messnow.com//api";
-export const API_URL_V2 = "https://api.messnow.com//api/coca";
+export const API_URL_V1 = "https://api.messnow.com/api";
+export const API_URL_V2 = "https://api.messnow.com/api/coca";
 
 export const requestHeader = {
   headers: {

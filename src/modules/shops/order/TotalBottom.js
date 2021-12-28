@@ -60,9 +60,10 @@ function TotalBottom(props) {
     if(searchPromotion.length > 0){
         let dataSearchPromotion =[]
         promotionVoucher.data.map((item)=>{
-                if(item.code.toLowerCase().indexOf(searchPromotion.toLowerCase()) !== -1){
-                    dataSearchPromotion.push(item)
-                }
+            if(item.code.toLowerCase().indexOf(searchPromotion.toLowerCase()) !== -1){
+                dataSearchPromotion.push(item)
+            }
+            return item;
         })
     }
     
