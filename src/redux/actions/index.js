@@ -20,7 +20,8 @@ import {
     GET_SHIPPING_FEE,
     SUBMIT_ORDER,
     GET_ORDER,
-    GET_ONE_ORDER
+    GET_ONE_ORDER,
+    GET_TITLE_CATEGORIES
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -109,4 +110,8 @@ export const getListOrders = () => {
 
 export const getOneOrder = (order) => {
     return { type: GET_ONE_ORDER, payload: order };
+}
+
+export const getParentTitleCategories = (params) => {
+    return { type: GET_TITLE_CATEGORIES, payload: params};
 }

@@ -2,18 +2,19 @@ import React from "react";
 import Item from "./../product/Item";
 import Blankpage from "./../../../_components/_blankpage.component";
 // import Icon from './../../../_components/_icon.component';
-import{ useHistory } from "react-router-dom"
+import{ useHistory , useLocation } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { headTitles } from './../../../redux/actions/index';
 import { getCategoriesByParentId } from "./../../../redux/actions/index";
+import { getParentTitleCategories } from "./../../../redux/actions/index";
 
 
 const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, addToCart }) => {
   let productList;
   const history = useHistory()
   const dispatch = useDispatch();
+  const location = useLocation()
 
-  
   // const doScrolling = (cateId, type) => {
   //   let scrollElement = document.getElementById(cateId)
   //   let scrollItems = scrollElement.getElementsByClassName('active')[0];
@@ -62,6 +63,9 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
 
   const getByCategory = (id, listTitle) => {
     dispatch(headTitles(listTitle))
+    if(location.pathname === "/"){
+      dispatch(getParentTitleCategories(listTitle))
+    }
     if(type === "products"){
       let url = '/products';
       if(categoryId !== '') {

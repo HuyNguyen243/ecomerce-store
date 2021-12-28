@@ -4,12 +4,12 @@ import{Link}from 'react-router-dom'
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 
+
 const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
                   , doNavigation = '', showLeftNav, headerBg = 'header-primary'}) => {
-
+          
   const usehistory =useHistory()
   const carts = useSelector(state => state.carts);
-
   const showShoppingCart = () => {
     if (showCart !== '') {
       return (

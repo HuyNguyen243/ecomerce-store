@@ -1,4 +1,4 @@
-import React, { useEffect }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import Swal from "sweetalert2"
 import { useSelector,useDispatch } from 'react-redux';
 import withReactContent from 'sweetalert2-react-content';
@@ -40,6 +40,7 @@ function TotalBottom(props) {
             dispatch(resetPopup())
         }, 1000);
     }, [modalPopup, dispatch])
+    const [searchPromotion,setSearchPromotion] = useState("")
 
     useEffect(()=>{
         if(!promotionVoucher?.isLoaded){
@@ -56,6 +57,15 @@ function TotalBottom(props) {
         }
     }, [modalPopup, handleAfterSubmit])
 
+    if(searchPromotion.length > 0){
+        let dataSearchPromotion =[]
+        promotionVoucher.data.map((item)=>{
+                if(item.code.toLowerCase().indexOf(searchPromotion.toLowerCase()) !== -1){
+                    dataSearchPromotion.push(item)
+                }
+        })
+    }
+    
     const data =()=>{
         if((promotionVoucher?.data).length === 0){
             return(
@@ -63,7 +73,7 @@ function TotalBottom(props) {
             )
         }
         if(promotionVoucher?.isLoaded){
-            return (promotionVoucher.data).map((item,value)=>{
+            return promotionVoucher.data.map((item,value)=>{
                 return(
                     <div className='container-promotion' key={value}>
                     <div className='Offer-promotion'>
@@ -86,12 +96,14 @@ function TotalBottom(props) {
     const showPromotion = () =>{
         MySwal.fire({
             title: 'MÃ GIẢM GIÁ',
-            html: <div className='promotion'> 
-                        <input type='text' className='input-promotion' placeholder='Nhập mã giảm giá'/>
-                        <div className="swal-promotion">
-                            {data()}
-                        </div>
-                </div>,
+            html:        <div className='promotion'>
+                                <input type='text' className='input-promotion' placeholder='Nhập mã giảm giá' 
+                                onChange={(e)=>setSearchPromotion(e.target.value)} />
+                        
+                                <div className="swal-promotion">
+                                    {data()}
+                                </div>
+                        </div>,
             showConfirmButton:false,
             confirmButton: false,
             showCancelButton: true,

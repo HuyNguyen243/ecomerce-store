@@ -59,6 +59,7 @@ import {
 
   GET_ONE_ORDER,
 
+  GET_TITLE_CATEGORIES,
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -124,6 +125,7 @@ const initState = {
     data: {}
   },
   order: {},
+  getTitleCategories : "",
 };
 
 const rootReducer = (state = initState, action) => {
@@ -349,6 +351,10 @@ const rootReducer = (state = initState, action) => {
           isLoading: false,
           orders: payload.data
         });
+      case GET_TITLE_CATEGORIES:
+          return Object.assign({}, state, {
+            getTitleCategories: payload
+          });
     default:
       return Object.assign({}, state, {
         isLoading: false
