@@ -218,7 +218,7 @@ function usePromotion(body) {
 function getOrderShippingFee(param){
   let formData = new FormData();
   formData.append('address_id', param.address_id);
-  return post(`${API_URL_V2}/orders/shipping-fee/?token=${Auth.get().token}`, formData);
+  return post(`${API_URL_V2}/orders/shipping-fee?token=${Auth.get().token}`, formData);
 }
 
 function createOrder(body) {
