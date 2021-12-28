@@ -24,6 +24,7 @@ const OrderForm = ({ onSubmit, isLoading,
   const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
   const userAddress = useSelector(state => state.userAddress);
   const delDeliveryUser = useSelector(state => state.delDeliveryUser)
+  const putDeliveryUser = useSelector(state => state.putDeliveryUser)
   const userID = Auth.get().user_id
 
   const getUserAddress = React.useCallback(() => {
@@ -47,8 +48,14 @@ const OrderForm = ({ onSubmit, isLoading,
           dispatch(getParentInformationDeviveryUser(""))
         }
       }
+      if(putDeliveryUser.data.length > 0){
+        if(putDeliveryUser.data._id === oneDeliveryUser._id){
+          dispatch(getParentInformationDeviveryUser(putDeliveryUser.data))
+        }
+      }
+    
     }
-}, [getUserAddress, userAddress,dispatch,oneDeliveryUser,delDeliveryUser]);
+}, [getUserAddress, userAddress,dispatch,oneDeliveryUser,delDeliveryUser,putDeliveryUser]);
   const showCart=()=>{
     if(carts.length >0){
         return carts.map((item, key)=>{
@@ -99,7 +106,6 @@ const OrderForm = ({ onSubmit, isLoading,
 
   return (
     <div id={LIST_CART_NAV} className="nav-right">
-      {PopUpAdventisement()}
       <Header
         doNavigation={hideCart}
         navId={LIST_CART_NAV}
@@ -107,6 +113,7 @@ const OrderForm = ({ onSubmit, isLoading,
         title="THÔNG TIN ĐẶT GIAO HÀNG"
         totalCart={totalCart}
       />
+            {PopUpAdventisement()}
       <div className="display-flex">
         <div className="main_container">
         <form className="basic-form" >
@@ -154,7 +161,6 @@ const OrderForm = ({ onSubmit, isLoading,
                 <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBack}>Quay lại</button>
                 <button type="submit" className="btn btn-primary btn-right-icon " onClick ={handleOnClick}>Tiếp tục</button>
               </div>
-                
               </div>
         </div>
       </div>

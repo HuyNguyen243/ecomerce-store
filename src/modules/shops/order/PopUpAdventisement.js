@@ -15,7 +15,6 @@ function PopUpAdventisement(props) {
     const dispatch = useDispatch()
     const modalPopup = useSelector(state => state.modalPopup);
 
-
     React.useEffect(()=>{
         if(generalData?.data.banners?.length > 0){
           setAdevertisement(generalData.data.banners)
@@ -23,13 +22,16 @@ function PopUpAdventisement(props) {
         
       },[setAdevertisement,generalData.data.banners,])
 
-    const actionUsePromotion = (id) => {
-        let formData = new FormData();
-        formData.append('promo_id', id)
-        dispatch(applyPromotion(formData))
-    }
+   
     
       useEffect(() => {
+
+        const actionUsePromotion = (id) => {
+          let formData = new FormData();
+          formData.append('promo_id', id)
+          dispatch(applyPromotion(formData))
+      }
+
         const listSwal = () =>{
           if(advertisement!==""){
             return advertisement.map((item,value)=>{
@@ -48,7 +50,7 @@ function PopUpAdventisement(props) {
           }
         }
       
-          if(generalData.isLoaded){
+          if(generalData.isLoaded && !modalPopup?.active){
             MySwal.fire({
               showCloseButton: true,
               showConfirmButton :false,
@@ -71,7 +73,7 @@ function PopUpAdventisement(props) {
             })
           }
 
-        },[advertisement,setAdevertisement]);
+        },[advertisement,setAdevertisement,generalData,dispatch,modalPopup]);
         const handleAfterSubmit =  React.useCallback(() => {
             if(modalPopup.data.success) {
                 ModalService.success(modalPopup?.data?.message)
@@ -82,7 +84,7 @@ function PopUpAdventisement(props) {
             setTimeout(() => {
                 dispatch(resetPopup())
             }, 1000);
-        }, [modalPopup, dispatch])
+        }, [modalPopup, dispatch,generalData])
         React.useEffect(() => {
             if(modalPopup.active) {
                 handleAfterSubmit()
