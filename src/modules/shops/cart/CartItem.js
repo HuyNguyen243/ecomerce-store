@@ -40,7 +40,6 @@ const CartItem = ({item,index}) => {
     })
 
   }
-
   return (
     <div className="shop-item cart">
       <ImageDisplay src={item.image} alt={item.name} />

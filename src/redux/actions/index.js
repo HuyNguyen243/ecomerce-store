@@ -17,7 +17,8 @@ import {
     DELETE_DELIVERY_USER,
     APPLY_PROMOTION,
     GET_CART,
-    GET_SHIPPING_FEE
+    GET_SHIPPING_FEE,
+    GET_TITLE_CATEGORIES
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -94,4 +95,8 @@ export const getUserCarts = () => {
 
 export const getOrderShippingFee = (params) => {
     return { type: GET_SHIPPING_FEE, payload: params};
+}
+
+export const getParentTitleCategories = (params) => {
+    return { type: GET_TITLE_CATEGORIES, payload: params};
 }

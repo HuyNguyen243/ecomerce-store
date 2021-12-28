@@ -8,7 +8,6 @@ import {
   LIST_CART_NAV,
 } from "./../../../_config/shop.config";
 
-
 const ListCategory = () => {
   let { id } = useParams();
   const dispatch = useDispatch();
@@ -22,7 +21,6 @@ const ListCategory = () => {
     event.eventName = initEvent;
     document.dispatchEvent(event);
     document.getElementsByTagName("html")[0].style.overflow = "auto";
-  
   };
 
   const showIconcart =()=>{
@@ -32,7 +30,7 @@ const ListCategory = () => {
 
   const isLoading = useSelector(state => state.isLoading);
   const categories = useSelector(state => state.categories);
-  const headerTitles = useSelector(state => state.headerTitles);
+  const getTitleCategories = useSelector(state =>state.getTitleCategories)
   const getCategoriesCallback = React.useCallback(() => {
     dispatch(getCategoriesByParentId(id))
 }, [dispatch, id]);
@@ -41,12 +39,13 @@ const ListCategory = () => {
     if(!categories.isLoaded) {
       getCategoriesCallback()
     }
-  }, [getCategoriesCallback, categories]);
+
+  }, [getCategoriesCallback, categories,]);
   return (
     <div>
       <Header
         hasNavigation={true}
-        title={headerTitles}
+        title={getTitleCategories}
         showCart={showIconcart}
 
       />

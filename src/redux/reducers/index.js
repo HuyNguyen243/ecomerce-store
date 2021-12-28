@@ -49,7 +49,9 @@ import {
   APPLY_PROMOTION_SUCCESS,
 
   GET_SHIPPING_FEE,
-  GET_SHIPPING_FEE_SUCCESS
+  GET_SHIPPING_FEE_SUCCESS,
+
+  GET_TITLE_CATEGORIES,
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -108,7 +110,8 @@ const initState = {
     data : {}
   },
   appliedPromotion : {},
-  shippingFee: 0
+  shippingFee: 0,
+  getTitleCategories : "",
 };
 
 const rootReducer = (state = initState, action) => {
@@ -250,7 +253,6 @@ const rootReducer = (state = initState, action) => {
             checkGetDeliveryUser: payload
           });
       case GET_PROMOTION_VOUCHERS_SUCCESS:
-        console.log(payload)
         return Object.assign({}, state, {
           promotionVoucher: {
             isLoaded: true,
@@ -296,6 +298,10 @@ const rootReducer = (state = initState, action) => {
           shippingFee: payload.success ? payload.data?.shipping_fee : 0,
           isLoading: false,
         });
+      case GET_TITLE_CATEGORIES:
+          return Object.assign({}, state, {
+            getTitleCategories: payload
+          });
     default:
       return Object.assign({}, state, {
         isLoading: false
