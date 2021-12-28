@@ -21,7 +21,6 @@ function TotalBottom(props) {
     const isLoading = useSelector(state => state.isLoading);
     const totalCartPrice = useSelector(state => state.totalCartPrice);
     const [searchPromotion,setSearchPromotion] = useState("")
-    const dataSearchPromotion =[]
 
     useEffect(()=>{
         if(!promotionVoucher?.isLoaded){
@@ -38,6 +37,7 @@ function TotalBottom(props) {
     }
 
     if(searchPromotion.length > 0){
+        let dataSearchPromotion =[]
         promotionVoucher.data.map((item)=>{
                 if(item.code.toLowerCase().indexOf(searchPromotion.toLowerCase()) !== -1){
                     dataSearchPromotion.push(item)
