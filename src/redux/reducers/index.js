@@ -289,11 +289,17 @@ const rootReducer = (state = initState, action) => {
           isLoading: false,
         });
       case APPLY_PROMOTION_SUCCESS:
-        let appliedPromotionCode = payload.success ? payload.data?.code : ''
+        let appliedPromotionCode = "";
+        if(payload.success) {
+          appliedPromotionCode = payload.data?.code
+          CartService.save(payload.data?.carts)
+        }
         return Object.assign({}, state, {
           codePromotion: appliedPromotionCode,
           appliedPromotion: payload.data,
           isLoading: false,
+          carts: CartService.get(),
+          totalCartPrice: CartService.getTotalPrice(),
           modalPopup: {
             active : true,
             data : {

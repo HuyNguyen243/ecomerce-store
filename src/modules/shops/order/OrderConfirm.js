@@ -24,6 +24,7 @@ const OderConfirm = (
     const carts = useSelector(state => state.carts);
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const nearestVendorId = useSelector(state => state.nearestVendorId);
+    const appliedPromotion = useSelector(state => state.appliedPromotion)
     const isLoading = useSelector(state => state.isLoading);
     const modalPopup = useSelector(state => state.modalPopup);
 
@@ -85,6 +86,9 @@ const OderConfirm = (
           let formData = new FormData();
           formData.append('address_id', oneDeliveryUser._id)
           formData.append('vendor_id', nearestVendorId)
+          if(appliedPromotion?.discount) {
+            formData.append('promo_id', appliedPromotion.id)
+          }
           dispatch(createOrder(formData))
         }
       })
