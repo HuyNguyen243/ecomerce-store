@@ -49,7 +49,16 @@ import {
   APPLY_PROMOTION_SUCCESS,
 
   GET_SHIPPING_FEE,
-  GET_SHIPPING_FEE_SUCCESS
+  GET_SHIPPING_FEE_SUCCESS,
+
+  SUBMIT_ORDER,
+  SUBMIT_ORDER_SUCCESS,
+
+  GET_ORDER,
+  GET_ORDER_SUCCESS,
+
+  GET_ONE_ORDER,
+
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -108,7 +117,13 @@ const initState = {
     data : {}
   },
   appliedPromotion : {},
-  shippingFee: 0
+  shippingFee: 0,
+  nearestVendorId: '',
+  orders: {
+    isLoaded : false,
+    data: {}
+  },
+  order: {},
 };
 
 const rootReducer = (state = initState, action) => {
@@ -135,6 +150,8 @@ const rootReducer = (state = initState, action) => {
     case APPLY_PROMOTION:
     case GET_CART:
     case GET_SHIPPING_FEE:
+    case SUBMIT_ORDER:
+    case GET_ORDER:
       return Object.assign({}, state, {
         isLoading: true,
       });
@@ -293,7 +310,28 @@ const rootReducer = (state = initState, action) => {
       case GET_SHIPPING_FEE_SUCCESS:
         return Object.assign({}, state, {
           shippingFee: payload.success ? payload.data?.shipping_fee : 0,
+          nearestVendorId : payload.success ? payload.data?.vendor_id : '',
           isLoading: false,
+        });
+      case SUBMIT_ORDER_SUCCESS:
+        return Object.assign({}, state, {
+          isLoading: false,
+          modalPopup: {
+            active : true,
+            data : {
+              success : payload.success,
+              message : payload.message
+            }
+          }
+        });
+      case GET_ONE_ORDER:
+        return Object.assign({}, state, {
+          order: payload
+        });
+      case GET_ORDER_SUCCESS:
+        return Object.assign({}, state, {
+          isLoading: false,
+          orders: payload.data
         });
     default:
       return Object.assign({}, state, {

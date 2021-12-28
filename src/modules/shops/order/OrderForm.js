@@ -6,9 +6,7 @@ import TotalBottom from "./TotalBottom";
 import {  useSelector, useDispatch } from "react-redux";
 import CartItem from '../cart/CartItem';
 import Auth from "../../../_services/auth";
-import { getDeliveryUser } from './../../../redux/actions/index';
-import { getParentInformationDeviveryUser } from "../../../redux/actions";
-import { checkGetDelivetyUser } from "../../../redux/actions";
+import { getDeliveryUser, checkGetDelivetyUser, getParentInformationDeviveryUser  } from "../../../redux/actions";
 
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
@@ -97,7 +95,7 @@ const OrderForm = ({ onSubmit, isLoading,
 
   return (
     <div id={LIST_CART_NAV} className="nav-right">
-       <Header
+      <Header
         doNavigation={hideCart}
         navId={LIST_CART_NAV}
         hasNavigation={true}
@@ -111,13 +109,14 @@ const OrderForm = ({ onSubmit, isLoading,
               <span>Thông tin giao hàng</span>
             </div>
             <div onClick={handleSlcInforUser}>
-                  {oneDeliveryUser._id  !== undefined ? showDeliveryUser()
-                  :   
-                  <div className="information ">
-                     <span>Chọn thông tin nhận hàng</span>
-                    <img src="/images/Back-Black.svg" alt="menu_icon" />
-                  </div>
-                   }
+                  {
+                    oneDeliveryUser._id  !== undefined ? showDeliveryUser()
+                    :   
+                    <div className="information ">
+                      <span>Chọn thông tin nhận hàng</span>
+                      <img src="/images/Back-Black.svg" alt="menu_icon" />
+                    </div>
+                  }
             </div>
             {condition === false &&(
           <span className="txt-danger">{dangerTxt}</span>
