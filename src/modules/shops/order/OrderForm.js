@@ -25,13 +25,20 @@ const OrderForm = ({ onSubmit, isLoading,
   const carts = useSelector(state => state.carts);
   const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
   const userAddress = useSelector(state => state.userAddress);
+  const shippingFee = useSelector(state => state.shippingFee);
   // const delDeliveryUser = useSelector(state => state.delDeliveryUser)
-  console.log(oneDeliveryUser.id)
+
   const userID = Auth.get().user_id
 
   const getUserAddress = React.useCallback(() => {
     dispatch(getDeliveryUser(userID))
   }, [dispatch, userID]);
+
+  React.useEffect(()=>{
+    if(carts.length === 0){
+      history.push('/')
+    }
+  })
 
   useEffect(() => {
     if(!userAddress.isLoaded) {
@@ -83,6 +90,7 @@ const OrderForm = ({ onSubmit, isLoading,
   }
 
   const handleOnClick =()=>{
+    if(shippingFee === 0) {return false}
     if(oneDeliveryUser === "" ){
       setCondition(false)
     }else{
@@ -129,34 +137,31 @@ const OrderForm = ({ onSubmit, isLoading,
                 <span>Phương thức vận chuyển</span>
               </div>
               <div className="shipping height">
-                      <span>AhaMove</span>
+                <span>AhaMove</span>
               </div>
             </div>
           </form>
           <div className="nav_label">
-                <span>Thông tin sản phẩm</span>
+            <span>Thông tin sản phẩm</span>
           </div>
           <div className="news-style-cart style-for-cart stl-botom-cart list-cart new-bottom1">
-                  {showCart()}
-                  
+            {showCart()}
           </div>
         </div>
         <div className="fix-bottom">
-              <div>
-              <div>
+          <div>
+            <div>
               <div className="divider"></div>
-                <TotalBottom />
-              </div>
-              
-              <div className="btn-with-icon right-icon">
-                <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBack}>Quay lại</button>
-                <button type="submit" className="btn btn-primary btn-right-icon " onClick ={handleOnClick}>Tiếp tục</button>
-              </div>
-                
-              </div>
+              <TotalBottom />
+            </div>
+            <div className="btn-with-icon right-icon">
+              <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBack}>Quay lại</button>
+              <button type="submit" className="btn btn-primary btn-right-icon" disabled={shippingFee === 0 ? true : false} onClick ={handleOnClick}>Tiếp tục</button>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 

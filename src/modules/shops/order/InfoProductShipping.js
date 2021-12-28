@@ -4,6 +4,7 @@ import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import NumberHelper from "./../../../_helpers/number";
+import PriceDisplay from './../product/PriceDisplay';
 import { 
   STATUS_PENDING_VENDOR_APPROVE,
   STATUS_DENIED_BY_VENDOR,
@@ -68,7 +69,7 @@ function InfoProductShipping(props) {
                     </div>
                     <div className ="item-info">
                         <span className ="item-name">{item.name}</span>
-                        <span className ="item-price style-price">{NumberHelper.formatCurrency(item.price)}</span>
+                        <PriceDisplay coupon={item.couponPrice} price={item.price} />
                         <span className ="item-qty">Số lượng: {item.quantity}</span>
                     </div>
                 </div>
@@ -76,14 +77,13 @@ function InfoProductShipping(props) {
             )
         })
       }else{
-      return(
-        <span className="error-messenger">Không có sản phẩm nào trong giỏ hàng!</span>
-      )
+        return(
+          <span className="error-messenger">Không có sản phẩm nào trong giỏ hàng!</span>
+        )
     }
   }
 
   const cancelReasons =[ {id:0,title: "Muốn thay đổi địa chỉ giao hàng",checked:(id === 0 ?true :false)},
-                        {id:1,title: "Thay đổi phương thức vận chuyển",checked:(id === 1 ?true :false)},
                         {id:2,title: "Đổi ý không muốn mua nữa / Khác",checked:(id === 2 ?true :false)},
                       ];
 
@@ -195,11 +195,11 @@ function InfoProductShipping(props) {
                         </>
                     }
                     {
-                        order?.order_info?.discount > 0
+                        order?.promotion_info?.discount > 0
                         && <>
                                 <div className="col-6  text-sm">Mã giảm giá</div>
                                 <div className="col-6 text-bold txt-right">
-                                    <span className="text-nm">-{ NumberHelper.formatCurrency(order?.order_info?.discount) }</span>
+                                    <span className="text-nm">-{ NumberHelper.formatCurrency(order?.promotion_info?.discount) }</span>
                                 </div>
                             </>
                     }

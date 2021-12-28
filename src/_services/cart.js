@@ -58,14 +58,14 @@ var CartService = {
 
   getTotalPrice: () => {
     let carts = CartService.get();
+    let total = 0;
     if(carts.length >0){
-      let total = 0;
       for (let i = 0; i < carts.length; i++) {
         let price = carts[i].couponPrice > 0 ? carts[i].couponPrice : carts[i].price
         total += price * carts[i].quantity
       }
-      return total
     }
+    return total
   },
 };
 
