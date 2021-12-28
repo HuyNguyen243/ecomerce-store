@@ -267,7 +267,6 @@ const rootReducer = (state = initState, action) => {
             checkGetDeliveryUser: payload
           });
       case GET_PROMOTION_VOUCHERS_SUCCESS:
-        console.log(payload)
         return Object.assign({}, state, {
           promotionVoucher: {
             isLoaded: true,
@@ -315,16 +314,32 @@ const rootReducer = (state = initState, action) => {
           isLoading: false,
         });
       case SUBMIT_ORDER_SUCCESS:
-        return Object.assign({}, state, {
-          isLoading: false,
-          modalPopup: {
-            active : true,
-            data : {
-              success : payload.success,
-              message : payload.message
-            }
+        let popupData = {
+          active : true,
+          data : {
+            success : payload.success,
+            message : payload.message
           }
-        });
+        }
+        if(payload.success) {
+          CartService.empty()
+          return Object.assign({}, state, {
+            isLoading: false,
+            carts: [],
+            codePromotion: "",
+            appliedPromotion : {},
+            shippingFee: 0,
+            nearestVendorId: '',
+            totalCartPrice: 0,
+            oneDeliveryUser: "",
+            modalPopup: popupData
+          });
+        }else {
+          return Object.assign({}, state, {
+            isLoading: false,
+            modalPopup: popupData
+          });
+        }
       case GET_ONE_ORDER:
         return Object.assign({}, state, {
           order: payload

@@ -57,7 +57,7 @@ function InfoProductShipping(props) {
     }
   }
 
-  const showCart=()=>{
+  const showCart = () => {
     if(order?.reference_items?.length >0){
         return order?.reference_items?.map((item,value)=>{
             return(
@@ -68,7 +68,7 @@ function InfoProductShipping(props) {
                     </div>
                     <div className ="item-info">
                         <span className ="item-name">{item.name}</span>
-                        <span className ="item-price style-price">{NumberHelper.formatCurrency(item.price)}đ</span>
+                        <span className ="item-price style-price">{NumberHelper.formatCurrency(item.price)}</span>
                         <span className ="item-qty">Số lượng: {item.quantity}</span>
                     </div>
                 </div>
@@ -140,29 +140,6 @@ function InfoProductShipping(props) {
             <div className="nav_label">
               <span>Thông tin nhận hàng</span>
             </div>
-            {oneDeliveryUser !== "" &&(
-                <div className="user_info">
-                    <div className="name_number">
-                      <p>{oneDeliveryUser.fullname}</p>
-                      <div>
-                        <span>|</span>
-                        <p>{oneDeliveryUser.phone}</p>
-                      </div>
-                    </div>
-                    <p className="address">
-                      {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}
-                    </p>
-                </div>
-            )}
-            <div className="nav_label style-title">
-              <span>Thông tin vận chuyển</span>
-              <span className={!confirmCancel ? "hide" : ""}>Đơn đã huỷ</span>
-            </div>
-            <div className="user_info ">
-                <p className="name-shipping">AhaMove - Vận chuyển hoả tốc</p>
-                <p className="code-product">Mã đơn hàng: 321231</p>
-                <p>Thời gian đặt hàng từ 1 đến 2 ngày</p>
-            </div>
           </div>
           <div className="user_info">
               <div className="name_number">
@@ -186,8 +163,16 @@ function InfoProductShipping(props) {
           <div className="nav_label style-title">
             <span>Trạng thái đơn hàng</span>
           </div>
-          <div className="user_info ">
+          <div className="user_info">
               <p>Trạng thái: { getOrderStatus(order?.status)}</p>
+          </div>
+          <div className="nav_label style-title">
+            <span>Danh sách đơn hàng</span>
+          </div>
+          <div className="user_info">
+            {
+              showCart()
+            }
           </div>
         </div>
         <div className="fix-bottom">
