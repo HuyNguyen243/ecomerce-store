@@ -48,6 +48,9 @@ import {
   GET_ORDER,
   GET_ORDER_SUCCESS,
 
+  GET_ONE_ORDER,
+  GET_ONE_ORDER_SUCCESS,
+
 } from '../constants';
 import { API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
@@ -71,6 +74,7 @@ export default function* watcherSaga() {
   yield takeLatest(GET_SHIPPING_FEE, workerSaga);
   yield takeLatest(SUBMIT_ORDER, workerSaga);
   yield takeLatest(GET_ORDER, workerSaga);
+  yield takeLatest(GET_ONE_ORDER, workerSaga);
 }
 
 function* workerSaga(param) {
@@ -144,6 +148,10 @@ function* workerSaga(param) {
     case GET_ORDER:
       action = getListOrders;
       type   = GET_ORDER_SUCCESS;
+      break;
+    case GET_ONE_ORDER:
+      action = getOneOrder;
+      type   = GET_ONE_ORDER_SUCCESS;
       break;
     default:
       break;
@@ -227,4 +235,8 @@ function createOrder(body) {
 
 function getListOrders() {
   return get(`${API_URL_V2}/orders?token=${Auth.get().token}`);
+}
+
+function getOneOrder(id) {
+  return get(`${API_URL_V2}/orders/${id}?token=${Auth.get().token}`);
 }

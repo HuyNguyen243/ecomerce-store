@@ -1,10 +1,10 @@
 import React, { useState }  from "react";
 import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
 import NumberHelper from "./../../../_helpers/number";
 import PriceDisplay from './../product/PriceDisplay';
+import { useParams } from "react-router-dom";
 import { 
   STATUS_PENDING_VENDOR_APPROVE,
   STATUS_DENIED_BY_VENDOR,
@@ -16,22 +16,23 @@ import {
   STATUS_COMPLETED,
   STATUS_CANCELLED
 } from './../../../_config/shop.config';
+import { getOneOrder } from './../../../redux/actions/index';
 
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 
 function InfoProductShipping(props) {
-  const history = useHistory()
-  const [id]= useState()
+  const dispatch = useDispatch()
+  let { id } = useParams();
+  const [selectedReason,setSelectedReason]=useState(1)
   const [confirmCancel,setConfirmCancel]=useState(false)
   const order = useSelector(state => state.order);
+  const isLoading = useSelector(state => state.isLoading);
 
   React.useEffect(() => {
-    if(Object.keys(order).length === 0) {
-      history.push('/orders')
-    }
-  })
+    dispatch(getOneOrder(id))
+  }, [dispatch, id])
 
   const getOrderStatus = (status) => {
     switch(status) {
@@ -83,9 +84,15 @@ function InfoProductShipping(props) {
     }
   }
 
-  const cancelReasons =[ {id:0,title: "Muốn thay đổi địa chỉ giao hàng",checked:(id === 0 ?true :false)},
-                        {id:2,title: "Đổi ý không muốn mua nữa / Khác",checked:(id === 2 ?true :false)},
-                      ];
+  const cancelReasons = [
+    {id:0,title: "Muốn thay đổi địa chỉ giao hàng",checked:(selectedReason === 0 ?true :false)},
+    {id:2,title: "Đổi ý không muốn mua nữa",checked:(selectedReason === 2 ?true :false)},
+    {id:3,title: "Khác:",checked:(selectedReason === 3 ?true :false)},
+  ];
+
+  const selectCancelReason = (reason) => {
+    setSelectedReason(reason.id)
+  }
 
   const handleSubmit = ()=>{
     if(!confirmCancel){
@@ -102,13 +109,29 @@ function InfoProductShipping(props) {
                         return(
                           <div className='radio' key={value}>
                               <div>
-                              <input id={item.id} name="radio" type="radio" />
-                              <label htmlFor={item.id} className="radio-label"></label>
+                                <input onClick={e => selectCancelReason(item) } id={item.id} name="radio" type="radio" />
+                                <label htmlFor={item.id} className="radio-label"></label>
                               </div>
                               <span>{item.title}</span>
                           </div>
                         )
-                    })}
+                      })}
+                      {selectedReason}
+                      {
+                        selectedReason === 3
+                        && 
+                        <input style={
+                          {
+                            height: '35px',
+                            width: '240px',
+                            padding: '5px 0',
+                            border: '1px solid #ccc',
+                            borderRadius: '10px',
+                            fontWeight: '300',
+                            paddingLeft: '15px'
+                          }
+                        } name="other_reason" type="text" className="form-control" />
+                      }
                     </div>
                 </div>
       }).then((result) => {
@@ -133,6 +156,10 @@ function InfoProductShipping(props) {
 
   return (
     <div className="body_wrapper ">
+      {
+        isLoading
+        && <div className="overlay-spinner"></div>
+      }
       {showheader()}
       <div className="display-flex">
         <div className="main_container">

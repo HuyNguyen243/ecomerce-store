@@ -58,6 +58,7 @@ import {
   GET_ORDER_SUCCESS,
 
   GET_ONE_ORDER,
+  GET_ONE_ORDER_SUCCESS,
 
   GET_TITLE_CATEGORIES,
 } from "../constants";
@@ -154,6 +155,7 @@ const rootReducer = (state = initState, action) => {
     case GET_SHIPPING_FEE:
     case SUBMIT_ORDER:
     case GET_ORDER:
+    case GET_ONE_ORDER:
       return Object.assign({}, state, {
         isLoading: true,
       });
@@ -348,9 +350,10 @@ const rootReducer = (state = initState, action) => {
             modalPopup: popupData
           });
         }
-      case GET_ONE_ORDER:
+      case GET_ONE_ORDER_SUCCESS:
         return Object.assign({}, state, {
-          order: payload
+          order: payload.data,
+          isLoading: false
         });
       case GET_ORDER_SUCCESS:
         return Object.assign({}, state, {

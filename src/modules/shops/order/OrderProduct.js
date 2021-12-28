@@ -3,7 +3,7 @@ import Header from "../header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { USER_ORDER_NAV } from "./../../../_config/shop.config";
-import { getListOrders, getOneOrder } from './../../../redux/actions/index';
+import { getListOrders } from './../../../redux/actions/index';
 import NumberHelper from "./../../../_helpers/number";
 import { 
   STATUS_PENDING_VENDOR_APPROVE,
@@ -34,7 +34,6 @@ const OrderProduct = ({ params, hideList = "" }) => {
   }, [getOrdersCallback])
 
   const viewDetail = (order) => {
-    dispatch(getOneOrder(order))
     history.push('/orders/'+order._id)
   }
 

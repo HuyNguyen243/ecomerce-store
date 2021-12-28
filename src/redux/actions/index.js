@@ -112,6 +112,6 @@ export const getOneOrder = (order) => {
     return { type: GET_ONE_ORDER, payload: order };
 }
 
-export const getParentTitleCategories = (params) => {
-    return { type: GET_TITLE_CATEGORIES, payload: params};
+export const getParentTitleCategories = (id) => {
+    return { type: GET_TITLE_CATEGORIES, payload: id};
 }
