@@ -76,13 +76,13 @@ export const routes = [
         main: () => <Detail/>
     },
     {
-        path: "/order-product",
+        path: "/orders",
         exact: true,
         isAuth: true,
         main: () => <OrderProduct/>
     },
     {
-        path: "/product-shipping",
+        path: "/orders/:id",
         exact: true,
         isAuth: true,
         main: () => <InfoProductShipping/>

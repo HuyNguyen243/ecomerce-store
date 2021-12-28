@@ -32,7 +32,7 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
             <span>THÔNG TIN ĐẶT HÀNG</span>
           </div>
 
-        <Link to="/order-product">
+        <Link to="/orders">
           <div className="menu-left-item" onClick={e => showNavigation(USER_ORDER_NAV)}>
             <img src='/images/Shopping_list.svg' alt="order"/>
             <span>DANH SÁCH ĐƠN HÀNG</span>

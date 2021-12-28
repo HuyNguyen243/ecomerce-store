@@ -17,7 +17,10 @@ import {
     DELETE_DELIVERY_USER,
     APPLY_PROMOTION,
     GET_CART,
-    GET_SHIPPING_FEE
+    GET_SHIPPING_FEE,
+    SUBMIT_ORDER,
+    GET_ORDER,
+    GET_ONE_ORDER
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -94,4 +97,16 @@ export const getUserCarts = () => {
 
 export const getOrderShippingFee = (params) => {
     return { type: GET_SHIPPING_FEE, payload: params};
+}
+
+export const createOrder = (body) => {
+    return { type: SUBMIT_ORDER, payload: body };
+}
+
+export const getListOrders = () => {
+    return { type: GET_ORDER, payload: '' };
+}
+
+export const getOneOrder = (order) => {
+    return { type: GET_ONE_ORDER, payload: order };
 }

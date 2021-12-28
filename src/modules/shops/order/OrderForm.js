@@ -6,9 +6,7 @@ import TotalBottom from "./TotalBottom";
 import {  useSelector, useDispatch } from "react-redux";
 import CartItem from '../cart/CartItem';
 import Auth from "../../../_services/auth";
-import { getDeliveryUser } from './../../../redux/actions/index';
-import { getParentInformationDeviveryUser } from "../../../redux/actions";
-import { checkGetDelivetyUser } from "../../../redux/actions";
+import { getDeliveryUser, checkGetDelivetyUser, getParentInformationDeviveryUser  } from "../../../redux/actions";
 
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
@@ -96,32 +94,32 @@ const OrderForm = ({ onSubmit, isLoading,
   }
 
   return (
-    <div id={LIST_CART_NAV} className="body_wrapper">
-       <Header
+    <div id={LIST_CART_NAV} className="nav-right">
+      <Header
         doNavigation={hideCart}
         navId={LIST_CART_NAV}
         hasNavigation={true}
         title="THÔNG TIN ĐẶT GIAO HÀNG"
         totalCart={totalCart}
       />
-      <div className="display-flex">
-        <div className="main_container">
-          <form className="basic-form" >
-            <div className="form-group fix-information">
-              <div className="nav_label">
-                <span>Thông tin giao hàng</span>
-              </div>
+      <div className="main_container">
+        <form className="basic-form" >
+          <div className="form-group fix-information">
+            <div className="nav_label">
+              <span>Thông tin giao hàng</span>
+            </div>
               <div onClick={handleSlcInforUser}>
-                    {oneDeliveryUser._id  !== undefined ? showDeliveryUser()
-                    :   
-                    <div className="information-slc">
-                      <span>Chọn thông tin nhận hàng</span>
-                      <img src="/images/Back-Black.svg" alt="menu_icon" />
-                    </div>
+                    {
+                      oneDeliveryUser._id  !== undefined ? showDeliveryUser()
+                      :   
+                      <div className="information ">
+                        <span>Chọn thông tin nhận hàng</span>
+                        <img src="/images/Back-Black.svg" alt="menu_icon" />
+                      </div>
                     }
               </div>
               {condition === false &&(
-            <span className="txt-danger">{dangerTxt}</span>
+                <span className="txt-danger">{dangerTxt}</span>
               )}
               <div className="nav_label">
                 <span>Phương thức vận chuyển</span>
@@ -129,7 +127,6 @@ const OrderForm = ({ onSubmit, isLoading,
               <div className="shipping height">
                       <span>AhaMove</span>
               </div>
-          
             </div>
           </form>
           <div className="nav_label">
@@ -137,7 +134,8 @@ const OrderForm = ({ onSubmit, isLoading,
           </div>
           <div className="news-style-cart style-for-cart stl-botom-cart list-cart new-bottom1">
                   {showCart()}
-        </div>
+                  
+          </div>
         </div>
         <div className="fix-bottom">
               <div>
@@ -154,8 +152,6 @@ const OrderForm = ({ onSubmit, isLoading,
               </div>
         </div>
       </div>
-    </div>
-    
   );
 };
 

@@ -4,8 +4,9 @@ import { useSelector,useDispatch } from 'react-redux';
 import withReactContent from 'sweetalert2-react-content';
 import { useLocation } from 'react-router';
 import { getPromotionvouchers } from '../../../redux/actions';
-import { getCodePromotion, getOrderShippingFee } from '../../../redux/actions';
+import { getOrderShippingFee, applyPromotion, resetPopup  } from '../../../redux/actions';
 import NumberHelper from "./../../../_helpers/number";
+import ModalService from './../../../_services/modal';
 
 const MySwal = withReactContent(Swal)
 
@@ -20,6 +21,25 @@ function TotalBottom(props) {
     const shippingFee = useSelector(state => state.shippingFee);
     const isLoading = useSelector(state => state.isLoading);
     const totalCartPrice = useSelector(state => state.totalCartPrice);
+    const modalPopup = useSelector(state => state.modalPopup);
+
+    const handleUsePromotion = (id)=>{
+        MySwal.clickCancel()
+        let formData = new FormData();
+        formData.append('promo_id', id)
+        dispatch(applyPromotion(formData))
+    }
+
+    const handleAfterSubmit =  React.useCallback(() => {
+        if(modalPopup.data.success) {
+            ModalService.success(modalPopup?.data?.message)
+        }else {
+            ModalService.error(modalPopup?.data?.message)
+        }
+        setTimeout(() => {
+            dispatch(resetPopup())
+        }, 1000);
+    }, [modalPopup, dispatch])
 
     useEffect(()=>{
         if(!promotionVoucher?.isLoaded){
@@ -30,10 +50,11 @@ function TotalBottom(props) {
         }
     },[dispatch,promotionVoucher, oneDeliveryUser, shippingFee ])
 
-    const handleUsePromotion =(e)=>{
-        dispatch(getCodePromotion(e.target.id))
-        MySwal.clickCancel()
-    }
+    React.useEffect(() => {
+        if(modalPopup.active) {
+            handleAfterSubmit()
+        }
+    }, [modalPopup, handleAfterSubmit])
 
     const data =()=>{
         if((promotionVoucher?.data).length === 0){
@@ -54,7 +75,7 @@ function TotalBottom(props) {
                             </div>
                         </div>
                         <div className='use-promotion'>
-                        <span onClick={handleUsePromotion} id={item.code} >Sử dụng ngay</span>
+                        <span onClick={e => handleUsePromotion(item._id)} id={item.code} >Sử dụng ngay</span>
                         </div>
                     </div>
                 )
@@ -85,7 +106,7 @@ function TotalBottom(props) {
                 && <div className="overlay-spinner"></div>
             }
             <div className="row cart-total">
-            <div className={location.pathname === "/cart" || location.pathname === "/product-shipping" ? "row hide" : "row"}>  
+            <div className={location.pathname === "/cart" ? "row hide" : "row"}>  
                 <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
                 <div className="col-6 text-bold txt-right">
                     <div className='border-promotion'>
@@ -105,7 +126,7 @@ function TotalBottom(props) {
                     <>
                         <div className="col-6  text-sm">Phí vận chuyển:</div>
                         <div className="col-6 text-bold txt-right">
-                            <span className="text-nm">{ NumberHelper.formatCurrency(shippingFee) }</span>
+                            <span className="text-nm">+{ NumberHelper.formatCurrency(shippingFee) }</span>
                         </div>
                     </>
                 }
