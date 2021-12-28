@@ -7,6 +7,8 @@ import {  useSelector, useDispatch } from "react-redux";
 import CartItem from '../cart/CartItem';
 import Auth from "../../../_services/auth";
 import { getDeliveryUser, checkGetDelivetyUser, getParentInformationDeviveryUser  } from "../../../redux/actions";
+// import UserAddress from "../userInformation/userAddress";
+
 
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
@@ -19,10 +21,12 @@ const OrderForm = ({ onSubmit, isLoading,
   const handleBack=()=>{
     history.goBack()
   }
+
   const carts = useSelector(state => state.carts);
   const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
   const userAddress = useSelector(state => state.userAddress);
-  
+  // const delDeliveryUser = useSelector(state => state.delDeliveryUser)
+  console.log(oneDeliveryUser.id)
   const userID = Auth.get().user_id
 
   const getUserAddress = React.useCallback(() => {
@@ -43,7 +47,6 @@ const OrderForm = ({ onSubmit, isLoading,
       }
     }
 }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
-
 
   const showCart=()=>{
     if(carts.length >0){
@@ -102,7 +105,8 @@ const OrderForm = ({ onSubmit, isLoading,
         title="THÔNG TIN ĐẶT GIAO HÀNG"
         totalCart={totalCart}
       />
-      <div className="main_container">
+      <div className="display-flex">
+        <div className="main_container">
         <form className="basic-form" >
           <div className="form-group fix-information">
             <div className="nav_label">
@@ -112,8 +116,8 @@ const OrderForm = ({ onSubmit, isLoading,
                     {
                       oneDeliveryUser._id  !== undefined ? showDeliveryUser()
                       :   
-                      <div className="information ">
-                        <span>Chọn thông tin nhận hàng</span>
+                      <div className="information">
+                        <span className="fix-information2">Chọn thông tin nhận hàng</span>
                         <img src="/images/Back-Black.svg" alt="menu_icon" />
                       </div>
                     }
@@ -151,6 +155,7 @@ const OrderForm = ({ onSubmit, isLoading,
                 
               </div>
         </div>
+      </div>
       </div>
   );
 };

@@ -66,7 +66,7 @@ a{
         .information,
         .shipping{
             display: flex;
-           
+            justify-content: space-between;
             span{
                 color: #676767;
                 font-size: 10px;
@@ -260,3 +260,6 @@ a{
     justify-content: flex-end;
 }
 
+.fix-information2{
+    padding: 15px 0 15px 15px;
+}

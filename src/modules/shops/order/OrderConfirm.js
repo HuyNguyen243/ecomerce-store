@@ -145,38 +145,40 @@ const OderConfirm = (
         isLoading
         && <div className="overlay-spinner"></div>
       }
-      <div className="main_container">
-        <div className="nav_label">
-          <span>Thông tin nhận hàng</span>
-        </div>
-        {showUserInfo()}
-        {condition === false &&(
-          <span className="txt-danger fix-txt">{dangerTxt}</span>
-            )}
-        <form className="basic-form" >
-          <div className="form-group">
+      <div className="display-flex">
+        <div className="main_container">
           <div className="nav_label">
-              <span>Phương thức vận chuyển</span>
-            </div>
-              <div className="shipping fix-shipping">
-            <span className="shiper" >AhaMove</span>
-              </div>
+            <span>Thông tin nhận hàng</span>
           </div>
-        </form>
-        <div className="nav_label">
-              <span>Thông tin sản phẩm</span>
+          {showUserInfo()}
+          {condition === false &&(
+            <span className="txt-danger fix-txt">{dangerTxt}</span>
+              )}
+          <form className="basic-form" >
+            <div className="form-group">
+            <div className="nav_label">
+                <span>Phương thức vận chuyển</span>
+              </div>
+                <div className="shipping fix-shipping">
+              <span className="shiper" >AhaMove</span>
+                </div>
+            </div>
+          </form>
+          <div className="nav_label">
+                <span>Thông tin sản phẩm</span>
+          </div>
+          <div className="news-style-cart style-for-cart list-cart oderinformation new-bottom">
+            {showCart()}
+          </div>
         </div>
-        <div className="news-style-cart style-for-cart list-cart oderinformation new-bottom">
-          {showCart()}
+        <div className="fix-bottom">
+          <div className="divider"></div>
+          <TotalBottom totalPrice={calcTotalPrice()}/>
+          <div className="btn-with-icon right-icon">
+              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Xác nhân đặt hàng</button>
+          </div>
         </div>
       </div>
-      <div className="fix-bottom">
-        <div className="divider"></div>
-        <TotalBottom totalPrice={calcTotalPrice()}/>
-        <div className="btn-with-icon right-icon">
-            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Xác nhân đặt hàng</button>
-        </div>
-    </div>
     </div>
   )
 }
