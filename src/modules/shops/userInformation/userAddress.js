@@ -30,14 +30,14 @@ function UserAddress() {
         if(!userAddress.isLoaded) {
             getUserAddress()
         }else{
-            for (let i = 0; i < userAddress?.data?.length; i++) {
+            for (let i = 0; i < userAddress?.data.length; i++) {
                 if(userAddress?.data[i].is_default === 1){
-                    if(oneDeliveryUser === "" ){
-                        dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
-                        break;
-                    }
+                  if(oneDeliveryUser === "" ){
+                    dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
+                    break;
+                  }
                 }
-            }
+              }
         }
     }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
 
@@ -75,6 +75,7 @@ function UserAddress() {
           })
     }
 
+
     const showUserAddress = (item, key)=>{
         if(putDeliveryUser?.isLoaded){
             if(item.is_default === 1 ){
@@ -90,6 +91,10 @@ function UserAddress() {
             if(delDeliveryUser.data.data.id === item._id){
                 (userAddress?.data).splice((userAddress?.data).indexOf(item),1)
             }
+            if(item.is_default === 1){
+                dispatch(getParentInformationDeviveryUser(""))
+                putDeliveryUser.isLoaded = false
+            }
         }
 
         if(userAddress?.isLoaded){
@@ -97,11 +102,11 @@ function UserAddress() {
                 <div className="form-group" key={key} id={key} >
                     <div className="information"  id={key} >
                         <div className="infor-user newstyle" id={key} onClick={handleGetDelivery}>
-                            <div className='is_default'>
+                            <div className='is_default' id={key}>
                             <p id={key}>
                                 {item["fullname"]} {" "}
                             </p>
-                            { item["is_default"] === 1 && <span>[Mặc định]</span>}
+                            { item["is_default"] === 1 && <span id={key}>[Mặc định]</span>}
                             </div>
                             <p id={key}>{item["phone"]}</p>
                             <p id={key}>{item["address"]},phường {item["ward"]["name"]},
@@ -136,7 +141,7 @@ function UserAddress() {
                         ? <div className="overlay-spinner"></div>
                         : 
                             <form className="basic-form ">
-                            {(userAddress.data).length === 0 ? <span>vui lòng tạo thông tin đặt giao hàng!</span>:""}
+                            {(userAddress.data).length === 0 ? <span>Vui lòng tạo thông tin đặt giao hàng</span>:""}
                             {
                                 userAddress?.data.map((item,key)=> {
                                     if(item.is_default) {

@@ -9,6 +9,7 @@ function Offer(data) {
     const dispatch = useDispatch();
     const history = useHistory()
     const modalPopup = useSelector(state => state.modalPopup);
+    const carts = useSelector(state => state.carts);
 
     const settings = {
         dots: false,
@@ -21,9 +22,16 @@ function Offer(data) {
     };
 
     const actionUsePromotion = (id) => {
-        let formData = new FormData();
-        formData.append('promo_id', id)
-        dispatch(applyPromotion(formData))
+        if(carts.length > 0){
+            let formData = new FormData();
+            formData.append('promo_id', id)
+            dispatch(applyPromotion(formData))
+        }else{
+            ModalService.error("Không có sản phẩm nào trong giỏ hàng của bạn!")
+            setTimeout(() => {
+                dispatch(resetPopup())
+            }, 1000);
+        }
     }
 
     const showslide =() =>{

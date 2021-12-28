@@ -7,9 +7,7 @@ import {  useSelector, useDispatch } from "react-redux";
 import CartItem from '../cart/CartItem';
 import Auth from "../../../_services/auth";
 import { getDeliveryUser, checkGetDelivetyUser, getParentInformationDeviveryUser  } from "../../../redux/actions";
-// import UserAddress from "../userInformation/userAddress";
-
-
+import PopUpAdventisement from "./PopUpAdventisement";
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
   totalCart
@@ -26,8 +24,8 @@ const OrderForm = ({ onSubmit, isLoading,
   const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
   const userAddress = useSelector(state => state.userAddress);
   const shippingFee = useSelector(state => state.shippingFee);
-  // const delDeliveryUser = useSelector(state => state.delDeliveryUser)
-
+  const delDeliveryUser = useSelector(state => state.delDeliveryUser)
+  const putDeliveryUser = useSelector(state => state.putDeliveryUser)
   const userID = Auth.get().user_id
 
   const getUserAddress = React.useCallback(() => {
@@ -52,9 +50,19 @@ const OrderForm = ({ onSubmit, isLoading,
           }
         }
       }
+      if(delDeliveryUser?.isLoaded || oneDeliveryUser?.isLoaded){
+        if(delDeliveryUser.data.data.id === oneDeliveryUser._id){
+          dispatch(getParentInformationDeviveryUser(""))
+        }
+      }
+      if(putDeliveryUser.data.length > 0){
+        if(putDeliveryUser.data._id === oneDeliveryUser._id){
+          dispatch(getParentInformationDeviveryUser(putDeliveryUser.data))
+        }
+      }
+    
     }
-}, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
-
+}, [getUserAddress, userAddress,dispatch,oneDeliveryUser,delDeliveryUser,putDeliveryUser]);
   const showCart=()=>{
     if(carts.length >0){
         return carts.map((item, key)=>{
@@ -66,7 +74,7 @@ const OrderForm = ({ onSubmit, isLoading,
   }
 
   const showDeliveryUser = ()=>{
-    if(oneDeliveryUser !== ""){
+    if(oneDeliveryUser !== "" ){
       return(
         <div className="form-group"  >
           <div className="information">
@@ -113,6 +121,7 @@ const OrderForm = ({ onSubmit, isLoading,
         title="THÔNG TIN ĐẶT GIAO HÀNG"
         totalCart={totalCart}
       />
+            {PopUpAdventisement()}
       <div className="display-flex">
         <div className="main_container">
         <form className="basic-form" >

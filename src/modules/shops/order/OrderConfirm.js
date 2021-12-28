@@ -92,7 +92,6 @@ const OderConfirm = () => {
       })
     }
   }
-
   const handleAfterSubmit =  React.useCallback(() => {
     if(modalPopup.data.success) {
       setCondition(true)
