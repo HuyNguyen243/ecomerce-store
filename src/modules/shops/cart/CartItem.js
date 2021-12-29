@@ -27,7 +27,7 @@ const CartItem = ({item,index}) => {
 
   const removeCartItem = () => {
     MySwal.fire({
-      text: "Bạn có đồng ý xóa sản phẩm này khỏi giỏ hàng không?!",
+      text: "Bạn có đồng ý xóa sản phẩm này khỏi giỏ hàng không?",
       icon: 'info',
       confirmButtonText: 'Đồng ý',
       showCancelButton: true,

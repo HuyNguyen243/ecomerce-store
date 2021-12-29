@@ -129,6 +129,7 @@
 #list_cart_nav {
   .main_container {
     overflow: auto;
+    height: 100vh;
   }
   .btn-payment {
     width: 100%;
@@ -276,57 +277,6 @@
   height: inherit !important;
 }
 
-.cancel-swal{
-  p{
-    margin: 0;
-  }
-  .cancel-title{
-    font-weight: 600;
-    margin-bottom: 25px;
-  }
-  .radio:last-child{
-    margin-bottom: 0;
-  }
-  .radio{
-    display: flex;
-    position: relative;
-    margin-bottom: 20px;
-    span{
-      font-weight: 400;
-      color: #333333;
-    }
-    input[type="radio"] {
-      width: 0px;
-      height: 0px;
-      display: none;
-    }
-    label{
-      display: block;
-      top: 0;
-      width: 24px;
-      height: 24px;
-      border-radius: 100%;
-      border: 2px solid #f40000;
-      background-color: transparent;
-      position: relative;
-      cursor: pointer;
-      margin-left: 36px !important;
-      margin-right: 33px;
-    }
-    input:checked + label::after{
-      content: "";
-      width: 12px;
-      height: 12px;
-      background-color: #f40000;
-      position: absolute;
-      border-radius: 100%;
-      top:5px;
-      left: 6px;
-      transition: 0.5s;
-    }
-  }
-}
-
 .style-item{
   width: 143px ;
   padding: 0;
@@ -391,4 +341,55 @@
   box-shadow: none !important;
 }
 
+.cancel-swal{
+  
+  .radio:last-child{
+    margin-bottom: 0;
+  }
+  .radio{
+    display: flex;
+    position: relative;
+    margin-bottom: 20px;
+    span{
+      font-weight: 400;
+      color: #333333;
+    }
+    input[type="radio"] {
+      width: 0px;
+      height: 0px;
+      display: none;
+    }
+    label{
+      display: block;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 100%;
+      border: 2px solid #f40000;
+      background-color: transparent;
+      position: relative;
+      cursor: pointer;
+      margin-left: 36px !important;
+      margin-right: 33px;
+    }
+    input:checked + label::after{
+      content: "";
+      width: 12px;
+      height: 12px;
+      background-color: #f40000;
+      position: absolute;
+      border-radius: 100%;
+      top:5px;
+      left: 6px;
+      transition: 0.5s;
+    }
+  }
+}
+.reason-input{
+  display: flex;
+  justify-content: center;
+}
 
+.main-container-reason{
+  margin-bottom: 10px;
+}

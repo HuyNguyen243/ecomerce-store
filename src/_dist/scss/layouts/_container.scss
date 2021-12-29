@@ -22,7 +22,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   padding-top: 80px !important;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   
   .news-style-cart{
@@ -282,4 +282,9 @@ body {
 }
 #list_cart_nav{
   height: 100%;
+}
+
+.slick-list{
+  border-radius: 10px !important;
+  border: 1px solid transparent;
 }
