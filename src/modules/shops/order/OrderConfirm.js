@@ -1,4 +1,4 @@
-import React, { useEffect, useState }   from "react";
+import React, { useState }   from "react";
 import CartItem from "../cart/CartItem";
 import Header from "../header/Header";
 import { ORDER_FORM_NAV } from "./../../../_config/shop.config";
@@ -14,9 +14,7 @@ import ModalService from './../../../_services/modal';
 
 const MySwal = withReactContent(Swal)
 
-const OderConfirm = ( 
-  hideNavigation
-  )=>{
+const OderConfirm = () => {
     const dispatch = useDispatch()
     const location = useLocation()
     const history = useHistory()
@@ -24,12 +22,13 @@ const OderConfirm = (
     const carts = useSelector(state => state.carts);
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const nearestVendorId = useSelector(state => state.nearestVendorId);
+    const appliedPromotion = useSelector(state => state.appliedPromotion)
     const isLoading = useSelector(state => state.isLoading);
     const modalPopup = useSelector(state => state.modalPopup);
 
-    useEffect(()=>{
-      if(oneDeliveryUser ===""){
-        history.goBack()
+    React.useEffect(()=>{
+      if(carts.length === 0){
+        history.push('/')
       }
     })
 
@@ -85,6 +84,9 @@ const OderConfirm = (
           let formData = new FormData();
           formData.append('address_id', oneDeliveryUser._id)
           formData.append('vendor_id', nearestVendorId)
+          if(appliedPromotion?.discount) {
+            formData.append('promo_id', appliedPromotion.id)
+          }
           dispatch(createOrder(formData))
         }
       })
@@ -92,16 +94,16 @@ const OderConfirm = (
   }
   const handleAfterSubmit =  React.useCallback(() => {
     if(modalPopup.data.success) {
-        MySwal.fire({
-            showConfirmButton : false,
-            html :  <div className='confirm-swal'>
-                      <img src='/images/thank-you.png' alt='menu_icon' />
-                      <h3>ĐẶT HÀNG THÀNH CÔNG</h3>
-                      <p>Cám ơn anh/chị { oneDeliveryUser?.fullname } đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>
-                    </div>
-          })
-          setCondition(true)
-          history.replace("/orders")
+      setCondition(true)
+      history.push("/orders")
+      MySwal.fire({
+          showConfirmButton : false,
+          html :  <div className='confirm-swal'>
+                    <img src='/images/thank-you.png' alt='menu_icon' />
+                    <h3>ĐẶT HÀNG THÀNH CÔNG</h3>
+                    <p>Cám ơn anh/chị { oneDeliveryUser?.fullname } đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>
+                  </div>
+        })
     }else {
       ModalService.error(modalPopup?.data?.message)
     }
