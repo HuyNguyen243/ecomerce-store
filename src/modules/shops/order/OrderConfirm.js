@@ -18,6 +18,7 @@ const OderConfirm = () => {
     const dispatch = useDispatch()
     const location = useLocation()
     const history = useHistory()
+    const [submited, setSubmited]  = React.useState(false)
 
     const carts = useSelector(state => state.carts);
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
@@ -81,6 +82,7 @@ const OderConfirm = () => {
         cancelButtonText: "Huỷ bỏ"
       }).then((result) => {
         if (result.isConfirmed) {
+          setSubmited(true)
           let formData = new FormData();
           formData.append('address_id', oneDeliveryUser._id)
           formData.append('vendor_id', nearestVendorId)
@@ -93,7 +95,7 @@ const OderConfirm = () => {
     }
   }
   const handleAfterSubmit =  React.useCallback(() => {
-    if(modalPopup.data.success) {
+    if(modalPopup.data.success && submited) {
       setCondition(true)
       history.push("/orders")
       MySwal.fire({
@@ -110,7 +112,7 @@ const OderConfirm = () => {
     setTimeout(() => {
         dispatch(resetPopup())
       }, 1000);
-  }, [modalPopup, dispatch,history, oneDeliveryUser])
+  }, [modalPopup, dispatch,history, oneDeliveryUser, submited])
 
   React.useEffect(() => {
     if(modalPopup.active) {

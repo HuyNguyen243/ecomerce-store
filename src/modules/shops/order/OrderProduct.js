@@ -46,7 +46,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
   ]
 
   const showCart = () => {
-    if(orders.length >0){
+    if(orders?.length >0){
         return orders.map((item,value)=>{
           if(TABS[active].status.indexOf(item.status) !== -1) {
             return(
