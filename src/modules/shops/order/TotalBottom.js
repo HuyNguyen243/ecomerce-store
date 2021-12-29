@@ -69,9 +69,17 @@ function TotalBottom(props) {
             <div className="row">
                 <div className="col-6 text-bold text-sm new-text">Tổng cộng:</div>
                 <div className="col-6 text-bold txt-right">
-                    <span className="text-nm new-text">{ NumberHelper.formatCurrency(
-                        (totalCartPrice + shippingFee) - (appliedPromotion?.discount ? appliedPromotion?.discount : 0)
-                    ) }</span>
+                    <span className="text-nm new-text">
+                    { 
+                        location.pathname === "/cart"
+                        ?
+                            NumberHelper.formatCurrency(totalCartPrice)
+                        :
+                            NumberHelper.formatCurrency(
+                                (totalCartPrice + shippingFee) - (appliedPromotion?.discount ? appliedPromotion?.discount : 0)
+                            )
+                    }
+                    </span>
                 </div>
             </div>   
             </div> 

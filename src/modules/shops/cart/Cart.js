@@ -17,7 +17,7 @@ const Cart = ({
   const [cartLoaded, setCartLoaded] = useState(false);
 
   const showCart=()=>{
-    if(carts.length >0){
+    if(carts?.length >0){
         return carts.map((item,key)=>{
             return(
                 <CartItem index={key} key={key} item={item} />
@@ -54,7 +54,7 @@ const Cart = ({
               </div>
           </div>
           {
-                  carts.length > 0
+                  carts?.length > 0
                   && <div className="fix-bottom">
                       <div>
                       <div className="divider"></div>
