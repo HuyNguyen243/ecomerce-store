@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Header from "./../header/Header";
 import { LIST_CART_NAV } from "./../../../_config/shop.config";
 import { useHistory } from "react-router";
@@ -13,8 +13,7 @@ const OrderForm = ({ onSubmit, isLoading,
   totalCart
 }) => {
   const dispatch = useDispatch()
-  let dangerTxt = "vui lòng chọn thông tin nhận hàng"        
-  const [condition, setCondition] = useState("")
+  let dangerTxt = "Vui lòng chọn thông tin nhận hàng"        
   const history = useHistory()
   const handleBack=()=>{
     history.goBack()
@@ -100,9 +99,7 @@ const OrderForm = ({ onSubmit, isLoading,
   const handleOnClick =()=>{
     if(shippingFee === 0) {return false}
     if(oneDeliveryUser === "" ){
-      setCondition(false)
     }else{
-      setCondition(true)
       history.push("/order-confirmation")
     }
   }
@@ -139,7 +136,7 @@ const OrderForm = ({ onSubmit, isLoading,
                       </div>
                     }
               </div>
-              {condition === false &&(
+              {oneDeliveryUser === "" &&(
                 <span className="txt-danger">{dangerTxt}</span>
               )}
               <div className="nav_label">

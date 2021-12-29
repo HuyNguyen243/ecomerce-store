@@ -26,7 +26,6 @@ const OderConfirm = () => {
     const appliedPromotion = useSelector(state => state.appliedPromotion)
     const isLoading = useSelector(state => state.isLoading);
     const modalPopup = useSelector(state => state.modalPopup);
-
     React.useEffect(()=>{
       if(carts.length === 0){
         history.push('/')
@@ -68,14 +67,13 @@ const OderConfirm = () => {
       return NumberHelper.formatCurrency(total)
     }
   }
-
   const handleSubmit = () => {
     if(oneDeliveryUser === "" ){
       setCondition(false)
     }else{
       Swal.fire({
         title: 'XÁC NHẬN ĐẶT HÀNG',
-        text: "Bạn có đồng ý đặt đơn hàng này?!",
+        text: "Bạn có đồng ý đặt đơn hàng này?",
         icon: 'info',
         confirmButtonText: 'Đồng ý',
         showCancelButton: true,
@@ -134,7 +132,7 @@ const OderConfirm = () => {
               <p className="address">
                     {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}
               </p>
-              <span>Giao hàng hỏa tốc</span>
+              <span>AhaMove</span>
               <span> Dự kiến giao hàng từ 1 đến 2 ngày!</span>
         </div>
         )
