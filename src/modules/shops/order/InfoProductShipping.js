@@ -235,7 +235,7 @@ function InfoProductShipping(props) {
                     <div className="col-6 text-bold text-sm new-text">Tổng cộng:</div>
                     <div className="col-6 text-bold txt-right">
                         <span className="text-nm new-text">{ NumberHelper.formatCurrency(
-                            order?.user_info?.cod
+                            (order?.user_info?.cod + order?.order_info?.shipping_fee ) - (order?.promotion_info?.discount  ? order?.promotion_info?.discount : 0)
                         ) }</span>
                     </div>
                 </div>   
