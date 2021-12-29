@@ -1,7 +1,7 @@
 import React ,{ useState , useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { applyPromotion, resetPopup } from './../../../redux/actions/index';
-import ModalService from './../../../_services/modal';
+import { applyPromotion, resetPopup } from '../../../../redux/actions/index';
+import ModalService from '../../../../_services/modal';
 
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'

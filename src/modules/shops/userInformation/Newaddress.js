@@ -200,12 +200,12 @@ function Newaddress() {
                                         <span>Thông tin liên hệ</span>
                                     </div>
                                     <div className="user-information">
-                                        <input maxLength={60} placeholder="Họ và tên ***" type="text" name="name" ref={register({ required: true })}
+                                        <input maxLength={60} placeholder="Họ và tên *" type="text" name="name" ref={register({ required: true })}
                                         defaultValue={name} onChange={handleTargetName} />
                                             { errors.name && errors.name.type === "required" ?
                                                 <span className="txt-danger">{emptyErrorTxt}</span> :""
                                             }
-                                        <input placeholder="Số điện thoại  ***" type="text" name="phone" defaultValue={phone} onChange={handlePhone}
+                                        <input placeholder="Số điện thoại  *" type="text" name="phone" defaultValue={phone} onChange={handlePhone}
                                             ref={register({
                                                 required: true,
                                                 pattern: /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/
@@ -252,7 +252,7 @@ function Newaddress() {
                                         )}
                                     </div>
                                     <div className="user-information">
-                                        <input maxLength={60} placeholder="Tên đường, số nhà, toà nhà***" type="text" name="address" ref={register({ required: true })} defaultValue={address}
+                                        <input maxLength={60} placeholder="Tên đường, số nhà, toà nhà*" type="text" name="address" ref={register({ required: true })} defaultValue={address}
                                         onChange={handleTargetAddress}></input>
                                         {errors.address && errors.address.type === "required" && (
                                         <span className="txt-danger">{emptyErrorTxt}</span>

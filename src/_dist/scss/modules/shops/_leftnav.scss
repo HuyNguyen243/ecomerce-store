@@ -143,7 +143,7 @@ $top-space: 44px;
 }
 
 .Offer-promotion img{
-    width: 100px;
+    width: 80px;
     // height: 100px;
 }
 
@@ -246,6 +246,9 @@ $top-space: 44px;
       }
 }
 @media(min-width : 700px){
+    .main-container_Popup{
+        width: 365px  !important;
+    }
    
     .btn-Oder-list {
         justify-content: center;

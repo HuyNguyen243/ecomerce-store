@@ -56,13 +56,12 @@ const Slideshow = ({gallery}) => {
         slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
     }
-
     return (
         <div>
             <div className="slideshow-container">
                 {slideShowItem}
-                <a className="prev" href="!#" onClick={e => plusSlides(e, -1) }>&#10094;</a>
-                <a className="next" href="!#" onClick={e => plusSlides(e, +1) }>&#10095;</a>
+                <a className={gallery.length > 1 ? "prev" : "hide"} href="!#" onClick={e => plusSlides(e, -1) }>&#10094;</a>
+                <a className={gallery.length > 1 ? "next" : "hide"} href="!#" onClick={e => plusSlides(e, +1) }>&#10095;</a>
             </div>
             <div className="dot-list">
                 {slideDots}
