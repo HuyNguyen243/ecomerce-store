@@ -63,7 +63,7 @@ function UserAddress() {
     const handleDelDeliver = (e) =>{
         let getId = e.target.id
         MySwal.fire({
-            text: "Bạn có đồng ý xóa thông tin địa chỉ này?!",
+            text: "Bạn có đồng ý xóa thông tin địa chỉ này?",
             icon: 'info',
             confirmButtonText: 'Đồng ý',
             showCancelButton: true,
