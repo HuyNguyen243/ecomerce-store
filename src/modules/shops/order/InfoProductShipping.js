@@ -20,6 +20,7 @@ import { getOneOrder } from './../../../redux/actions/index';
 
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
+import PopUpCancelReason from "./PopUp/PopUpCancelReason";
 const MySwal = withReactContent(Swal)
 
 function InfoProductShipping(props) {
@@ -29,7 +30,8 @@ function InfoProductShipping(props) {
   const [confirmCancel,setConfirmCancel]=useState(false)
   const order = useSelector(state => state.order);
   const isLoading = useSelector(state => state.isLoading);
-
+  const [showPopUp ,setShowPopUp] = useState(false)
+  
   React.useEffect(() => {
     dispatch(getOneOrder(id))
   }, [dispatch, id])
@@ -96,53 +98,58 @@ function InfoProductShipping(props) {
 
   const handleSubmit = ()=>{
     if(!confirmCancel){
-      MySwal.fire({
-        title: 'HUỶ ĐƠN HÀNG',
-        text: "Tôi muốn huỷ đơn hàng này vì lí do:",
-        confirmButtonText: 'Đồng ý',
-        showCancelButton: true,
-        cancelButtonText: "Huỷ bỏ",
-        html :  <div className='cancel-swal'>
-                  <p className='cancel-title'>Tôi muốn huỷ đơn hàng này vì lí do:</p>
-                    <div>
-                      {cancelReasons.map((item,value)=>{
-                        return(
-                          <div className='radio' key={value}>
-                              <div>
-                                <input onClick={e => selectCancelReason(item) } id={item.id} name="radio" type="radio" />
-                                <label htmlFor={item.id} className="radio-label"></label>
-                              </div>
-                              <span>{item.title}</span>
-                          </div>
-                        )
-                      })}
-                      {selectedReason}
-                      {
-                        selectedReason === 3
-                        && 
-                        <input style={
-                          {
-                            height: '35px',
-                            width: '240px',
-                            padding: '5px 0',
-                            border: '1px solid #ccc',
-                            borderRadius: '10px',
-                            fontWeight: '300',
-                            paddingLeft: '15px'
-                          }
-                        } name="other_reason" type="text" className="form-control" />
-                      }
-                    </div>
-                </div>
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setConfirmCancel(true)
-        }
-      })
+      setShowPopUp(true)
+      // MySwal.fire({
+      //   title: 'HUỶ ĐƠN HÀNG',
+      //   text: "Tôi muốn huỷ đơn hàng này vì lí do:",
+      //   confirmButtonText: 'Đồng ý',
+      //   showCancelButton: true,
+      //   cancelButtonText: "Huỷ bỏ",
+      //   html :  <div className='cancel-swal'>
+      //             <p className='cancel-title'>Tôi muốn huỷ đơn hàng này vì lí do:</p>
+      //               <div>
+      //                 {cancelReasons.map((item,value)=>{
+      //                   return(
+      //                     <div className='radio' key={value}>
+      //                         <div>
+      //                           <input onClick={e => selectCancelReason(item) } id={item.id} name="radio" type="radio" />
+      //                           <label htmlFor={item.id} className="radio-label"></label>
+      //                         </div>
+      //                         <span>{item.title}</span>
+      //                     </div>
+      //                   )
+      //                 })}
+      //                 {selectedReason}
+      //                 {
+      //                   selectedReason === 3
+      //                   && 
+      //                   <input style={
+      //                     {
+      //                       height: '35px',
+      //                       width: '240px',
+      //                       padding: '5px 0',
+      //                       border: '1px solid #ccc',
+      //                       borderRadius: '10px',
+      //                       fontWeight: '300',
+      //                       paddingLeft: '15px'
+      //                     }
+      //                   } name="other_reason" type="text" className="form-control" />
+      //                 }
+      //               </div>
+      //           </div>
+      // }).then((result) => {
+      //   if (result.isConfirmed) {
+      //     setConfirmCancel(true)
+      //   }
+      // })
     }else{
       setConfirmCancel(false)
     }
-} 
+  } 
+
+  const BooleanPopUp = (props)=>{
+    setShowPopUp(!props)
+  }
   
   const showheader =()=>{
     return(
@@ -249,6 +256,7 @@ function InfoProductShipping(props) {
           }
         </div>
       </div>
+        <PopUpCancelReason  showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp}/>
     </div>
   );
 }

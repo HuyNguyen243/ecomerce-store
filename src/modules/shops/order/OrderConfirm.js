@@ -176,7 +176,7 @@ const OderConfirm = () => {
           <div className="divider"></div>
           <TotalBottom totalPrice={calcTotalPrice()}/>
           <div className="btn-with-icon right-icon">
-              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Xác nhân đặt hàng</button>
+              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Xác nhận đặt hàng</button>
           </div>
         </div>
       </div>
