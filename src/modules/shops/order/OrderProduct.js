@@ -62,7 +62,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
                               <span className ="item-qty">Tổng số sản phẩm: {item.reference_items.length}</span>
                               <span className ="item-qty">Tổng thanh toán:&nbsp;
                               { NumberHelper.formatCurrency(
-                                  (item?.user_info?.cod + item?.order_info?.shipping_fee ) - (item?.promotion_info?.discount  ? item?.promotion_info?.discount : 0)
+                                  (item?.order_info?.total + item?.order_info?.shipping_fee ) - (item?.promotion_info?.discount ? item?.promotion_info?.discount : 0)
                               )  }
                               </span>
                               <span className ="item-qty">Ngày đặt hàng: {item.created}</span>
