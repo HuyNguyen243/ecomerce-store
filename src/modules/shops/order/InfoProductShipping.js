@@ -136,7 +136,7 @@ function InfoProductShipping(props) {
             <span className={!confirmCancel ? "hide" : ""}>Đơn đã huỷ</span>
           </div>
           <div className="user_info ">
-              <p>Đơn vị vận chuyển: AhaMove</p>
+              <p className="shipper">Đơn vị vận chuyển: AhaMove</p>
               <p className="code-product">Mã đơn hàng: {order?._id}</p>
               <p>Thời gian giao hàng dự kiến: {order?.delivery_date}</p>
           </div>
@@ -149,7 +149,7 @@ function InfoProductShipping(props) {
           <div className="nav_label style-title">
             <span>Danh sách đơn hàng</span>
           </div>
-          <div className="user_info">
+          <div >
             {
               showCart()
             }

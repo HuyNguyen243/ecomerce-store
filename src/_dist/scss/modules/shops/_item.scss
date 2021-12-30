@@ -58,7 +58,7 @@ $text-row: 2;
     }
   }
   &.cart {
-    padding: 0 $pd-sm;
+    padding: 0 15px;
     margin: 0 0 10px 0;
     border-radius: 0;
     box-shadow: none;
@@ -81,7 +81,7 @@ $text-row: 2;
       }
     }
     .current-price {
-      color: #333333;
+      color: #f40000;
       padding: $pd-xs 0;
     }
   }
@@ -463,7 +463,7 @@ $text-row: 2;
 }
 
 .expiry-promotion{
-  color: #ccc;
+  color: #b9b7b7;
 }
 
 .title_order{

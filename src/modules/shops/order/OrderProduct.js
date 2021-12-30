@@ -41,13 +41,18 @@ const OrderProduct = ({ params, hideList = "" }) => {
     {id: 1, name: 'Chờ xác nhận', status : [STATUS_PENDING_VENDOR_APPROVE] },
     {id: 2, name: 'Chờ lấy hàng', status : [STATUS_IDLE, STATUS_ASSIGNING, STATUS_ACCEPTED_BY_VENDOR] },
     {id: 3, name: 'Đang giao hàng', status : [STATUS_IN_PROCESS] },
-    {id: 4, name: 'Đã giao hàng', status : [STATUS_COMPLETED] },
+    {id: 4, name: 'Hoàn tất', status : [STATUS_COMPLETED] },
     {id: 5, name: 'Đã huỷ', status : [STATUS_DENIED_BY_VENDOR, STATUS_USER_CANCEL, STATUS_CANCELLED] },
   ]
 
   const showCart = () => {
     if(orders?.length >0){
         return orders.map((item,value)=>{
+          let totalContainer = 0
+          for(let i = 0 ;i < item.reference_items.length ;i++){
+            totalContainer += item.reference_items[i].quantity
+          }
+          
           if(TABS[active].status.indexOf(item.status) !== -1) {
             return(
               <div className="oder-item" key={value}>
@@ -58,10 +63,10 @@ const OrderProduct = ({ params, hideList = "" }) => {
                           <img className ="thumbnail-img" src={item.reference_items[0]?.image} alt="thumbnail" />
                           </div>
                           <div className ="item-info">
-                              <span className ="id-product">Mã đơn hàng: {item._id}</span>
-                              <span className ="item-qty">Tổng số sản phẩm: {item.reference_items.length}</span>
-                              <span className ="item-qty">Tổng thanh toán:&nbsp;
-                              { NumberHelper.formatCurrency((item.order_info.total + item.order_info.shipping_fee) - item.order_info.discount)  }
+                              <span className ="id-product">Mã đơn hàng: <span>{item._id}</span></span>
+                              <span className ="item-qty">Số thùng: <span>{totalContainer}</span></span>
+                              <span className ="item-qty">Tổng thanh toán: <span>&nbsp;
+                              { NumberHelper.formatCurrency((item.order_info.total + item.order_info.shipping_fee) - item.order_info.discount)  }</span>
                               </span>
                               <span className ="item-qty">Ngày đặt hàng: {item.created}</span>
                           </div>

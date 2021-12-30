@@ -134,12 +134,21 @@ $top-space: 44px;
         font-size: 8px !important;
     }
     .Offer-promotion img{
-        width: 50px !important;
-        height: 50px !important;
+        width: 80px !important;
+        height: 80px !important;
         padding-right: 10px !important;
     }
-    .content-promotion p{
-        font-size: 8px !important;
+    .expiry-promotion,
+    .Minimum-Order{
+        font-size: 10px !important;
+    }
+    .code-promotion{
+        font-size: 15px !important;
+    }
+    .use-promotion{
+        span{
+            font-size: 9px !important;
+        }
     }
 }
 
@@ -176,13 +185,11 @@ $top-space: 44px;
     }
     .Offer-promotion{
         img{
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
         }
     }
-    .content-promotion p {
-        font-size: 10px;
-    }
+    
     .btn-Oder-list button{
         font-size: 13px;
     }
@@ -207,7 +214,7 @@ $top-space: 44px;
     }
     .use-promotion{
         span{
-            font-size: 8px !important;
+            font-size: 10px ;
         }
     }
 
@@ -262,6 +269,7 @@ $top-space: 44px;
             width: 40px !important;
         }
     }
+  
 }
 
 
@@ -303,9 +311,7 @@ $top-space: 44px;
     }
 
     @media (max-width: 376px) {
-        .content-promotion p {
-            font-size: 8px;
-        }
+      
         .button-right{
             span{
                 font-size: 14px;
@@ -314,6 +320,18 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
+    .expiry-promotion,
+    .Minimum-Order{
+        font-size: 9px !important;
+    }
+    .code-promotion{
+        font-size: 14px !important;
+    }
+    .Offer-promotion img{
+        width: 70px !important;
+        height: 70px !important;
+        padding-right: 10px !important;
+    }
     .is_default{
         p{
             width: 60%;

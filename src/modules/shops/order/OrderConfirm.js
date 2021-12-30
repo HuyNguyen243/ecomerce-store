@@ -92,9 +92,9 @@ const OderConfirm = () => {
       })
     }
   }
+
   const handleAfterSubmit =  React.useCallback(() => {
     if(modalPopup.data.success && submited) {
-      setCondition(true)
       history.push("/orders")
       MySwal.fire({
           showConfirmButton : false,

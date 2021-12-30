@@ -46,6 +46,7 @@ function PopUpPromotion(props) {
             dispatch(resetPopup())
         }, 1000);
     }, [modalPopup, dispatch])
+    
     useEffect(()=>{
         if(!promotionVoucher?.isLoaded){
             dispatch(getPromotionvouchers())
@@ -79,8 +80,8 @@ function PopUpPromotion(props) {
         if(dataSearchPromotion.length  > 0){
             return (dataSearchPromotion).map((item,value)=>{
                 return(
-                    <div className='container-promotion' key={value}>
-                    <div className='Offer-promotion'>
+                    <div className='container-promotion' key={value} id={item.code}  onClick={e => handleUsePromotion(item._id)}>
+                    <div className='Offer-promotion'  >
                         <img src={item.image} alt="sale" />
                         <div className='content-promotion'>
                             <p className='code-promotion'>{item.code}</p>
@@ -89,7 +90,7 @@ function PopUpPromotion(props) {
                             </div>
                         </div>
                         <div className='use-promotion'>
-                        <span onClick={e => handleUsePromotion(item._id)} id={item.code} >Sử dụng ngay</span>
+                        <span id={item.code} className='button-usePromotion'>Sử dụng ngay</span>
                         </div>
                     </div>
                 )
@@ -97,18 +98,24 @@ function PopUpPromotion(props) {
         }else{
             if(promotionVoucher?.isLoaded){
                 return promotionVoucher.data.map((item,value)=>{
+                    let unix_timestamp = item.endDate
+                    let date = new Date(unix_timestamp * 1000);
+                    let year = date.getFullYear()
+                    var months = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+                    let month = months[date.getMonth()];
+                    let day = date.getDate();
                     return(
-                        <div className='container-promotion' key={value}>
+                        <div className='container-promotion' key={value} onClick={e => handleUsePromotion(item._id)} id={item.code}>
                         <div className='Offer-promotion'>
                             <img src={item.image} alt="sale" />
                             <div className='content-promotion'>
                                 <p className='code-promotion'>{item.code}</p>
                                 <p className='Minimum-Order'>{item.title}</p>
-                                <p className='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>
+                                <p className='expiry-promotion'>Hạn sử dụng: {day}/{month}/{year}</p>
                                 </div>
                             </div>
                             <div className='use-promotion'>
-                            <span onClick={e => handleUsePromotion(item._id)} id={item.code} >Sử dụng ngay</span>
+                            <span  className='button-usePromotion'>Sử dụng ngay</span>
                             </div>
                         </div>
                     )
