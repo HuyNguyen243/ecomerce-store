@@ -94,17 +94,15 @@ function Offer(data) {
     }, [modalPopup, handleAfterSubmit])
 
     return (
-        <div >
-        <div className="container">
-        <div className="Offer-title">
-                <img src="/images/sale.png" alt="menu_icon" />
-                <p>ƯU ĐÃI SỐC CHỈ HÔM NAY</p>
+        <div className="container no-over">
+            <div className="Offer-title">
+                    <img src="/images/sale.png" alt="menu_icon" />
+                    <p>ƯU ĐÃI SỐC CHỈ HÔM NAY</p>
+            </div>
+                <Slider {...settings}>
+                    {showslide()}
+                </Slider>
         </div>
-            <Slider {...settings}>
-                {showslide()}
-            </Slider>
-        </div>
-    </div>
     );
 }
 

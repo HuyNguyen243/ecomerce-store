@@ -46,7 +46,6 @@ function PopUpPromotion(props) {
             dispatch(resetPopup())
         }, 1000);
     }, [modalPopup, dispatch])
-    
     useEffect(()=>{
         if(!promotionVoucher?.isLoaded){
             dispatch(getPromotionvouchers())

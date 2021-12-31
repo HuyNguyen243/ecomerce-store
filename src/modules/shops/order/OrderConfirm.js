@@ -95,7 +95,8 @@ const OderConfirm = () => {
     }
   }
   const handleAfterSubmit =  React.useCallback(() => {
-    if(modalPopup.data.success && submited) {
+    if(modalPopup.data.success) {
+      setCondition(true)
       history.push("/orders")
       MySwal.fire({
           showConfirmButton : false,
@@ -111,13 +112,13 @@ const OderConfirm = () => {
     setTimeout(() => {
         dispatch(resetPopup())
       }, 1000);
-  }, [modalPopup, dispatch,history, oneDeliveryUser, submited])
+  }, [modalPopup, dispatch,history, oneDeliveryUser])
 
   React.useEffect(() => {
-    if(modalPopup.active) {
+    if(modalPopup.active && submited) {
         handleAfterSubmit()
     }
-  }, [modalPopup, handleAfterSubmit])
+  }, [modalPopup, handleAfterSubmit, submited])
 
   const showUserInfo = ()=>{
     if(oneDeliveryUser !== "" ){

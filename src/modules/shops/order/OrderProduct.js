@@ -64,10 +64,12 @@ const OrderProduct = ({ params, hideList = "" }) => {
                           <img className ="thumbnail-img" src={item.reference_items[0]?.image} alt="thumbnail" />
                           </div>
                           <div className ="item-info">
-                              <span className ="id-product">Mã đơn hàng: <span>{item._id}</span></span>
+                              <span className ="id-product">Mã đơn hàng: {item._id}</span>
                               <span className ="item-qty">Số thùng: <span>{totalContainer}</span></span>
-                              <span className ="item-qty">Tổng thanh toán: <span>&nbsp;
-                              { NumberHelper.formatCurrency((item.order_info.total + item.order_info.shipping_fee) - item.order_info.discount)  }</span>
+                              <span className ="item-qty">Tổng thanh toán:&nbsp;
+                              { NumberHelper.formatCurrency(
+                                  (item?.order_info?.total + item?.order_info?.shipping_fee ) - (item?.promotion_info?.discount ? item?.promotion_info?.discount : 0)
+                              )  }
                               </span>
                               <span className ="item-qty">Ngày đặt hàng: {item.created}</span>
                           </div>

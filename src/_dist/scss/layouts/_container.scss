@@ -298,3 +298,7 @@ body {
 .shipper{
   color: #cdc9c9 !important;
 }
+
+body{
+  touch-action: pan-y;
+}
