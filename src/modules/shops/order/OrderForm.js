@@ -98,8 +98,7 @@ const OrderForm = ({ onSubmit, isLoading,
 
   const handleOnClick =()=>{
     if(shippingFee === 0) {return false}
-    if(oneDeliveryUser === "" ){
-    }else{
+    if(oneDeliveryUser !== "" ){
       history.push("/order-confirmation")
     }
   }

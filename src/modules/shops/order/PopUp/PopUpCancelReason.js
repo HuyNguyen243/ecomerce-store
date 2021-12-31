@@ -72,7 +72,7 @@ function PopUpCancelReason(props) {
                                 border: '1px solid #ccc',
                                 borderRadius: '10px',
                                 fontWeight: '300',
-                                paddingLeft: '15px'
+                                paddingLeft: '15px',
                             }
                             } name="other_reason" type="text" className="form-control" onChange={(e)=>setInput(e.target.value)}/>
                          </div>

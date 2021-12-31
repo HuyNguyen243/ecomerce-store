@@ -24,7 +24,7 @@ const CartItem = ({item,index}) => {
     }
     dispatch(addCart())
   }
-
+  
   const removeCartItem = () => {
     MySwal.fire({
       text: "Bạn có đồng ý xóa sản phẩm này khỏi giỏ hàng không?",

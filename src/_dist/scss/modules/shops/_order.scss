@@ -476,3 +476,23 @@
       flex-direction: column;
       justify-content: center;
   }
+
+  .style-list{
+      overflow: auto;
+      &::-webkit-scrollbar{
+          display: none;
+      }
+  }
+
+  .btn-button{
+      padding: 10px 0;
+      border-radius: 20px;
+      border: none;
+      width: 98% !important;
+      color: #c1c1c1;
+      background: #e7e7e7;
+  }
+
+  .style-list{
+      padding-bottom: 10px;
+  }

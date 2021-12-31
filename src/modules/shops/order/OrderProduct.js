@@ -16,6 +16,7 @@ import {
   STATUS_COMPLETED,
   STATUS_CANCELLED
 } from './../../../_config/shop.config';
+import Slider from "react-slick";
 
 const OrderProduct = ({ params, hideList = "" }) => {
   const[active,setActive] = useState(0)
@@ -86,6 +87,57 @@ const OrderProduct = ({ params, hideList = "" }) => {
     }
   }
 
+  const settings = {
+    infinite: false,
+    enterPadding: "60px",
+    slidesToShow: 8,
+    slidesToScroll: 1,
+    speed: 500,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 300,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      ]
+  };
+
+
+  const [slider,setSlider] = useState()
+  const handleButton = (index) =>{
+    setActive(index)
+    if(index !== 0 || index !== 4){
+      if(index > active){
+        slider.slickNext()
+      }
+      if (index < active || index === active){
+        slider.slickPrev()
+      }
+    }
+  }
   return (
     <div id={USER_ORDER_NAV} className="nav-right">
       {
@@ -100,18 +152,16 @@ const OrderProduct = ({ params, hideList = "" }) => {
       />
       <div className="main_container">
         <div className="horizontal-wrapper">
-          <div id="mostView" className="horizontal-list btn-Oder-list">
+          <div  className="style-list">
+            <Slider {...settings} ref={c => setSlider(c)}>
               {
                 TABS.map((item, index) => {
                   return (
-                    <div className="horizontal-list-item " key={index}>
-                      <div className=" style-item">
-                        <button   onClick={e =>setActive(index)} className={`btn ${index === active ? 'active' : ''}`}>{item.name}</button>
-                      </div>
-                    </div>
+                        <button key={index} onClick={e =>handleButton(index)} className={`btn-button ${index === active ? 'active' : ''}`}>{item.name}</button>
                   )
                 })
               }
+            </Slider>
           </div>
         </div>
       <div className="news-style-cart style-for-cart style-product">
