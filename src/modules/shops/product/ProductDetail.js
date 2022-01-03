@@ -2,7 +2,7 @@ import React from "react";
 import PriceDisplay from "./PriceDisplay";
 import ImageDisplay from "./ImageDisplay";
 import Slideshow from "./ProductSlideshow";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { addCart } from './../../../redux/actions/index';
 import CartService from '../../../_services/cart';
 import { useHistory } from "react-router";
@@ -14,6 +14,7 @@ import Snackbar from "../../../_components/_snackbar.component";
 const ProductDetail = ({ product, quantity, changeQuantity, }) => {
   const history = useHistory()
   const dispatch = useDispatch();
+  const carts = useSelector(state => state.carts);
   let image;
   if (product.gallery && product.gallery.length > 0) {
     image = <Slideshow gallery={product.gallery} />;
@@ -48,23 +49,33 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
     }
     changeQuantity(quantity)
   }
-
+  
   const addToCart = (showCart = false) =>{
-    CartService.add({
-      id          : product._id,
-      name        : product.name,
-      image       : product.image,
-      price       : product.price,
-      couponPrice : product.couponPrice,
-      weight      : product.weight,
-      minOrder    : product.minOrder,
-      quantity    : quantity
-    })
-    SnackbarHelper.show('Thêm vào giỏ hàng thành công')
-    dispatch(addCart())
-    if(showCart) {
-      history.push('/cart')
+    for(let i = 0 ; i < carts.length ; i++){
+      if(carts[i]["_id"] === product._id){
+        console.log(true)
+        // if(carts[i]["quantity"] > 100 ){
+        //   CartService.add({
+        //     id          : product._id,
+        //     name        : product.name,
+        //     image       : product.image,
+        //     price       : product.price,
+        //     couponPrice : product.couponPrice,
+        //     weight      : product.weight,
+        //     minOrder    : product.minOrder,
+        //     quantity    : quantity
+        //   })
+        //   SnackbarHelper.show('Thêm vào giỏ hàng thành công')
+        //   dispatch(addCart())
+        //   if(showCart) {
+        //     history.push('/cart')
+        //   }
+        // }else{
+        //   SnackbarHelper.show('Sản phẩm đạt đến số lượng tối đa!')
+        // }
+      }
     }
+
   }
 
 

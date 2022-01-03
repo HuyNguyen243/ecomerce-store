@@ -305,12 +305,6 @@
     &::-webkit-scrollbar{
         width: 3px;
     }
-    .container-promotion:hover{
-        background:  url(/images/grey-bg-discount.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        transition: 0.2s;
-    }
     .container-promotion{
       background:  url(/images/grey-bg-discount.svg);
       background-repeat: no-repeat;
@@ -355,10 +349,7 @@
 
       }
     }
-    .container-promotion:hover .content-promotion  .expiry-promotion,
-    .container-promotion:hover .content-promotion .Minimum-Order{
-        color: #fff;
-    }
+ 
   }
 
   .Button-buttom{

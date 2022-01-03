@@ -11,15 +11,21 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
   const usehistory =useHistory()
   const carts = useSelector(state => state.carts);
   const showShoppingCart = () => {
-    if (showCart !== '') {
-      return (
-        <Link to="/cart">
-          <span onClick={e => {  showCart() }}>
-            <img src="/images/shopping-cart.png" alt="menu_icon" />
-            { carts?.length > 0 ? <span className="total-cart"> {carts?.length} </span> : '' }
-          </span>
-        </Link>
-      )
+      if (showCart !== '') {
+        let totalContainer = 0
+        if(carts?.length > 0){
+          for(let i = 0;i < carts?.length ; i++){
+            totalContainer +=carts[i].quantity
+          }
+        }
+        return (
+          <Link to="/cart">
+            <span onClick={e => {  showCart() }}>
+              <img src="/images/shopping-cart.png" alt="menu_icon" />
+              { carts?.length > 0 ? <span className={`total-cart + ${totalContainer > 99 ? "fix-total-cart" : ""}`}> {totalContainer} </span> : '' }
+            </span>
+          </Link>
+        )
     }
   }
   const handleGoBack = () => {
