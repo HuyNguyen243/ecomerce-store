@@ -48,14 +48,14 @@ function Offer(data) {
                     number.push(find[0])
                 }
                 number.forEach(element => {
-                    description = description.replace(element,"<span style='color:red'  class='span-element'>"+ element +"</span>");
+                    description = description.replace(element,"<span style='color:red;font-weight:bold'  >"+ element +"</span>");
                 });
 
                 while((title =findNumber.exec(item.title)) != null){
                     arrayTitle.push(title[0])
                 }
                 arrayTitle.forEach(element2 => {
-                    changeTitle = changeTitle.replace(element2,"<span style='color:red'  class='span-element'>"+ element2 +"</span>");
+                    changeTitle = changeTitle.replace(element2,"<span style='color:red' class='span-element'>"+ element2 +"</span>");
                 });
                 
                 return(

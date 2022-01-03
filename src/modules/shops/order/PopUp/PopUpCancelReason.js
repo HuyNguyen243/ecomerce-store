@@ -1,10 +1,15 @@
 import React , {useState ,useEffect} from 'react';
+import { useDispatch } from "react-redux";
+import { deleteParentOrderProduct } from '../../../../redux/actions';
+import { useHistory } from 'react-router';
 
 function PopUpCancelReason(props) {
 
     const [showPopup, setShowPopup] = useState()
     const [selectedReason,setSelectedReason]=useState(1)
     const [input , setInput] = useState ("")
+    const dispatch = useDispatch()
+    const history =useHistory()
 
     useEffect(()=>{
         setShowPopup(props.showPopUp)
@@ -16,18 +21,27 @@ function PopUpCancelReason(props) {
     }
 
     const buttonSubmit =() =>{
-        if(selectedReason === 3){
-            if(input !== ""){
-                setShowPopup(false)
-                props.ChangeshowPopup(showPopup)
-                props.comfirm(true)
+        let id = props.id
+        let reason;
+        for( let i = 0 ;i < cancelReasons.length ; i++){
+            if(selectedReason === cancelReasons[i]["id"]){
+                reason = cancelReasons[i]["title"]
             }
         }
-        if(selectedReason === 2 || selectedReason === 1){
-                setShowPopup(false)
-                props.ChangeshowPopup(showPopup)
-                props.comfirm(true)
+        if(selectedReason === 3){
+            if(input === ""){
+                return false
+            }else{
+                reason = input
+            }
         }
+            let formData = new FormData();
+            formData.append("cancel_reason",reason)
+            dispatch(deleteParentOrderProduct(id,formData))
+            setShowPopup(false)
+            props.ChangeshowPopup(showPopup)
+            props.comfirm(true)
+            history.goBack()
     }
 
     const cancelReasons = [
@@ -74,7 +88,7 @@ function PopUpCancelReason(props) {
                                 fontWeight: '300',
                                 paddingLeft: '15px',
                             }
-                            } name="other_reason" type="text" className="form-control" onChange={(e)=>setInput(e.target.value)}/>
+                            } maxLength={50} name="other_reason" type="text" className="form-control" onChange={(e)=>setInput(e.target.value)}/>
                          </div>
                        }
                      </div>

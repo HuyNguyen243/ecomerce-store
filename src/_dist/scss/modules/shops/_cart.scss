@@ -21,7 +21,7 @@
   margin: 10px 16px 9px 16px !important;
   text-align: center !important; 
   color: #000 !important;
-  font-size: 15px;
+  font-size: 14px;
   .Offer-title{
     display: flex;
     justify-content: center;
@@ -51,6 +51,7 @@
     align-items: flex-start;
     .Note-Details-titles{
       padding: 6px 0 2px;
+      text-align: start;
     }
    }
   }
@@ -261,7 +262,7 @@
     justify-content: flex-end;
     font-size: 13px;
     color: #f40000;
-    margin: 0 20px;
+    margin: 0 15px;
   }
 }
 

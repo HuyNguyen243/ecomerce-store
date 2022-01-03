@@ -18,7 +18,6 @@ import {
 } from './../../../_config/shop.config';
 import { getOneOrder } from './../../../redux/actions/index';
 import PopUpCancelReason from "./PopUp/PopUpCancelReason";
-
 function InfoProductShipping(props) {
   const dispatch = useDispatch()
   let { id } = useParams();
@@ -26,7 +25,7 @@ function InfoProductShipping(props) {
   const order = useSelector(state => state.order);
   const isLoading = useSelector(state => state.isLoading);
   const [showPopUp ,setShowPopUp] = useState(false)
-  
+
   React.useEffect(() => {
     dispatch(getOneOrder(id))
   }, [dispatch, id])
@@ -55,7 +54,6 @@ function InfoProductShipping(props) {
         return status
     }
   }
-
   const showCart = () => {
     if(order?.reference_items?.length >0){
         return order?.reference_items?.map((item,value)=>{
@@ -80,7 +78,6 @@ function InfoProductShipping(props) {
         )
     }
   }
-
   const handleSubmit = ()=>{
     if(!confirmCancel){
       setShowPopUp(true)
@@ -106,7 +103,6 @@ function InfoProductShipping(props) {
   const getBooleanConfirm = (props) => {
     setConfirmCancel(props)
   }
-  
   return (
     <div className="body_wrapper ">
       {
@@ -133,7 +129,7 @@ function InfoProductShipping(props) {
           </div>
           <div className="nav_label style-title">
             <span>Thông tin vận chuyển</span>
-            <span className={!confirmCancel ? "hide" : ""}>Đơn đã huỷ</span>
+            <span className={order?.status === "USER_CANCEL" ? "" : "hide"}>Đơn đã huỷ</span>
           </div>
           <div className="user_info ">
               <p className="shipper">Đơn vị vận chuyển: AhaMove</p>
@@ -144,7 +140,8 @@ function InfoProductShipping(props) {
             <span>Trạng thái đơn hàng</span>
           </div>
           <div className="user_info">
-              <p>Trạng thái: { getOrderStatus(order?.status)}</p>
+            <p>Trạng thái: <span className="strong-reason">{getOrderStatus(order?.status)}</span></p>
+            <p className={order?.status === "USER_CANCEL" ? "show" : "hide" }>Lý do: <span className="strong-reason">{order?.cancel_reason}</span></p>
           </div>
           <div className="nav_label style-title">
             <span>Danh sách đơn hàng</span>
@@ -202,7 +199,7 @@ function InfoProductShipping(props) {
           }
         </div>
       </div>
-        <PopUpCancelReason  showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp} comfirm={getBooleanConfirm}/>
+        <PopUpCancelReason  showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp} comfirm={getBooleanConfirm} id={order?._id}/>
     </div>
   );
 }

@@ -383,7 +383,7 @@ $text-row: 2;
   .Note-Details{
     padding-left: 15px;
     .Note-Details-titles{
-      font-weight: 500px;
+      text-transform: uppercase;
       font-size: 11px;
       padding: 2px 0;
       margin: 0;
@@ -393,6 +393,7 @@ $text-row: 2;
       text-overflow: ellipsis;
       overflow: hidden;
       line-height: 1.4;
+      font-weight: 600;
     }
     .Minimum-Order{
       font-weight: 300px;
@@ -402,6 +403,7 @@ $text-row: 2;
       color: #f40000;
     }
     .Product-Details{
+      text-align: start;
       font-weight: 200px;
       font-size: 10px;
       padding: 2px 0;

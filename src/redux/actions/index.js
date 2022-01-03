@@ -21,7 +21,8 @@ import {
     SUBMIT_ORDER,
     GET_ORDER,
     GET_ONE_ORDER,
-    GET_TITLE_CATEGORIES
+    GET_TITLE_CATEGORIES,
+    DELETE_ORDER_PRODUCT,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -114,4 +115,8 @@ export const getOneOrder = (order) => {
 
 export const getParentTitleCategories = (id) => {
     return { type: GET_TITLE_CATEGORIES, payload: id};
+}
+
+export const deleteParentOrderProduct = (id,reason) => {
+    return { type: DELETE_ORDER_PRODUCT, payload: {id: id, reason: reason} };
 }

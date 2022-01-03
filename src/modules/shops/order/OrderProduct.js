@@ -25,7 +25,6 @@ const OrderProduct = ({ params, hideList = "" }) => {
 
   const isLoading = useSelector(state => state.isLoading);
   const orders = useSelector(state => state.orders);
-
   const getOrdersCallback =  React.useCallback(() => {
     dispatch(getListOrders())
   }, [dispatch])
@@ -114,13 +113,6 @@ const OrderProduct = ({ params, hideList = "" }) => {
         breakpoint: 420,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 300,
-        settings: {
-          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },

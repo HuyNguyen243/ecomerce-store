@@ -14,41 +14,7 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
   const history = useHistory()
   const dispatch = useDispatch();
   const location = useLocation()
-
-  // const doScrolling = (cateId, type) => {
-  //   let scrollElement = document.getElementById(cateId)
-  //   let scrollItems = scrollElement.getElementsByClassName('active')[0];
-  //   let totalScrollItems = Number(scrollElement.getElementsByClassName('horizontal-list-item').length);
-  //   scrollItems.classList.remove('active');
-  //   let key = Number(scrollItems.getAttribute('item-id'));
-  //   let itemWidth = scrollItems.offsetWidth;
-  //   let nextKey;
-  //   if (type === 'prev') {
-  //     scrollElement.scrollLeft -= itemWidth
-  //     nextKey = key-1;
-  //   }else {
-  //     scrollElement.scrollLeft += itemWidth
-  //     nextKey = key+1;
-  //   }
-  //   let nextElement = scrollElement.querySelector('[item-id="'+nextKey+'"]');
-  //   if (nextElement) {
-  //     nextElement.classList.add('active')
-  //   }
-
-  //   if ((totalScrollItems) === nextKey) {
-  //     nextKey = 0;
-  //     scrollElement.scrollLeft = 0;
-  //     scrollElement.querySelector('[item-id="0"]').classList.add('active')
-  //   }else{
-  //     scrollElement.parentElement.getElementsByClassName('next')[0].classList.remove('hide')
-  //   }
-
-  //   if (nextKey === 0) {
-  //     scrollElement.parentElement.getElementsByClassName('prev')[0].classList.add('hide')
-  //   }else {
-  //     scrollElement.parentElement.getElementsByClassName('prev')[0].classList.remove('hide')
-  //   }
-  // }
+  
   if (data.length > 0) {
     productList = data.map((product, index) => {
       return (

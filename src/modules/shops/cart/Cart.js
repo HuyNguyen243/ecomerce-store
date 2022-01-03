@@ -15,7 +15,6 @@ const Cart = ({
   const carts = useSelector(state => state.carts);
   const dispatch = useDispatch();
   const [cartLoaded, setCartLoaded] = useState(false);
-
   const showCart=()=>{
     if(carts?.length >0){
         return carts.map((item,key)=>{

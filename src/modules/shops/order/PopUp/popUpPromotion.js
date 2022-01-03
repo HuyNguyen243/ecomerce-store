@@ -100,16 +100,28 @@ function PopUpPromotion(props) {
                     let unix_timestamp = item.endDate
                     let date = new Date(unix_timestamp * 1000);
                     let year = date.getFullYear()
-                    var months = ['1','2','3','4','5','6','7','8','9','10','11','12'];
-                    let month = months[date.getMonth()];
+                    let month = date.getMonth()+ 1;
                     let day = date.getDate();
+
+                    let findNumber = /\d+k/g;
+                    let number = []
+                    let find;
+                    let changeTitle = item.title
+     
+                    while((find =findNumber.exec(item.title)) != null){
+                        number.push(find[0])
+                    }
+                    number.forEach(element => {
+                        changeTitle = changeTitle.replace(element,"<span style='color:red;font-weight:bold'  >"+ element +"</span>");
+                    });
+
                     return(
                         <div className='container-promotion' key={value} onClick={e => handleUsePromotion(item._id)} id={item.code}>
                         <div className='Offer-promotion'>
                             <img src={item.image} alt="sale" />
                             <div className='content-promotion'>
                                 <p className='code-promotion'>{item.code}</p>
-                                <p className='Minimum-Order'>{item.title}</p>
+                                <p className='Minimum-Order' dangerouslySetInnerHTML={{__html: changeTitle}}></p>
                                 <p className='expiry-promotion'>Hạn sử dụng: {day}/{month}/{year}</p>
                                 </div>
                             </div>

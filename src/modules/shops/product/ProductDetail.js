@@ -49,33 +49,31 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
     }
     changeQuantity(quantity)
   }
-  
+
   const addToCart = (showCart = false) =>{
-    for(let i = 0 ; i < carts.length ; i++){
-      if(carts[i]["_id"] === product._id){
-        console.log(true)
-        // if(carts[i]["quantity"] > 100 ){
-        //   CartService.add({
-        //     id          : product._id,
-        //     name        : product.name,
-        //     image       : product.image,
-        //     price       : product.price,
-        //     couponPrice : product.couponPrice,
-        //     weight      : product.weight,
-        //     minOrder    : product.minOrder,
-        //     quantity    : quantity
-        //   })
-        //   SnackbarHelper.show('Thêm vào giỏ hàng thành công')
-        //   dispatch(addCart())
-        //   if(showCart) {
-        //     history.push('/cart')
-        //   }
-        // }else{
-        //   SnackbarHelper.show('Sản phẩm đạt đến số lượng tối đa!')
-        // }
+    for(let i = 0 ;i < carts.length ;i++){
+      if(carts[i]["id"] === product._id){
+        if(carts[i]["quantity"] + quantity  > 99 ){
+          SnackbarHelper.show('Sản phẩm đạt số lượng tối đa!')
+          return false
+        }
       }
     }
-
+      CartService.add({
+        id          : product._id,
+        name        : product.name,
+        image       : product.image,
+        price       : product.price,
+        couponPrice : product.couponPrice,
+        weight      : product.weight,
+        minOrder    : product.minOrder,
+        quantity    : quantity
+      })
+      SnackbarHelper.show('Thêm vào giỏ hàng thành công')
+      dispatch(addCart())
+      if(showCart) {
+        history.push('/cart')
+      }
   }
 
 

@@ -61,6 +61,9 @@ import {
   GET_ONE_ORDER_SUCCESS,
 
   GET_TITLE_CATEGORIES,
+
+  DELETE_ORDER_PRODUCT,
+  DELETE_ORDER_PRODUCT_SUCCESS
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -127,6 +130,11 @@ const initState = {
   },
   order: {},
   getTitleCategories : "",
+
+  deleteoderproduct : {
+    isLoaded : false,
+    data : {}
+  },
 };
 
 const rootReducer = (state = initState, action) => {
@@ -156,6 +164,7 @@ const rootReducer = (state = initState, action) => {
     case SUBMIT_ORDER:
     case GET_ORDER:
     case GET_ONE_ORDER:
+    case DELETE_ORDER_PRODUCT:
       return Object.assign({}, state, {
         isLoading: true,
       });
@@ -364,6 +373,14 @@ const rootReducer = (state = initState, action) => {
           return Object.assign({}, state, {
             getTitleCategories: payload
           });
+      case DELETE_ORDER_PRODUCT_SUCCESS:
+        return Object.assign({}, state, {
+          deleteoderproduct: {
+            isLoaded: true,
+            data: payload.data
+          },
+          isLoading: false,
+        });
     default:
       return Object.assign({}, state, {
         isLoading: false

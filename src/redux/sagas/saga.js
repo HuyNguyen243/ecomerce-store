@@ -51,6 +51,9 @@ import {
   GET_ONE_ORDER,
   GET_ONE_ORDER_SUCCESS,
 
+  DELETE_ORDER_PRODUCT,
+  DELETE_ORDER_PRODUCT_SUCCESS
+
 } from '../constants';
 import { API_URL_V2 } from '../../_config/api.config';
 import Auth from "../../_services/auth";
@@ -75,6 +78,7 @@ export default function* watcherSaga() {
   yield takeLatest(SUBMIT_ORDER, workerSaga);
   yield takeLatest(GET_ORDER, workerSaga);
   yield takeLatest(GET_ONE_ORDER, workerSaga);
+  yield takeLatest(DELETE_ORDER_PRODUCT, workerSaga);
 }
 
 function* workerSaga(param) {
@@ -152,6 +156,10 @@ function* workerSaga(param) {
     case GET_ONE_ORDER:
       action = getOneOrder;
       type   = GET_ONE_ORDER_SUCCESS;
+      break;
+    case DELETE_ORDER_PRODUCT:
+      action = deleteParentOrderProduct;
+      type   = DELETE_ORDER_PRODUCT_SUCCESS;
       break;
     default:
       break;
@@ -239,4 +247,8 @@ function getListOrders() {
 
 function getOneOrder(id) {
   return get(`${API_URL_V2}/orders/${id}?token=${Auth.get().token}`);
+}
+
+function deleteParentOrderProduct(param) {
+  return post(`${API_URL_V2}/orders/${param.id}/user-cancel?token=${Auth.get().token}`,param.reason);
 }

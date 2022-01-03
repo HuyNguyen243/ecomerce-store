@@ -48,7 +48,7 @@ function PopUpAdventisement(props) {
                   number.push(find[0])
               }
               number.forEach(element => {
-                  description = description.replace(element,"<span style='color:red'  class='span-element'>"+ element +"</span>");
+                  description = description.replace(element,"<span style='color:red;font-weight:bold'  >"+ element +"</span>");
               });
 
               while((title =findNumber.exec(item.title)) != null){
