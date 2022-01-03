@@ -117,7 +117,13 @@ const OrderProduct = ({ params, hideList = "" }) => {
           slidesToScroll: 1,
         },
       },
- 
+      {
+        breakpoint: 300,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
       ]
   };
 
@@ -125,15 +131,14 @@ const OrderProduct = ({ params, hideList = "" }) => {
   const [slider,setSlider] = useState()
   const handleButton = (index) =>{
     setActive(index)
-      setTimeout(()=>{
-        if(index > active){
-          slider.slickNext()
-        }
-        if (index < active || index === active  ){
-          slider.slickGoTo(index - 1)
-        }
-      
-      },100)
+    if(index !== 0 || index !== 4){
+      if(index > active){
+        slider.slickNext()
+      }
+      if (index < active || index === active){
+        slider.slickPrev()
+      }
+    }
   }
   return (
     <div id={USER_ORDER_NAV} className="nav-right">

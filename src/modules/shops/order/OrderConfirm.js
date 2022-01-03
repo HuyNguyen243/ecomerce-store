@@ -30,8 +30,10 @@ const OderConfirm = () => {
       if(carts.length === 0){
         history.push('/')
       }
+      if(oneDeliveryUser.length === 0){
+        history.push('/order-infomation')
+      }
     })
-
     const [condition, setCondition] = useState("")
     let dangerTxt = "vui lòng chọn thông tin nhận hàng"        
 
