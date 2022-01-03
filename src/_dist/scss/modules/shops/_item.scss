@@ -58,7 +58,7 @@ $text-row: 2;
     }
   }
   &.cart {
-    padding: 0 $pd-sm;
+    padding: 0 15px;
     margin: 0 0 10px 0;
     border-radius: 0;
     box-shadow: none;
@@ -81,7 +81,7 @@ $text-row: 2;
       }
     }
     .current-price {
-      color: #333333;
+      color: #f40000;
       padding: $pd-xs 0;
     }
   }
@@ -277,7 +277,7 @@ $text-row: 2;
     width: 40%;
     .current-price {
       color: #f40000;
-      font-size: 20px !important;
+      font-size: 18px !important;
       padding: 10px 0;
     }
   }
@@ -388,7 +388,7 @@ $text-row: 2;
       padding: 2px 0;
       margin: 0;
       display: -webkit-box;
-      -webkit-line-clamp: 1;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -463,7 +463,7 @@ $text-row: 2;
 }
 
 .expiry-promotion{
-  color: #ccc;
+  color: #b9b7b7;
 }
 
 .title_order{
@@ -501,7 +501,7 @@ $text-row: 2;
     button{
       img{
         width: 5.5vw;
-        padding-right: 5px;
+        padding-right: 2px;
       }
       display: flex;
       justify-content: center;

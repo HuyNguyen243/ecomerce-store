@@ -35,13 +35,35 @@ function PopUpAdventisement(props) {
         const listSwal = () =>{
           if(advertisement!==""){
             return advertisement.map((item,value)=>{
+              let findNumber = /\d+k/g;
+              let number = []
+              let find;
+              let description = item.description;
+              let title;
+              let arrayTitle =[]
+              
+              let changeTitle = item.title
+
+              while((find =findNumber.exec(item.description)) != null){
+                  number.push(find[0])
+              }
+              number.forEach(element => {
+                  description = description.replace(element,"<span style='color:red'  class='span-element'>"+ element +"</span>");
+              });
+
+              while((title =findNumber.exec(item.title)) != null){
+                  arrayTitle.push(title[0])
+              }
+              arrayTitle.forEach(element2 => {
+                  changeTitle = changeTitle.replace(element2,"<span style='color:red'  class='span-element'>"+ element2 +"</span>");
+              });
               return(
                 <div className='Offer-Details' key={value} onClick={e => actionUsePromotion(item._id)}>
                     <img src={item.image} alt="logo" />
                     <div className='Note-Details'>
-                        <p className='Note-Details-titles'>{item.title}</p>
+                        <p className='Note-Details-titles' dangerouslySetInnerHTML={{__html: changeTitle}}></p>
                         {/* <p className='Minimum-Order'>Đơn tối thiểu : <span>30.000đ</span></p> */}
-                        <p className='Product-Details'>{item.description}</p>
+                        <p className='Product-Details' dangerouslySetInnerHTML={{__html: description}}></p>
                         <img src='/images/Group227.svg' alt='menu_icon' />
                     </div>
                 </div>

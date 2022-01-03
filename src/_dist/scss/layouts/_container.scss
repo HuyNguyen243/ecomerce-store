@@ -121,7 +121,6 @@ body {
 }
 
 .btn-Oder-list{
-  margin-bottom: 25px;
   button{
   padding: 10px 15px;
   border: 1px ;
@@ -289,4 +288,17 @@ body {
 .slick-list{
   border-radius: 10px !important;
   border: 1px solid transparent;
+}
+
+.span-element{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.shipper{
+  color: #cdc9c9 !important;
+}
+
+body{
+  touch-action: pan-y;
 }

@@ -16,6 +16,7 @@ import {
   STATUS_COMPLETED,
   STATUS_CANCELLED
 } from './../../../_config/shop.config';
+import Slider from "react-slick";
 
 const OrderProduct = ({ params, hideList = "" }) => {
   const[active,setActive] = useState(0)
@@ -41,13 +42,18 @@ const OrderProduct = ({ params, hideList = "" }) => {
     {id: 1, name: 'Chờ xác nhận', status : [STATUS_PENDING_VENDOR_APPROVE] },
     {id: 2, name: 'Chờ lấy hàng', status : [STATUS_IDLE, STATUS_ASSIGNING, STATUS_ACCEPTED_BY_VENDOR] },
     {id: 3, name: 'Đang giao hàng', status : [STATUS_IN_PROCESS] },
-    {id: 4, name: 'Đã giao hàng', status : [STATUS_COMPLETED] },
+    {id: 4, name: 'Hoàn tất', status : [STATUS_COMPLETED] },
     {id: 5, name: 'Đã huỷ', status : [STATUS_DENIED_BY_VENDOR, STATUS_USER_CANCEL, STATUS_CANCELLED] },
   ]
 
   const showCart = () => {
     if(orders?.length >0){
         return orders.map((item,value)=>{
+          let totalContainer = 0
+          for(let i = 0 ;i < item.reference_items.length ;i++){
+            totalContainer += item.reference_items[i].quantity
+          }
+          
           if(TABS[active].status.indexOf(item.status) !== -1) {
             return(
               <div className="oder-item" key={value}>
@@ -58,12 +64,12 @@ const OrderProduct = ({ params, hideList = "" }) => {
                           <img className ="thumbnail-img" src={item.reference_items[0]?.image} alt="thumbnail" />
                           </div>
                           <div className ="item-info">
-                              <span className ="id-product">Mã đơn hàng: {item._id}</span>
-                              <span className ="item-qty">Tổng số sản phẩm: {item.reference_items.length}</span>
-                              <span className ="item-qty">Tổng thanh toán:&nbsp;
+                              <span className ="id-product">Mã đơn hàng: <span>{item._id}</span></span>
+                              <span className ="item-qty">Số thùng: <span>{totalContainer}</span></span>
+                              <span className ="item-qty">Tổng thanh toán:<span>&nbsp;
                               { NumberHelper.formatCurrency(
                                   (item?.order_info?.total + item?.order_info?.shipping_fee ) - (item?.promotion_info?.discount ? item?.promotion_info?.discount : 0)
-                              )  }
+                              )  }</span>
                               </span>
                               <span className ="item-qty">Ngày đặt hàng: {item.created}</span>
                           </div>
@@ -83,6 +89,52 @@ const OrderProduct = ({ params, hideList = "" }) => {
     }
   }
 
+  const settings = {
+    infinite: false,
+    enterPadding: "60px",
+    slidesToShow: 8,
+    slidesToScroll: 1,
+    speed: 500,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+ 
+      ]
+  };
+
+
+  const [slider,setSlider] = useState()
+  const handleButton = (index) =>{
+    setActive(index)
+      setTimeout(()=>{
+        if(index > active){
+          slider.slickNext()
+        }
+        if (index < active || index === active  ){
+          slider.slickGoTo(index - 1)
+        }
+      
+      },100)
+  }
   return (
     <div id={USER_ORDER_NAV} className="nav-right">
       {
@@ -96,21 +148,17 @@ const OrderProduct = ({ params, hideList = "" }) => {
         title="DANH SÁCH ĐƠN HÀNG"
       />
       <div className="main_container">
-        <div className="horizontal-wrapper">
-          <div id="mostView" className="horizontal-list btn-Oder-list">
+          <div  className="style-list">
+            <Slider {...settings} ref={c => setSlider(c)}>
               {
                 TABS.map((item, index) => {
                   return (
-                    <div className="horizontal-list-item " key={index}>
-                      <div className=" style-item">
-                        <button   onClick={e =>setActive(index)} className={`btn ${index === active ? 'active' : ''}`}>{item.name}</button>
-                      </div>
-                    </div>
+                        <button key={index} onClick={e =>handleButton(index)} className={`btn-button ${index === active ? 'active' : ''}`}>{item.name}</button>
                   )
                 })
               }
+            </Slider>
           </div>
-        </div>
       <div className="news-style-cart style-for-cart style-product">
           {showCart()}
         </div>

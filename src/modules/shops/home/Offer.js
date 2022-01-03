@@ -12,7 +12,7 @@ function Offer(data) {
     const carts = useSelector(state => state.carts);
 
     const settings = {
-        dots: false,
+        dots: true,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -33,18 +33,39 @@ function Offer(data) {
             }, 1000);
         }
     }
-
     const showslide =() =>{
         if(data.data!== undefined){
             return data.data.map((item,value)=>{
+                let findNumber = /\d+k/g;
+                let number = []
+                let find;
+                let description = item.description;
+                let title;
+                let arrayTitle =[]
+                let changeTitle = item.title
+ 
+                while((find =findNumber.exec(item.description)) != null){
+                    number.push(find[0])
+                }
+                number.forEach(element => {
+                    description = description.replace(element,"<span style='color:red'  class='span-element'>"+ element +"</span>");
+                });
+
+                while((title =findNumber.exec(item.title)) != null){
+                    arrayTitle.push(title[0])
+                }
+                arrayTitle.forEach(element2 => {
+                    changeTitle = changeTitle.replace(element2,"<span style='color:red'  class='span-element'>"+ element2 +"</span>");
+                });
+                
                 return(
                     <div key={value} onClick={e => actionUsePromotion(item._id)}>
                         <div className="Offer-Details" >
                             <img src={item.image} alt="img" />
                             <div className="Note-Details">
-                                <p className="Note-Details-titles">{item.title}</p>
+                                <p className="Note-Details-titles" dangerouslySetInnerHTML={{__html: changeTitle}}></p>
                                 {/* <p className="Minimum-Order">Đơn tối thiểu : <span>{item?.price}</span></p> */}
-                                <p className="Product-Details">{item.description}</p>
+                                <p className="Product-Details" dangerouslySetInnerHTML={{__html: description}}></p>
                                 <img src="/images/Group227.svg" alt="menu_icon" />
                             </div>
                         </div>
@@ -73,17 +94,15 @@ function Offer(data) {
     }, [modalPopup, handleAfterSubmit])
 
     return (
-        <div >
-        <div className="container">
-        <div className="Offer-title">
-                <img src="/images/sale.png" alt="menu_icon" />
-                <p>ƯU ĐÃI SỐC CHỈ HÔM NAY</p>
+        <div className="container no-over">
+            <div className="Offer-title">
+                    <img src="/images/sale.png" alt="menu_icon" />
+                    <p>ƯU ĐÃI SỐC CHỈ HÔM NAY</p>
+            </div>
+                <Slider {...settings}>
+                    {showslide()}
+                </Slider>
         </div>
-            <Slider {...settings}>
-                {showslide()}
-            </Slider>
-        </div>
-    </div>
     );
 }
 
