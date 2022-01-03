@@ -72,6 +72,9 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
+    .btn-button{
+        font-size: 12px;
+    }
     .shop-header .header-search .app-search span{
         width: 85%;
     }
@@ -317,6 +320,9 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
+    .btn-button{
+        font-size: 10px;
+    }
     .expiry-promotion,
     .Minimum-Order{
         font-size: 9px !important;

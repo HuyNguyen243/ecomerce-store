@@ -64,12 +64,12 @@ const OrderProduct = ({ params, hideList = "" }) => {
                           <img className ="thumbnail-img" src={item.reference_items[0]?.image} alt="thumbnail" />
                           </div>
                           <div className ="item-info">
-                              <span className ="id-product">Mã đơn hàng: {item._id}</span>
+                              <span className ="id-product">Mã đơn hàng: <span>{item._id}</span></span>
                               <span className ="item-qty">Số thùng: <span>{totalContainer}</span></span>
-                              <span className ="item-qty">Tổng thanh toán:&nbsp;
+                              <span className ="item-qty">Tổng thanh toán:<span>&nbsp;
                               { NumberHelper.formatCurrency(
                                   (item?.order_info?.total + item?.order_info?.shipping_fee ) - (item?.promotion_info?.discount ? item?.promotion_info?.discount : 0)
-                              )  }
+                              )  }</span>
                               </span>
                               <span className ="item-qty">Ngày đặt hàng: {item.created}</span>
                           </div>
@@ -153,7 +153,6 @@ const OrderProduct = ({ params, hideList = "" }) => {
         title="DANH SÁCH ĐƠN HÀNG"
       />
       <div className="main_container">
-        <div className="horizontal-wrapper">
           <div  className="style-list">
             <Slider {...settings} ref={c => setSlider(c)}>
               {
@@ -165,7 +164,6 @@ const OrderProduct = ({ params, hideList = "" }) => {
               }
             </Slider>
           </div>
-        </div>
       <div className="news-style-cart style-for-cart style-product">
           {showCart()}
         </div>

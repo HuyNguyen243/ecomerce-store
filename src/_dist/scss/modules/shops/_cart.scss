@@ -445,4 +445,7 @@
 
 .no-over{
   overflow-y: hidden;
+  &::-webkit-scrollbar{
+    display: none;
+  }
 }
