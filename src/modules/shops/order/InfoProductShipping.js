@@ -18,6 +18,8 @@ import {
 } from './../../../_config/shop.config';
 import { getOneOrder } from './../../../redux/actions/index';
 import PopUpCancelReason from "./PopUp/PopUpCancelReason";
+
+
 function InfoProductShipping(props) {
   const dispatch = useDispatch()
   let { id } = useParams();
@@ -25,7 +27,8 @@ function InfoProductShipping(props) {
   const order = useSelector(state => state.order);
   const isLoading = useSelector(state => state.isLoading);
   const [showPopUp ,setShowPopUp] = useState(false)
-
+  const deleteoderproduct = useSelector(state=>state.deleteoderproduct)
+  
   React.useEffect(() => {
     dispatch(getOneOrder(id))
   }, [dispatch, id])
@@ -85,7 +88,7 @@ function InfoProductShipping(props) {
       setConfirmCancel(false)
     }
   } 
-
+ 
   const BooleanPopUp = (props)=>{
     setShowPopUp(!props)
   }
@@ -129,7 +132,7 @@ function InfoProductShipping(props) {
           </div>
           <div className="nav_label style-title">
             <span>Thông tin vận chuyển</span>
-            <span className={order?.status === "USER_CANCEL" ? "" : "hide"}>Đơn đã huỷ</span>
+            <span className={order?.status === "USER_CANCEL" || deleteoderproduct?.isLoaded ? "" : "hide"}>Đơn đã huỷ</span>
           </div>
           <div className="user_info ">
               <p className="shipper">Đơn vị vận chuyển: AhaMove</p>
@@ -140,8 +143,10 @@ function InfoProductShipping(props) {
             <span>Trạng thái đơn hàng</span>
           </div>
           <div className="user_info">
-            <p>Trạng thái: <span className="strong-reason">{getOrderStatus(order?.status)}</span></p>
-            <p className={order?.status === "USER_CANCEL" ? "show" : "hide" }>Lý do: <span className="strong-reason">{order?.cancel_reason}</span></p>
+            <p>Trạng thái: <span className="strong-reason">{deleteoderproduct?.isLoaded? getOrderStatus(deleteoderproduct?.data?.status):getOrderStatus(order?.status)}</span></p>
+            <p className={order?.status === "USER_CANCEL" || deleteoderproduct?.isLoaded ? "show" : "hide" }>
+              Lý do: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
+              </span></p>
           </div>
           <div className="nav_label style-title">
             <span>Danh sách đơn hàng</span>
@@ -193,7 +198,7 @@ function InfoProductShipping(props) {
           </>
           {
             order?.status === STATUS_PENDING_VENDOR_APPROVE
-            && <div className="btn-with-icon right-icon">
+            && <div className={`btn-with-icon right-icon ${deleteoderproduct?.isLoaded ? "hide" : ""}`}>
                     <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? "Huỷ đơn hàng" : "Đặt lại đơn"}</button>
               </div>
           }

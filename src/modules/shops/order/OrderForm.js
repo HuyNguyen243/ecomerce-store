@@ -8,6 +8,8 @@ import CartItem from '../cart/CartItem';
 import Auth from "../../../_services/auth";
 import { getDeliveryUser, checkGetDelivetyUser, getParentInformationDeviveryUser  } from "../../../redux/actions";
 import PopUpAdventisement from "./PopUp/PopUpAdventisement";
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
   totalCart
@@ -19,6 +21,7 @@ const OrderForm = ({ onSubmit, isLoading,
     history.goBack()
   }
 
+  const MySwal = withReactContent(Swal)
   const carts = useSelector(state => state.carts);
   const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
   const userAddress = useSelector(state => state.userAddress);
@@ -36,17 +39,15 @@ const OrderForm = ({ onSubmit, isLoading,
       history.push('/')
     }
   })
-  
   useEffect(() => {
     if(!userAddress.isLoaded) {
         getUserAddress()
     }else{
       for (let i = 0; i < userAddress?.data.length; i++) {
         if(userAddress?.data[i].is_default === 1){
-          if(oneDeliveryUser === "" ){
             dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
-            break;
-          }
+        }else{
+          dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
         }
       }
       if(delDeliveryUser?.isLoaded || oneDeliveryUser?.isLoaded){
@@ -97,9 +98,28 @@ const OrderForm = ({ onSubmit, isLoading,
   }
 
   const handleOnClick =()=>{
-    if(shippingFee === 0) {return false}
     if(oneDeliveryUser !== "" ){
-      history.push("/order-confirmation")
+      if(shippingFee === 0){
+        MySwal.fire({
+          showCloseButton: false,
+          showConfirmButton :false,
+          showCancelButton :true,
+          cancelButtonText: "Đóng",
+          icon: 'info',
+          title: 'Không thể xác định vị trí giao nhận,vui lòng kiểm tra lại thông tin!',
+        })
+      }else{
+        history.push("/order-confirmation")
+      }
+    }else{
+      MySwal.fire({
+        showCloseButton: false,
+        showConfirmButton :false,
+        showCancelButton :true,
+        cancelButtonText: "Đóng",
+        icon: 'info',
+        title: 'Vui lòng chọn thông tin nhận hàng!',
+      })
     }
   }
 
@@ -161,7 +181,7 @@ const OrderForm = ({ onSubmit, isLoading,
             </div>
             <div className="btn-with-icon right-icon">
               <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBack}>Quay lại</button>
-              <button type="submit" className="btn btn-primary btn-right-icon" disabled={shippingFee === 0 ? true : false} onClick ={handleOnClick}>Tiếp tục</button>
+              <button type="submit" className="btn btn-primary btn-right-icon" onClick ={handleOnClick}>Tiếp tục</button>
             </div>
           </div>
         </div>

@@ -1,7 +1,6 @@
 .app-input {
     height: 34px;
     border: 1px solid $color-default;
-    padding: $pd-xs;
     border-radius: $pd-xs;
     box-sizing: border-box
 }
@@ -19,4 +18,8 @@ textarea {
     -moz-box-shadow: none;
     box-shadow: none;
     font: caption;
+}
+
+.add-padding{
+    padding-top: 3px;
 }

@@ -1,7 +1,8 @@
 import React , {useState ,useEffect} from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { deleteParentOrderProduct } from '../../../../redux/actions';
-import { useHistory } from 'react-router';
+import ModalService from '../../../../_services/modal';
+import { resetPopup } from '../../../../redux/actions';
 
 function PopUpCancelReason(props) {
 
@@ -9,7 +10,7 @@ function PopUpCancelReason(props) {
     const [selectedReason,setSelectedReason]=useState(1)
     const [input , setInput] = useState ("")
     const dispatch = useDispatch()
-    const history =useHistory()
+    const modalPopup = useSelector(state => state.modalPopup);
 
     useEffect(()=>{
         setShowPopup(props.showPopUp)
@@ -41,8 +42,24 @@ function PopUpCancelReason(props) {
             setShowPopup(false)
             props.ChangeshowPopup(showPopup)
             props.comfirm(true)
-            history.goBack()
     }
+    console.log(modalPopup)
+    const handleAfterSubmit =  React.useCallback(() => {
+        if(modalPopup.data.success) {
+            ModalService.success(modalPopup?.data?.message)
+        }else {
+            ModalService.error(modalPopup?.data?.message)
+        }
+        setTimeout(() => {
+            dispatch(resetPopup())
+        }, 1000);
+    }, [modalPopup, dispatch])
+    
+    React.useEffect(() => {
+        if(modalPopup.active) {
+            handleAfterSubmit()
+        }
+    }, [modalPopup, handleAfterSubmit])
 
     const cancelReasons = [
         {id:1,title: "Muốn thay đổi địa chỉ giao hàng",checked:(selectedReason === 1 ? true :false)},

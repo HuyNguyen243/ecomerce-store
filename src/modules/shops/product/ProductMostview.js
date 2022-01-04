@@ -9,10 +9,10 @@ import {
 
 const ProductMostview = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(state => state.isLoading);
+  const isLoading = useSelector(state => state.isLoading);
   const mostview = useSelector(state => state.mostview);
   const headerTitles = useSelector(state => state.headerTitles);
-  // const addCarts = useSelector(state => state.carts);
+  
 
   var event;
   // Navigation
@@ -69,17 +69,20 @@ const ProductMostview = () => {
     }
   }
   return (
-    <div >
-      <Header
-        hasNavigation={true}
-        title={headerTitles}
-        showCart={showIconcart}
-      />
-      <div className="main_container fix-images">
-                {DataMostView()}
+    <>
+      {isLoading && <div className="overlay-spinner"></div>}
+      <div >
+        <Header
+          hasNavigation={true}
+          title={headerTitles}
+          showCart={showIconcart}
+        />
+        <div className="main_container fix-images">
+                  {DataMostView()}
+        </div>
+        <div id="snackbar" className="">Thêm vào giỏ hàng thành công</div>
       </div>
-      <div id="snackbar" className="">Thêm vào giỏ hàng thành công</div>
-    </div>
+    </>
   );
 };
 
