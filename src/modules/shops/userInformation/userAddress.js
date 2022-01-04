@@ -21,26 +21,10 @@ function UserAddress() {
     const checkGetDeliveryUser = useSelector(state => state.checkGetDeliveryUser);
     const delDeliveryUser = useSelector(state => state.delDeliveryUser)
     const putDeliveryUser = useSelector(state => state.putDeliveryUser)
-
     const getUserAddress = React.useCallback(() => {
         dispatch(getDeliveryUser(userID))
     }, [dispatch, userID]);
-    useEffect(() => {
-        if(!userAddress.isLoaded) {
-            getUserAddress()
-        }else{
-            if(userAddress?.data !== ""){
-                for (let i = 0; i < userAddress?.data.length; i++) {
-                    if(userAddress?.data[i].is_default === 1){
-                        dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
-                    }else{
-                        dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
-                    }
-                  }
-            }
-        }
-    }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
-
+   
     const handleFixUserAddress = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
         dispatch(getParentInformationDeviveryUser(DeliveryUser))
@@ -74,7 +58,22 @@ function UserAddress() {
               }
           })
     }
-
+    
+    useEffect(() => {
+        if(!userAddress.isLoaded) {
+            getUserAddress()
+        }else{
+            if(oneDeliveryUser.length === 0){
+                 for (let i = 0; i < userAddress?.data.length; i++) {
+                if(userAddress?.data[i].is_default === 1){
+                    dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
+                }else{
+                  dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
+                }
+              }
+            }
+        }
+    }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
 
     const showUserAddress = (item, key)=>{
         if(putDeliveryUser?.isLoaded){
