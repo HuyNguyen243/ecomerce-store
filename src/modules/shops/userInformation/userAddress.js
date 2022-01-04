@@ -77,6 +77,7 @@ function UserAddress() {
               }
           })
     }
+    
     const showUserAddress = (item, key)=>{
         if(putDeliveryUser?.isLoaded){
             if(item.is_default === 1 ){
@@ -91,10 +92,7 @@ function UserAddress() {
             if(delDeliveryUser.data.data.id === item._id){
                 (userAddress?.data).splice((userAddress?.data).indexOf(item),1)
             }
-            if(item.is_default === 1){
-                dispatch(getParentInformationDeviveryUser(""))
-                putDeliveryUser.isLoaded = false
-            }else{
+            if(userAddress?.data.length > 0){
                 dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
             }
         }
