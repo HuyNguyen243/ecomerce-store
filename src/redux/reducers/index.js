@@ -261,20 +261,23 @@ const rootReducer = (state = initState, action) => {
           shippingFee : 0
         });
       case PUT_INFORMATION_DELIVERY_USER_SUCCESS:
-        return Object.assign({}, state, {
-          putDeliveryUser: {
-            isLoaded: true,
-            data: payload.data
-          },
-          isLoading: false,
-          modalPopup: {
-            active : true,
-            data : {
-              success : payload.success,
-              message : payload.message
+        if(payload.success){
+          return Object.assign({}, state, {
+            putDeliveryUser: {
+              isLoaded: true,
+              data: payload.data
+            },
+            isLoading: false,
+            modalPopup: {
+              active : true,
+              data : {
+                success : payload.success,
+                message : payload.message
+              }
             }
-          }
-        });
+          });
+        }
+        break;
       case CHECK_HANDLE_GET_DELIVERY_USER:
           return Object.assign({}, state, {
             checkGetDeliveryUser: payload

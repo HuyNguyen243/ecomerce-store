@@ -77,7 +77,6 @@ function UserAddress() {
               }
           })
     }
-
     const showUserAddress = (item, key)=>{
         if(putDeliveryUser?.isLoaded){
             if(item.is_default === 1 ){
@@ -88,7 +87,6 @@ function UserAddress() {
                 putDeliveryUser.isLoaded = false
             }
         }
-
         if(delDeliveryUser?.isLoaded){
             if(delDeliveryUser.data.data.id === item._id){
                 (userAddress?.data).splice((userAddress?.data).indexOf(item),1)
