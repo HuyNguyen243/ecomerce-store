@@ -20,7 +20,7 @@ function PopUpCancelReason(props) {
         setShowPopup(false)
         props.ChangeshowPopup(showPopup)
     }
-
+    console.log(input.trim())
     const buttonSubmit =() =>{
         let id = props.id
         let reason;
@@ -30,7 +30,8 @@ function PopUpCancelReason(props) {
             }
         }
         if(selectedReason === 3){
-            if(input === ""){
+            let result = input.trim()
+            if(result === ""){
                 return false
             }else{
                 reason = input
@@ -43,7 +44,6 @@ function PopUpCancelReason(props) {
             props.ChangeshowPopup(showPopup)
             props.comfirm(true)
     }
-    console.log(modalPopup)
     const handleAfterSubmit =  React.useCallback(() => {
         if(modalPopup.data.success) {
             ModalService.success(modalPopup?.data?.message)

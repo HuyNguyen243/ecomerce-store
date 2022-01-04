@@ -44,12 +44,14 @@ const OrderForm = ({ onSubmit, isLoading,
         getUserAddress()
     }else{
         if(oneDeliveryUser.length === 0){
-          for (let i = 0; i < userAddress?.data.length; i++) {
-        if(userAddress?.data[i].is_default === 1){
-            dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
-        }else{
-          dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
-        }
+          if(userAddress?.data.length > 0){
+            for (let i = 0; i < userAddress?.data.length; i++) {
+              if(userAddress?.data[i].is_default === 1){
+                  dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
+              }else{
+                dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
+              }
+          }
       }
     }
       if(delDeliveryUser?.isLoaded || oneDeliveryUser?.isLoaded){
