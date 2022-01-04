@@ -29,9 +29,8 @@ function Login() {
     const loginSuccessCallback = React.useCallback(() => {
         let url = new URL(window.location.href);
         let page = url.searchParams.get("page");
-        let flag = url.searchParams.get("flag");
-        if(page !== null && flag !== null ) {
-            history.push(`/${page}?flag=${flag}`)
+        if(page !== null) {
+            history.push(`/${page}`)
         }else {
             history.push('/')
         }
