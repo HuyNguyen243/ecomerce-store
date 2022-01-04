@@ -24,6 +24,25 @@ function UserAddress() {
     const getUserAddress = React.useCallback(() => {
         dispatch(getDeliveryUser(userID))
     }, [dispatch, userID]);
+
+    useEffect(() => {
+        if(!userAddress?.isLoaded) {
+            getUserAddress()
+        }else{
+                if(oneDeliveryUser.length === 0){
+            if(userAddress?.data.length > 0){
+                for (let i = 0; i < userAddress?.data.length; i++) {
+                if(userAddress?.data[i].is_default === 1){
+                    dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
+                }else{
+                    dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
+                        }
+                    }
+                }
+            }
+        }
+    }, [getUserAddress,userAddress,dispatch,oneDeliveryUser]);
+
    
     const handleFixUserAddress = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
@@ -58,22 +77,6 @@ function UserAddress() {
               }
           })
     }
-    
-    useEffect(() => {
-        if(!userAddress.isLoaded) {
-            getUserAddress()
-        }else{
-            if(oneDeliveryUser.length === 0){
-                 for (let i = 0; i < userAddress?.data.length; i++) {
-                if(userAddress?.data[i].is_default === 1){
-                    dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
-                }else{
-                  dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
-                }
-              }
-            }
-        }
-    }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
 
     const showUserAddress = (item, key)=>{
         if(putDeliveryUser?.isLoaded){
@@ -93,6 +96,8 @@ function UserAddress() {
             if(item.is_default === 1){
                 dispatch(getParentInformationDeviveryUser(""))
                 putDeliveryUser.isLoaded = false
+            }else{
+                dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
             }
         }
 
