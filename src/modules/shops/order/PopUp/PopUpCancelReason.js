@@ -20,7 +20,6 @@ function PopUpCancelReason(props) {
         setShowPopup(false)
         props.ChangeshowPopup(showPopup)
     }
-    console.log(input.trim())
     const buttonSubmit =() =>{
         let id = props.id
         let reason;
@@ -30,8 +29,7 @@ function PopUpCancelReason(props) {
             }
         }
         if(selectedReason === 3){
-            let result = input.trim()
-            if(result === ""){
+            if(input.replace(/\s/g, "").length === 0){
                 return false
             }else{
                 reason = input
@@ -110,7 +108,7 @@ function PopUpCancelReason(props) {
                        }
                      </div>
                     {/*  */}
-                    <span className={`txt-danger + ${input === "" && selectedReason === 3 ? "showw" : "hide"}`}>Vui lòng điền thông tin hủy đơn hàng!</span>
+                    <span className={`txt-danger + ${input.replace(/\s/g, "").length === 0 && selectedReason === 3 ? "showw" : "hide"}`}>Vui lòng điền thông tin hủy đơn hàng!</span>
                 </div>
                 <div className='Button-buttom'>
                     <button onClick={buttonClose}>Đóng</button>
