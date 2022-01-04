@@ -25,19 +25,19 @@ function UserAddress() {
     const getUserAddress = React.useCallback(() => {
         dispatch(getDeliveryUser(userID))
     }, [dispatch, userID]);
-
     useEffect(() => {
         if(!userAddress.isLoaded) {
             getUserAddress()
         }else{
-            for (let i = 0; i < userAddress?.data.length; i++) {
-                if(userAddress?.data[i].is_default === 1){
-                  if(oneDeliveryUser === "" ){
-                    dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
-                    break;
+            if(userAddress?.data !== ""){
+                for (let i = 0; i < userAddress?.data.length; i++) {
+                    if(userAddress?.data[i].is_default === 1){
+                        dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
+                    }else{
+                        dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
+                    }
                   }
-                }
-              }
+            }
         }
     }, [getUserAddress, userAddress,dispatch,oneDeliveryUser]);
 

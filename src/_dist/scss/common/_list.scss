@@ -149,6 +149,9 @@ ul {
 
 
 @media only screen and (min-width: 500px) {
+    .shop-item.cart .item-thumbnail {
+        width: 25% !important;
+    }
     .horizontal-wrapper {
         &:hover .list-navigate {
             display: inline
@@ -177,6 +180,9 @@ ul {
     .swal2-container.swal2-center > .swal2-popup{
         width: 526px !important;
     }
+    .main-container_Popup {
+        width: 365px  !important;
+        }
 }
 
 @media only screen and (min-width: 1024px) {

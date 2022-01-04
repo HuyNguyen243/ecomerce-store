@@ -72,14 +72,17 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
-    .btn-button{
-        font-size: 12px;
+    .dialog .main-container_Popup{
+        margin: 0 5px !important;
     }
-    .shop-header .header-search .app-search span{
+    .style-title span:nth-child(2){
+        padding: 5px 15px !important;
+    }
+    .shop-header .header-search .app-search .app-input {
         width: 85%;
     }
-    .shop-header .header-search .app-search .search-btn {
-        width: 15%;
+    .btn-button{
+        font-size: 12px;
     }
     .code{
         font-size: 11px;
@@ -134,7 +137,7 @@ $top-space: 44px;
         font-size: 10px !important;
     }
     .container .Note-Details .Product-Details {
-        font-size: 8px !important;
+        font-size: 11px !important;
     }
     .Offer-promotion img{
         width: 80px !important;
@@ -255,6 +258,9 @@ $top-space: 44px;
       }
 }
 @media(min-width : 700px){
+    .shop-item.cart .item-thumbnail {
+        width: 15% !important;
+    }
     .main-container_Popup{
         width: 365px  !important;
     }
@@ -269,7 +275,15 @@ $top-space: 44px;
             width: 40px !important;
         }
     }
-  
+    .container .Note-Details .Note-Details-titles{
+        font-size: 16px !important;
+    }
+    .span-element {
+        font-size: 24px;
+    }
+    .container .Note-Details .Product-Details{
+        font-size: 18px !important;
+    }
 }
 
 
@@ -320,6 +334,19 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
+    .style-title span:nth-child(2) {
+        padding: 5px 10px !important;
+    }
+    .style-title {
+        align-items: center !important;
+    }
+    .cancel-title p {
+        font-size: 15px;
+    }
+   
+    .shop-header .header-search .app-search .app-input {
+        width: 80%;
+    }
     .btn-button{
         font-size: 10px;
     }

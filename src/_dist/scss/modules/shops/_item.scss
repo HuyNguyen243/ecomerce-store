@@ -66,6 +66,7 @@ $text-row: 2;
     display: flex;
     align-items: center;
     .item-thumbnail {
+      width: 35%;
       img {
         border: 1px solid #dee2e6;
       }
@@ -231,6 +232,8 @@ $text-row: 2;
       img {
         border: 1px solid #dee2e6;
         // object-fit: contain;
+        height: 120px;
+
       }
     }
     .item-info {
@@ -405,7 +408,7 @@ $text-row: 2;
     .Product-Details{
       text-align: start;
       font-weight: 200px;
-      font-size: 10px;
+      font-size: 11px;
       padding: 2px 0;
       margin: 0;
       text-align: start;

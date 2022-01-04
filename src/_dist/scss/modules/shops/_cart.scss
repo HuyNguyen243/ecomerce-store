@@ -36,7 +36,7 @@
       line-height: 22.5px;
     }
     img{
-      margin: 0 12px;
+      margin: 0 2px;
     }
   }
   .Offer-Details {
@@ -52,6 +52,7 @@
     .Note-Details-titles{
       padding: 6px 0 2px;
       text-align: start;
+      z-index: 1;
     }
    }
   }
@@ -309,7 +310,7 @@
 
 .fix_icon{
   img{
-    width: 25px;
+    width: 26px;
   }
 }
 
@@ -449,4 +450,8 @@
   &::-webkit-scrollbar{
     display: none;
   }
+}
+
+.lazy-load-image-background.opacity.lazy-load-image-loaded{
+  width: 100%;
 }

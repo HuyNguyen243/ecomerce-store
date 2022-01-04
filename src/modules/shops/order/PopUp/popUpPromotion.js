@@ -46,10 +46,8 @@ function PopUpPromotion(props) {
             dispatch(resetPopup())
         }, 1000);
     }, [modalPopup, dispatch])
+    
     useEffect(()=>{
-        if(!promotionVoucher?.isLoaded){
-            dispatch(getPromotionvouchers())
-        }
         if(oneDeliveryUser !== "" && shippingFee === 0 ) {
             dispatch(getOrderShippingFee({address_id : oneDeliveryUser?._id}))
         }
@@ -69,40 +67,50 @@ function PopUpPromotion(props) {
             return item;
         })
     }
+    const timeStamp=(time)=>{
+                let unix_timestamp = time
+                let date = new Date(unix_timestamp * 1000);
+                let year = date.getFullYear()
+                let month = date.getMonth()+ 1;
+                let day = date.getDate();
+                return(
+                    <p className='expiry-promotion' >Hạn sử dụng: {day}/{month}/{year}</p>
+                )
+    }
+
     const data =()=>{
+        if(searchPromotion.length  > 0){
+            if(dataSearchPromotion.length > 0){
+                return (dataSearchPromotion).map((item,value)=>{
+                    return(
+                        <div className='container-promotion' key={value} id={item.code}  onClick={e => handleUsePromotion(item._id)}>
+                        <div className='Offer-promotion'  >
+                            <img src={item.image} alt="sale" />
+                            <div className='content-promotion'>
+                                <p className='code-promotion'>{item.code}</p>
+                                <p className='Minimum-Order'>{item.title}</p>
+                                {timeStamp(item.endDate)}
+                                </div>
+                            </div>
+                            <div className='use-promotion'>
+                            <span id={item.code} className='button-usePromotion'>Sử dụng ngay</span>
+                            </div>
+                        </div>
+                    )
+                })
+            }else{
+                return(
+                    <span className='txt-danger'>Kết quả tìm kiếm chưa chính xác!</span>
+                )
+            }
+        }
         if((promotionVoucher?.data).length === 0){
             return(
                 <span className='txt-danger'>Chưa có voucher nào cả !</span>
             )
-        }
-
-        if(dataSearchPromotion.length  > 0){
-            return (dataSearchPromotion).map((item,value)=>{
-                return(
-                    <div className='container-promotion' key={value} id={item.code}  onClick={e => handleUsePromotion(item._id)}>
-                    <div className='Offer-promotion'  >
-                        <img src={item.image} alt="sale" />
-                        <div className='content-promotion'>
-                            <p className='code-promotion'>{item.code}</p>
-                            <p className='Minimum-Order'>{item.title}</p>
-                            <p className='expiry-promotion'>Hạn sử dụng: 30/11/2021</p>
-                            </div>
-                        </div>
-                        <div className='use-promotion'>
-                        <span id={item.code} className='button-usePromotion'>Sử dụng ngay</span>
-                        </div>
-                    </div>
-                )
-            })
         }else{
             if(promotionVoucher?.isLoaded){
                 return promotionVoucher.data.map((item,value)=>{
-                    let unix_timestamp = item.endDate
-                    let date = new Date(unix_timestamp * 1000);
-                    let year = date.getFullYear()
-                    let month = date.getMonth()+ 1;
-                    let day = date.getDate();
-
                     let findNumber = /\d+k/g;
                     let number = []
                     let find;
@@ -122,7 +130,7 @@ function PopUpPromotion(props) {
                             <div className='content-promotion'>
                                 <p className='code-promotion'>{item.code}</p>
                                 <p className='Minimum-Order' dangerouslySetInnerHTML={{__html: changeTitle}}></p>
-                                <p className='expiry-promotion'>Hạn sử dụng: {day}/{month}/{year}</p>
+                                {timeStamp(item.endDate)}
                                 </div>
                             </div>
                             <div className='use-promotion'>
@@ -133,32 +141,31 @@ function PopUpPromotion(props) {
                 })
             }
         }
-
-    }
-
-    return (
-        <div className={` ${showPopup ? "dialog" : "visibility"}`} >
-            <div className='main-container_Popup'>
-                <div className='title-swal'>
-                    <p>MÃ GIẢM GIÁ</p>
+        }
+   
+            return (
+                <div className={` ${showPopup ? "dialog" : "visibility"}`} >
+                    <div className='main-container_Popup'>
+                        <div className='title-swal'>
+                            <p>MÃ GIẢM GIÁ</p>
+                        </div>
+                        <div className='input-swal'>
+                            <input type="text" className='searchPromotion' name='promotion' placeholder='Nhập mã giảm giá'
+                            onChange={(e)=>setSearchPromotion(e.target.value)}
+                            />
+                        </div>
+                        <div className='main-container-swal'>
+                            {/*  */}
+                                {data()}
+                            {/*  */}
+                        </div>
+                        <div className='Button-buttom'>
+                            <button onClick={buttonClose}>Đóng</button>
+                        </div>
+                    </div>
+                    <span onClick={buttonClose} className='overlay-close'></span>
                 </div>
-                <div className='input-swal'>
-                    <input type="text" className='searchPromotion' name='promotion' placeholder='Nhập mã giảm giá'
-                    onChange={(e)=>setSearchPromotion(e.target.value)}
-                    />
-                </div>
-                <div className='main-container-swal'>
-                    {/*  */}
-                        {data()}
-                    {/*  */}
-                </div>
-                <div className='Button-buttom'>
-                    <button onClick={buttonClose}>Đóng</button>
-                </div>
-            </div>
-            <span onClick={buttonClose} className='overlay-close'></span>
-        </div>
-    );
+            );
 }
 
 export default PopUpPromotion;
