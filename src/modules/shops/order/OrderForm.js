@@ -43,13 +43,15 @@ const OrderForm = ({ onSubmit, isLoading,
     if(!userAddress.isLoaded) {
         getUserAddress()
     }else{
-      for (let i = 0; i < userAddress?.data.length; i++) {
+        if(oneDeliveryUser.length === 0){
+          for (let i = 0; i < userAddress?.data.length; i++) {
         if(userAddress?.data[i].is_default === 1){
             dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
         }else{
           dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
         }
       }
+    }
       if(delDeliveryUser?.isLoaded || oneDeliveryUser?.isLoaded){
         if(delDeliveryUser.data.data.id === oneDeliveryUser._id){
           dispatch(getParentInformationDeviveryUser(""))
