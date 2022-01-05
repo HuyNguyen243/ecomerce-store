@@ -44,14 +44,14 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
                         : <span onClick={() => showLeftNav()} className="pointer fix_icon"><img src="/images/menu-red.svg" alt="menu_icon" /></span>
         }
       </div>
-      <div className="header-search">
-        {
-          title !== '' ?  title  : <Search handleSubmit={handleSubmit} />
-        }
-      </div>
-      <div className="header-cart">
-        { showShoppingCart() }
-      </div>
+        <div className="header-search">
+          {
+            title !== '' ?  title  : <Search handleSubmit={handleSubmit} />
+          }
+        </div>
+        <div className="header-cart">
+          { showShoppingCart() }
+        </div>
     </div>
   );
 }

@@ -328,7 +328,7 @@ const rootReducer = (state = initState, action) => {
         });
       case GET_SHIPPING_FEE_SUCCESS:
         return Object.assign({}, state, {
-          shippingFee: payload.success ? payload.data?.shipping_fee : 0,
+          shippingFee: payload.success ? payload.data : 0,
           nearestVendorId : payload.success ? payload.data?.vendor_id : '',
           isLoading: false,
         });

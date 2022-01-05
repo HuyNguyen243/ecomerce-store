@@ -52,7 +52,7 @@
       .app-input {
         border: none;
         margin-left: 5px;
-        width: 90%;
+        width: 85%;
       }
       .search-btn {
         position: absolute;
@@ -60,7 +60,7 @@
         right: 0;
         color: #333333;
         padding: 0;
-        width: 10%;
+        width: 15%;
         display: flex;
         justify-content: flex-end;
         i {
@@ -121,4 +121,8 @@
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.txt-style{
+  font-weight: bold;
 }

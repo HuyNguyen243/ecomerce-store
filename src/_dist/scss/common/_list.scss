@@ -167,6 +167,12 @@ ul {
 }
 
 @media only screen and (min-width: 700px) {
+    .search-btn {
+        width: 10% !important;
+    }
+    .app-input{
+        width: 90% !important;
+    }
     .border-promotion{
         width: 265px !important;
     }

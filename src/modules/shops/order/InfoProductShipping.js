@@ -28,8 +28,8 @@ function InfoProductShipping(props) {
   const isLoading = useSelector(state => state.isLoading);
   const [showPopUp ,setShowPopUp] = useState(false)
   const deleteoderproduct = useSelector(state=>state.deleteoderproduct)
-  
-  React.useEffect(() => {
+
+   React.useEffect(() => {
     dispatch(getOneOrder(id))
   }, [dispatch, id])
 
@@ -170,7 +170,7 @@ function InfoProductShipping(props) {
                         order?.order_info?.shipping_fee > 0
                         &&
                         <>
-                            <div className="col-6  text-sm">Phí vận chuyển:</div>
+                            <div className="col-6  text-sm">Phí vận chuyển: {<span className="txt-style">({order?.shipping_info?.distance}km)</span>}</div>
                             <div className="col-6 text-bold txt-right">
                                 <span className="text-nm">+{ NumberHelper.formatCurrency(order?.order_info?.shipping_fee) }</span>
                             </div>

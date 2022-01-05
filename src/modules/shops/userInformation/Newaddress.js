@@ -23,7 +23,7 @@ function Newaddress() {
     const [name,setName] = useState("")
     const [phone,setPhone] = useState("")
     const [address,setAddress] = useState("")
-    
+
     const { register, handleSubmit, errors } = useForm();
     let emptyErrorTxt = 'Vui lòng điền thông tin';
     let phoneErrorTxt = 'Số điện thoại không hợp lệ';

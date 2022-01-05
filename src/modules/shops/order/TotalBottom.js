@@ -18,6 +18,7 @@ function TotalBottom(props) {
     const BooleanPopUp = (props)=>{
         setShowPopUp(!props)
     }
+
     return (
         <>
                     <PopUpPromotion showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp}/>
@@ -42,12 +43,12 @@ function TotalBottom(props) {
                     <span className="text-nm">{NumberHelper.formatCurrency(totalCartPrice)}</span>
                 </div>
                 {
-                    shippingFee > 0
+                    shippingFee.total_pay > 0
                     &&
                     <>
-                        <div className="col-6  text-sm">Phí vận chuyển:</div>
+                        <div className="col-6  text-sm">Phí vận chuyển:{<span className="txt-style">({shippingFee.distance}km)</span>}</div>
                         <div className="col-6 text-bold txt-right">
-                            <span className="text-nm">+{ NumberHelper.formatCurrency(shippingFee) }</span>
+                            <span className="text-nm">+{ NumberHelper.formatCurrency(shippingFee.total_pay) }</span>
                         </div>
                     </>
                 }
@@ -67,12 +68,12 @@ function TotalBottom(props) {
                 <div className="col-6 text-bold txt-right">
                     <span className="text-nm new-text">
                     { 
-                        location.pathname === "/cart"
+                        shippingFee === 0
                         ?
                             NumberHelper.formatCurrency(totalCartPrice)
                         :
                             NumberHelper.formatCurrency(
-                                (totalCartPrice + shippingFee) - (appliedPromotion?.discount ? appliedPromotion?.discount : 0)
+                                (totalCartPrice + shippingFee?.total_pay) - (appliedPromotion?.discount ? appliedPromotion?.discount : 0)
                             )
                     }
                     </span>
