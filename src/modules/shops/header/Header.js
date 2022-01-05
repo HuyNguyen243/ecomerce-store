@@ -3,11 +3,11 @@ import Search from './Search';
 import{Link}from 'react-router-dom'
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
-
+import { useLocation } from 'react-router';
 
 const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
                   , doNavigation = '', showLeftNav, headerBg = 'header-primary'}) => {
-          
+  const location = useLocation()
   const usehistory =useHistory()
   const carts = useSelector(state => state.carts);
   const showShoppingCart = () => {
@@ -32,7 +32,11 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
     if(doNavigation !== '') {
       doNavigation()
     }else {
-      usehistory.goBack()
+      if(location.pathname === "/orders") {
+        usehistory.push('/')
+      }else {
+        usehistory.goBack()
+      }
     }
   }
 
