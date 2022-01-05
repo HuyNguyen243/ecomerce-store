@@ -116,7 +116,9 @@ function UserAddress() {
                             { item["is_default"] === 1 && <span id={key}>[Mặc định]</span>}
                             </div>
                             <p id={key}>{item["phone"]}</p>
-                            <p id={key}> {item.geo_address.formatted_address}</p>
+                            <p id={key}> {item?.address}
+                            {parseInt(item?.ward.code) === -1 ? "" : `,${item?.ward?.name}`},{item?.district?.name},{item?.province?.name}
+                            </p>
                         </div>
                         <div className="infor-icon newstyle" id={key}>
                             <div>

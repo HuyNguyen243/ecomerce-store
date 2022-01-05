@@ -29,7 +29,7 @@ const OrderForm = ({ onSubmit, isLoading,
   const delDeliveryUser = useSelector(state => state.delDeliveryUser)
   const putDeliveryUser = useSelector(state => state.putDeliveryUser)
   const userID = Auth.get().user_id
-  
+
   const getUserAddress = React.useCallback(() => {
     dispatch(getDeliveryUser(userID))
   }, [dispatch, userID]);
@@ -80,7 +80,7 @@ const OrderForm = ({ onSubmit, isLoading,
         })
     }
   }
-
+  
   const showDeliveryUser = ()=>{
     if(oneDeliveryUser !== "" ){
       return(
@@ -91,7 +91,9 @@ const OrderForm = ({ onSubmit, isLoading,
                       {oneDeliveryUser?.fullname}
                   </p>
                   <p>{oneDeliveryUser?.phone}</p>
-                  <p>{oneDeliveryUser?.geo_address.formatted_address}</p>
+                  <p>{oneDeliveryUser?.address}
+                  {parseInt(oneDeliveryUser?.ward.code) === -1 ? "" : `,${oneDeliveryUser?.ward?.name}`},{oneDeliveryUser?.district?.name},{oneDeliveryUser?.province?.name}
+                  </p>
               </div>
               <div className="infor-icon newstyle new-display">
                 <img src="/images/Back-Black.svg" alt="menu_icon" />

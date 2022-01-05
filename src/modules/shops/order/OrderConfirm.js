@@ -132,7 +132,8 @@ const OderConfirm = () => {
               </div> 
             </div>
               <p className="address">
-                    {oneDeliveryUser?.geo_address.formatted_address}
+              {oneDeliveryUser?.address}{parseInt(oneDeliveryUser?.ward.code) === -1 ? "" : `,${oneDeliveryUser?.ward?.name}`}
+              ,{oneDeliveryUser?.district?.name},{oneDeliveryUser?.province?.name}
               </p>
               <span>AhaMove</span>
               <span> Dự kiến giao hàng từ 1 đến 2 ngày!</span>
