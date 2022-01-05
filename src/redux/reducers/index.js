@@ -230,7 +230,6 @@ const rootReducer = (state = initState, action) => {
         if(payload.data !== undefined){
           currentAddress.push(payload.data)
         }
-        console.log(payload)
         return Object.assign({}, state, {
           deliveryUser: {
             isLoaded: true,
@@ -249,7 +248,6 @@ const rootReducer = (state = initState, action) => {
           }
         });
       case GET_INFORMATION_DELIVERY_USER_SUCCESS:
-        if(payload.success){
           return Object.assign({}, state, {
             userAddress: {
               isLoaded: true,
@@ -257,15 +255,12 @@ const rootReducer = (state = initState, action) => {
             },
             isLoading: false,
           });
-        }
-        break;
       case TARGET_ONE_INFORMATION_DELIVERY_USER:
         return Object.assign({}, state, {
           oneDeliveryUser: payload,
           shippingFee : 0
         });
       case PUT_INFORMATION_DELIVERY_USER_SUCCESS:
-        if(payload.success){
           return Object.assign({}, state, {
             putDeliveryUser: {
               isLoaded: true,
@@ -280,8 +275,6 @@ const rootReducer = (state = initState, action) => {
               }
             }
           });
-        }
-        break;
       case CHECK_HANDLE_GET_DELIVERY_USER:
           return Object.assign({}, state, {
             checkGetDeliveryUser: payload
