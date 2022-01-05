@@ -15,7 +15,7 @@ const OrderForm = ({ onSubmit, isLoading,
   totalCart
 }) => {
   const dispatch = useDispatch()
-  let dangerTxt = "Vui lòng chọn thông tin nhận hàng"        
+  let dangerTxt = "Vui lòng chọn thông tin nhận hàng"
   const history = useHistory()
   const handleBack=()=>{
     history.goBack()
@@ -80,7 +80,7 @@ const OrderForm = ({ onSubmit, isLoading,
         })
     }
   }
-  
+
   const showDeliveryUser = ()=>{
     if(oneDeliveryUser !== "" ){
       return(
@@ -113,7 +113,7 @@ const OrderForm = ({ onSubmit, isLoading,
           showCancelButton :true,
           cancelButtonText: "Đóng",
           icon: 'info',
-          title: 'Không thể xác định vị trí giao nhận,vui lòng kiểm tra lại thông tin!',
+          title: 'Địa chỉ của bạn không nằm trong khu vực giao hàng ,vui lòng thử lại',
         })
       }else{
         history.push("/order-confirmation")
