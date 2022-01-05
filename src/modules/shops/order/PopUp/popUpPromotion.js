@@ -7,21 +7,21 @@ import ModalService from '../../../../_services/modal';
 function PopUpPromotion(props) {
     const dispatch = useDispatch()
     const [showPopup, setShowPopup] = useState()
-    
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const promotionVoucher = useSelector(state => state.promotionVoucher);
     const shippingFee = useSelector(state => state.shippingFee);
     const modalPopup = useSelector(state => state.modalPopup);
-    
     const [searchPromotion,setSearchPromotion] = useState("")
     const dataSearchPromotion =[]
-
+    
     useEffect(()=>{
         setShowPopup(props.showPopUp)
-        if(!promotionVoucher?.isLoaded){
-            dispatch(getPromotionvouchers())
-        }     
-    },[setShowPopup,props,dispatch,promotionVoucher])
+        if(showPopup === true){
+            if(!promotionVoucher?.isLoaded){
+                    dispatch(getPromotionvouchers())
+            }  
+        }
+    },[setShowPopup,props,dispatch,promotionVoucher,showPopup])
 
     const buttonClose = ()=>{
         setShowPopup(false)
