@@ -10,10 +10,10 @@ import ModalService from './../../../_services/modal';
 function Newaddress() {
     const history = useHistory()
     const dispatch = useDispatch();
+    
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const modalPopup = useSelector(state => state.modalPopup);
     const isLoading = useSelector(state => state.isLoading);
-
     const UNSELECTED_KEY = -1;
     async function readLocaleData(){
         return $.getJSON( "data/local.json", function( data ) {
@@ -23,7 +23,7 @@ function Newaddress() {
     const [name,setName] = useState("")
     const [phone,setPhone] = useState("")
     const [address,setAddress] = useState("")
-
+    
     const { register, handleSubmit, errors } = useForm();
     let emptyErrorTxt = 'Vui lòng điền thông tin';
     let phoneErrorTxt = 'Số điện thoại không hợp lệ';
@@ -49,20 +49,21 @@ function Newaddress() {
     const [addressDelivery,setAddressDelivery] = useState(true)
 
     const defaultAddressData = React.useCallback((data) => {
-        let cityKeyCode = Number(oneDeliveryUser?.province?.code);
-        let districtKeyCode = Number(oneDeliveryUser?.district?.code);
-        let wardKeyCode = Number(oneDeliveryUser?.ward?.code);
-        setCityKey(cityKeyCode)
-        setSelectCity(data[cityKeyCode]?.name)
-
-        setDistrictKey(districtKeyCode)
-        setDistricts(data[cityKeyCode]?.districts)
-        setSelectDistrict(data[cityKeyCode]?.districts[districtKeyCode]?.name)
-
-        setWardKey(wardKeyCode)
-        setWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards)
-        setSelectWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards[wardKeyCode]?.name)
-
+            setTimeout(()=>{
+                let cityKeyCode = Number(oneDeliveryUser?.province?.code);
+                let districtKeyCode = Number(oneDeliveryUser?.district?.code);
+                let wardKeyCode = Number(oneDeliveryUser?.ward?.code);
+                setCityKey(cityKeyCode)
+                setSelectCity(data[cityKeyCode]?.name)
+        
+                setDistrictKey(districtKeyCode)
+                setDistricts(data[cityKeyCode]?.districts)
+                setSelectDistrict(data[cityKeyCode]?.districts[districtKeyCode]?.name)
+        
+                setWardKey(wardKeyCode)
+                setWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards)
+                setSelectWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards[wardKeyCode]?.name)
+            },100)
     }, [oneDeliveryUser])
 
     const setDefaultAddress=(value)=>{
@@ -171,11 +172,11 @@ function Newaddress() {
                 }
             })
         }
-        if(oneDeliveryUser?._id){
-            setName(oneDeliveryUser.fullname)
-            setPhone(oneDeliveryUser.phone)
-            setAddress(oneDeliveryUser.address)
-            setChecked(oneDeliveryUser.is_default)
+        if(oneDeliveryUser !== ""){
+                setName(oneDeliveryUser.fullname)
+                setPhone(oneDeliveryUser.phone)
+                setAddress(oneDeliveryUser.address)
+                setChecked(oneDeliveryUser.is_default)
         }
         if(modalPopup.active) {
             handleAfterSubmit()

@@ -4,21 +4,17 @@ import { useLocation } from 'react-router';
 import NumberHelper from "./../../../_helpers/number";
 import PopUpPromotion from './PopUp/popUpPromotion';
 
-
 function TotalBottom(props) {
     const location = useLocation()
-
     const codePromotion = useSelector(state => state.codePromotion)
     const appliedPromotion = useSelector(state => state.appliedPromotion)
     const isLoading = useSelector(state => state.isLoading);
     const totalCartPrice = useSelector(state => state.totalCartPrice);
     const [showPopUp ,setShowPopUp] = useState(false)
     const shippingFee = useSelector(state => state.shippingFee);
-
     const showPromotion = () =>{
         setShowPopUp(true)
     }
-
     const BooleanPopUp = (props)=>{
         setShowPopUp(!props)
     }

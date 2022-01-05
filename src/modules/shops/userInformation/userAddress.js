@@ -77,17 +77,22 @@ function UserAddress() {
               }
           })
     }
-    
+
     const showUserAddress = (item, key)=>{
         if(putDeliveryUser?.isLoaded){
-            if(item.is_default === 1 ){
-                item.is_default = 0
+            if(putDeliveryUser.data.is_default === 1){
+                dispatch(getParentInformationDeviveryUser(putDeliveryUser.data))
+                if(item.is_default === 1 ){
+                    item.is_default = 0
+                }
             }
+
             if(putDeliveryUser.data._id === item._id){
                 (userAddress?.data).splice((userAddress?.data).indexOf(item),1,putDeliveryUser.data)
                 putDeliveryUser.isLoaded = false
             }
         }
+
         if(delDeliveryUser?.isLoaded){
             if(delDeliveryUser.data.data.id === item._id){
                 (userAddress?.data).splice((userAddress?.data).indexOf(item),1)

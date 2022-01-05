@@ -57,24 +57,19 @@ const OrderForm = ({ onSubmit, isLoading,
     }else{
         if(putDeliveryUser?.data._id === oneDeliveryUser._id){
           for (let i = 0; i < userAddress?.data.length; i++) {
-            if(userAddress?.data[i]._id === putDeliveryUser?.data._id){
-              dispatch(getParentInformationDeviveryUser(putDeliveryUser?.data))
-              putDeliveryUser.isLoaded =false
-            }
+              if(userAddress?.data[i]._id === putDeliveryUser?.data._id){
+                dispatch(getParentInformationDeviveryUser(putDeliveryUser?.data))
+                putDeliveryUser.isLoaded =false
+              }
         }
       }
     }
+
       if(delDeliveryUser?.isLoaded || oneDeliveryUser?.isLoaded){
         if(delDeliveryUser.data.data.id === oneDeliveryUser._id){
           dispatch(getParentInformationDeviveryUser(""))
         }
       }
-      if(putDeliveryUser.data.length > 0){
-        if(putDeliveryUser.data._id === oneDeliveryUser._id){
-          dispatch(getParentInformationDeviveryUser(putDeliveryUser.data))
-        }
-      }
-    
     }
 }, [getUserAddress, userAddress,dispatch,oneDeliveryUser,delDeliveryUser,putDeliveryUser]);
   const showCart=()=>{
