@@ -132,7 +132,7 @@ const OderConfirm = () => {
               </div> 
             </div>
               <p className="address">
-                    {oneDeliveryUser?.address}, {oneDeliveryUser?.ward.name}, {oneDeliveryUser?.district.name}, {oneDeliveryUser?.province.name}
+                    {oneDeliveryUser?.geo_address.formatted_address}
               </p>
               <span>AhaMove</span>
               <span> Dự kiến giao hàng từ 1 đến 2 ngày!</span>
@@ -140,7 +140,7 @@ const OderConfirm = () => {
         )
     }
   }
-
+  
   return(
     <div className="body_wrapper ">
       {showheader()}

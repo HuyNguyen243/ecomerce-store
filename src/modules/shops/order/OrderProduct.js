@@ -128,7 +128,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
         slider.slickNext()
       }
       if (index < active || index === active){
-        slider.slickPrev()
+        slider.slickGoTo(index -1)
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useRef, useState} from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from "react-redux";
 import { headTitles } from './../../../redux/actions/index';
@@ -8,6 +8,7 @@ const Search = ({handleSubmit}) => {
   const [isShow, setIsShow] = useState(false);
   const history = useHistory()
   const dispatch = useDispatch()
+  const searchInput = useRef(null)
 
   // update search text state
   const updateSearchInput = e => {
@@ -16,6 +17,7 @@ const Search = ({handleSubmit}) => {
 
   const search = (e) => {
     e.preventDefault();
+    searchInput.current.focus()
     if (!isShow) {
       setIsShow(true)
     }else {
@@ -32,12 +34,11 @@ const Search = ({handleSubmit}) => {
 
   return (
     <div>
-      
       <form className={`app-search txt-left ${isShow ? '' : 'hide-search' }`} onSubmit={e => search(e)}>
         <img  src="/images/Logo-coca.png" className="form-title" alt="logo" />
         <span className={isShow ? "add-border": ""}>
-        <input className={`app-input ${isShow? "show" : "hide" }`} type="text" placeholder="Tìm sản phẩm ..." onChange={updateSearchInput} />
-        <button type="submit" className={`btn search-btn `}><i className={`material-icons + ${isShow ? "add-padding": ""}`}>search</i></button>
+        <input ref={searchInput }  className={`app-input `} type="text" placeholder={isShow ? "Tìm sản phẩm ..." : ""} onChange={updateSearchInput} />
+        <button  type="submit" className={`btn search-btn `}><i className={`material-icons + ${isShow ? "add-padding": ""}`}>search</i></button>
         </span >
       </form>
     </div>

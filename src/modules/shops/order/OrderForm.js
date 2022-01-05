@@ -29,7 +29,7 @@ const OrderForm = ({ onSubmit, isLoading,
   const delDeliveryUser = useSelector(state => state.delDeliveryUser)
   const putDeliveryUser = useSelector(state => state.putDeliveryUser)
   const userID = Auth.get().user_id
-
+  
   const getUserAddress = React.useCallback(() => {
     dispatch(getDeliveryUser(userID))
   }, [dispatch, userID]);
@@ -43,10 +43,9 @@ const OrderForm = ({ onSubmit, isLoading,
     if(!userAddress.isLoaded) {
         getUserAddress()
     }else{
-        if(oneDeliveryUser.length === 0){
+        if(oneDeliveryUser?.length === 0){
           if(userAddress?.data.length > 0){
             for (let i = 0; i < userAddress?.data.length; i++) {
-
               if(userAddress?.data[i].is_default === 1){
                   dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
               }else{
@@ -55,7 +54,7 @@ const OrderForm = ({ onSubmit, isLoading,
           }
       }
     }else{
-        if(putDeliveryUser?.data._id === oneDeliveryUser._id){
+        if(putDeliveryUser?.data._id === oneDeliveryUser?._id){
           for (let i = 0; i < userAddress?.data.length; i++) {
               if(userAddress?.data[i]._id === putDeliveryUser?.data._id){
                 dispatch(getParentInformationDeviveryUser(putDeliveryUser?.data))
@@ -66,7 +65,7 @@ const OrderForm = ({ onSubmit, isLoading,
     }
 
       if(delDeliveryUser?.isLoaded || oneDeliveryUser?.isLoaded){
-        if(delDeliveryUser.data.data.id === oneDeliveryUser._id){
+        if(delDeliveryUser.data.data.id === oneDeliveryUser?._id){
           dispatch(getParentInformationDeviveryUser(""))
         }
       }
@@ -89,13 +88,10 @@ const OrderForm = ({ onSubmit, isLoading,
           <div className="information">
               <div className="infor-user newstyle">
                   <p>
-                      {oneDeliveryUser.fullname}
+                      {oneDeliveryUser?.fullname}
                   </p>
-                  <p>{oneDeliveryUser.phone}</p>
-                  <p>{oneDeliveryUser.address},phường {oneDeliveryUser.ward !== undefined && oneDeliveryUser.ward["name"]},
-                  quận {oneDeliveryUser.district !== undefined && oneDeliveryUser.district["name"]}
-                  , {oneDeliveryUser.province !== undefined && oneDeliveryUser.province["name"]}
-                  </p>
+                  <p>{oneDeliveryUser?.phone}</p>
+                  <p>{oneDeliveryUser?.geo_address.formatted_address}</p>
               </div>
               <div className="infor-icon newstyle new-display">
                 <img src="/images/Back-Black.svg" alt="menu_icon" />
@@ -156,7 +152,7 @@ const OrderForm = ({ onSubmit, isLoading,
             </div>
               <div onClick={handleSlcInforUser}>
                     {
-                      oneDeliveryUser._id  !== undefined ? showDeliveryUser()
+                      oneDeliveryUser?._id  !== undefined ? showDeliveryUser()
                       :   
                       <div className="information">
                         <span className="fix-information2">Chọn thông tin nhận hàng</span>

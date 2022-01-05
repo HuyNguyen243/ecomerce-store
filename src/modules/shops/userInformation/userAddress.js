@@ -29,7 +29,7 @@ function UserAddress() {
         if(!userAddress?.isLoaded) {
             getUserAddress()
         }else{
-                if(oneDeliveryUser.length === 0){
+                if(oneDeliveryUser?.length === 0){
             if(userAddress?.data.length > 0){
                 for (let i = 0; i < userAddress?.data.length; i++) {
                 if(userAddress?.data[i].is_default === 1){
@@ -43,7 +43,6 @@ function UserAddress() {
         }
     }, [getUserAddress,userAddress,dispatch,oneDeliveryUser]);
 
-   
     const handleFixUserAddress = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
         dispatch(getParentInformationDeviveryUser(DeliveryUser))
@@ -56,7 +55,7 @@ function UserAddress() {
     }
 
     const handleGetDelivery = (e)=>{
-        const DeliveryUser = userAddress.data[e.target.id]
+        const DeliveryUser = userAddress?.data[e.target.id]
         dispatch(getParentInformationDeviveryUser(DeliveryUser))
        if( checkGetDeliveryUser === true){
             history.goBack()
@@ -97,8 +96,11 @@ function UserAddress() {
             if(delDeliveryUser.data.data.id === item._id){
                 (userAddress?.data).splice((userAddress?.data).indexOf(item),1)
             }
-            if(userAddress?.data.length > 0){
-                dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
+            if(delDeliveryUser?.data){
+                if(userAddress?.data.length > 0){
+                    dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
+                    delDeliveryUser.isLoaded = false
+                }
             }
         }
 
@@ -114,10 +116,7 @@ function UserAddress() {
                             { item["is_default"] === 1 && <span id={key}>[Mặc định]</span>}
                             </div>
                             <p id={key}>{item["phone"]}</p>
-                            <p id={key}>{item["address"]},phường {item["ward"]["name"]},
-                            quận {item["district"]["name"]}
-                            , {item["province"]["name"]}
-                            </p>
+                            <p id={key}> {item.geo_address.formatted_address}</p>
                         </div>
                         <div className="infor-icon newstyle" id={key}>
                             <div>
@@ -125,7 +124,7 @@ function UserAddress() {
                             <img src="/images/delete.svg" alt="menu_icon" id={item._id} onClick={handleDelDeliver}/>
                             </div>
                             <img src="/images/tickV.svg" alt="menu_icon" id={key} 
-                            className={oneDeliveryUser._id !== undefined && oneDeliveryUser._id === item._id ? "show" : "hide"}/>
+                            className={oneDeliveryUser?._id !== undefined && oneDeliveryUser?._id === item._id ? "show" : "hide"}/>
                         </div>
                     </div>
                 </div>
