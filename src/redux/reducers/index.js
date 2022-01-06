@@ -261,10 +261,21 @@ const rootReducer = (state = initState, action) => {
           shippingFee : 0
         });
       case PUT_INFORMATION_DELIVERY_USER_SUCCESS:
+        let allAdress = state.userAddress.data;
+        if(payload.data !== undefined){
+          for(let i = 0 ;i < allAdress.length ; i++){
+            if(allAdress[i]._id === payload.data._id){
+              allAdress.splice(allAdress[i],1,payload.data)
+            }
+          }
+        }
           return Object.assign({}, state, {
             putDeliveryUser: {
               isLoaded: true,
               data: payload.data
+            },
+            userAddress: {
+              data: allAdress
             },
             isLoading: false,
             modalPopup: {
@@ -292,10 +303,21 @@ const rootReducer = (state = initState, action) => {
           codePromotion: payload
         });
       case DELETE_DELIVERY_USER_SUCCESS:
+        let allAdress2 = state.userAddress.data;
+        if(payload.data !== undefined){
+          for(let i = 0 ;i < allAdress2.length ; i++){
+            if(allAdress2[i]._id === payload.data._id){
+              allAdress2.splice(allAdress2[i],1)
+            }
+          }
+        }
         return Object.assign({}, state, {
           delDeliveryUser: {
             isLoaded: true,
             data: payload
+          },
+          userAddress: {
+            data: allAdress2
           },
           isLoading: false,
         });

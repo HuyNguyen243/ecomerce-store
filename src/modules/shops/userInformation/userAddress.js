@@ -20,7 +20,7 @@ function UserAddress() {
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const checkGetDeliveryUser = useSelector(state => state.checkGetDeliveryUser);
     const delDeliveryUser = useSelector(state => state.delDeliveryUser)
-    const putDeliveryUser = useSelector(state => state.putDeliveryUser)
+    // const putDeliveryUser = useSelector(state => state.putDeliveryUser)
     const getUserAddress = React.useCallback(() => {
         dispatch(getDeliveryUser(userID))
     }, [dispatch, userID]);
@@ -29,19 +29,28 @@ function UserAddress() {
         if(!userAddress?.isLoaded) {
             getUserAddress()
         }else{
-                if(oneDeliveryUser?.length === 0){
-            if(userAddress?.data.length > 0){
-                for (let i = 0; i < userAddress?.data.length; i++) {
-                if(userAddress?.data[i].is_default === 1){
-                    dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
-                }else{
-                    dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
+            if(oneDeliveryUser?.length === 0){
+                if(userAddress?.data.length > 0){
+                    for (let i = 0; i < userAddress?.data.length; i++) {
+                    if(userAddress?.data[i].is_default === 1){
+                        dispatch(getParentInformationDeviveryUser(userAddress?.data[i]))
+                    }else{
+                        dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
+                            }
                         }
                     }
-                }
+            }else{
+                    if(delDeliveryUser?.isLoaded){
+                        if(userAddress?.data.length > 0){
+                            for (let i = 0; i < userAddress?.data.length; i++) {
+                                dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
+                                delDeliveryUser.isLoaded = false
+                            }
+                        }
+                    }
             }
         }
-    }, [getUserAddress,userAddress,dispatch,oneDeliveryUser]);
+    }, [getUserAddress,userAddress,dispatch,oneDeliveryUser,delDeliveryUser]);
 
     const handleFixUserAddress = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
@@ -78,32 +87,6 @@ function UserAddress() {
     }
 
     const showUserAddress = (item, key)=>{
-        if(putDeliveryUser?.isLoaded){
-            if(putDeliveryUser.data.is_default === 1){
-                dispatch(getParentInformationDeviveryUser(putDeliveryUser.data))
-                if(item.is_default === 1 ){
-                    item.is_default = 0
-                }
-            }
-
-            if(putDeliveryUser.data._id === item._id){
-                (userAddress?.data).splice((userAddress?.data).indexOf(item),1,putDeliveryUser.data)
-                putDeliveryUser.isLoaded = false
-            }
-        }
-
-        if(delDeliveryUser?.isLoaded){
-            if(delDeliveryUser.data.data.id === item._id){
-                (userAddress?.data).splice((userAddress?.data).indexOf(item),1)
-            }
-            if(delDeliveryUser?.data){
-                if(userAddress?.data.length > 0){
-                    dispatch(getParentInformationDeviveryUser(userAddress?.data[0]))
-                    delDeliveryUser.isLoaded = false
-                }
-            }
-        }
-
         if(userAddress?.isLoaded){
             return(
                 <div className="form-group" key={key} id={key} >
