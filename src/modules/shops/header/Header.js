@@ -1,9 +1,11 @@
 import React from 'react';
 import Search from './Search';
+import ChangeLanguage from './ChangeLanguage';
 import{Link}from 'react-router-dom'
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { useLocation } from 'react-router';
+
 
 const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
                   , doNavigation = '', showLeftNav, headerBg = 'header-primary'}) => {
@@ -55,6 +57,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
         </div>
         <div className="header-cart">
           { showShoppingCart() }
+          <ChangeLanguage />
         </div>
     </div>
   );
