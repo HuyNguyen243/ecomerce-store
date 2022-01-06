@@ -35,7 +35,7 @@ const Search = ({handleSubmit}) => {
   return (
     <div>
       <form className={`app-search txt-left ${isShow ? '' : 'hide-search' }`} onSubmit={e => search(e)}>
-        <img  src="/images/Logo-coca.png" className="form-title" alt="logo" />
+        <img style={{cursor: 'pointer'}} onClick={e => history.push('/') } src="/images/Logo-coca.png" className="form-title" alt="logo" />
         <span className={isShow ? "add-border": ""}>
         <input ref={searchInput }  className={`app-input `} type="text" placeholder={isShow ? "Tìm sản phẩm ..." : ""} onChange={updateSearchInput} />
         <button  type="submit" className={`btn search-btn `}><i className={`material-icons + ${isShow ? "add-padding": ""}`}>search</i></button>
