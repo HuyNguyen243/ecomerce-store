@@ -56,13 +56,13 @@ const OrderForm = ({ onSubmit, isLoading,
       }
     }else{
       if(putDeliveryUser?.isLoaded ){
-          if(putDeliveryUser?.data._id === oneDeliveryUser?._id){
+          if(putDeliveryUser?.data?._id === oneDeliveryUser?._id){
             dispatch(getParentInformationDeviveryUser(putDeliveryUser?.data))
         }
       }
     }
       if(delDeliveryUser?.isLoaded || oneDeliveryUser?.isLoaded){
-        if(delDeliveryUser.data.data.id === oneDeliveryUser?._id){
+        if(delDeliveryUser?.data?.data?.id === oneDeliveryUser?._id){
           dispatch(getParentInformationDeviveryUser(""))
         }
       }
