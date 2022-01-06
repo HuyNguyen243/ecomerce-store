@@ -106,6 +106,7 @@ function InfoProductShipping(props) {
   const getBooleanConfirm = (props) => {
     setConfirmCancel(props)
   }
+  
   return (
     <div className="body_wrapper ">
       {

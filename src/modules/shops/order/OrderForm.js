@@ -39,6 +39,7 @@ const OrderForm = ({ onSubmit, isLoading,
       history.push('/')
     }
   })
+
   useEffect(() => {
     if(!userAddress.isLoaded) {
         getUserAddress()
@@ -54,16 +55,12 @@ const OrderForm = ({ onSubmit, isLoading,
           }
       }
     }else{
-        if(putDeliveryUser?.data._id === oneDeliveryUser?._id){
-          for (let i = 0; i < userAddress?.data.length; i++) {
-              if(userAddress?.data[i]._id === putDeliveryUser?.data._id){
-                dispatch(getParentInformationDeviveryUser(putDeliveryUser?.data))
-                putDeliveryUser.isLoaded =false
-              }
+      if(putDeliveryUser?.isLoaded ){
+          if(putDeliveryUser?.data._id === oneDeliveryUser?._id){
+            dispatch(getParentInformationDeviveryUser(putDeliveryUser?.data))
         }
       }
     }
-
       if(delDeliveryUser?.isLoaded || oneDeliveryUser?.isLoaded){
         if(delDeliveryUser.data.data.id === oneDeliveryUser?._id){
           dispatch(getParentInformationDeviveryUser(""))
