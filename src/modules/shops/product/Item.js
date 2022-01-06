@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import PriceDisplay from './PriceDisplay';
 import ImageDisplay from './ImageDisplay';
 import {Link} from "react-router-dom"
@@ -12,6 +12,7 @@ const Item = ({id, data}) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const carts = useSelector(state => state.carts);
+  const [confirmAddToCart,setConfirmAddToCart] = useState(true)
 
   const addToCart = (showCart = false) => {
     for(let i = 0 ;i < carts.length ;i++){
@@ -22,6 +23,7 @@ const Item = ({id, data}) => {
         }
       }
     }
+    if(confirmAddToCart){
       CartService.add({
         id          : data._id,
         name        : data.name,
@@ -34,6 +36,11 @@ const Item = ({id, data}) => {
       })
       SnackbarHelper.show('Thêm vào giỏ hàng thành công')
       dispatch(addCart())
+      setConfirmAddToCart(false)
+    }
+      setTimeout(()=>{
+        setConfirmAddToCart(true)
+        },2000)
       if(showCart) {
         history.push('/cart')
       }

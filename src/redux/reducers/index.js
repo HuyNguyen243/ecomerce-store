@@ -265,7 +265,8 @@ const rootReducer = (state = initState, action) => {
         if(payload.data !== undefined){
           for(let i = 0 ;i < allAdress.length ; i++){
             if(allAdress[i]._id === payload.data._id){
-              allAdress.splice(allAdress[i],1,payload.data)
+                allAdress[i] = payload.data
+                break
             }
           }
         }
@@ -275,6 +276,7 @@ const rootReducer = (state = initState, action) => {
               data: payload.data
             },
             userAddress: {
+              isLoaded: true,
               data: allAdress
             },
             isLoading: false,
@@ -317,6 +319,7 @@ const rootReducer = (state = initState, action) => {
             data: payload
           },
           userAddress: {
+            isLoaded: true,
             data: allAdress2
           },
           isLoading: false,

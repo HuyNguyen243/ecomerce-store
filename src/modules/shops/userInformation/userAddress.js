@@ -20,7 +20,6 @@ function UserAddress() {
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const checkGetDeliveryUser = useSelector(state => state.checkGetDeliveryUser);
     const delDeliveryUser = useSelector(state => state.delDeliveryUser)
-    // const putDeliveryUser = useSelector(state => state.putDeliveryUser)
     const getUserAddress = React.useCallback(() => {
         dispatch(getDeliveryUser(userID))
     }, [dispatch, userID]);

@@ -26,9 +26,10 @@ function Newaddress() {
 
     const { register, handleSubmit, errors } = useForm();
     let emptyErrorTxt = 'Vui lòng điền thông tin';
+    let emptyErrorTxt2 = 'Tên không được chứa số và ký tự đặt biệt!';
     let phoneErrorTxt = 'Số điện thoại không hợp lệ';
     let addressDeliveryErrorTxt = 'vui lòng chọn địa chỉ giao hàng';
-
+    let nameRegex = /^[a-zA-Z]+$/;
     const [checked,setChecked]=useState(0)
     const[note,setNote]=useState("")
     // show list select-option
@@ -47,30 +48,30 @@ function Newaddress() {
     const [selectWard,setSelectWard] = useState("")
     // ------
     const [addressDelivery,setAddressDelivery] = useState(true)
-
     const defaultAddressData = React.useCallback((data) => {
-            setTimeout(()=>{
-                let cityKeyCode = Number(oneDeliveryUser?.province?.code);
-                let districtKeyCode = Number(oneDeliveryUser?.district?.code);
-                let wardKeyCode = Number(oneDeliveryUser?.ward?.code);
-                setCityKey(cityKeyCode)
-                setSelectCity(data[cityKeyCode]?.name)
-        
-                setDistrictKey(districtKeyCode)
-                setDistricts(data[cityKeyCode]?.districts)
-                setSelectDistrict(data[cityKeyCode]?.districts[districtKeyCode]?.name)
-        
-                setWardKey(wardKeyCode)
-                setWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards)
-                setSelectWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards[wardKeyCode]?.name)
-            },100)
+                setTimeout(()=>{
+                            let cityKeyCode = Number(oneDeliveryUser?.province?.code);
+                            let districtKeyCode = Number(oneDeliveryUser?.district?.code);
+                            let wardKeyCode = Number(oneDeliveryUser?.ward?.code);
+                            
+                            setCityKey(cityKeyCode)
+                            setSelectCity(data[cityKeyCode]?.name)
+                               
+                            setDistrictKey(districtKeyCode)
+                            setDistricts(data[cityKeyCode]?.districts)
+                            setSelectDistrict(data[cityKeyCode]?.districts[districtKeyCode]?.name)
+                    
+                            setWardKey(wardKeyCode)
+                            setWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards)
+                            setSelectWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards[wardKeyCode]?.name)
+                },100)
     }, [oneDeliveryUser])
 
     const setDefaultAddress=(value)=>{
         let isDefault = (value === true) ? 1 : 0
         setChecked(isDefault)
     }
-
+    
     const getCityKey =(e)=>{
         let key = Number(e.target.value);
         setCityKey(key)
@@ -81,6 +82,19 @@ function Newaddress() {
             setDistricts(city[key].districts)
             setSelectCity(city[key].name)
         }
+        if(oneDeliveryUser){
+            if(parseInt(key) === -1){
+                setSelectCity("")
+            }
+            if(oneDeliveryUser?.province?.code !== key){
+                setSelectDistrict("")
+                setSelectWard("")
+            }
+            if(key > 1){
+                setDistrictKey(UNSELECTED_KEY)
+                setWardKey(UNSELECTED_KEY)
+            }
+        }
     }
 
     const getDistrictKey =(e) =>{
@@ -88,16 +102,31 @@ function Newaddress() {
         setDistrictKey(key)
         if(key === UNSELECTED_KEY){
             setWard([])
+            setWardKey([])
         }else{
             setWard(district[key].wards)
             setSelectDistrict(district[key].name)
+        }
+        if(oneDeliveryUser){
+            if(parseInt(key) === -1){
+                setSelectDistrict("")
+            }
+            if(oneDeliveryUser?.province?.code !== key){
+                setSelectWard("")
+            }
+            if(key > 1){
+                setWardKey(UNSELECTED_KEY)
+            }
         }
     }
 
     const getWardKey = (e)=>{
         let key = Number(e.target.value);
         setWardKey(key)
-        setSelectWard(ward[key].name)
+        setSelectWard(ward[key]?.name)
+        if(parseInt(key) === -1){
+            setSelectWard("")
+        }
     }
 
     const showNameCity = () =>{
@@ -109,7 +138,7 @@ function Newaddress() {
     }
 
     const onSubmit =(data)=>{
-        if(data){
+        if(data && nameRegex.exec(name) !== null){
             if((data.city) === ""||  data.district === ""){
                 setAddressDelivery(false)
             }else{
@@ -206,7 +235,10 @@ function Newaddress() {
                                                     { errors.name && errors.name.type === "required" ?
                                                         <span className="txt-danger">{emptyErrorTxt}</span> :""
                                                     }
-                                                <input placeholder="Số điện thoại  *" type="text" name="phone" defaultValue={phone} onChange={handlePhone}
+                                                     { name && nameRegex.exec(name) === null ?
+                                                        <span className="txt-danger">{emptyErrorTxt2}</span> :""
+                                                    }
+                                                <input placeholder="Số điện thoại  *"  name="phone" type="number" defaultValue={phone} onChange={handlePhone}
                                                     ref={register({
                                                         required: true,
                                                         pattern: /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/
