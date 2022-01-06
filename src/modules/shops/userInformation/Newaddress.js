@@ -71,7 +71,7 @@ function Newaddress() {
         let isDefault = (value === true) ? 1 : 0
         setChecked(isDefault)
     }
-    
+
     const getCityKey =(e)=>{
         let key = Number(e.target.value);
         setCityKey(key)
@@ -89,8 +89,6 @@ function Newaddress() {
             if(oneDeliveryUser?.province?.code !== key){
                 setSelectDistrict("")
                 setSelectWard("")
-            }
-            if(key > 1){
                 setDistrictKey(UNSELECTED_KEY)
                 setWardKey(UNSELECTED_KEY)
             }
@@ -113,8 +111,6 @@ function Newaddress() {
             }
             if(oneDeliveryUser?.province?.code !== key){
                 setSelectWard("")
-            }
-            if(key > 1){
                 setWardKey(UNSELECTED_KEY)
             }
         }

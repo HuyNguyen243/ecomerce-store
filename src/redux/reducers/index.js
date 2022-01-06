@@ -264,9 +264,11 @@ const rootReducer = (state = initState, action) => {
         let allAdress = state.userAddress.data;
         if(payload.data !== undefined){
           for(let i = 0 ;i < allAdress.length ; i++){
+            if(payload.data.is_default === 1){
+                allAdress[i].is_default = 0
+            }
             if(allAdress[i]._id === payload.data._id){
                 allAdress[i] = payload.data
-                break
             }
           }
         }
@@ -319,7 +321,6 @@ const rootReducer = (state = initState, action) => {
             data: payload
           },
           userAddress: {
-            isLoaded: true,
             data: allAdress2
           },
           isLoading: false,
