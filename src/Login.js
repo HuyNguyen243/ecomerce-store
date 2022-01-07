@@ -30,6 +30,7 @@ function Login() {
         let url = new URL(window.location.href);
         let page = url.searchParams.get("page");
         let id = url.searchParams.get("id");
+        let data = url.searchParams.get("data");
         let redirectUrl  = '/';
 
         if(page !== null) {
@@ -37,6 +38,13 @@ function Login() {
         }
         if(id !== null) {
             redirectUrl += `/${id}`
+        }
+        if(data !== null) {
+            data = JSON.parse(data);
+            for (let i = 0; i < data.length; i++) {
+                let obj = Object.keys(data[i])
+                redirectUrl += '?'+obj[0]+"="+data[i][obj[0]]
+            }
         }
         history.push(redirectUrl)
     }, [history]);
