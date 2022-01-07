@@ -46,8 +46,7 @@ function Login() {
                 redirectUrl += '?'+obj[0]+"="+data[i][obj[0]]
             }
         }
-        console.log(redirectUrl)
-        // history.push(redirectUrl)
+        history.push(redirectUrl)
     }, [history]);
 
     React.useEffect(() => {
