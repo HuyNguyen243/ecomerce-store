@@ -10,13 +10,15 @@ import {
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneProduct } from './../../../redux/actions/index';
+import { useTranslation } from "react-i18next";
+
 
 const Detail = ({
   showCart,
   addToCart,
   totalCart,
 }) => {
-
+  const { t } = useTranslation();
   const [quantity, setQuantity] = useState(1);
   let { id } = useParams();
   const dispatch = useDispatch();
@@ -47,7 +49,6 @@ const Detail = ({
     event.eventName = initEvent;
     document.dispatchEvent(event);
     document.getElementsByTagName("html")[0].style.overflow = "auto";
-  
   };
 
   const showIconcart =()=>{
@@ -58,7 +59,7 @@ const Detail = ({
     <div id={PRODUCT_DETAIL_NAV}>
       <Header
         hasNavigation={true}
-        title="Thông tin sản phẩm"
+        title= {t("productDetail.tittleDetail")}
         showCart={showIconcart}
         navId={LIST_CART_NAV}
         totalCart={totalCart}
@@ -75,7 +76,7 @@ const Detail = ({
                 addToCart={addToCart}
                 changeQuantity={changeQuantity}
               />
-            : <Blankpage message="Không tìm thấy dữ liệu" />
+            : <Blankpage message= {t("error.found")} />
           }
       </div>
     </div>

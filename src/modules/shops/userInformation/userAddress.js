@@ -8,7 +8,7 @@ import { getParentInformationDeviveryUser } from './../../../redux/actions/index
 import { deleteDeliveryUSer } from './../../../redux/actions/index';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content';
-
+import { useTranslation } from "react-i18next";
 
 function UserAddress() {
     const MySwal = withReactContent(Swal)
@@ -23,6 +23,7 @@ function UserAddress() {
     const getUserAddress = React.useCallback(() => {
         dispatch(getDeliveryUser(userID))
     }, [dispatch, userID]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         if(!userAddress?.isLoaded) {
@@ -73,11 +74,11 @@ function UserAddress() {
     const handleDelDeliver = (e) =>{
         let getId = e.target.id
         MySwal.fire({
-            text: "Bạn có đồng ý xóa thông tin địa chỉ này?",
+            text: t("userAddress.deleteAdress"),
             icon: 'info',
-            confirmButtonText: 'Đồng ý',
+            confirmButtonText: t("cart.SubmitButton"),
             showCancelButton: true,
-            cancelButtonText: "Huỷ bỏ"
+            cancelButtonText: t("cart.CancelDeleteProduct")
           }).then((result)=>{
               if(result.isConfirmed){
                 dispatch(deleteDeliveryUSer(getId))
@@ -95,7 +96,7 @@ function UserAddress() {
                             <p id={key}>
                                 {item["fullname"]} {" "}
                             </p>
-                            { item["is_default"] === 1 && <span id={key}>[Mặc định]</span>}
+                            { item["is_default"] === 1 && <span id={key}>{t("userAddress.default")}</span>}
                             </div>
                             <p id={key}>{item["phone"]}</p>
                             <p id={key}> {item?.address}
@@ -120,7 +121,7 @@ function UserAddress() {
         <div id='list_cart_nav' className='body_wrapper'>
             <Header
                 hasNavigation={true}
-                title="THÔNG TIN ĐẶT HÀNG"
+                title= {t("userAddress.title")}
             />
             <div className='display-flex'>
                 <div className="main_container">
@@ -129,7 +130,7 @@ function UserAddress() {
                         ? <div className="overlay-spinner"></div>
                         : 
                             <form className="basic-form ">
-                            {(userAddress.data).length === 0 ? <span>Vui lòng tạo thông tin đặt giao hàng</span>:""}
+                            {(userAddress.data).length === 0 ? <span>{t("userAddress.error")}</span>:""}
                             {
                                 userAddress?.data.map((item,key)=> {
                                     if(item.is_default) {
@@ -151,7 +152,7 @@ function UserAddress() {
                 </div>
                 <div className="fix-bottom ">
                         <div className="btn-with-icon right-icon">
-                            <button type="submit" className="btn btn-primary" onClick={handleAddNewAddress}>Thêm địa chỉ mới</button>
+                            <button type="submit" className="btn btn-primary" onClick={handleAddNewAddress}>{t("newAddress.newButton")}</button>
                         </div>
                 </div>
             </div>

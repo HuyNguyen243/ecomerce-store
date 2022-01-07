@@ -72,6 +72,13 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
+    
+    .row .col-6 {
+        padding: 5px 14px;
+    }
+    .txt-style{
+        font-size: 9px;
+    }
     .dialog .main-container_Popup{
         margin: 0 5px !important;
     }
@@ -79,11 +86,11 @@ $top-space: 44px;
         padding: 5px 15px !important;
     }
     .shop-header .header-search .app-search .app-input {
-        width: 85%;
+        width: 82%;
     }
-    .btn-button{
-        font-size: 12px;
-    }
+    // .btn-button{
+    //     font-size: 11px !important;
+    // }
     .code{
         font-size: 11px;
     }
@@ -334,6 +341,22 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
+    .Offer-title p{
+        font-size: 12px !important;
+    }
+    .app-search{
+        padding-left: 10px !important;
+    }
+    .header-search{
+        font-size: 11px;
+    }
+    .header-home{
+        padding: 15px 5px 15px 15px !important;
+    }
+    .dropbtn {
+        // padding-right: 5px;
+        padding-left: 0;
+    }
     .style-title span:nth-child(2) {
         padding: 5px 10px !important;
     }
@@ -348,7 +371,7 @@ $top-space: 44px;
         width: 80%;
     }
     .btn-button{
-        font-size: 10px;
+        font-size: .6em !important;
     }
     .expiry-promotion,
     .Minimum-Order{
@@ -371,7 +394,12 @@ $top-space: 44px;
         }
     }
     .row .col-6 {
-        padding: 5px 15px;
+        padding: 5px 10px;
+    }
+
+    .row .col-6:nth-child(3) {
+        padding: 0;
+        padding-left: 10px;
     }
     
     .shop-item.alt .item-description p{
@@ -435,3 +463,8 @@ $top-space: 44px;
 }
 
 
+@media(max-width: 540px){
+    .dialog .main-container_Popup{
+        width: 365px !important;
+    }
+}

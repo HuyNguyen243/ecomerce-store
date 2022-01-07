@@ -1,0 +1,157 @@
+{
+    "header" : {
+        "search_text" : "Tìm sản phẩm ..."
+    },
+    "offer" : {
+        "title" : "ƯU ĐÃI SỐC CHỈ HÔM NAY"
+    },
+    "error" : {
+        "errorCart" : "Không có sản phẩm nào trong giỏ hàng của bạn!",
+        "found" : "Không tìm thấy dữ liệu",
+        "searchPromotion" : "Kết quả tìm kiếm chưa chính xác!",
+        "errorOder" : "Đặt hàng thất bại",
+        "errorInformation" : "vui lòng chọn thông tin nhận hàng"
+    },
+    "home" : {
+        "titlePromoted" : "Sản phẩm đang khuyến mãi",
+        "viewAll" : "Xem tất cả",
+        "buttonBuy": "Mua ngay",
+        "addToCard": "Thêm vào giỏ"
+    },
+    "leftNav" : {
+        "inforUserAddress" : "THÔNG TIN ĐẶT HÀNG",
+        "oderList" : "DANH SÁCH ĐƠN HÀNG"
+    },
+    "productDetail" : {
+        "selectQty" : "Chọn số lượng:",
+        "infomationProduct":"Thông tin sản phẩm",
+        "maxQty" : "Sản phẩm đạt số lượng tối đa!",
+        "addCartSuccess": "Thêm vào giỏ hàng thành công",
+        "outOfStock": "Hết hàng",
+        "stocking": "sản phẩm có sẵn",
+        "tittleDetail" : "Thông tin sản phẩm",
+        "searchResults" : "kết quả tìm kiếm"
+    },
+    "cart":{
+        "titleCart" : "Giỏ hàng",
+        "swalDeleteProduct" : "Bạn có đồng ý xóa sản phẩm này khỏi giỏ hàng không?",
+        "AccessDeleteProduct" : "Đồng ý",
+        "CancelDeleteProduct" : "Huỷ bỏ",
+        "CloseButton" : "Đóng",
+        "SubmitButton" : "Đồng ý"
+    },
+    "popUpAdventisement" : {
+        "title" : "Bạn ơi bạn có quên ưu đãi này?"
+    },
+    "popUpPromotion" : {
+        "title" : "MÃ GIẢM GIÁ",
+        "Expiry" : "Hạn sử dụng:",
+        "usePromotion" : "Sử dụng ngay",
+        "notification" : "Chưa có voucher nào cả !",
+        "searchPromotion" : "Nhập mã giảm giá"
+    },
+    "popUpCancelReason" : {
+        "title" : "HUỶ ĐƠN HÀNG",
+        "reason" : "Tôi muốn huỷ đơn hàng này vì lí do:",
+        "cancelReasonsOne" : "Muốn thay đổi địa chỉ giao hàng",
+        "cancelReasonsTwo" : "Đổi ý không muốn mua nữa",
+        "cancelReasonsThree" : "Khác:",
+        "error" : "Vui lòng điền thông tin hủy đơn hàng!"
+    },
+    "inforProductShipping" : {
+        "title" : "THÔNG TIN ĐƠN HÀNG",
+        "titleReceive" : "Thông tin nhận hàng",
+        "titleTransport" : "Thông tin vận chuyển",
+        "VENDOR_APPROVE" : "Đang chờ nhà phân phối xác nhận đơn hàng",
+        "DENIED_BY_VENDOR" : "Đơn hàng bị từ chối bởi nhà phân phối",
+        "USER_CANCEL" : "Bạn đã huỷ đơn hàng này",
+        "IDLE" : "Xác nhận đơn hàng",
+        "ASSIGNING" : "Nhà phân phối đang chuẩn bị hàng",
+        "ACCEPTED_BY_VENDOR" : "Nhà phân phối hoàn tất đơn hàng",
+        "PROCESS" : "Đang giao hàng",
+        "COMPLETED" : "Giao hàng thành công",
+        "CANCELLED" : "Giao hàng thất bại",
+        "qty" : "Số lượng:",
+        "cancelOrder" : "Đơn đã huỷ",
+        "shippingUnit" : "Đơn vị vận chuyển:",
+        "codeOder" : "Mã đơn hàng:",
+        "time" : "Thời gian giao hàng dự kiến",
+        "statusOder" : "Trạng thái đơn hàng",
+        "oderList" : "Trạng thái đơn hàng",
+        "status" : "Trạng thái",
+        "reason" : "Lý do"
+    },
+    "totalBottom" : {
+        "total1" : "Tổng tiền hàng:",
+        "shippingFee" : "Phí vận chuyển:",
+        "total" : "Tổng cộng:",
+        "promotion" : "Mã giảm giá",
+        "CancelButton" : "Huỷ đơn hàng",
+        "OderButton" : "Đặt lại đơn",
+        "placeholderPromotion" : "Nhập mã giảm giá"
+    },
+    "oderConfirm" : {
+        "title" : "ĐẶT HÀNG",
+        "swalTitle" : "XÁC NHẬN ĐẶT HÀNG",
+        "swalText" : "Bạn có đồng ý đặt đơn hàng này?",
+        "swalSuccess" : "ĐẶT HÀNG THÀNH CÔNG",
+        "textThank" : "Cám ơn anh/chị",
+        "textThankFor" : "đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.",
+        "expectedDelivery" : "Dự kiến giao hàng từ 1 đến 2 ngày!",
+        "buttonSuccess" : "Xác nhận đặt hàng"
+    },
+    "oderForm" : {
+        "title" : "THÔNG TIN ĐẶT GIAO HÀNG",
+        "error1" : "Địa chỉ của bạn không nằm trong khu vực giao hàng ,vui lòng thử lại?",
+        "error2" : "Vui lòng chọn thông tin nhận hàng",
+        "informationDelivery" : "Thông tin giao hàng",
+        "SelectinformationDelivery" : "Chọn thông tin nhận hàng",
+        "shippingMethod" : "Phương thức vận chuyển",
+        "backButton" : "Quay lại",
+        "nextButton" : "Tiếp tục"
+    },
+    "oderProduct" : {
+        "title" : "DANH SÁCH ĐƠN HÀNG",
+        "PENDING_VENDOR_APPROVE" : "Chờ xác nhận",
+        "STATUS_ASSIGNING" : "Chờ lấy hàng",
+        "PROCESS" : "Đang giao hàng",
+        "COMPLETED" : "Hoàn tất",
+        "CANCELLED" : "Đã huỷ",
+        "Orderdate" : "Ngày đặt hàng:",
+        "expectedDelivery" : "Thời gian giao hàng dự kiến:"
+    },
+    "snackbarhekper" : {
+        "success": "Cập nhật thông tin thành công",
+        "failed": "Cập nhật thông tin thất bại"
+    },
+    "newAddress" : {
+        "title" : "THÊM ĐỊA CHỈ GIAO HÀNG MỚI",
+        "emptyErrorTxt" : "Vui lòng điền thông tin",
+        "emptyErrorTxt2" : "Tên không được chứa số và ký tự đặt biệt!",
+        "phoneErrorTxt" : "Số điện thoại không hợp lệ",
+        "addressDeliveryErrorTxt" : "vui lòng chọn địa chỉ giao hàng",
+        "contract" : "Thông tin liên hệ",
+        "name" : "Họ và tên *",
+        "phone" : "Số điện thoại *",
+        "DeliveryAddress" : "Địa chỉ giao hàng",
+        "city" : "Tỉnh/Thành phố",
+        "district" : "Quận/Huyện",
+        "ward" : "Phường/Xã",
+        "address" : "Tên đường, số nhà, toà nhà*",
+        "note" : "Ghi chú (chỉ giao giờ hành chính, giao cả tuần ...)",
+        "setting" : "Cài đặt",
+        "default" : "Cài đặt làm địa chỉ mặc định",
+        "newButton" : "Thêm địa chỉ mới",
+        "fixButton" : "Thay đổi địa chỉ"
+    },
+    "swal" : {
+        "success" : "Lưu thành công",
+        "failed" : "Lưu thất bại , vui lòng điền thông tin bắt buộc!"
+    },
+    "userAddress" : {
+        "title" : "THÔNG TIN ĐẶT HÀNG",
+        "deleteAdress" : "Bạn có đồng ý xóa thông tin địa chỉ này?",
+        "default" : "[Mặc định]",
+        "error" : "Vui lòng tạo thông tin đặt giao hàng"
+    }
+}

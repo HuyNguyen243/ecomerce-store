@@ -7,14 +7,15 @@ import { useDispatch } from "react-redux";
 import { headTitles } from './../../../redux/actions/index';
 import { getCategoriesByParentId } from "./../../../redux/actions/index";
 import { getParentTitleCategories } from "./../../../redux/actions/index";
-
+import { useTranslation } from "react-i18next";
 
 const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, addToCart }) => {
   let productList;
   const history = useHistory()
   const dispatch = useDispatch();
   const location = useLocation()
-  
+  const { t } = useTranslation();
+
   if (data.length > 0) {
     productList = data.map((product, index) => {
       return (
@@ -50,7 +51,7 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
     <div className="horizontal-wrapper">
         <div className="horizontal-header row">
             <div className="col-8 header-left text-bold">{title}</div>
-            <div className="col-4 header-right txt-primary txt-right" ><span className="pointer" onClick={() => { getByCategory(categoryId, title) }}>Xem tất cả</span></div>
+            <div className="col-4 header-right txt-primary txt-right" ><span className="pointer" onClick={() => { getByCategory(categoryId, title) }}>{t("home.viewAll")}</span></div>
         </div>
         <div>
             {/* <span onClick={() => {doScrolling(categoryId, 'prev')}} className="list-navigate prev hide"><Icon name="chevron_left" /></span> */}

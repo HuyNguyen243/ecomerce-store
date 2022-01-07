@@ -4,12 +4,16 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from "react-redux";
 import { applyPromotion, resetPopup } from './../../../redux/actions/index';
 import ModalService from './../../../_services/modal';
+import { useTranslation } from "react-i18next";
+
 
 function Offer(data) {
     const dispatch = useDispatch();
     const history = useHistory()
     const modalPopup = useSelector(state => state.modalPopup);
     const carts = useSelector(state => state.carts);
+    const { t } = useTranslation();
+
 
     const settings = {
         dots: true,
@@ -27,7 +31,7 @@ function Offer(data) {
             formData.append('promo_id', id)
             dispatch(applyPromotion(formData))
         }else{
-            ModalService.error("Không có sản phẩm nào trong giỏ hàng của bạn!")
+            ModalService.error(t("error.errorCart"))
             setTimeout(() => {
                 dispatch(resetPopup())
             }, 1000);
@@ -97,7 +101,7 @@ function Offer(data) {
         <div className="container no-over">
             <div className="Offer-title">
                     <img src="/images/sale.png" alt="menu_icon" />
-                    <p>ƯU ĐÃI SỐC CHỈ HÔM NAY</p>
+                    <p>{t("offer.title")}</p>
             </div>
                 <Slider {...settings}>
                     {showslide()}

@@ -5,10 +5,11 @@ import{Link} from "react-router-dom"
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { checkGetDelivetyUser } from "../../../redux/actions";
+import { useTranslation } from "react-i18next";
 
 const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
   const dispatch = useDispatch()
-
+  const { t } = useTranslation();
   const [isToggled, setIsToggled] = useState(false);
   const history = useHistory()
 
@@ -29,13 +30,13 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
       <div className="menu-left-nav">
           <div className="menu-left-item" onClick={e => toggleCategory()}>
             <img src='/images/information.svg' alt="category"/>
-            <span>THÔNG TIN ĐẶT HÀNG</span>
+            <span>{t("leftNav.inforUserAddress")}</span>
           </div>
 
         <Link to="/orders">
           <div className="menu-left-item" onClick={e => showNavigation(USER_ORDER_NAV)}>
             <img src='/images/Shopping_list.svg' alt="order"/>
-            <span>DANH SÁCH ĐƠN HÀNG</span>
+            <span>{t("leftNav.oderList")}</span>
           </div>
         </Link>
       </div>

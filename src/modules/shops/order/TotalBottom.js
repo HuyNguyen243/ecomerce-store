@@ -3,6 +3,7 @@ import { useSelector} from 'react-redux';
 import { useLocation } from 'react-router';
 import NumberHelper from "./../../../_helpers/number";
 import PopUpPromotion from './PopUp/popUpPromotion';
+import { useTranslation } from "react-i18next";
 
 function TotalBottom(props) {
     const location = useLocation()
@@ -12,6 +13,7 @@ function TotalBottom(props) {
     const totalCartPrice = useSelector(state => state.totalCartPrice);
     const [showPopUp ,setShowPopUp] = useState(false)
     const shippingFee = useSelector(state => state.shippingFee);
+    const { t } = useTranslation();
     const showPromotion = () =>{
         setShowPopUp(true)
     }
@@ -29,16 +31,16 @@ function TotalBottom(props) {
             }
             <div className="row cart-total">
             <div className={location.pathname === "/cart" ? "row hide" : "row"}>  
-                <div className="col-6 text-bold text-sm">Mã giảm giá:</div>
+                <div className="col-6 text-bold text-sm">{t("totalBottom.promotion")}</div>
                 <div className="col-6 text-bold txt-right">
                     <div className='border-promotion'>
                         {/* <input type="text" name="code"   placeholder="Nhập mã giảm giá" className={"btn-discount"} onClick={showPromotion} value={codePromotion? codePromotion.toUpperCase():""}/> */}
-                        <button className='code' onClick={showPromotion}>{codePromotion? codePromotion.toUpperCase():"Nhập mã giảm giá"}</button>
+                        <button className='code' onClick={showPromotion}>{codePromotion? codePromotion.toUpperCase(): t("totalBottom.placeholderPromotion")}</button>
                     </div>
                 </div>
             </div>  
             <div className={ location.pathname === "/cart" ? "row hide" : "row"}>
-                <div className="col-6  text-sm ">Tổng tiền hàng:</div>
+                <div className="col-6  text-sm ">{t("totalBottom.total1")}</div>
                 <div className="col-6 text-bold txt-right">
                     <span className="text-nm">{NumberHelper.formatCurrency(totalCartPrice)}</span>
                 </div>
@@ -46,7 +48,7 @@ function TotalBottom(props) {
                     shippingFee.total_pay > 0
                     &&
                     <>
-                        <div className="col-6  text-sm">Phí vận chuyển:{<span className="txt-style">({shippingFee.distance}km)</span>}</div>
+                        <div className="col-6  text-sm">{t("totalBottom.shippingFee")} {<span className="txt-style">({shippingFee.distance}km)</span>}</div>
                         <div className="col-6 text-bold txt-right">
                             <span className="text-nm">+{ NumberHelper.formatCurrency(shippingFee.total_pay) }</span>
                         </div>
@@ -55,7 +57,7 @@ function TotalBottom(props) {
                 {
                     appliedPromotion?.discount
                     && <>
-                            <div className="col-6  text-sm">Mã giảm giá</div>
+                            <div className="col-6  text-sm">{t("totalBottom.promotion")}</div>
                             <div className="col-6 text-bold txt-right">
                                 <span className="text-nm">-{ NumberHelper.formatCurrency(appliedPromotion?.discount) }</span>
                             </div>
@@ -64,7 +66,7 @@ function TotalBottom(props) {
                 
             </div>
             <div className="row">
-                <div className="col-6 text-bold text-sm new-text">Tổng cộng:</div>
+                <div className="col-6 text-bold text-sm new-text">{t("totalBottom.total")}</div>
                 <div className="col-6 text-bold txt-right">
                     <span className="text-nm new-text">
                     { 

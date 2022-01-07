@@ -120,3 +120,5 @@ export const getParentTitleCategories = (id) => {
 export const deleteParentOrderProduct = (id,reason) => {
     return { type: DELETE_ORDER_PRODUCT, payload: {id: id, reason: reason} };
 }
+
+

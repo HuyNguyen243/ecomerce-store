@@ -1,15 +1,16 @@
 import React from 'react';
 import Search from './Search';
+import ChangeLanguage from './ChangeLanguage';
 import{Link}from 'react-router-dom'
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 
-
 const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
                   , doNavigation = '', showLeftNav, headerBg = 'header-primary'}) => {
-          
   const usehistory =useHistory()
   const carts = useSelector(state => state.carts);
+  const generalData = useSelector(state => state.generalData);
+
   const showShoppingCart = () => {
       if (showCart !== '') {
         let totalContainer = 0
@@ -32,7 +33,11 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
     if(doNavigation !== '') {
       doNavigation()
     }else {
-      usehistory.goBack()
+      if(!generalData.isLoaded) {
+        usehistory.push('/')
+      }else {
+        usehistory.goBack()
+      }
     }
   }
 
@@ -51,6 +56,9 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
         </div>
         <div className="header-cart">
           { showShoppingCart() }
+        </div>
+        <div className="language">
+        <ChangeLanguage />
         </div>
     </div>
   );

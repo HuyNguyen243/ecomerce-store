@@ -6,6 +6,7 @@ import { ShopContext } from "./../../../contexts/ShopContext";
 import Icon from "./../../../_components/_icon.component";
 import { useForm } from "react-hook-form";
 import SnackbarHelper from './../../../_helpers/snackbar';
+import { useTranslation } from "react-i18next";
 
 const Profile = ({hideNavigation}) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -13,6 +14,7 @@ const Profile = ({hideNavigation}) => {
     const { getUserInfo, submitUserInfo } = useContext(ShopContext);
     const [ isProcessing, setIsProcessing ] = useState(false);
     const [ isEditing, setIsEditing ] = useState(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         document.addEventListener(`open_navigation_${PROFILE_NAV}`, function(e) {
@@ -47,10 +49,10 @@ const Profile = ({hideNavigation}) => {
         let response = await submitUserInfo(formData);
         if (response) {
             setIsProcessing(false)
-            SnackbarHelper.show('Cập nhật thông tin thành công')
+            SnackbarHelper.show(t("snackbarhekper.success"))
             setIsEditing(false)
         }else {
-            SnackbarHelper.show('Cập nhật thông tin thất bại')
+            SnackbarHelper.show(t("snackbarhekper.failed"))
             setIsEditing(false)
         }
     }

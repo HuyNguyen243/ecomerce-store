@@ -1,0 +1,159 @@
+{
+    "header" : {
+        "search_text" : "Search ..."
+    },
+    "offer" : {
+        "title" : "SHOCKING OFFER FOR TODAY"
+    },
+    "error" : {
+        "errorCart" : "There are no products in your cart!",
+        "found" : "data not found!",
+        "searchPromotion" : "Incorrect search results!",
+        "errorOder" : "Order failed",
+        "errorInformation" : "Please select shipping information"
+    },
+    "home" : {
+        "titlePromoted" : "Promoted products",
+        "viewAll" : "View all",
+        "buttonBuy": "Purchase",
+        "addToCard": "Add to cart"
+    },
+    "leftNav" : {
+        "inforUserAddress" : "ORDER INFORMATION",
+        "oderList" : "ORDER LIST"
+    },
+    "productDetail" : {
+        "selectQty" : "Select quantity:",
+        "infomationProduct":"Product information",
+        "maxQty" : "Products reached the maximum",
+        "addCartSuccess": "Add to cart successfully",
+        "outOfStock": "Out of stock",
+        "stocking": "products available",
+        "tittleDetail" : "Product information",
+        "searchResults" : "Search Results"
+    },
+    "cart":{
+        "titleCart" : "CART",
+        "swalDeleteProduct" : "Do you agree to remove this product from the shopping cart?",
+        "AccessDeleteProduct" : "Agree",
+        "CancelDeleteProduct" : "Cancel",
+        "CloseButton" : "Close",
+        "SubmitButton" : "Agree"
+    },
+    "popUpAdventisement" : {
+        "title" : "Hey, have you forget these offers?"
+    },
+    "popUpPromotion" : {
+        "title" : "DISCOUNT CODE",
+        "Expiry" : "Expiry :",
+        "usePromotion" : "Use now",
+        "notification" : "No coupons yet!",
+        "searchPromotion" : "Enter discount code"
+    },
+    "popUpCancelReason" : {
+        "title" : "CANCEL ORDER",
+        "reason" : "Cancel this order for the following reasons:",
+        "cancelReasonsOne" : "Want to change your shipping address?",
+        "cancelReasonsTwo" : "Change my mind and don't want to buy anymore",
+        "cancelReasonsThree" : "Other:",
+        "error" : "Please fill in the order cancellation information!"
+    },
+    "inforProductShipping" : {
+        "title" : "INFORMATION ORDER",
+        "titleReceive" : "Information Receive",
+        "titleTransport" : "Information transport",
+        "VENDOR_APPROVE" : "Wait for the distributor to confirm the order",
+        "DENIED_BY_VENDOR" : "Order rejected by distributor",
+        "USER_CANCEL" : "You have canceled this order",
+        "IDLE" : "Order confirmation",
+        "ASSIGNING" : "Distributor is preparing goods",
+        "ACCEPTED_BY_VENDOR" : "Distributor completes the order",
+        "PROCESS" : "Delivery in progress",
+        "COMPLETED" : "Delivery successful",
+        "CANCELLED" : "Delivery failed",
+        "qty" : "Quatity:",
+        "cancelOrder" : "Order cancelled",
+        "shippingUnit" : "Shipping unit:",
+        "codeOder" : "Code oder:",
+        "time" : "Estimated delivery time",
+        "statusOder" : "Order status",
+        "oderList" : "Oder list",
+        "status" : "Status",
+        "reason" : "Reason"
+
+    },
+    "totalBottom" : {
+        "total1" : "Total amount order:",
+        "shippingFee" : "Transport fee:",
+        "total" : "Total:",
+        "promotion" : "Discount code",
+        "CancelButton" : "Cancel order",
+        "OderButton" : "Re-order",
+        "placeholderPromotion" : "Enter discount code"
+    },
+    "oderConfirm" : {
+        "title" : "ORDERING",
+        "swalTitle" : "ORDER CONFIRMATION",
+        "swalText" : "Are you sure to purchase this order?",
+        "swalSuccess" : "ORDER SUCCESS",
+        "textThank" : "Thank you",
+        "textThankFor" : "for ordering. Coca will deliver to you as soon as possible.",
+        "expectedDelivery" : "Estimated delivery in 1 to 2 days!",
+        "buttonSuccess" : "Order Confirmation"
+    },
+    "oderForm" : {
+        "title" : "ORDERING INFORMATION",
+        "error1" : "Your address is not in the delivery area, please try again?",
+        "error2" : "Please select delivery information",
+        "informationDelivery" : "Delivery information",
+        "SelectinformationDelivery" : "Select delivery information",
+        "shippingMethod" : "Shipping method",
+        "backButton" : "Back",
+        "nextButton" : "Next"
+    },
+    "oderProduct" : {
+        "title" : "ORDER LIST ",
+        "PENDING_VENDOR_APPROVE" : "Waiting confirmation",
+        "STATUS_ASSIGNING" : "Waiting delivery",
+        "PROCESS" : "Delivery in progress",
+        "COMPLETED" : "Completed",
+        "CANCELLED" : "Canceled",
+        "Orderdate" : "Oder date:",
+        "expectedDelivery" : "Estimated delivery time:"
+    },
+    "snackbarhekper" : {
+        "success": "Successfully updated",
+        "failed": "Failed update"
+    },
+    "newAddress" : {
+        "title" : "ADD NEW DELIVERY CONTACT",
+        "emptyErrorTxt" : "Please enter the information",
+        "emptyErrorTxt2" : "Name cannot contain numbers and special characters!",
+        "phoneErrorTxt" : "invalid phone number",
+        "addressDeliveryErrorTxt" : "Please select shipping address",
+        "contract" : "Communications",
+        "name" : "First and last name *",
+        "phone" : "Phone number *",
+        "DeliveryAddress" : "Delivery address",
+        "city" : "Province",
+        "district" : "District",
+        "ward" : "Ward",
+        "address" : "Street name, house number, building*",
+        "note" : "Notes (delivery for office hours only, for the whole week ...)",
+        "setting" : "Setting",
+        "default" : "Set as default address",
+        "newButton" : "Add new contact",
+        "fixButton" : "Change the address"
+
+    },
+    "swal" : {
+        "success" : "Save successfully",
+        "failed" : "Save failed, please fill in the required information!"
+    },
+    "userAddress" : {
+        "title" : "DELIVERY INFORMATION",
+        "deleteAdress" : "Do you agree to delete this address information?",
+        "default" : "[Default]",
+        "error" : "Please create shipping information"
+    }
+}

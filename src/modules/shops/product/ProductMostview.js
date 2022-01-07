@@ -6,13 +6,14 @@ import List from "../List";
 import {
   LIST_CART_NAV,
 } from "./../../../_config/shop.config";
+import { useTranslation } from "react-i18next";
 
 const ProductMostview = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.isLoading);
   const mostview = useSelector(state => state.mostview);
   const headerTitles = useSelector(state => state.headerTitles);
-  
+  const { t } = useTranslation();
 
   var event;
   // Navigation
@@ -62,7 +63,7 @@ const ProductMostview = () => {
     }else{
     
         return(
-          <span className="error-messenger">không hiện kết quả tìm kiếm phù hợp!</span>
+          <span className="error-messenger">{t("error.found")}</span>
           )
          
         
@@ -80,7 +81,7 @@ const ProductMostview = () => {
         <div className="main_container fix-images">
                   {DataMostView()}
         </div>
-        <div id="snackbar" className="">Thêm vào giỏ hàng thành công</div>
+        <div id="snackbar" className="">{t("productDetail.addCartSuccess")}</div>
       </div>
     </>
   );

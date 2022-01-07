@@ -6,6 +6,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { postDeliveryUser, putDeliveryUser, resetPopup } from './../../../redux/actions/index';
 import { useHistory } from 'react-router';
 import ModalService from './../../../_services/modal';
+import { useTranslation } from "react-i18next";
 
 function Newaddress() {
     const history = useHistory()
@@ -15,6 +16,7 @@ function Newaddress() {
     const modalPopup = useSelector(state => state.modalPopup);
     const isLoading = useSelector(state => state.isLoading);
     const UNSELECTED_KEY = -1;
+    const { t } = useTranslation();
     async function readLocaleData(){
         return $.getJSON( "data/local.json", function( data ) {
             return data;
@@ -25,10 +27,10 @@ function Newaddress() {
     const [address,setAddress] = useState("")
 
     const { register, handleSubmit, errors } = useForm();
-    let emptyErrorTxt = 'Vui lòng điền thông tin';
-    let emptyErrorTxt2 = 'Tên không được chứa số và ký tự đặt biệt!';
-    let phoneErrorTxt = 'Số điện thoại không hợp lệ';
-    let addressDeliveryErrorTxt = 'vui lòng chọn địa chỉ giao hàng';
+    let emptyErrorTxt = t("newAddress.emptyErrorTxt");
+    let emptyErrorTxt2 = t("newAddress.emptyErrorTxt2");
+    let phoneErrorTxt = t("newAddress.phoneErrorTxt");
+    let addressDeliveryErrorTxt = t("newAddress.addressDeliveryErrorTxt");
     let nameRegex = /^[a-zA-Z]+$/;
     const [checked,setChecked]=useState(0)
     const[note,setNote]=useState("")
@@ -177,15 +179,15 @@ function Newaddress() {
 
     const handleAfterSubmit =  React.useCallback(() => {
         if(modalPopup.data.success) {
-            ModalService.success('Lưu thành công')
+            ModalService.success(t("swal.success"))
             history.goBack()
         }else {
-            ModalService.error('Lưu thất bại , vui lòng điền thông tin bắt buộc!')
+            ModalService.error(t("swal.failed"))
         }
         setTimeout(() => {
             dispatch(resetPopup())
         }, 1000);
-    }, [modalPopup, history, dispatch])
+    }, [modalPopup, history, dispatch ,t])
 
     React.useEffect(() => {
         if(city.length === 0) {
@@ -215,7 +217,7 @@ function Newaddress() {
             }
                     <Header
                         hasNavigation={true}
-                        title="THÊM ĐỊA CHỈ GIAO HÀNG MỚI"
+                        title= {t("newAddress.title")}
                     />
                     <div id='list_cart_nav' className='body_wrapper'>
                         <div className='display-flex'>
@@ -223,10 +225,10 @@ function Newaddress() {
                                 <form className="basic-form display-flex" onSubmit={handleSubmit(onSubmit)}>
                                     <div className="form-group">
                                             <div className="nav_label">
-                                                <span>Thông tin liên hệ</span>
+                                                <span>{t("newAddress.contract")}</span>
                                             </div>
                                             <div className="user-information">
-                                                <input maxLength={60} placeholder="Họ và tên *" type="text" name="name" ref={register({ required: true })}
+                                                <input maxLength={60} placeholder={t("newAddress.name")} type="text" name="name" ref={register({ required: true })}
                                                 defaultValue={name} onChange={handleTargetName} />
                                                     { errors.name && errors.name.type === "required" ?
                                                         <span className="txt-danger">{emptyErrorTxt}</span> :""
@@ -234,7 +236,7 @@ function Newaddress() {
                                                      { name && nameRegex.exec(name) === null ?
                                                         <span className="txt-danger">{emptyErrorTxt2}</span> :""
                                                     }
-                                                <input placeholder="Số điện thoại  *"  name="phone" type="number" defaultValue={phone} onChange={handlePhone}
+                                                <input placeholder={t("newAddress.phone")}  name="phone" type="number" defaultValue={phone} onChange={handlePhone}
                                                     ref={register({
                                                         required: true,
                                                         pattern: /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/
@@ -248,17 +250,17 @@ function Newaddress() {
                                                     )}
                                             </div>
                                             <div className="nav_label">
-                                                <span>Địa chỉ giao hàng</span>
+                                                <span>{t("newAddress.DeliveryAddress")}</span>
                                             </div>
                                             <div className="user-information" >
                                                 <select value={cityKey} onChange={getCityKey} name="city" ref={register({ required : true })} 
                                                 >
-                                                    <option  value={UNSELECTED_KEY} >Tỉnh/Thành phố</option>
+                                                    <option  value={UNSELECTED_KEY} >{t("newAddress.city")}</option>
                                                         {showNameCity()}
                                                 </select>
                                                 <select value={districtKey} onChange={getDistrictKey} name="district" ref={register({ required: true })}
                                                 >
-                                                        <option  value={UNSELECTED_KEY} >Quận/Huyện</option>
+                                                        <option  value={UNSELECTED_KEY} >{t("newAddress.district")}</option>
                                                         { district.map((item,value)=>{
                                                             return(
                                                                 <option id={item.id} key={value} value={value} name={item.name} >{item.name}</option>
@@ -267,7 +269,7 @@ function Newaddress() {
                                                 </select>
                                                 <select value={wardKey} onChange={getWardKey} ref={register({ required: true })} name="ward" 
                                                 > 
-                                                    <option  value={UNSELECTED_KEY} >Phường/Xã</option>
+                                                    <option  value={UNSELECTED_KEY} >{t("newAddress.ward")}</option>
                                                             {
                                                                 ward.map((item,value)=>{
                                                                     return(
@@ -281,25 +283,25 @@ function Newaddress() {
                                                 )}
                                             </div>
                                             <div className="user-information">
-                                                <input maxLength={60} placeholder="Tên đường, số nhà, toà nhà*" type="text" name="address" ref={register({ required: true })} defaultValue={address}
+                                                <input maxLength={60} placeholder={t("newAddress.address")} type="text" name="address" ref={register({ required: true })} defaultValue={address}
                                                 onChange={handleTargetAddress}></input>
                                                 {errors.address && errors.address.type === "required" && (
                                                 <span className="txt-danger">{emptyErrorTxt}</span>
                                                 )}
-                                                <input maxLength={60} placeholder="Ghi chú (chỉ giao giờ hành chính, giao cả tuần ...)" defaultValue={note} type="text" name="note" onChange={(e)=>setNote(e.target.value)}></input>
+                                                <input maxLength={60} placeholder={t("newAddress.note")} defaultValue={note} type="text" name="note" onChange={(e)=>setNote(e.target.value)}></input>
                                             </div>
                                             <div className="nav_label">
-                                                <span>Cài đặt</span>
+                                                <span>{t("newAddress.setting")}</span>
                                             </div>
                                             <div className="setting">
-                                                <p>Cài đặt làm địa chỉ mặc định</p>
+                                                <p>{t("newAddress.default")}</p>
                                                 <input type="checkbox" name="scales" checked={checked} id="switch" onChange={(e)=>{setDefaultAddress(e.target.checked)}} />
                                                 <label htmlFor="switch"></label>
                                             </div>
                                     </div>
                                                     <div className="fix-bottom fix-style">
                                                         <div className="btn-with-icon right-icon">
-                                                        <button type="submit"  className="btn btn-primary" >{oneDeliveryUser !== "" ? "Thay đổi địa chỉ":"Thêm địa chỉ mới"}</button>
+                                                        <button type="submit"  className="btn btn-primary" >{oneDeliveryUser !== "" ? t("newAddress.fixButton"): t("newAddress.newButton")}</button>
                                                     </div>
                                             </div>
                                 </form>

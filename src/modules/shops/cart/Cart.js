@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getUserCarts } from './../../../redux/actions/index';
 import TotalBottom from "../order/TotalBottom";
+import { useTranslation } from "react-i18next";
 
 const Cart = ({
   hideCart,
@@ -15,6 +16,8 @@ const Cart = ({
   const carts = useSelector(state => state.carts);
   const dispatch = useDispatch();
   const [cartLoaded, setCartLoaded] = useState(false);
+  const { t } = useTranslation();
+
   const showCart=()=>{
     if(carts?.length >0){
         return carts.map((item,key)=>{
@@ -24,7 +27,7 @@ const Cart = ({
         })
     }else{
       return(
-        <span className="error-messenger">Không có sản phẩm nào trong giỏ hàng!</span>
+        <span className="error-messenger">{t("error.errorCart")}</span>
       )
     }
   }
@@ -43,7 +46,7 @@ const Cart = ({
         doNavigation={hideCart}
         navId={LIST_CART_NAV}
         hasNavigation={true}
-        title="Giỏ hàng"
+        title= {t("cart.titleCart")}
         totalCart={totalCart}
       />
       <div className="display-flex">
@@ -64,7 +67,7 @@ const Cart = ({
                         <button
                           className="btn btn-primary btn-payment"
                         >
-                          Đặt hàng
+                          {t("home.buttonBuy")}
                         </button>
                         </Link>
                       </div>

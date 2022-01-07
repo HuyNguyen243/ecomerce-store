@@ -3,6 +3,7 @@ import { useSelector , useDispatch } from 'react-redux';
 import { getPromotionvouchers } from '../../../../redux/actions';
 import { getOrderShippingFee ,applyPromotion ,resetPopup } from '../../../../redux/actions';
 import ModalService from '../../../../_services/modal';
+import { useTranslation } from "react-i18next";
 
 function PopUpPromotion(props) {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ function PopUpPromotion(props) {
     const modalPopup = useSelector(state => state.modalPopup);
     const [searchPromotion,setSearchPromotion] = useState("")
     const dataSearchPromotion =[]
+    const { t } = useTranslation();
     
     useEffect(()=>{
         setShowPopup(props.showPopUp)
@@ -74,7 +76,7 @@ function PopUpPromotion(props) {
                 let month = date.getMonth()+ 1;
                 let day = date.getDate();
                 return(
-                    <p className='expiry-promotion' >Hạn sử dụng: {day}/{month}/{year}</p>
+                    <p className='expiry-promotion' >{t("popUpPromotion.Expiry")} {day}/{month}/{year}</p>
                 )
     }
 
@@ -93,20 +95,20 @@ function PopUpPromotion(props) {
                                 </div>
                             </div>
                             <div className='use-promotion'>
-                            <span id={item.code} className='button-usePromotion'>Sử dụng ngay</span>
+                            <span id={item.code} className='button-usePromotion'>{t("popUpPromotion.usePromotion")}</span>
                             </div>
                         </div>
                     )
                 })
             }else{
                 return(
-                    <span className='txt-danger'>Kết quả tìm kiếm chưa chính xác!</span>
+                    <span className='txt-danger'>{t("error.searchPromotion")}</span>
                 )
             }
         }
         if((promotionVoucher?.data).length === 0){
             return(
-                <span className='txt-danger'>Chưa có voucher nào cả !</span>
+                <span className='txt-danger'>{t("popUpPromotion.notification")}</span>
             )
         }else{
             if(promotionVoucher?.isLoaded){
@@ -134,7 +136,7 @@ function PopUpPromotion(props) {
                                 </div>
                             </div>
                             <div className='use-promotion'>
-                            <span  className='button-usePromotion'>Sử dụng ngay</span>
+                            <span  className='button-usePromotion'>{t("popUpPromotion.usePromotion")}</span>
                             </div>
                         </div>
                     )
@@ -147,10 +149,10 @@ function PopUpPromotion(props) {
                 <div className={` ${showPopup ? "dialog" : "visibility"}`} >
                     <div className='main-container_Popup'>
                         <div className='title-swal'>
-                            <p>MÃ GIẢM GIÁ</p>
+                            <p>{t("popUpPromotion.title")}</p>
                         </div>
                         <div className='input-swal'>
-                            <input type="text" className='searchPromotion' name='promotion' placeholder='Nhập mã giảm giá'
+                            <input type="text" className='searchPromotion' name='promotion' placeholder= {t("popUpPromotion.searchPromotion")}
                             onChange={(e)=>setSearchPromotion(e.target.value)}
                             />
                         </div>
@@ -160,7 +162,7 @@ function PopUpPromotion(props) {
                             {/*  */}
                         </div>
                         <div className='Button-buttom'>
-                            <button onClick={buttonClose}>Đóng</button>
+                            <button onClick={buttonClose}>{t("cart.CloseButton")}</button>
                         </div>
                     </div>
                     <span onClick={buttonClose} className='overlay-close'></span>

@@ -2,9 +2,11 @@ import React from "react";
 import ImageDisplay from '../product/ImageDisplay';
 import PriceDisplay from '../product/PriceDisplay';
 import Blankpage from '../../../_components/_blankpage.component';
+import { useTranslation } from "react-i18next";
 
 const OrderProductDetail = ({ products, status }) => {
   let productList;
+  const { t } = useTranslation();
   if (products.length > 0) {
     productList = products.map((product, index) => {
       return (
@@ -45,7 +47,7 @@ const OrderProductDetail = ({ products, status }) => {
     )
   }else {
     return (
-      <Blankpage message='Không tìm thấy' />
+      <Blankpage message= {t("error.found")} />
     )
   }
 };

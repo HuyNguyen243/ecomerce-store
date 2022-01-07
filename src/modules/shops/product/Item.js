@@ -7,18 +7,20 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from './../../../redux/actions/index';
 import SnackbarHelper from './../../../_helpers/snackbar';
+import { useTranslation } from "react-i18next";
 
 const Item = ({id, data}) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const carts = useSelector(state => state.carts);
   const [confirmAddToCart,setConfirmAddToCart] = useState(true)
+  const { t } = useTranslation();
 
   const addToCart = (showCart = false) => {
     for(let i = 0 ;i < carts.length ;i++){
       if(carts[i]["id"] === data._id){
         if(carts[i]["quantity"] + 1  > 99 ){
-          SnackbarHelper.show('Sản phẩm đạt số lượng tối đa!')
+          SnackbarHelper.show(t("productDetail.maxQty"))
           return false
         }
       }
@@ -34,7 +36,7 @@ const Item = ({id, data}) => {
         minOrder    : data.minOrder,
         quantity    : 1
       })
-      SnackbarHelper.show('Thêm vào giỏ hàng thành công')
+      SnackbarHelper.show(t("productDetail.addCartSuccess"))
       dispatch(addCart())
       setConfirmAddToCart(false)
     }
@@ -61,7 +63,7 @@ const Item = ({id, data}) => {
           </Link>
           <div className="item-button flex-list row">
             <div className="button-left">
-              <button type="button" onClick={() => addToCart(true)}>Mua ngay</button>
+              <button type="button" onClick={() => addToCart(true)}>{t("home.buttonBuy")}</button>
             </div>
             <div className="button-right" >
               <button type="button" onClick={() => addToCart()}>

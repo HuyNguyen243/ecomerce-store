@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Slider from './Slider';
 import LeftNav from "./../aside/LeftNav";
 import Offer from "./Offer";
-
+import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { getInitData } from './../../../redux/actions/index';
 
@@ -10,7 +10,8 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.isLoading);
   const generalData = useSelector(state => state.generalData);
-
+  const { t } = useTranslation();
+  
   const getGeneralDataCallback = React.useCallback(() => {
     dispatch(getInitData())
 }, [dispatch]);
@@ -30,7 +31,7 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
           <>
             {
               generalData?.data?.productByPromotion?.length > 0
-              && <Slider type={'products'} addToCart={addToCart} data={generalData?.data?.productByPromotion} getListData={getListData} title="Sản phẩm đang khuyến mãi" showDetail={showDetail} />
+              && <Slider type={'products'} addToCart={addToCart} data={generalData?.data?.productByPromotion} getListData={getListData} title={(t("home.titlePromoted"))} showDetail={showDetail} />
             }
             {
               generalData?.data?.productByCategory?.length > 0

@@ -18,7 +18,7 @@ import {
 } from './../../../_config/shop.config';
 import { getOneOrder } from './../../../redux/actions/index';
 import PopUpCancelReason from "./PopUp/PopUpCancelReason";
-
+import { useTranslation } from "react-i18next";
 
 function InfoProductShipping(props) {
   const dispatch = useDispatch()
@@ -28,6 +28,7 @@ function InfoProductShipping(props) {
   const isLoading = useSelector(state => state.isLoading);
   const [showPopUp ,setShowPopUp] = useState(false)
   const deleteoderproduct = useSelector(state=>state.deleteoderproduct)
+  const { t } = useTranslation();
 
    React.useEffect(() => {
     dispatch(getOneOrder(id))
@@ -36,23 +37,23 @@ function InfoProductShipping(props) {
   const getOrderStatus = (status) => {
     switch(status) {
       case STATUS_PENDING_VENDOR_APPROVE:
-        return 'Đang chờ nhà phân phối xác nhận đơn hàng';
+        return t("inforProductShipping.VENDOR_APPROVE");
       case STATUS_DENIED_BY_VENDOR:
-        return 'Đơn hàng bị từ chối bởi nhà phân phối';
+        return t("inforProductShipping.DENIED_BY_VENDOR");
       case STATUS_USER_CANCEL:
-        return 'Bạn đã huỷ đơn hàng này';
+        return t("inforProductShipping.USER_CANCEL");
       case STATUS_IDLE:
-        return 'Xác nhận đơn hàng';
+        return t("inforProductShipping.IDLE");
       case STATUS_ASSIGNING:
-        return 'Nhà phân phối đang chuẩn bị hàng';
+        return t("inforProductShipping.ASSIGNING");
       case STATUS_ACCEPTED_BY_VENDOR:
-        return 'Nhà phân phối hoàn tất đơn hàng';
+        return t("inforProductShipping.ACCEPTED_BY_VENDOR");
       case STATUS_IN_PROCESS:
-        return 'Đang giao hàng';
+        return t("inforProductShipping.PROCESS");
       case STATUS_COMPLETED:
-        return 'Giao hàng thành công';
+        return t("inforProductShipping.COMPLETED");
       case STATUS_CANCELLED:
-        return 'Giao hàng thất bại';
+        return t("inforProductShipping.CANCELLED");
       default:
         return status
     }
@@ -69,7 +70,7 @@ function InfoProductShipping(props) {
                     <div className ="item-info">
                         <span className ="item-name">{item.name}</span>
                         <PriceDisplay coupon={item.couponPrice} price={item.price} />
-                        <span className ="item-qty">Số lượng: {item.quantity}</span>
+                        <span className ="item-qty">{t("inforProductShipping.qty")} {item.quantity}</span>
                     </div>
                 </div>
               </div>
@@ -77,7 +78,7 @@ function InfoProductShipping(props) {
         })
       }else{
         return(
-          <span className="error-messenger">Không có sản phẩm nào trong giỏ hàng!</span>
+          <span className="error-messenger">{t("error.errorCart")}</span>
         )
     }
   }
@@ -98,7 +99,7 @@ function InfoProductShipping(props) {
       <Header
       hasNavigation={true}
       navId={ORDER_FORM_NAV}
-      title="THÔNG TIN ĐƠN HÀNG"
+      title= {t("inforProductShipping.title")}
       />
     )
   }
@@ -118,7 +119,7 @@ function InfoProductShipping(props) {
         <div className="main_container">
           <div className="title-inforShip">
             <div className="nav_label">
-              <span>Thông tin nhận hàng</span>
+              <span>{t("inforProductShipping.titleReceive")}</span>
             </div>
           </div>
           <div className="user_info">
@@ -132,25 +133,25 @@ function InfoProductShipping(props) {
               </p>
           </div>
           <div className="nav_label style-title">
-            <span>Thông tin vận chuyển</span>
-            <span className={order?.status === "USER_CANCEL" || deleteoderproduct?.isLoaded ? "" : "hide"}>Đơn đã huỷ</span>
+            <span>{t("inforProductShipping.titleTransport")}</span>
+            <span className={order?.status === "USER_CANCEL" || deleteoderproduct?.isLoaded ? "" : "hide"}>{t("inforProductShipping.cancelOrder")}</span>
           </div>
           <div className="user_info ">
-              <p className="shipper">Đơn vị vận chuyển: AhaMove</p>
-              <p className="code-product">Mã đơn hàng: {order?._id}</p>
-              <p>Thời gian giao hàng dự kiến: {order?.delivery_date}</p>
+              <p className="shipper">{t("inforProductShipping.shippingUnit")} AhaMove</p>
+              <p className="code-product">{t("inforProductShipping.codeOder")} {order?._id}</p>
+              <p>{t("inforProductShipping.time")}: {order?.delivery_date}</p>
           </div>
           <div className="nav_label style-title">
-            <span>Trạng thái đơn hàng</span>
+            <span>{t("inforProductShipping.statusOder")}</span>
           </div>
           <div className="user_info">
-            <p>Trạng thái: <span className="strong-reason">{deleteoderproduct?.isLoaded? getOrderStatus(deleteoderproduct?.data?.status):getOrderStatus(order?.status)}</span></p>
+            <p>{t("inforProductShipping.status")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? getOrderStatus(deleteoderproduct?.data?.status):getOrderStatus(order?.status)}</span></p>
             <p className={order?.status === "USER_CANCEL" || deleteoderproduct?.isLoaded ? "show" : "hide" }>
-              Lý do: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
+            {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
               </span></p>
           </div>
           <div className="nav_label style-title">
-            <span>Danh sách đơn hàng</span>
+            <span>{t("inforProductShipping.oderList")}</span>
           </div>
           <div >
             {
@@ -163,7 +164,7 @@ function InfoProductShipping(props) {
             <>
               <div className="row cart-total">
                 <div className="row">
-                    <div className="col-6  text-sm ">Tổng tiền hàng:</div>
+                    <div className="col-6  text-sm ">{t("totalBottom.total")}</div>
                     <div className="col-6 text-bold txt-right">
                         <span className="text-nm">{NumberHelper.formatCurrency(order?.order_info?.total)}</span>
                     </div>
@@ -171,7 +172,7 @@ function InfoProductShipping(props) {
                         order?.order_info?.shipping_fee > 0
                         &&
                         <>
-                            <div className="col-6  text-sm">Phí vận chuyển: {<span className="txt-style">({order?.shipping_info?.distance}km)</span>}</div>
+                            <div className="col-6  text-sm">{t("totalBottom.shippingFee")} {<span className="txt-style">({order?.shipping_info?.distance}km)</span>}</div>
                             <div className="col-6 text-bold txt-right">
                                 <span className="text-nm">+{ NumberHelper.formatCurrency(order?.order_info?.shipping_fee) }</span>
                             </div>
@@ -180,7 +181,7 @@ function InfoProductShipping(props) {
                     {
                         order?.promotion_info?.discount > 0
                         && <>
-                                <div className="col-6  text-sm">Mã giảm giá</div>
+                                <div className="col-6  text-sm">{t("totalBottom.promotion")}</div>
                                 <div className="col-6 text-bold txt-right">
                                     <span className="text-nm">-{ NumberHelper.formatCurrency(order?.promotion_info?.discount) }</span>
                                 </div>
@@ -188,7 +189,7 @@ function InfoProductShipping(props) {
                     }
                 </div>
                 <div className="row">
-                    <div className="col-6 text-bold text-sm new-text">Tổng cộng:</div>
+                    <div className="col-6 text-bold text-sm new-text">{t("totalBottom.total")}</div>
                     <div className="col-6 text-bold txt-right">
                         <span className="text-nm new-text">{ NumberHelper.formatCurrency(
                             (order?.user_info?.cod + order?.order_info?.shipping_fee ) - (order?.promotion_info?.discount  ? order?.promotion_info?.discount : 0)
@@ -200,7 +201,7 @@ function InfoProductShipping(props) {
           {
             order?.status === STATUS_PENDING_VENDOR_APPROVE
             && <div className={`btn-with-icon right-icon ${deleteoderproduct?.isLoaded ? "hide" : ""}`}>
-                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? "Huỷ đơn hàng" : "Đặt lại đơn"}</button>
+                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? t("totalBottom.CancelButton") : t("totalBottom.OderButton")}</button>
               </div>
           }
         </div>

@@ -8,12 +8,15 @@ import CartService from '../../../_services/cart';
 import { useHistory } from "react-router";
 import SnackbarHelper from './../../../_helpers/snackbar';
 import Snackbar from "../../../_components/_snackbar.component";
+import { useTranslation } from "react-i18next";
 
 const ProductDetail = ({ product, quantity, changeQuantity, }) => {
   const [confirmAddToCart,setConfirmAddToCart] = useState(true)
   const history = useHistory()
   const dispatch = useDispatch();
   const carts = useSelector(state => state.carts);
+  const { t } = useTranslation();
+
   let image;
   if (product.gallery && product.gallery.length > 0) {
     image = <Slideshow gallery={product.gallery} />;
@@ -24,9 +27,9 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
   let blockBtnLeft = "";
   let blockBtnRight = "";
   if (quantityShow !== null) {
-    quantityShow = `${product.quantity} sản phẩm có sẵn`;
+    quantityShow = `${product.quantity} ${t("productDetail.stocking")}`;
     if (product.quantity === 0) {
-      quantityShow = "Hết hàng";
+      quantityShow = t("productDetail.outOfStock");
       blockBtnLeft = "button-left-block";
       blockBtnRight = "button-right-block";
     }
@@ -52,7 +55,7 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
         for(let i = 0 ;i < carts.length ;i++){
           if(carts[i]["id"] === product._id){
             if(carts[i]["quantity"] + quantity  > 99 ){
-              SnackbarHelper.show('Sản phẩm đạt số lượng tối đa!')
+              SnackbarHelper.show(t("productDetail.maxQty"))
               return false
             }
           }
@@ -68,7 +71,7 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
             minOrder    : product.minOrder,
             quantity    : quantity
           })
-        SnackbarHelper.show('Thêm vào giỏ hàng thành công')
+        SnackbarHelper.show(t("productDetail.addCartSuccess"))
         dispatch(addCart())
         setConfirmAddToCart(false)
       }
@@ -86,7 +89,7 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
           <div className=" item-quantity ">
             <div className="flex-list quantity-options">
               <span  className="quatiy-title ">
-                <p>Chọn số lượng:</p>
+                <p>{t("productDetail.selectQty")}</p>
               </span>
               <span
                 className="quantiy-action quantity-minus"
@@ -121,7 +124,7 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
       <div className="group-buttons">
         <div className={`button-l ${blockBtnLeft}`} onClick={()=>addToCart(true)}>
           {/* <Icon name="work_outline" /> */}
-          <button type="button" className="btn" >Mua ngay</button>
+          <button type="button" className="btn" >{t("home.buttonBuy")}</button>
         </div>
         <div className={`button-r ${blockBtnRight}`} onClick={()=>addToCart()}>
           {/* <Icon name="add_shopping_cart" />
@@ -129,13 +132,13 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
         
           <button type="button" className="btn btn-red" >
           <img src="/images/shopping-cart.png" alt="menu_icon" />
-          <span>Thêm vào giỏ</span>
+          <span>{t("home.addToCard")}</span>
           </button>
         </div>
       </div>
       {btnQTY()}
       <div className="item-description">
-        <label>Thông tin sản phẩm</label>
+        <label>{t("productDetail.infomationProduct")}</label>
         <p>{product.description}</p>
       </div>
       <Snackbar />

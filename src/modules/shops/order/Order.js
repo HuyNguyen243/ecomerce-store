@@ -13,6 +13,7 @@ import {
   PRODUCT_DETAIL_NAV,
   USER_ORDER_NAV,
 } from "./../../../_config/shop.config";
+import { useTranslation } from "react-i18next";
 
 const Order = ({
   carts,
@@ -26,6 +27,7 @@ const Order = ({
   const stepDone = 3;
 
   const { submitOrder, getUserInfo } = useContext(ShopContext);
+  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -129,7 +131,7 @@ const Order = ({
       }, 3000);
     } else {
       setIsProcessing(false);
-      SnackbarHelper.show("Đặt hàng thất bại");
+      SnackbarHelper.show(t("error.errorOder"));
     }
   }
 

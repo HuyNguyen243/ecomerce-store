@@ -11,6 +11,7 @@ import TotalBottom from "./TotalBottom";
 import { useDispatch } from "react-redux";
 import { createOrder, resetPopup } from './../../../redux/actions/index';
 import ModalService from './../../../_services/modal';
+import { useTranslation } from "react-i18next";
 
 const MySwal = withReactContent(Swal)
 
@@ -19,6 +20,7 @@ const OderConfirm = () => {
     const location = useLocation()
     const history = useHistory()
     const [submited, setSubmited]  = React.useState(false)
+    const { t } = useTranslation();
 
     const carts = useSelector(state => state.carts);
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
@@ -35,7 +37,7 @@ const OderConfirm = () => {
       }
     })
     const [condition, setCondition] = useState("")
-    let dangerTxt = "vui lòng chọn thông tin nhận hàng"        
+    let dangerTxt = t("error.errorInformation")       
 
     const showCart=()=>{
       if(carts.length >0){
@@ -53,7 +55,7 @@ const OderConfirm = () => {
         <Header
         hasNavigation={true}
         navId={ORDER_FORM_NAV}
-        title="ĐẶT HÀNG"
+        title= {t("oderConfirm.title")}
         />
       )
     }
@@ -74,12 +76,12 @@ const OderConfirm = () => {
       setCondition(false)
     }else{
       Swal.fire({
-        title: 'XÁC NHẬN ĐẶT HÀNG',
-        text: "Bạn có đồng ý đặt đơn hàng này?",
+        title: t("oderConfirm.swalTitle"),
+        text: t("oderConfirm.swalText"),
         icon: 'info',
-        confirmButtonText: 'Đồng ý',
+        confirmButtonText: t("cart.SubmitButton"),
         showCancelButton: true,
-        cancelButtonText: "Huỷ bỏ"
+        cancelButtonText: t("cart.CancelDeleteProduct")
       }).then((result) => {
         if (result.isConfirmed) {
           setSubmited(true)
@@ -102,8 +104,8 @@ const OderConfirm = () => {
           showConfirmButton : false,
           html :  <div className='confirm-swal'>
                     <img src='/images/thank-you.png' alt='menu_icon' />
-                    <h3>ĐẶT HÀNG THÀNH CÔNG</h3>
-                    <p>Cám ơn anh/chị { oneDeliveryUser?.fullname } đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.</p>
+                    <h3>{t("oderConfirm.swalSuccess")}</h3>
+                    <p>{t("oderConfirm.textThank")}{t("oderConfirm.textThankFor")}</p>
                   </div>
         })
     }else {
@@ -112,7 +114,7 @@ const OderConfirm = () => {
     setTimeout(() => {
         dispatch(resetPopup())
       }, 1000);
-  }, [modalPopup, dispatch,history, oneDeliveryUser])
+  }, [modalPopup, dispatch,history,t])
 
   React.useEffect(() => {
     if(modalPopup.active && submited) {
@@ -136,7 +138,7 @@ const OderConfirm = () => {
               ,{oneDeliveryUser?.district?.name},{oneDeliveryUser?.province?.name}
               </p>
               <span>AhaMove</span>
-              <span> Dự kiến giao hàng từ 1 đến 2 ngày!</span>
+              <span>{t("oderConfirm.expectedDelivery")}</span>
         </div>
         )
     }
@@ -152,7 +154,7 @@ const OderConfirm = () => {
       <div className="display-flex">
         <div className="main_container">
           <div className="nav_label">
-            <span>Thông tin nhận hàng</span>
+            <span>{t("inforProductShipping.titleReceive")}</span>
           </div>
           {showUserInfo()}
           {condition === false &&(
@@ -161,7 +163,7 @@ const OderConfirm = () => {
           <form className="basic-form" >
             <div className="form-group">
             <div className="nav_label">
-                <span>Phương thức vận chuyển</span>
+                <span>{t("inforProductShipping.titleTransport")}</span>
               </div>
                 <div className="shipping fix-shipping">
               <span className="shiper" >AhaMove</span>
@@ -169,7 +171,7 @@ const OderConfirm = () => {
             </div>
           </form>
           <div className="nav_label">
-                <span>Thông tin sản phẩm</span>
+                <span>{t("productDetail.tittleDetail")}</span>
           </div>
           <div className="news-style-cart style-for-cart list-cart oderinformation new-bottom">
             {showCart()}
@@ -179,7 +181,7 @@ const OderConfirm = () => {
           <div className="divider"></div>
           <TotalBottom totalPrice={calcTotalPrice()}/>
           <div className="btn-with-icon right-icon">
-              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Xác nhận đặt hàng</button>
+              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{t("oderConfirm.buttonSuccess")}</button>
           </div>
         </div>
       </div>

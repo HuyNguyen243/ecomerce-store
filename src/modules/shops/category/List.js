@@ -7,10 +7,13 @@ import Header from "./../header/Header";
 import {
   LIST_CART_NAV,
 } from "./../../../_config/shop.config";
+import { useTranslation } from "react-i18next";
+
 
 const ListCategory = () => {
   let { id } = useParams();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   var event;
   // Navigation
@@ -65,7 +68,7 @@ const ListCategory = () => {
               }
             </>
         }
-        <div id="snackbar" className="">Thêm vào giỏ hàng thành công</div>
+        <div id="snackbar" className="">{t("productDetail.addCartSuccess")}</div>
       </div>
     </div>
   );

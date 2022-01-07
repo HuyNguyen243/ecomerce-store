@@ -2,7 +2,7 @@ import React ,{ useState , useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { applyPromotion, resetPopup } from '../../../../redux/actions/index';
 import ModalService from '../../../../_services/modal';
-
+import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 import { useDispatch } from 'react-redux';
@@ -14,7 +14,7 @@ function PopUpAdventisement(props) {
     const [advertisement,setAdevertisement]= useState("")
     const dispatch = useDispatch()
     const modalPopup = useSelector(state => state.modalPopup);
-
+    const { t } = useTranslation();
     React.useEffect(()=>{
         if(generalData?.data.banners?.length > 0){
           setAdevertisement(generalData.data.banners)
@@ -79,7 +79,7 @@ function PopUpAdventisement(props) {
               html:  <div className='Offer-Shock'>
                         <div className='Offer-title'> 
                           <img src='/images/sale.png' alt='menu_icon' />
-                          <p>Bạn ơi bạn có quên ưu đãi này?</p>
+                          <p>{t("popUpAdventisement.title")}</p>
                         </div>
                         <div className='container'>
                           {listSwal()}
@@ -95,7 +95,7 @@ function PopUpAdventisement(props) {
             })
           }
 
-        },[advertisement,setAdevertisement,generalData,dispatch,modalPopup]);
+        },[advertisement,setAdevertisement,generalData,dispatch,modalPopup,t]);
         const handleAfterSubmit =  React.useCallback(() => {
             if(modalPopup.data.success) {
                 ModalService.success(modalPopup?.data?.message)

@@ -10,17 +10,19 @@ import { getDeliveryUser, checkGetDelivetyUser, getParentInformationDeviveryUser
 import PopUpAdventisement from "./PopUp/PopUpAdventisement";
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
+import { useTranslation } from "react-i18next";
+
 const OrderForm = ({ onSubmit, isLoading,
   hideCart,
   totalCart
 }) => {
   const dispatch = useDispatch()
-  let dangerTxt = "Vui lòng chọn thông tin nhận hàng"
   const history = useHistory()
   const handleBack=()=>{
     history.goBack()
   }
 
+  const { t } = useTranslation();
   const MySwal = withReactContent(Swal)
   const carts = useSelector(state => state.carts);
   const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
@@ -29,6 +31,7 @@ const OrderForm = ({ onSubmit, isLoading,
   const delDeliveryUser = useSelector(state => state.delDeliveryUser)
   const putDeliveryUser = useSelector(state => state.putDeliveryUser)
   const userID = Auth.get().user_id
+  let dangerTxt = t("oderForm.error2")
 
   const getUserAddress = React.useCallback(() => {
     dispatch(getDeliveryUser(userID))
@@ -110,7 +113,7 @@ const OrderForm = ({ onSubmit, isLoading,
           showCancelButton :true,
           cancelButtonText: "Đóng",
           icon: 'info',
-          title: 'Địa chỉ của bạn không nằm trong khu vực giao hàng ,vui lòng thử lại',
+          title: t("oderForm.error1"),
         })
       }else{
         history.push("/order-confirmation")
@@ -122,7 +125,7 @@ const OrderForm = ({ onSubmit, isLoading,
         showCancelButton :true,
         cancelButtonText: "Đóng",
         icon: 'info',
-        title: 'Vui lòng chọn thông tin nhận hàng!',
+        title: t("oderForm.error2"),
       })
     }
   }
@@ -138,7 +141,7 @@ const OrderForm = ({ onSubmit, isLoading,
         doNavigation={hideCart}
         navId={LIST_CART_NAV}
         hasNavigation={true}
-        title="THÔNG TIN ĐẶT GIAO HÀNG"
+        title= {t("oderForm.title")}
         totalCart={totalCart}
       />
             {PopUpAdventisement()}
@@ -147,14 +150,14 @@ const OrderForm = ({ onSubmit, isLoading,
         <form className="basic-form" >
           <div className="form-group fix-information">
             <div className="nav_label">
-              <span>Thông tin giao hàng</span>
+              <span>{t("oderForm.informationDelivery")}</span>
             </div>
               <div onClick={handleSlcInforUser}>
                     {
                       oneDeliveryUser?._id  !== undefined ? showDeliveryUser()
                       :   
                       <div className="information">
-                        <span className="fix-information2">Chọn thông tin nhận hàng</span>
+                        <span className="fix-information2">{t("oderForm.SelectinformationDelivery")}</span>
                         <img src="/images/Back-Black.svg" alt="menu_icon" />
                       </div>
                     }
@@ -163,7 +166,7 @@ const OrderForm = ({ onSubmit, isLoading,
                 <span className="txt-danger">{dangerTxt}</span>
               )}
               <div className="nav_label">
-                <span>Phương thức vận chuyển</span>
+                <span>{t("oderForm.shippingMethod")}</span>
               </div>
               <div className="shipping height">
                 <span>AhaMove</span>
@@ -171,7 +174,7 @@ const OrderForm = ({ onSubmit, isLoading,
             </div>
           </form>
           <div className="nav_label">
-            <span>Thông tin sản phẩm</span>
+            <span>{t("productDetail.infomationProduct")}</span>
           </div>
           <div className="news-style-cart style-for-cart stl-botom-cart list-cart new-bottom1">
             {showCart()}
@@ -184,8 +187,8 @@ const OrderForm = ({ onSubmit, isLoading,
               <TotalBottom />
             </div>
             <div className="btn-with-icon right-icon">
-              <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBack}>Quay lại</button>
-              <button type="submit" className="btn btn-primary btn-right-icon" onClick ={handleOnClick}>Tiếp tục</button>
+              <button type="submit" className="btn btn-primary btn-left-icon " onClick={handleBack}>{t("oderForm.backButton")}</button>
+              <button type="submit" className="btn btn-primary btn-right-icon" onClick ={handleOnClick}>{t("oderForm.nextButton")}</button>
             </div>
           </div>
         </div>

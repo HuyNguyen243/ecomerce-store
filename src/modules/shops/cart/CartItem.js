@@ -7,11 +7,13 @@ import CartService from '../../../_services/cart';
 import { addCart } from './../../../redux/actions/index';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content';
+import { useTranslation } from "react-i18next";
 
 const CartItem = ({item,index}) => {
   const MySwal = withReactContent(Swal)
   const history = useHistory();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const updateQuantity = (quantity) => {
     if(quantity === 0) {
@@ -27,11 +29,11 @@ const CartItem = ({item,index}) => {
   
   const removeCartItem = () => {
     MySwal.fire({
-      text: "Bạn có đồng ý xóa sản phẩm này khỏi giỏ hàng không?",
+      text: t("cart.swalDeleteProduct"),
       icon: 'info',
-      confirmButtonText: 'Đồng ý',
+      confirmButtonText: t("cart.AccessDeleteProduct"),
       showCancelButton: true,
-      cancelButtonText: "Huỷ bỏ"
+      cancelButtonText: t("cart.CancelDeleteProduct")
     }).then((result)=>{
         if(result.isConfirmed){
           CartService.remove(index);

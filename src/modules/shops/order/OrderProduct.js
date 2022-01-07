@@ -17,12 +17,13 @@ import {
   STATUS_CANCELLED
 } from './../../../_config/shop.config';
 import Slider from "react-slick";
+import { useTranslation } from "react-i18next";
 
 const OrderProduct = ({ params, hideList = "" }) => {
   const[active,setActive] = useState(0)
   const dispatch = useDispatch();
   const history = useHistory()
-
+  const { t } = useTranslation();
   const isLoading = useSelector(state => state.isLoading);
   const orders = useSelector(state => state.orders);
   const getOrdersCallback =  React.useCallback(() => {
@@ -38,11 +39,11 @@ const OrderProduct = ({ params, hideList = "" }) => {
   }
 
   const TABS = [
-    {id: 1, name: 'Chờ xác nhận', status : [STATUS_PENDING_VENDOR_APPROVE] },
-    {id: 2, name: 'Chờ lấy hàng', status : [STATUS_IDLE, STATUS_ASSIGNING, STATUS_ACCEPTED_BY_VENDOR] },
-    {id: 3, name: 'Đang giao hàng', status : [STATUS_IN_PROCESS] },
-    {id: 4, name: 'Hoàn tất', status : [STATUS_COMPLETED] },
-    {id: 5, name: 'Đã huỷ', status : [STATUS_DENIED_BY_VENDOR, STATUS_USER_CANCEL, STATUS_CANCELLED] },
+    {id: 1, name: t("oderProduct.PENDING_VENDOR_APPROVE"), status : [STATUS_PENDING_VENDOR_APPROVE] },
+    {id: 2, name: t("oderProduct.STATUS_ASSIGNING"), status : [STATUS_IDLE, STATUS_ASSIGNING, STATUS_ACCEPTED_BY_VENDOR] },
+    {id: 3, name: t("oderProduct.PROCESS"), status : [STATUS_IN_PROCESS] },
+    {id: 4, name: t("oderProduct.COMPLETED"), status : [STATUS_COMPLETED] },
+    {id: 5, name: t("oderProduct.CANCELLED"), status : [STATUS_DENIED_BY_VENDOR, STATUS_USER_CANCEL, STATUS_CANCELLED] },
   ]
 
   const showCart = () => {
@@ -63,19 +64,19 @@ const OrderProduct = ({ params, hideList = "" }) => {
                           <img className ="thumbnail-img" src={item.reference_items[0]?.image} alt="thumbnail" />
                           </div>
                           <div className ="item-info">
-                              <span className ="id-product">Mã đơn hàng: <span>{item._id}</span></span>
-                              <span className ="item-qty">Số thùng: <span>{totalContainer}</span></span>
-                              <span className ="item-qty">Tổng thanh toán:<span>&nbsp;
+                              <span className ="id-product">{t("inforProductShipping.codeOder")} <span>{item._id}</span></span>
+                              <span className ="item-qty">{t("inforProductShipping.qty")} <span>{totalContainer}</span></span>
+                              <span className ="item-qty">{t("totalBottom.total")}<span>&nbsp;
                               { NumberHelper.formatCurrency(
                                   (item?.order_info?.total + item?.order_info?.shipping_fee ) - (item?.promotion_info?.discount ? item?.promotion_info?.discount : 0)
                               )  }</span>
                               </span>
-                              <span className ="item-qty">Ngày đặt hàng: {item.created}</span>
+                              <span className ="item-qty">{t("oderProduct.Orderdate")} {item.created}</span>
                           </div>
                           <img src="/images/Back-Black.svg" alt="back" />
                       </div>
                       <div className ="day-shipping">
-                          <span>Thời gian giao hàng dự kiến: {item.delivery_date}</span>
+                          <span>{t("oderProduct.expectedDelivery")} {item.delivery_date}</span>
                       </div>
                   </div>
                 </div>
@@ -142,7 +143,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
         hasNavigation={true}
         doNavigation={hideList}
         navId={USER_ORDER_NAV}
-        title="DANH SÁCH ĐƠN HÀNG"
+        title= {t("oderProduct.title")}
       />
       <div className="main_container">
           <div  className="style-list">

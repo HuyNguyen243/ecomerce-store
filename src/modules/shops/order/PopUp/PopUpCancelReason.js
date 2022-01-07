@@ -3,15 +3,17 @@ import { useDispatch,useSelector } from "react-redux";
 import { deleteParentOrderProduct } from '../../../../redux/actions';
 import ModalService from '../../../../_services/modal';
 import { resetPopup } from '../../../../redux/actions';
+import { useTranslation } from "react-i18next";
 
 function PopUpCancelReason(props) {
-
     const [showPopup, setShowPopup] = useState()
     const [selectedReason,setSelectedReason]=useState(1)
     const [input , setInput] = useState ("")
     const dispatch = useDispatch()
     const modalPopup = useSelector(state => state.modalPopup);
-
+    const { t } = useTranslation();
+    const getlang = localStorage.getItem("lang")
+    console.log(getlang)
     useEffect(()=>{
         setShowPopup(props.showPopUp)
     },[setShowPopup,props])
@@ -60,9 +62,9 @@ function PopUpCancelReason(props) {
     }, [modalPopup, handleAfterSubmit])
 
     const cancelReasons = [
-        {id:1,title: "Muốn thay đổi địa chỉ giao hàng",checked:(selectedReason === 1 ? true :false)},
-        {id:2,title: "Đổi ý không muốn mua nữa",checked:(selectedReason === 2 ?true :false)},
-        {id:3,title: "Khác:",checked:(selectedReason === 3 ?true :false)},
+        {id:1,title: t("popUpCancelReason.cancelReasonsOne") ,checked:(selectedReason === 1 ? true :false)},
+        {id:2,title: t("popUpCancelReason.cancelReasonsTwo"),checked:(selectedReason === 2 ?true :false)},
+        {id:3,title: t("popUpCancelReason.cancelReasonsThree"),checked:(selectedReason === 3 ?true :false)},
       ];
 
     const selectCancelReason = (reason) => {
@@ -73,17 +75,17 @@ function PopUpCancelReason(props) {
         <div className={` ${showPopup ? "dialog" : "visibility"}`} >
             <div className='main-container_Popup cancel-swal'>
                 <div className='title-swal'>
-                    <p>HUỶ ĐƠN HÀNG</p>
+                    <p>{t("popUpCancelReason.title")}</p>
                 </div>
                 <div className='cancel-title'>
-                    <p>Tôi muốn huỷ đơn hàng này vì lí do:</p>
+                    <p className={getlang === "en" ? "txtfix": ""}>{t("popUpCancelReason.reason")}</p>
                 </div>
                 <div className='main-container-reason'>
                     {/*  */}
                     <div className='cancel_reason'>
                        {cancelReasons.map((item,value)=>{
                          return(
-                            <label className="containerr" key={value} id={item.id}>{item.title} 
+                            <label className={`containerr ${getlang === "en" ? "txtfix2" : ""}`} key={value} id={item.id}>{item.title} 
                                 <input type="checkbox" id={item.id} onChange={e => selectCancelReason(item) } checked={item.checked}/>
                                 <span className="checkmark" id={item.id}></span>
                             </label>
@@ -108,11 +110,11 @@ function PopUpCancelReason(props) {
                        }
                      </div>
                     {/*  */}
-                    <span className={`txt-danger + ${input.replace(/\s/g, "").length === 0 && selectedReason === 3 ? "showw" : "hide"}`}>Vui lòng điền thông tin hủy đơn hàng!</span>
+                    <span  className={`txt-danger + ${input.replace(/\s/g, "").length === 0 && selectedReason === 3 ? "showw" : "hide"}`}>{t("popUpCancelReason.error")}</span>
                 </div>
                 <div className='Button-buttom'>
-                    <button onClick={buttonClose}>Đóng</button>
-                    <button onClick={buttonSubmit}>Đồng ý</button>
+                    <button onClick={buttonClose}>{t("cart.CloseButton")}</button>
+                    <button onClick={buttonSubmit}>{t("cart.SubmitButton")}</button>
                 </div>
             </div>
             <span onClick={buttonClose} className='overlay-close'></span>

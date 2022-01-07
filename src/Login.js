@@ -29,12 +29,16 @@ function Login() {
     const loginSuccessCallback = React.useCallback(() => {
         let url = new URL(window.location.href);
         let page = url.searchParams.get("page");
-        let flag = url.searchParams.get("flag");
-        if(page !== null && flag !== null ) {
-            history.push(`/${page}?flag=${flag}`)
-        }else {
-            history.push('/')
+        let id = url.searchParams.get("id");
+        let redirectUrl  = '/';
+
+        if(page !== null) {
+            redirectUrl += page
         }
+        if(id !== null) {
+            redirectUrl += `/${id}`
+        }
+        history.push(redirectUrl)
     }, [history]);
 
     React.useEffect(() => {
