@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-// import './../assets/css/change-lang.css';
 import { useTranslation } from "react-i18next";
+import LocaleHelper from './../../../_helpers/locale';
+import { onLanguageChanged } from './../../../redux/actions/index';
+import { useDispatch } from "react-redux";
 
 const ChangeLanguage = ({pAbsolute = true}) => {
     const { i18n } = useTranslation();
-    const [selectedLang, setSelectedLang] = React.useState('vi');
+    const dispatch = useDispatch();
+    const [selectedLang, setSelectedLang] = React.useState(LocaleHelper.getLang());
     const [show,setShow] = useState (false)
 
     React.useEffect(() => {
-        let langLocalStorage = localStorage.getItem("lang")
-        if(langLocalStorage !== null){
-            setSelectedLang(langLocalStorage)
-        }
         i18n.changeLanguage(selectedLang)
     }, [selectedLang, i18n])
 
     const changeLang = (lang) => {
         setSelectedLang(lang)
-        localStorage.setItem("lang",lang)
+        LocaleHelper.setLang(lang)
+        dispatch(onLanguageChanged(lang))
         setShow(false)
     }
 

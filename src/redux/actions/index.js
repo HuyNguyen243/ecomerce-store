@@ -23,6 +23,7 @@ import {
     GET_ONE_ORDER,
     GET_TITLE_CATEGORIES,
     DELETE_ORDER_PRODUCT,
+    ON_CHANGE_LANG,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -119,6 +120,10 @@ export const getParentTitleCategories = (id) => {
 
 export const deleteParentOrderProduct = (id,reason) => {
     return { type: DELETE_ORDER_PRODUCT, payload: {id: id, reason: reason} };
+}
+
+export const onLanguageChanged = (lang) => {
+    return { type: ON_CHANGE_LANG, payload: lang };
 }
 
 
