@@ -157,6 +157,9 @@ const rootReducer = (state = initState, action) => {
       if(state.mostview?.data?.length > 0) {
         LocaleHelper.parseData('name', state.mostview?.data)
       }
+      if(state.product?.data?.name !== undefined) {
+        LocaleHelper.parseData('name', [state.product?.data])
+      }
       return Object.assign({}, state, {
         modalPopup: {
           active : false,
@@ -220,6 +223,7 @@ const rootReducer = (state = initState, action) => {
         totalCartPrice : CartService.getTotalPrice()
       });
     case GET_ONE_PRODUCT_SUCCESS:
+      LocaleHelper.parseData('name', [payload.data])
       return Object.assign({}, state, {
         product: {
           isLoaded: true,
