@@ -160,6 +160,9 @@ const rootReducer = (state = initState, action) => {
       if(state.product?.data?.name !== undefined) {
         LocaleHelper.parseData('name', [state.product?.data])
       }
+      if(state.carts?.length > 0) {
+        LocaleHelper.parseData('name', state.carts)
+      }
       return Object.assign({}, state, {
         modalPopup: {
           active : false,
@@ -383,6 +386,7 @@ const rootReducer = (state = initState, action) => {
           }
         });
       case GET_CART_SUCCESS:
+        LocaleHelper.parseData('name', payload?.data)
         CartService.save(payload?.data)
         return Object.assign({}, state, {
           carts: payload.data,
