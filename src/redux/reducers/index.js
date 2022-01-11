@@ -165,6 +165,9 @@ const rootReducer = (state = initState, action) => {
       if(state.carts?.length > 0) {
         LocaleHelper.parseData('name', state.carts)
       }
+      if(state.order?.reference_items?.length > 0) {
+        LocaleHelper.parseData('name', state.order?.reference_items)
+      }
       return Object.assign({}, state, {
         modalPopup: {
           active : false,
@@ -402,6 +405,9 @@ const rootReducer = (state = initState, action) => {
           isLoading: false,
         });
       case GET_ONE_ORDER_SUCCESS:
+        if(payload.success) {
+          LocaleHelper.parseData('name', payload?.data?.reference_items)
+        }
         return Object.assign({}, state, {
           order: payload.data,
           isLoading: false
