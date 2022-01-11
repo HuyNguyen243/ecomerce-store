@@ -162,6 +162,12 @@ const rootReducer = (state = initState, action) => {
       if(state.product?.data?.name !== undefined) {
         LocaleHelper.parseData('name', [state.product?.data])
       }
+      if(state.carts?.length > 0) {
+        LocaleHelper.parseData('name', state.carts)
+      }
+      if(state.order?.reference_items?.length > 0) {
+        LocaleHelper.parseData('name', state.order?.reference_items)
+      }
       return Object.assign({}, state, {
         modalPopup: {
           active : false,
@@ -385,6 +391,7 @@ const rootReducer = (state = initState, action) => {
           }
         });
       case GET_CART_SUCCESS:
+        LocaleHelper.parseData('name', payload?.data)
         CartService.save(payload?.data)
         return Object.assign({}, state, {
           carts: payload.data,
@@ -398,6 +405,9 @@ const rootReducer = (state = initState, action) => {
           isLoading: false,
         });
       case GET_ONE_ORDER_SUCCESS:
+        if(payload.success) {
+          LocaleHelper.parseData('name', payload?.data?.reference_items)
+        }
         return Object.assign({}, state, {
           order: payload.data,
           isLoading: false

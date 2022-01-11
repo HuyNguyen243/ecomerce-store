@@ -13,7 +13,7 @@ var LocaleHelper = {
     parseData: (key, data) => {
         let lang = LocaleHelper.getLang();
         for (let i = 0; i < data.length; i++) {
-            if(lang !== LANG_VI && data[i][key+"_"+lang] !== undefined) {
+            if(lang !== LANG_VI && data[i][key+"_"+lang] !== undefined && data[i][key+"_"+lang] !== '') {
                 data[i][key+"_"+LANG_VI] = data[i][key]
                 data[i][key] = data[i][key+"_"+lang]
             }else {
