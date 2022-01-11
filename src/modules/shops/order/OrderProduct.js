@@ -45,7 +45,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
     {id: 4, name: t("oderProduct.COMPLETED"), status : [STATUS_COMPLETED] },
     {id: 5, name: t("oderProduct.CANCELLED"), status : [STATUS_DENIED_BY_VENDOR, STATUS_USER_CANCEL, STATUS_CANCELLED] },
   ]
-
+  console.log(orders)
   const showCart = () => {
     if(orders?.length >0){
         return orders.map((item,value)=>{
@@ -64,6 +64,9 @@ const OrderProduct = ({ params, hideList = "" }) => {
                           <img className ="thumbnail-img" src={item.reference_items[0]?.image} alt="thumbnail" />
                           </div>
                           <div className ="item-info">
+                              <span className ={`id-product ${item.status === "PENDING_VENDOR_APPROVE" ? "show" : "hide"}`}>
+                                {t("inforProductShipping.statusOder")}: {t("inforProductShipping.VENDOR_APPROVE")}
+                              </span>
                               <span className ={`id-product ${item?.order_id === undefined && "hide"}`}>{t("inforProductShipping.codeOder")} {item?.order_id !== undefined && item?.order_id}</span>
                               <span className ="item-qty">{t("inforProductShipping.qty")} <span>{totalContainer}</span></span>
                               <span className ="item-qty">{t("totalBottom.total")}<span>&nbsp;

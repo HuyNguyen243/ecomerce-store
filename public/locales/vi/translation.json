@@ -78,8 +78,8 @@
         "shippingUnit" : "Đơn vị vận chuyển:",
         "codeOder" : "Mã đơn hàng:",
         "time" : "Thời gian giao hàng dự kiến",
-        "statusOder" : "Trạng thái đơn hàng",
-        "oderList" : "Trạng thái đơn hàng",
+        "statusOder" : "Trạng thái",
+        "oderList" : "Trạng thái",
         "status" : "Trạng thái",
         "reason" : "Lý do"
     },
