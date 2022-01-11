@@ -104,7 +104,7 @@
     font-size: 20px !important;
     font-weight: 500 !important;
     background-color: #f4dada !important;
-    color: #f40000;
+    color: #f40000 !important;
     margin: 0 1% 0 0;
     font-size: 16px !important;
     padding: 10px 5px;
@@ -447,6 +447,7 @@
 
 .no-over{
   overflow-y: hidden;
+  overflow-x: hidden;
   &::-webkit-scrollbar{
     display: none;
   }

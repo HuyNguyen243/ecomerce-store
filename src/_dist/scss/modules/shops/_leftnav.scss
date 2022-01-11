@@ -182,6 +182,10 @@ $top-space: 44px;
         }
     }
 
+    .cart-total .row:nth-child(1) .col-6:nth-child(3){
+        padding: 5px 0px 5px 10px !important;
+    }
+
     .row .col-6{
         font-size: 12px;
         padding: 5px 10px !important;
@@ -358,10 +362,6 @@ $top-space: 44px;
     }
     .header-home{
         padding: 15px 5px 15px 15px !important;
-    }
-    .dropbtn {
-        // padding-right: 5px;
-        padding-left: 0;
     }
     .style-title {
         align-items: center !important;

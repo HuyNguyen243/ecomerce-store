@@ -28,10 +28,8 @@ function Newaddress() {
 
     const { register, handleSubmit, errors } = useForm();
     let emptyErrorTxt = t("newAddress.emptyErrorTxt");
-    let emptyErrorTxt2 = t("newAddress.emptyErrorTxt2");
     let phoneErrorTxt = t("newAddress.phoneErrorTxt");
     let addressDeliveryErrorTxt = t("newAddress.addressDeliveryErrorTxt");
-    let nameRegex = /^[a-zA-Z]+$/;
     const [checked,setChecked]=useState(0)
     const[note,setNote]=useState("")
     // show list select-option
@@ -140,7 +138,7 @@ function Newaddress() {
         if(selectWard !== ""){
             ward = selectWard
         }
-        if(data && nameRegex.exec(name) !== null){
+        if(data){
             if((data.city) === ""||  data.district === ""){
                 setAddressDelivery(false)
             }else{
@@ -237,10 +235,7 @@ function Newaddress() {
                                                     { errors.name && errors.name.type === "required" ?
                                                         <span className="txt-danger">{emptyErrorTxt}</span> :""
                                                     }
-                                                     { name && nameRegex.exec(name) === null ?
-                                                        <span className="txt-danger">{emptyErrorTxt2}</span> :""
-                                                    }
-                                                <input placeholder={t("newAddress.phone")}  name="phone" type="number" defaultValue={phone} onChange={handlePhone}
+                                                <input placeholder={t("newAddress.phone")}  name="phone" type="text" defaultValue={phone} onChange={handlePhone}
                                                     ref={register({
                                                         required: true,
                                                         pattern: /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/

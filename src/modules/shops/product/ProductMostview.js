@@ -42,7 +42,7 @@ const ProductMostview = () => {
     if(keyword){
       params = '&keyword='+ keyword
     }
-
+    
     if(categoryId) {
       params = '&category_id='+categoryId
     }

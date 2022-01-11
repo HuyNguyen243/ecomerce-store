@@ -7,7 +7,6 @@ import {ShopContext} from './../../../contexts/ShopContext';
 
 const Product = ({params, showDetail, showCart}) => {
   const { products, loading, getList } = useContext(ShopContext);
-
   useEffect(() => {
     getList(params);
   }, [params]);

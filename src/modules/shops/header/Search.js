@@ -33,7 +33,7 @@ const Search = ({handleSubmit}) => {
       dispatch(headTitles(t("productDetail.searchResults")))
     }
   }
-
+  
   return (
     <div>
       <form className={`app-search txt-left ${isShow ? '' : 'hide-search' }`} onSubmit={e => search(e)}>
