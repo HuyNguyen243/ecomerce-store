@@ -33,7 +33,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
     if(doNavigation !== '') {
       doNavigation()
     }else {
-      if(generalData.isLoaded) {
+      if(!generalData.isLoaded) {
         usehistory.push('/')
       }else {
         usehistory.goBack()
