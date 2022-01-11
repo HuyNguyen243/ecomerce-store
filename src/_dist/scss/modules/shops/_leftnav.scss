@@ -72,8 +72,11 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
+    .shop-item.cart {
+        padding: 0 10px !important;
+    }
     .main-container_Popup{
-    padding: 0 !important;
+        padding: 0 !important;
     }
     .row .col-6 {
         padding: 5px 10px;
@@ -386,8 +389,8 @@ $top-space: 44px;
         font-size: 14px !important;
     }
     .Offer-promotion img{
-        width: 70px !important;
-        height: 70px !important;
+        width: 90px !important;
+        height: 90px !important;
         padding-right: 10px !important;
     }
     .is_default{
@@ -418,8 +421,8 @@ $top-space: 44px;
         font-size: 3.5vw !important;
     }
     .item-thumbnail > img {
-        width: 75px !important;
-        height: 75px;
+        width: 90px !important;
+        height: 90px;
     }
     .style-product .shop-item.cart .item-info span {
         font-size: 9px !important;

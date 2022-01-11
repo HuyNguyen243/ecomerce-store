@@ -10,6 +10,7 @@ import SnackbarHelper from './../../../_helpers/snackbar';
 import { useTranslation } from "react-i18next";
 
 const Item = ({id, data}) => {
+  
   const history = useHistory();
   const dispatch = useDispatch();
   const carts = useSelector(state => state.carts);
