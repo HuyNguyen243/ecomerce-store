@@ -64,7 +64,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
                           <img className ="thumbnail-img" src={item.reference_items[0]?.image} alt="thumbnail" />
                           </div>
                           <div className ="item-info">
-                              <span className ="id-product">{t("inforProductShipping.codeOder")} <span>{item._id}</span></span>
+                              <span className ={`id-product ${item?.order_id === undefined && "hide"}`}>{t("inforProductShipping.codeOder")} {item?.order_id !== undefined && item?.order_id}</span>
                               <span className ="item-qty">{t("inforProductShipping.qty")} <span>{totalContainer}</span></span>
                               <span className ="item-qty">{t("totalBottom.total")}<span>&nbsp;
                               { NumberHelper.formatCurrency(

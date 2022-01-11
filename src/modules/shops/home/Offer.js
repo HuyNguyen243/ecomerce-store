@@ -81,15 +81,15 @@ function Offer(data) {
 
     const handleAfterSubmit =  React.useCallback(() => {
         if(modalPopup.data.success) {
-            ModalService.success(modalPopup?.data?.message)
+            ModalService.success(t("popUpPromotion.success"))
             history.push('/order-infomation')
         }else {
-            ModalService.error(modalPopup?.data?.message)
+            ModalService.error(t("popUpPromotion.failed"))
         }
         setTimeout(() => {
             dispatch(resetPopup())
         }, 1000);
-    }, [modalPopup, history, dispatch])
+    }, [modalPopup, history, dispatch ,t])
 
     React.useEffect(() => {
         if(modalPopup.active) {

@@ -13,7 +13,6 @@ function PopUpCancelReason(props) {
     const modalPopup = useSelector(state => state.modalPopup);
     const { t } = useTranslation();
     const getlang = localStorage.getItem("lang")
-    console.log(getlang)
     useEffect(()=>{
         setShowPopup(props.showPopUp)
     },[setShowPopup,props])
@@ -46,14 +45,14 @@ function PopUpCancelReason(props) {
     }
     const handleAfterSubmit =  React.useCallback(() => {
         if(modalPopup.data.success) {
-            ModalService.success(modalPopup?.data?.message)
+            ModalService.success(t("popUpPromotion.success"))
         }else {
-            ModalService.error(modalPopup?.data?.message)
+            ModalService.error(t("popUpPromotion.failed"))
         }
         setTimeout(() => {
             dispatch(resetPopup())
         }, 1000);
-    }, [modalPopup, dispatch])
+    }, [modalPopup, dispatch,t])
     
     React.useEffect(() => {
         if(modalPopup.active) {
@@ -110,7 +109,7 @@ function PopUpCancelReason(props) {
                        }
                      </div>
                     {/*  */}
-                    <span  className={`txt-danger + ${input.replace(/\s/g, "").length === 0 && selectedReason === 3 ? "showw" : "hide"}`}>{t("popUpCancelReason.error")}</span>
+                    <span  className={`danger-popup txt-danger + ${input.replace(/\s/g, "").length === 0 && selectedReason === 3 ? "showw" : "hide"}`}>{t("popUpCancelReason.error")}</span>
                 </div>
                 <div className='Button-buttom'>
                     <button onClick={buttonClose}>{t("cart.CloseButton")}</button>

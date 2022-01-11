@@ -65,6 +65,8 @@ import {
   DELETE_ORDER_PRODUCT,
   DELETE_ORDER_PRODUCT_SUCCESS,
 
+  RE_ORDER,
+
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -136,6 +138,7 @@ const initState = {
     isLoaded : false,
     data : {}
   },
+  reOderProduct : ""
 };
 
 const rootReducer = (state = initState, action) => {
@@ -359,6 +362,16 @@ const rootReducer = (state = initState, action) => {
           nearestVendorId : payload.success ? payload.data?.vendor_id : '',
           isLoading: false,
         });
+      case GET_ONE_ORDER_SUCCESS:
+        return Object.assign({}, state, {
+          order: payload.data,
+          isLoading: false
+        });
+      case GET_ORDER_SUCCESS:
+        return Object.assign({}, state, {
+          isLoading: false,
+          orders: payload.data
+        });
       case SUBMIT_ORDER_SUCCESS:
         let popupData = {
           active : true,
@@ -386,16 +399,6 @@ const rootReducer = (state = initState, action) => {
             modalPopup: popupData
           });
         }
-      case GET_ONE_ORDER_SUCCESS:
-        return Object.assign({}, state, {
-          order: payload.data,
-          isLoading: false
-        });
-      case GET_ORDER_SUCCESS:
-        return Object.assign({}, state, {
-          isLoading: false,
-          orders: payload.data
-        });
       case GET_TITLE_CATEGORIES:
           return Object.assign({}, state, {
             getTitleCategories: payload
@@ -406,7 +409,16 @@ const rootReducer = (state = initState, action) => {
             isLoaded: true,
             data: payload.data
           },
+          order : payload.data,
           isLoading: false,
+        });
+      case RE_ORDER:
+        CartService.save(payload?.data.reference_items)
+        return Object.assign({}, state, {
+          reOderProduct: payload.data,
+          carts: CartService.get(),
+          totalCartPrice : CartService.getTotalPrice(),
+          nearestVendorId: payload.data.shipping_info.vendor_id,
         });
     default:
       return Object.assign({}, state, {

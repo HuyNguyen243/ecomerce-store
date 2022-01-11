@@ -55,6 +55,13 @@ const Detail = ({
     showNavigation(LIST_CART_NAV);
   }
   //
+  const ref = React.useRef(
+  
+  React.useEffect(()=>{
+    ref.current = true
+    return () => ref.current = false;
+  })
+  )
   return (
     <div id={PRODUCT_DETAIL_NAV}>
       <Header
@@ -75,6 +82,7 @@ const Detail = ({
                 quantity={quantity}
                 addToCart={addToCart}
                 changeQuantity={changeQuantity}
+                forwardRef = {ref}
               />
             : <Blankpage message= {t("error.found")} />
           }

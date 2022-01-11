@@ -74,9 +74,10 @@ const Shop = () => {
     }, 1000);
   };
 
+
   return (
     <ShopContextProvider>
-      <div className={`body_wrapper`}>
+      <div className={`body_wrapper`} >
         <Header
           showCart={showCart}
           totalCart={totalCart}

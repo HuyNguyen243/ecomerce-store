@@ -7,7 +7,7 @@
     },
     "error" : {
         "errorCart" : "There are no products in your cart!",
-        "found" : "data not found!",
+        "found" : "No matching information!",
         "searchPromotion" : "Incorrect search results!",
         "errorOder" : "Order failed",
         "errorInformation" : "Please select shipping information"
@@ -34,7 +34,7 @@
     },
     "cart":{
         "titleCart" : "CART",
-        "swalDeleteProduct" : "Do you agree to remove this product from the shopping cart?",
+        "swalDeleteProduct" : "Do you agree to remove this product from your order?",
         "AccessDeleteProduct" : "Agree",
         "CancelDeleteProduct" : "Cancel",
         "CloseButton" : "Close",
@@ -44,24 +44,26 @@
         "title" : "Hey, have you forget these offers?"
     },
     "popUpPromotion" : {
-        "title" : "DISCOUNT CODE",
+        "title" : "PROMOTION DISCOUNT",
         "Expiry" : "Expiry :",
         "usePromotion" : "Use now",
         "notification" : "No coupons yet!",
-        "searchPromotion" : "Enter discount code"
+        "searchPromotion" : "Enter discount code",
+        "success" : "Apply code successfully",
+        "failed" : "Your order has not reached the minimum value!"
     },
     "popUpCancelReason" : {
         "title" : "CANCEL ORDER",
         "reason" : "Cancel this order for the following reasons:",
-        "cancelReasonsOne" : "Want to change your shipping address?",
-        "cancelReasonsTwo" : "Change my mind and don't want to buy anymore",
+        "cancelReasonsOne" : "Want to change shipping address?",
+        "cancelReasonsTwo" : "Change your mind and don't want to buy anymore",
         "cancelReasonsThree" : "Other:",
         "error" : "Please fill in the order cancellation information!"
     },
     "inforProductShipping" : {
-        "title" : "INFORMATION ORDER",
-        "titleReceive" : "Information Receive",
-        "titleTransport" : "Information transport",
+        "title" : "ORDER DETAIL",
+        "titleReceive" : "Delivery information",
+        "titleTransport" : "Shipping Information",
         "VENDOR_APPROVE" : "Wait for the distributor to confirm the order",
         "DENIED_BY_VENDOR" : "Order rejected by distributor",
         "USER_CANCEL" : "You have canceled this order",
@@ -72,21 +74,21 @@
         "COMPLETED" : "Delivery successful",
         "CANCELLED" : "Delivery failed",
         "qty" : "Quatity:",
-        "cancelOrder" : "Order cancelled",
-        "shippingUnit" : "Shipping unit:",
+        "cancelOrder" : "Cancelled order",
+        "shippingUnit" : "Delivery agent:",
         "codeOder" : "Code oder:",
-        "time" : "Estimated delivery time",
+        "time" : "Oder time",
         "statusOder" : "Order status",
-        "oderList" : "Oder list",
+        "oderList" : "Product information",
         "status" : "Status",
         "reason" : "Reason"
 
     },
     "totalBottom" : {
-        "total1" : "Total amount order:",
-        "shippingFee" : "Transport fee:",
-        "total" : "Total:",
-        "promotion" : "Discount code",
+        "total1" : "Total amount of goods:",
+        "shippingFee" : "Shipping fee:",
+        "total" : "Total amount:",
+        "promotion" : "Discount fee",
         "CancelButton" : "Cancel order",
         "OderButton" : "Re-order",
         "placeholderPromotion" : "Enter discount code"
@@ -96,15 +98,14 @@
         "swalTitle" : "ORDER CONFIRMATION",
         "swalText" : "Are you sure to purchase this order?",
         "swalSuccess" : "ORDER SUCCESS",
-        "textThank" : "Thank you",
-        "textThankFor" : "for ordering. Coca will deliver to you as soon as possible.",
+        "textThankFor" : "Thank you for ordering. Coca will deliver to you as soon as possible.",
         "expectedDelivery" : "Estimated delivery in 1 to 2 days!",
         "buttonSuccess" : "Order Confirmation"
     },
     "oderForm" : {
         "title" : "ORDERING INFORMATION",
         "error1" : "Your address is not in the delivery area, please try again?",
-        "error2" : "Please select delivery information",
+        "error2" : "Select delivery information",
         "informationDelivery" : "Delivery information",
         "SelectinformationDelivery" : "Select delivery information",
         "shippingMethod" : "Shipping method",
@@ -113,11 +114,11 @@
     },
     "oderProduct" : {
         "title" : "ORDER LIST ",
-        "PENDING_VENDOR_APPROVE" : "Waiting confirmation",
-        "STATUS_ASSIGNING" : "Waiting delivery",
+        "PENDING_VENDOR_APPROVE" : "On confirmation",
+        "STATUS_ASSIGNING" : "Waiting for delivery",
         "PROCESS" : "Delivery in progress",
         "COMPLETED" : "Completed",
-        "CANCELLED" : "Canceled",
+        "CANCELLED" : "Cancelled",
         "Orderdate" : "Oder date:",
         "expectedDelivery" : "Estimated delivery time:"
     },
@@ -131,13 +132,13 @@
         "emptyErrorTxt2" : "Name cannot contain numbers and special characters!",
         "phoneErrorTxt" : "invalid phone number",
         "addressDeliveryErrorTxt" : "Please select shipping address",
-        "contract" : "Communications",
-        "name" : "First and last name *",
+        "contract" : "Contact Info",
+        "name" : "Full name *",
         "phone" : "Phone number *",
         "DeliveryAddress" : "Delivery address",
-        "city" : "Province",
+        "city" : "Province/City",
         "district" : "District",
-        "ward" : "Ward",
+        "ward" : "Wards",
         "address" : "Street name, house number, building*",
         "note" : "Notes (delivery for office hours only, for the whole week ...)",
         "setting" : "Setting",
@@ -148,7 +149,8 @@
     },
     "swal" : {
         "success" : "Save successfully",
-        "failed" : "Save failed, please fill in the required information!"
+        "failed" : "Save failed, please fill in the required information!",
+        "re_order" : "Please reconfirm your order!"
     },
     "userAddress" : {
         "title" : "DELIVERY INFORMATION",

@@ -23,6 +23,7 @@ import {
     GET_ONE_ORDER,
     GET_TITLE_CATEGORIES,
     DELETE_ORDER_PRODUCT,
+    RE_ORDER,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -121,4 +122,7 @@ export const deleteParentOrderProduct = (id,reason) => {
     return { type: DELETE_ORDER_PRODUCT, payload: {id: id, reason: reason} };
 }
 
+export const reorder = (param) => {
+    return { type: RE_ORDER, payload: {data : param} };
+}
 

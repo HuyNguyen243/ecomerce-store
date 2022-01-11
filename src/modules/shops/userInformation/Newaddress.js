@@ -62,10 +62,9 @@ function Newaddress() {
                             setDistrictKey(districtKeyCode)
                             setDistricts(data[cityKeyCode]?.districts)
                             setSelectDistrict(data[cityKeyCode]?.districts[districtKeyCode]?.name)
-                    
                             setWardKey(wardKeyCode)
                             setWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards)
-                            setSelectWard(data[cityKeyCode]?.districts[districtKeyCode]?.wards[wardKeyCode]?.name)
+                            setSelectWard(wardKeyCode !== -1 ? data[cityKeyCode]?.districts[districtKeyCode]?.wards[wardKeyCode]?.name : "")
                 },100)
     }, [oneDeliveryUser])
 
@@ -84,7 +83,7 @@ function Newaddress() {
             setDistricts(city[key].districts)
             setSelectCity(city[key].name)
         }
-        if(oneDeliveryUser){
+       //---------------------------------
             if(parseInt(key) === -1){
                 setSelectCity("")
             }
@@ -94,7 +93,6 @@ function Newaddress() {
                 setDistrictKey(UNSELECTED_KEY)
                 setWardKey(UNSELECTED_KEY)
             }
-        }
     }
 
     const getDistrictKey =(e) =>{
@@ -107,7 +105,6 @@ function Newaddress() {
             setWard(district[key].wards)
             setSelectDistrict(district[key].name)
         }
-        if(oneDeliveryUser){
             if(parseInt(key) === -1){
                 setSelectDistrict("")
             }
@@ -115,7 +112,6 @@ function Newaddress() {
                 setSelectWard("")
                 setWardKey(UNSELECTED_KEY)
             }
-        }
     }
 
     const getWardKey = (e)=>{
@@ -124,6 +120,10 @@ function Newaddress() {
         setSelectWard(ward[key]?.name)
         if(parseInt(key) === -1){
             setSelectWard("")
+        }
+        if(oneDeliveryUser?.province?.code === -1){
+            setSelectWard("")
+            setWardKey(UNSELECTED_KEY)
         }
     }
 
@@ -136,6 +136,10 @@ function Newaddress() {
     }
 
     const onSubmit =(data)=>{
+        let ward = ""
+        if(selectWard !== ""){
+            ward = selectWard
+        }
         if(data && nameRegex.exec(name) !== null){
             if((data.city) === ""||  data.district === ""){
                 setAddressDelivery(false)
@@ -153,7 +157,7 @@ function Newaddress() {
                 formData.append('district[name]',selectDistrict)
 
                 formData.append('ward[code]',data.ward)
-                formData.append('ward[name]',selectWard)
+                formData.append('ward[name]',ward)
 
                 formData.append('note',note)
                 formData.append('is_default',checked)
