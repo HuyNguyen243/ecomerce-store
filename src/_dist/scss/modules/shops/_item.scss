@@ -206,8 +206,9 @@ $text-row: 2;
         font-size: 13px;
         font-weight: 600;
         line-height: 17.85px;
-        padding-right: 28px;
+        padding-right: 15px;
         width: 115px !important;
+        justify-content: flex-start;
       }
 
       .quantity-add,
@@ -282,6 +283,8 @@ $text-row: 2;
       color: #f40000;
       font-size: 18px !important;
       padding: 10px 0;
+      padding-bottom: 5px !important;
+
     }
   }
   .item-button {
@@ -526,3 +529,4 @@ $text-row: 2;
 .default{
   display: flex;
 }
+

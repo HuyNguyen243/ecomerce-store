@@ -40,14 +40,14 @@ function PopUpPromotion(props) {
 
     const handleAfterSubmit =  React.useCallback(() => {
         if(modalPopup.data.success) {
-            ModalService.success(modalPopup?.data?.message)
+            ModalService.success(t("popUpPromotion.success"))
         }else {
-            ModalService.error(modalPopup?.data?.message)
+            ModalService.error(t("popUpPromotion.failed"))
         }
         setTimeout(() => {
             dispatch(resetPopup())
         }, 1000);
-    }, [modalPopup, dispatch])
+    }, [modalPopup, dispatch ,t])
     
     useEffect(()=>{
         if(oneDeliveryUser !== "" && shippingFee === 0 ) {

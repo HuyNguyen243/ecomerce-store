@@ -72,9 +72,11 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
-    
+    .main-container_Popup{
+    padding: 0 !important;
+    }
     .row .col-6 {
-        padding: 5px 14px;
+        padding: 5px 10px;
     }
     .txt-style{
         font-size: 9px;
@@ -83,7 +85,7 @@ $top-space: 44px;
         margin: 0 5px !important;
     }
     .style-title span:nth-child(2){
-        padding: 5px 15px !important;
+        padding: 5px 5px !important;
     }
     .shop-header .header-search .app-search .app-input {
         width: 82%;
@@ -341,6 +343,9 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
+    .danger-popup{
+        padding-left: 10px;
+    }
     .Offer-title p{
         font-size: 12px !important;
     }
@@ -358,7 +363,7 @@ $top-space: 44px;
         padding-left: 0;
     }
     .style-title span:nth-child(2) {
-        padding: 5px 10px !important;
+        padding: 5px 0px !important;
     }
     .style-title {
         align-items: center !important;
@@ -393,15 +398,16 @@ $top-space: 44px;
             width: 40%;
         }
     }
-    .row .col-6 {
-        padding: 5px 10px;
+    .cart-total .row:nth-child(2) .col-6:nth-child(3),
+    .cart-total .row:nth-child(2) .col-6:nth-child(1){
+        padding: 5px 0px 5px 10px;
+    }
+    .cart-total .row:nth-child(2) .col-6:nth-child(2){
+        display: flex;
+        align-items: center;
     }
 
-    .row .col-6:nth-child(3) {
-        padding: 0;
-        padding-left: 10px;
-    }
-    
+
     .shop-item.alt .item-description p{
         font-size: 10px !important;
     }
@@ -468,3 +474,8 @@ $top-space: 44px;
         width: 365px !important;
     }
 }
+
+// .row .col-6:nth-child(3){
+//     padding: 0;
+//     padding-left: 15px;
+// }

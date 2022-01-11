@@ -17,7 +17,6 @@ const Cart = ({
   const dispatch = useDispatch();
   const [cartLoaded, setCartLoaded] = useState(false);
   const { t } = useTranslation();
-
   const showCart=()=>{
     if(carts?.length >0){
         return carts.map((item,key)=>{
@@ -38,7 +37,6 @@ const Cart = ({
       dispatch(getUserCarts())
     }
   },[dispatch, cartLoaded, setCartLoaded])
-
 
   return (
     <div id={LIST_CART_NAV} className="nav-right">

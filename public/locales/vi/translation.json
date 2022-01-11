@@ -48,7 +48,9 @@
         "Expiry" : "Hạn sử dụng:",
         "usePromotion" : "Sử dụng ngay",
         "notification" : "Chưa có voucher nào cả !",
-        "searchPromotion" : "Nhập mã giảm giá"
+        "searchPromotion" : "Nhập mã giảm giá",
+        "success" : "Nhập mã thành công",
+        "failed" : "Nhập mã thất bại"
     },
     "popUpCancelReason" : {
         "title" : "HUỶ ĐƠN HÀNG",
@@ -95,8 +97,7 @@
         "swalTitle" : "XÁC NHẬN ĐẶT HÀNG",
         "swalText" : "Bạn có đồng ý đặt đơn hàng này?",
         "swalSuccess" : "ĐẶT HÀNG THÀNH CÔNG",
-        "textThank" : "Cám ơn anh/chị",
-        "textThankFor" : "đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.",
+        "textThankFor" : "Cám ơn anh/chị đã đặt hàng. Coca sẽ giao hàng đến bạn trong thời gian sớm nhất.",
         "expectedDelivery" : "Dự kiến giao hàng từ 1 đến 2 ngày!",
         "buttonSuccess" : "Xác nhận đặt hàng"
     },
@@ -105,7 +106,7 @@
         "error1" : "Địa chỉ của bạn không nằm trong khu vực giao hàng ,vui lòng thử lại?",
         "error2" : "Vui lòng chọn thông tin nhận hàng",
         "informationDelivery" : "Thông tin giao hàng",
-        "SelectinformationDelivery" : "Chọn thông tin nhận hàng",
+        "SelectinformationDelivery" : "Chọn thông tin nhận hàng", 
         "shippingMethod" : "Phương thức vận chuyển",
         "backButton" : "Quay lại",
         "nextButton" : "Tiếp tục"
@@ -146,7 +147,8 @@
     },
     "swal" : {
         "success" : "Lưu thành công",
-        "failed" : "Lưu thất bại , vui lòng điền thông tin bắt buộc!"
+        "failed" : "Lưu thất bại , vui lòng điền thông tin bắt buộc!",
+        "re_order" : "Vui lòng xác nhận đặt lại đơn hàng!"
     },
     "userAddress" : {
         "title" : "THÔNG TIN ĐẶT HÀNG",

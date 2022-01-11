@@ -18,7 +18,14 @@ import {
 } from './../../../_config/shop.config';
 import { getOneOrder } from './../../../redux/actions/index';
 import PopUpCancelReason from "./PopUp/PopUpCancelReason";
+import { reorder } from "./../../../redux/actions/index";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
+import { addCart } from './../../../redux/actions/index';
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
+
 
 function InfoProductShipping(props) {
   const dispatch = useDispatch()
@@ -29,6 +36,7 @@ function InfoProductShipping(props) {
   const [showPopUp ,setShowPopUp] = useState(false)
   const deleteoderproduct = useSelector(state=>state.deleteoderproduct)
   const { t } = useTranslation();
+  const history = useHistory()
 
    React.useEffect(() => {
     dispatch(getOneOrder(id))
@@ -83,10 +91,29 @@ function InfoProductShipping(props) {
     }
   }
   const handleSubmit = ()=>{
-    if(!confirmCancel){
-      setShowPopUp(true)
-    }else{
-      setConfirmCancel(false)
+    if(order?.status === "PENDING_VENDOR_APPROVE"){
+      if(!confirmCancel){
+        setShowPopUp(true)
+      }else{
+        setConfirmCancel(false)
+      }
+    }
+    if(order?.status === "USER_CANCEL"){
+      MySwal.fire({
+        showCloseButton: false,
+        showConfirmButton :true,
+        showCancelButton :true,
+        cancelButtonText: t("cart.CloseButton"),
+        cancelConfirmText: t("cart.SubmitButton"),
+        icon: 'info',
+        title: t("swal.re_order"),
+      }).then(result=>{
+        if(result.isConfirmed){
+          dispatch(reorder(order))
+          dispatch(addCart(order))
+          history.replace("/order-infomation")
+        }
+      })
     }
   } 
  
@@ -107,7 +134,6 @@ function InfoProductShipping(props) {
   const getBooleanConfirm = (props) => {
     setConfirmCancel(props)
   }
-  
   return (
     <div className="body_wrapper ">
       {
@@ -134,11 +160,11 @@ function InfoProductShipping(props) {
           </div>
           <div className="nav_label style-title">
             <span>{t("inforProductShipping.titleTransport")}</span>
-            <span className={order?.status === "USER_CANCEL" || deleteoderproduct?.isLoaded ? "" : "hide"}>{t("inforProductShipping.cancelOrder")}</span>
+            <span className={order?.status === "USER_CANCEL" ? "show" : "hide"}>{t("inforProductShipping.cancelOrder")}</span>
           </div>
           <div className="user_info ">
               <p className="shipper">{t("inforProductShipping.shippingUnit")} AhaMove</p>
-              <p className="code-product">{t("inforProductShipping.codeOder")} {order?._id}</p>
+              <p className={`id-product ${order?.order_id === undefined && "hide"}`}>{t("inforProductShipping.codeOder")} {order?.order_id}</p>
               <p>{t("inforProductShipping.time")}: {order?.delivery_date}</p>
           </div>
           <div className="nav_label style-title">
@@ -199,9 +225,9 @@ function InfoProductShipping(props) {
             </div>
           </>
           {
-            order?.status === STATUS_PENDING_VENDOR_APPROVE
-            && <div className={`btn-with-icon right-icon ${deleteoderproduct?.isLoaded ? "hide" : ""}`}>
-                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{!confirmCancel ? t("totalBottom.CancelButton") : t("totalBottom.OderButton")}</button>
+            (order?.status === STATUS_PENDING_VENDOR_APPROVE ||  order?.status === "USER_CANCEL") 
+            && <div className={`btn-with-icon right-icon`}>
+                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{order?.status === STATUS_PENDING_VENDOR_APPROVE ? t("totalBottom.CancelButton") : t("totalBottom.OderButton")}</button>
               </div>
           }
         </div>

@@ -10,7 +10,7 @@ import SnackbarHelper from './../../../_helpers/snackbar';
 import Snackbar from "../../../_components/_snackbar.component";
 import { useTranslation } from "react-i18next";
 
-const ProductDetail = ({ product, quantity, changeQuantity, }) => {
+const ProductDetail = ({ product, quantity, changeQuantity }) => {
   const [confirmAddToCart,setConfirmAddToCart] = useState(true)
   const history = useHistory()
   const dispatch = useDispatch();
@@ -84,66 +84,67 @@ const ProductDetail = ({ product, quantity, changeQuantity, }) => {
     }
 
   const btnQTY = ()=>{
-    return(
+    return  (
         <div className="news-style-QTY">
-          <div className=" item-quantity ">
-            <div className="flex-list quantity-options">
-              <span  className="quatiy-title ">
-                <p>{t("productDetail.selectQty")}</p>
-              </span>
-              <span
-                className="quantiy-action quantity-minus"
-                onClick={updateCartQuantity}
-                id="remove"
-              >
-                <img src="/images/add-.svg" alt="menu_icon" className="remove" id="remove" />
-              </span>
-              <span>{quantity}</span>
-              <span
-                className="quantiy-action quantity-add"
-                onClick={updateCartQuantity}
-                id="add"
-              >
-                <img src="/images/add+.svg" alt="menu_icon" className="add"  id="add"/>
-              </span>
-            </div>
+        <div className=" item-quantity ">
+          <div className="flex-list quantity-options">
+            <span  className="quatiy-title ">
+              <p>{t("productDetail.selectQty")}</p>
+            </span>
+            <span
+              className="quantiy-action quantity-minus"
+              onClick={updateCartQuantity}
+              id="remove"
+            >
+              <img src="/images/add-.svg" alt="menu_icon" className="remove" id="remove" />
+            </span>
+            <span>{quantity}</span>
+            <span
+              className="quantiy-action quantity-add"
+              onClick={updateCartQuantity}
+              id="add"
+            >
+              <img src="/images/add+.svg" alt="menu_icon" className="add"  id="add"/>
+            </span>
           </div>
         </div>
-    )
+      </div>
+      )
   }
-
-  return (
-    <div className="shop-item alt">
-      {image}
-      <div className="item-info">
-        <span className="item-name">{product.name}</span>
-        <div className="group-price-quantity">
-          <PriceDisplay coupon={product.couponPrice} price={product.price} />
+  console.log(product.description)
+    return (
+      <div className="shop-item alt">
+        {image}
+        <div className="item-info">
+          <span className="item-name">{product.name}</span>
+          <div className="group-price-quantity">
+            <PriceDisplay coupon={product.couponPrice} price={product.price} />
+          </div>
         </div>
-      </div>
-      <div className="group-buttons">
-        <div className={`button-l ${blockBtnLeft}`} onClick={()=>addToCart(true)}>
-          {/* <Icon name="work_outline" /> */}
-          <button type="button" className="btn" >{t("home.buttonBuy")}</button>
+        <div className="group-buttons">
+          <div className={`button-l ${blockBtnLeft}`} onClick={()=>addToCart(true)}>
+            {/* <Icon name="work_outline" /> */}
+            <button type="button" className="btn" >{t("home.buttonBuy")}</button>
+          </div>
+          <div className={`button-r ${blockBtnRight}`} onClick={()=>addToCart()}>
+            {/* <Icon name="add_shopping_cart" />
+             */}
+          
+            <button type="button" className="btn btn-red" >
+            <img src="/images/shopping-cart.png" alt="menu_icon" />
+            <span>{t("home.addToCard")}</span>
+            </button>
+          </div>
         </div>
-        <div className={`button-r ${blockBtnRight}`} onClick={()=>addToCart()}>
-          {/* <Icon name="add_shopping_cart" />
-           */}
-        
-          <button type="button" className="btn btn-red" >
-          <img src="/images/shopping-cart.png" alt="menu_icon" />
-          <span>{t("home.addToCard")}</span>
-          </button>
+        {btnQTY()}
+        <div className="item-description">
+          <label>{t("productDetail.infomationProduct")}</label>
+          <p>{product.description}</p>
         </div>
+        <Snackbar />
       </div>
-      {btnQTY()}
-      <div className="item-description">
-        <label>{t("productDetail.infomationProduct")}</label>
-        <p>{product.description}</p>
-      </div>
-      <Snackbar />
-    </div>
-  );
+    );
+ 
 };
 
 export default ProductDetail;

@@ -28,6 +28,7 @@ const OderConfirm = () => {
     const appliedPromotion = useSelector(state => state.appliedPromotion)
     const isLoading = useSelector(state => state.isLoading);
     const modalPopup = useSelector(state => state.modalPopup);
+
     React.useEffect(()=>{
       if(carts.length === 0){
         history.push('/')
@@ -79,7 +80,7 @@ const OderConfirm = () => {
         title: t("oderConfirm.swalTitle"),
         text: t("oderConfirm.swalText"),
         icon: 'info',
-        confirmButtonText: t("cart.SubmitButton"),
+        confirmButtonText: t("home.buttonBuy"),
         showCancelButton: true,
         cancelButtonText: t("cart.CancelDeleteProduct")
       }).then((result) => {
@@ -105,7 +106,7 @@ const OderConfirm = () => {
           html :  <div className='confirm-swal'>
                     <img src='/images/thank-you.png' alt='menu_icon' />
                     <h3>{t("oderConfirm.swalSuccess")}</h3>
-                    <p>{t("oderConfirm.textThank")}{t("oderConfirm.textThankFor")}</p>
+                    <p>{t("oderConfirm.textThankFor")}</p>
                   </div>
         })
     }else {

@@ -32,7 +32,6 @@ const OrderForm = ({ onSubmit, isLoading,
   const putDeliveryUser = useSelector(state => state.putDeliveryUser)
   const userID = Auth.get().user_id
   let dangerTxt = t("oderForm.error2")
-
   const getUserAddress = React.useCallback(() => {
     dispatch(getDeliveryUser(userID))
   }, [dispatch, userID]);
@@ -42,6 +41,7 @@ const OrderForm = ({ onSubmit, isLoading,
       history.push('/')
     }
   })
+
 
   useEffect(() => {
     if(!userAddress.isLoaded) {
@@ -111,7 +111,7 @@ const OrderForm = ({ onSubmit, isLoading,
           showCloseButton: false,
           showConfirmButton :false,
           showCancelButton :true,
-          cancelButtonText: "Đóng",
+          cancelButtonText: t("cart.CloseButton"),
           icon: 'info',
           title: t("oderForm.error1"),
         })
@@ -123,7 +123,7 @@ const OrderForm = ({ onSubmit, isLoading,
         showCloseButton: false,
         showConfirmButton :false,
         showCancelButton :true,
-        cancelButtonText: "Đóng",
+        cancelButtonText: t("cart.CloseButton"),
         icon: 'info',
         title: t("oderForm.error2"),
       })
@@ -134,7 +134,7 @@ const OrderForm = ({ onSubmit, isLoading,
     history.push("/user-address")
     dispatch(checkGetDelivetyUser(true))
   }
-
+  
   return (
     <div id={LIST_CART_NAV} className="nav-right">
       <Header
