@@ -10,6 +10,12 @@
   display: inline-block;
 }
 
+.dropdown-item img,
+.dropbtn img{
+  width: 30px;
+  height: 20px;
+}
+
 .dropdown-content {
   position: absolute;
   box-shadow: -1px 4px 5px -1px rgba(0, 0, 0, 0.2);
