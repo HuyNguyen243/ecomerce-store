@@ -111,7 +111,6 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
       </div>
       )
   }
-  console.log(product.description)
     return (
       <div className="shop-item alt">
         {image}
