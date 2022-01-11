@@ -45,7 +45,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
     {id: 4, name: t("oderProduct.COMPLETED"), status : [STATUS_COMPLETED] },
     {id: 5, name: t("oderProduct.CANCELLED"), status : [STATUS_DENIED_BY_VENDOR, STATUS_USER_CANCEL, STATUS_CANCELLED] },
   ]
-  console.log(orders)
+  
   const showCart = () => {
     if(orders?.length >0){
         return orders.map((item,value)=>{
