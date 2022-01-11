@@ -66,11 +66,13 @@ import {
   DELETE_ORDER_PRODUCT_SUCCESS,
 
   RE_ORDER,
+  ON_CHANGE_LANG,
 
 } from "../constants";
 
 import Auth from "../../_services/auth";
 import CartService from "../../_services/cart";
+import LocaleHelper from './../../_helpers/locale';
 
 const initState = {
   isLoading: false,
@@ -145,6 +147,27 @@ const rootReducer = (state = initState, action) => {
   let type = action.type;
   let payload = action.payload;
   switch (type) {
+    case ON_CHANGE_LANG:
+      if(state.generalData?.data?.productByPromotion?.length > 0) {
+        LocaleHelper.parseData('name', state.generalData?.data?.productByPromotion)
+        LocaleHelper.parseData('title', state.generalData?.data?.banners)
+        LocaleHelper.parseData('name', state.generalData?.data?.productByCategory)
+      }
+      if(state.categories?.data?.length > 0) {
+        LocaleHelper.parseData('name', state.categories?.data)
+      }
+      if(state.mostview?.data?.length > 0) {
+        LocaleHelper.parseData('name', state.mostview?.data)
+      }
+      if(state.product?.data?.name !== undefined) {
+        LocaleHelper.parseData('name', [state.product?.data])
+      }
+      return Object.assign({}, state, {
+        modalPopup: {
+          active : false,
+          data : {}
+        }
+      });
     case RESET_MODAL_POPUP:
       return Object.assign({}, state, {
         modalPopup: {
@@ -187,6 +210,11 @@ const rootReducer = (state = initState, action) => {
       });
     case GET_GENERAL_DATA_SUCCESS:
       CartService.save(payload?.data?.carts)
+      if(payload?.success) {
+        LocaleHelper.parseData('name', payload?.data?.productByPromotion)
+        LocaleHelper.parseData('title', payload?.data?.banners)
+        LocaleHelper.parseData('name', payload?.data?.productByCategory)
+      }
       return Object.assign({}, state, {
         generalData: {
           isLoaded : true,
@@ -197,6 +225,7 @@ const rootReducer = (state = initState, action) => {
         totalCartPrice : CartService.getTotalPrice()
       });
     case GET_ONE_PRODUCT_SUCCESS:
+      LocaleHelper.parseData('name', [payload.data])
       return Object.assign({}, state, {
         product: {
           isLoaded: true,
@@ -210,6 +239,9 @@ const rootReducer = (state = initState, action) => {
         isLoading: false,
       });
     case GET_CATEGORIES_SUCCESS:
+      if(payload?.success) {
+        LocaleHelper.parseData('name', payload?.data)
+      }
       return Object.assign({}, state, {
         categories: {
           isLoaded: true,
@@ -218,6 +250,9 @@ const rootReducer = (state = initState, action) => {
         isLoading: false,
       });
       case MOST_VIEW_SUCCESS:
+        if(payload?.success) {
+          LocaleHelper.parseData('name', payload?.data)
+        }
         return Object.assign({}, state, {
           mostview: {
             isLoaded: true,

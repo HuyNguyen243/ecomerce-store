@@ -24,6 +24,7 @@ import {
     GET_TITLE_CATEGORIES,
     DELETE_ORDER_PRODUCT,
     RE_ORDER,
+    ON_CHANGE_LANG,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -125,4 +126,8 @@ export const deleteParentOrderProduct = (id,reason) => {
 export const reorder = (param) => {
     return { type: RE_ORDER, payload: {data : param} };
 }
+export const onLanguageChanged = (lang) => {
+    return { type: ON_CHANGE_LANG, payload: lang };
+}
+
 

@@ -23,3 +23,6 @@ export const STATUS_ACCEPTED_BY_VENDOR = "ACCEPTED";
 export const STATUS_IN_PROCESS = "IN PROCESS";
 export const STATUS_COMPLETED = "COMPLETED";
 export const STATUS_CANCELLED = "CANCELLED";
+
+export const LANG_VI = "vi";
+export const LANG_EN = "en";
