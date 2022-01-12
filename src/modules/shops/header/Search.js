@@ -16,7 +16,6 @@ const Search = ({handleSubmit}) => {
   const updateSearchInput = e => {
     setSearchEntry(e.target.value);
   };
-
   const search = (e) => {
     e.preventDefault();
     searchInput.current.focus()
@@ -33,7 +32,7 @@ const Search = ({handleSubmit}) => {
       dispatch(headTitles(t("productDetail.searchResults")))
     }
   }
-  
+
   return (
     <div>
       <form className={`app-search txt-left ${isShow ? '' : 'hide-search' }`} onSubmit={e => search(e)}>

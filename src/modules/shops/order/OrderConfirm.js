@@ -13,6 +13,7 @@ import { createOrder, resetPopup } from './../../../redux/actions/index';
 import ModalService from './../../../_services/modal';
 import { useTranslation } from "react-i18next";
 
+
 const MySwal = withReactContent(Swal)
 
 const OderConfirm = () => {
@@ -72,17 +73,34 @@ const OderConfirm = () => {
       return NumberHelper.formatCurrency(total)
     }
   }
+
+  const handleConfirm=(e)=>{
+    let name = e.target.className
+    if(name === "cancelBtn"){
+      MySwal.close()
+    }else{
+      MySwal.clickConfirm()
+    }
+  }
+
   const handleSubmit = () => {
     if(oneDeliveryUser === "" ){
       setCondition(false)
     }else{
-      Swal.fire({
-        title: t("oderConfirm.swalTitle"),
-        text: t("oderConfirm.swalText"),
+      MySwal.fire({
         icon: 'info',
-        confirmButtonText: t("home.buttonBuy"),
-        showCancelButton: true,
-        cancelButtonText: t("cart.CancelDeleteProduct")
+        showCancelButton: false,
+        showConfirmButton: false,
+        html : <div className="swal_deleteProduct">
+                <div>
+                  <p className="text-danger">{t("oderConfirm.swalTitle")}</p>
+                  <p className="text-title">{t("oderConfirm.swalText")}</p>
+                </div>
+                <div className="group-btn">
+                  <button className="cancelBtn" onClick={handleConfirm}>{t("cart.CancelDeleteProduct")}</button>
+                  <button className="confirmBtn" onClick={handleConfirm}>{t("home.buttonBuy")}</button>
+                </div>
+              </div>
       }).then((result) => {
         if (result.isConfirmed) {
           setSubmited(true)

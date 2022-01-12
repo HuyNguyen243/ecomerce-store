@@ -104,7 +104,7 @@
     },
     "oderForm" : {
         "title" : "ORDERING INFORMATION",
-        "error1" : "Your address is not in the delivery area, please try again?",
+        "error1" : "Your address is not in the delivery area, please try again!",
         "error2" : "Select delivery information",
         "informationDelivery" : "Delivery information",
         "SelectinformationDelivery" : "Select delivery information",

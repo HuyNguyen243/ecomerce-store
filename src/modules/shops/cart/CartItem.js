@@ -17,7 +17,7 @@ const CartItem = ({item,index}) => {
 
   const updateQuantity = (quantity) => {
     if(quantity === 0) {
-      CartService.remove(index);
+      Showpopup()
     }else {
       if(quantity > 99){
         quantity = 99
@@ -26,21 +26,40 @@ const CartItem = ({item,index}) => {
     }
     dispatch(addCart())
   }
-  
-  const removeCartItem = () => {
+
+  const handleBtn =(e)=>{
+    let name = e.target.className
+    if(name === "cancelBtn"){
+      MySwal.close()
+    }else{
+      MySwal.clickConfirm()
+    }
+  }
+
+  const Showpopup = () =>{
     MySwal.fire({
-      text: t("cart.swalDeleteProduct"),
       icon: 'info',
-      confirmButtonText: t("cart.AccessDeleteProduct"),
-      showCancelButton: true,
-      cancelButtonText: t("cart.CancelDeleteProduct")
+      showCancelButton: false,
+      showConfirmButton: false,
+      html : <div className="swal_deleteProduct">
+              <div>
+                <p className="txt-delete">{t("cart.swalDeleteProduct")}</p>
+              </div>
+              <div className="group-btn">
+                <button className="cancelBtn" onClick={handleBtn}>{t("cart.CancelDeleteProduct")}</button>
+                <button className="confirmBtn" onClick={handleBtn}>{t("cart.AccessDeleteProduct")}</button>
+              </div>
+            </div>
     }).then((result)=>{
         if(result.isConfirmed){
           CartService.remove(index);
           dispatch(addCart())
         }
     })
-
+  }
+  
+  const removeCartItem = () => {
+    Showpopup()
   }
   
   return (

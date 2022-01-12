@@ -72,6 +72,9 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
+    .header-search{
+        font-size: 10px !important;
+    }
     .shop-item.cart {
         padding: 0 10px !important;
     }

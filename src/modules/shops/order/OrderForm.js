@@ -104,28 +104,42 @@ const OrderForm = ({ onSubmit, isLoading,
     }
   }
 
+  const handleCancel =(e)=>{
+    MySwal.close()
+  }
+
   const handleOnClick =()=>{
     if(oneDeliveryUser !== "" ){
       if(shippingFee === 0){
         MySwal.fire({
-          showCloseButton: false,
-          showConfirmButton :false,
-          showCancelButton :true,
-          cancelButtonText: t("cart.CloseButton"),
           icon: 'info',
-          title: t("oderForm.error1"),
+          showCancelButton: false,
+          showConfirmButton: false,
+          html : <div className="swal_deleteProduct">
+                  <div>
+                    <p className="text-danger">{t("oderForm.error1")}</p>
+                  </div>
+                  <div className="group-btn">
+                    <button className="cancelBtn" onClick={handleCancel}>{t("cart.CloseButton")}</button>
+                  </div>
+                </div>
         })
       }else{
         history.push("/order-confirmation")
       }
     }else{
       MySwal.fire({
-        showCloseButton: false,
-        showConfirmButton :false,
-        showCancelButton :true,
-        cancelButtonText: t("cart.CloseButton"),
         icon: 'info',
-        title: t("oderForm.error2"),
+        showCancelButton: false,
+        showConfirmButton: false,
+        html : <div className="swal_deleteProduct">
+                <div>
+                  <p className="text-danger">{t("oderForm.error2")}</p>
+                </div>
+                <div className="group-btn">
+                  <button className="cancelBtn" onClick={handleCancel}>{t("cart.CloseButton")}</button>
+                </div>
+              </div>
       })
     }
   }

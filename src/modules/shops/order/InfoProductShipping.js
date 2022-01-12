@@ -98,15 +98,30 @@ function InfoProductShipping(props) {
         setConfirmCancel(false)
       }
     }
+
+    const handleBtn=(e)=>{
+      let name = e.target.className
+      if(name === "cancelBtn"){
+        MySwal.close()
+      }else{
+        MySwal.clickConfirm()
+      }
+    }
+
     if(order?.status === "USER_CANCEL"){
       MySwal.fire({
-        showCloseButton: false,
-        showConfirmButton :true,
-        showCancelButton :true,
-        cancelButtonText: t("cart.CloseButton"),
-        cancelConfirmText: t("cart.SubmitButton"),
         icon: 'info',
-        title: t("swal.re_order"),
+        showCancelButton: false,
+        showConfirmButton: false,
+        html : <div className="swal_deleteProduct">
+                <div>
+                  <p className="text-title">{t("swal.re_order")}</p>
+                </div>
+                <div className="group-btn">
+                  <button className="cancelBtn" onClick={handleBtn}>{t("cart.CloseButton")}</button>
+                  <button className="confirmBtn" onClick={handleBtn}>{t("cart.SubmitButton")}</button>
+                </div>
+              </div>
       }).then(result=>{
         if(result.isConfirmed){
           dispatch(reorder(order))

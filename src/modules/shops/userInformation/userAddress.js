@@ -71,19 +71,35 @@ function UserAddress() {
        }
     }
 
+    const handleConfirm=(e)=>{
+        let name = e.target.className
+        if(name === "cancelBtn"){
+          MySwal.close()
+        }else{
+          MySwal.clickConfirm()
+        }
+      }
+
     const handleDelDeliver = (e) =>{
         let getId = e.target.id
         MySwal.fire({
-            text: t("userAddress.deleteAdress"),
             icon: 'info',
-            confirmButtonText: t("cart.SubmitButton"),
-            showCancelButton: true,
-            cancelButtonText: t("cart.CancelDeleteProduct")
+            showCancelButton: false,
+            showConfirmButton: false,
+            html : <div className="swal_deleteProduct">
+                    <div>
+                      <p className="text-title">{t("userAddress.deleteAdress")}</p>
+                    </div>
+                    <div className="group-btn">
+                      <button className="cancelBtn" onClick={handleConfirm}>{t("cart.CancelDeleteProduct")}</button>
+                      <button className="confirmBtn" onClick={handleConfirm}>{t("cart.SubmitButton")}</button>
+                    </div>
+                  </div>
           }).then((result)=>{
-              if(result.isConfirmed){
-                dispatch(deleteDeliveryUSer(getId))
-              }
-          })
+            if(result.isConfirmed){
+              dispatch(deleteDeliveryUSer(getId))
+            }
+        })
     }
 
     const showUserAddress = (item, key)=>{

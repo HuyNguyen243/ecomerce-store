@@ -146,9 +146,11 @@ ul {
     background: #dee2e6
 }
 
-
-
 @media only screen and (min-width: 500px) {
+    .shop-item .item-thumbnail img {
+        width: 100px;
+        height: 100px;
+    }
     .shop-item.cart .item-thumbnail {
         width: 25% !important;
     }
