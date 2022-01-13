@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { applyPromotion, resetPopup } from './../../../redux/actions/index';
 import ModalService from './../../../_services/modal';
 import { useTranslation } from "react-i18next";
-
+import { getCodePromotion } from './../../../redux/actions/index';
 
 function Offer(data) {
     const dispatch = useDispatch();
@@ -13,7 +13,6 @@ function Offer(data) {
     const modalPopup = useSelector(state => state.modalPopup);
     const carts = useSelector(state => state.carts);
     const { t } = useTranslation();
-
 
     const settings = {
         dots: true,
@@ -30,6 +29,7 @@ function Offer(data) {
             let formData = new FormData();
             formData.append('promo_id', id)
             dispatch(applyPromotion(formData))
+            dispatch(getCodePromotion(id))
         }else{
             ModalService.error(t("error.errorCart"))
             setTimeout(() => {

@@ -1,11 +1,13 @@
 import React, { useState }  from 'react';
-import { useSelector} from 'react-redux';
+import { useSelector,useDispatch} from 'react-redux';
 import { useLocation } from 'react-router';
 import NumberHelper from "./../../../_helpers/number";
 import PopUpPromotion from './PopUp/popUpPromotion';
 import { useTranslation } from "react-i18next";
+import { applyPromotion } from '../../../redux/actions';
 
 function TotalBottom(props) {
+    const dispatch = useDispatch()
     const location = useLocation()
     const codePromotion = useSelector(state => state.codePromotion)
     const appliedPromotion = useSelector(state => state.appliedPromotion)
@@ -13,6 +15,9 @@ function TotalBottom(props) {
     const totalCartPrice = useSelector(state => state.totalCartPrice);
     const [showPopUp ,setShowPopUp] = useState(false)
     const shippingFee = useSelector(state => state.shippingFee);
+    const promotionVoucher = useSelector(state => state.promotionVoucher);
+    const generalData = useSelector(state => state.generalData);
+
     const { t } = useTranslation();
     const showPromotion = () =>{
         setShowPopUp(true)
@@ -20,7 +25,31 @@ function TotalBottom(props) {
     const BooleanPopUp = (props)=>{
         setShowPopUp(!props)
     }
-    
+
+    React.useEffect(()=>{
+        for( let i = 0 ;i< promotionVoucher?.data.length;i++){
+            if(codePromotion){
+                if(codePromotion === promotionVoucher?.data[i].code){
+                    if(totalCartPrice < promotionVoucher?.data[i].payload.type.value){
+                        let formData = new FormData();
+                        formData.append('promo_id', codePromotion)
+                        dispatch(applyPromotion(formData))
+                    }
+                }
+            }
+        }
+        for( let i = 0 ;i< generalData?.data?.banners?.length;i++){
+            if(codePromotion){
+                if(codePromotion === generalData?.data?.banners[i].code){
+                    if(totalCartPrice < generalData?.data?.banners[i]?.payload.type.value){
+                        let formData = new FormData();
+                        formData.append('promo_id', codePromotion)
+                        dispatch(applyPromotion(formData))
+                    }
+                }
+            }
+        }
+    },[appliedPromotion,codePromotion,dispatch,promotionVoucher,totalCartPrice,generalData])
     return (
         <>
                     <PopUpPromotion showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp}/>

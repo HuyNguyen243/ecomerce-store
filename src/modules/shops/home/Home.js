@@ -11,7 +11,6 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
   const isLoading = useSelector(state => state.isLoading);
   const generalData = useSelector(state => state.generalData);
   const { t } = useTranslation();
-  
   const getGeneralDataCallback = React.useCallback(() => {
     dispatch(getInitData())
 }, [dispatch]);

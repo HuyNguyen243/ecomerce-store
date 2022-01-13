@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 import { useDispatch } from 'react-redux';
+import { getCodePromotion } from '../../../../redux/actions/index';
 const MySwal = withReactContent(Swal)
 
 function PopUpAdventisement(props) {
@@ -30,6 +31,7 @@ function PopUpAdventisement(props) {
           let formData = new FormData();
           formData.append('promo_id', id)
           dispatch(applyPromotion(formData))
+          dispatch(getCodePromotion(id))
       }
 
         const listSwal = () =>{

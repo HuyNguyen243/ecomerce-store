@@ -208,3 +208,9 @@ ul {
     height: 25px !important;
     top: -5px !important;
 }
+
+@media only screen and (min-width: 1280px) {
+    .shop-item.cart .item-thumbnail {
+        width: 10% !important;
+    }
+}
