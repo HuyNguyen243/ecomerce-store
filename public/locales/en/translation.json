@@ -30,7 +30,9 @@
         "outOfStock": "Out of stock",
         "stocking": "products available",
         "tittleDetail" : "Product information",
-        "searchResults" : "Search Results"
+        "searchResults" : "Search Results",
+        "moveCart": "Moving to cart,please wait!"
+
     },
     "cart":{
         "titleCart" : "CART",

@@ -28,7 +28,6 @@ const Item = ({id, data}) => {
     }
     
     if(confirmAddToCart){
-      console.log(data)
       CartService.add({
         id          : data._id,
         name        : data.name,
@@ -39,17 +38,42 @@ const Item = ({id, data}) => {
         minOrder    : data.minOrder,
         quantity    : 1
       })
-      SnackbarHelper.show(t("productDetail.addCartSuccess"))
       dispatch(addCart())
       setConfirmAddToCart(false)
+      SnackbarHelper.show(t("productDetail.addCartSuccess"))
     }
+      
+    if(showCart){
+      if(confirmAddToCart){
+        history.push('/cart')
+      }else{
+        setConfirmAddToCart(true)
+        CartService.add({
+          id          : data._id,
+          name        : data.name,
+          image       : data.image,
+          price       : data.price,
+          couponPrice : data.couponPrice,
+          weight      : data.weight,
+          minOrder    : data.minOrder,
+          quantity    : 1
+        })
+        dispatch(addCart())
+        SnackbarHelper.show(t("productDetail.moveCart"))
+        setTimeout(()=>{
+          history.push('/cart')
+        },1500)
+      }
+    }
+  }
+
+  React.useEffect (()=>{
+    if(!confirmAddToCart){
       setTimeout(()=>{
         setConfirmAddToCart(true)
-        },2000)
-      if(showCart) {
-        history.push('/cart')
-      }
-  }
+        },1500)
+    }
+  },[setConfirmAddToCart,confirmAddToCart,t])
 
 
   return (

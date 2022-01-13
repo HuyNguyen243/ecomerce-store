@@ -1,5 +1,5 @@
 var SnackbarHelper = {
-  show: function (message, time = 2000) {
+  show: function (message, time = 1500) {
     var x = document.getElementById("snackbar");
     x.className = "show";
     x.innerText = message;

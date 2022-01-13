@@ -60,28 +60,52 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
             }
           }
         }
-      if(confirmAddToCart){
-          CartService.add({
-            id          : product._id,
-            name        : product.name,
-            image       : product.image,
-            price       : product.price,
-            couponPrice : product.couponPrice,
-            weight      : product.weight,
-            minOrder    : product.minOrder,
-            quantity    : quantity
-          })
-        SnackbarHelper.show(t("productDetail.addCartSuccess"))
-        dispatch(addCart())
-        setConfirmAddToCart(false)
-      }
-        setTimeout(()=>{
-          setConfirmAddToCart(true)
-          },2000)
-        if(showCart) {
-          history.push('/cart')
+        if(confirmAddToCart){
+            CartService.add({
+              id          : product._id,
+              name        : product.name,
+              image       : product.image,
+              price       : product.price,
+              couponPrice : product.couponPrice,
+              weight      : product.weight,
+              minOrder    : product.minOrder,
+              quantity    : quantity
+            })
+          SnackbarHelper.show(t("productDetail.addCartSuccess"))
+          dispatch(addCart())
+          setConfirmAddToCart(false)
+        }
+        if(showCart){
+          if(confirmAddToCart){
+            history.push('/cart')
+          }else{
+            setConfirmAddToCart(true)
+            CartService.add({
+              id          : product._id,
+              name        : product.name,
+              image       : product.image,
+              price       : product.price,
+              couponPrice : product.couponPrice,
+              weight      : product.weight,
+              minOrder    : product.minOrder,
+              quantity    : quantity
+            })
+            dispatch(addCart())
+            SnackbarHelper.show(t("productDetail.moveCart"))
+            setTimeout(()=>{
+              history.push('/cart')
+            },1500)
+          }
         }
     }
+
+    React.useEffect(()=>{
+      if(!confirmAddToCart){
+        setTimeout(()=>{
+          setConfirmAddToCart(true)
+          },1500)
+      }
+    })
 
   const btnQTY = ()=>{
     return  (

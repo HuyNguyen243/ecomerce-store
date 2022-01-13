@@ -30,7 +30,8 @@
         "outOfStock": "Hết hàng",
         "stocking": "sản phẩm có sẵn",
         "tittleDetail" : "Thông tin sản phẩm",
-        "searchResults" : "kết quả tìm kiếm"
+        "searchResults" : "kết quả tìm kiếm",
+        "moveCart": "Đang vào giỏ hàng,vui lòng đợi!"
     },
     "cart":{
         "titleCart" : "Giỏ hàng",
@@ -103,7 +104,7 @@
     },
     "oderForm" : {
         "title" : "THÔNG TIN ĐẶT GIAO HÀNG",
-        "error1" : "Địa chỉ của bạn không nằm trong khu vực giao hàng ,vui lòng thử lại!",
+        "error1" : "Địa chỉ của bạn không nằm trong khu vực giao hàng, vui lòng thử lại!",
         "error2" : "Vui lòng chọn thông tin nhận hàng",
         "informationDelivery" : "Thông tin giao hàng",
         "SelectinformationDelivery" : "Chọn thông tin nhận hàng", 
