@@ -88,6 +88,7 @@ function Newaddress() {
             if(oneDeliveryUser?.province?.code !== key){
                 setSelectDistrict("")
                 setSelectWard("")
+                setWard([])
                 setDistrictKey(UNSELECTED_KEY)
                 setWardKey(UNSELECTED_KEY)
             }
