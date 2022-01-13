@@ -65,7 +65,6 @@ import {
   DELETE_ORDER_PRODUCT,
   DELETE_ORDER_PRODUCT_SUCCESS,
 
-  RE_ORDER,
   ON_CHANGE_LANG,
 
 } from "../constants";
@@ -456,14 +455,6 @@ const rootReducer = (state = initState, action) => {
           },
           order : payload.data,
           isLoading: false,
-        });
-      case RE_ORDER:
-        CartService.save(payload?.data.reference_items)
-        return Object.assign({}, state, {
-          reOderProduct: payload.data,
-          carts: CartService.get(),
-          totalCartPrice : CartService.getTotalPrice(),
-          nearestVendorId: payload.data.shipping_info.vendor_id,
         });
     default:
       return Object.assign({}, state, {

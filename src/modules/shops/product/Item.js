@@ -26,7 +26,9 @@ const Item = ({id, data}) => {
         }
       }
     }
+    
     if(confirmAddToCart){
+      console.log(data)
       CartService.add({
         id          : data._id,
         name        : data.name,

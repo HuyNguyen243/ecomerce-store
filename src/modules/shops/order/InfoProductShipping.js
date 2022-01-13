@@ -18,12 +18,14 @@ import {
 } from './../../../_config/shop.config';
 import { getOneOrder } from './../../../redux/actions/index';
 import PopUpCancelReason from "./PopUp/PopUpCancelReason";
-import { reorder } from "./../../../redux/actions/index";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 import { addCart } from './../../../redux/actions/index';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
+import SnackbarHelper from './../../../_helpers/snackbar';
+import CartService from "../../../_services/cart";
+import Snackbar from "../../../_components/_snackbar.component";
 const MySwal = withReactContent(Swal)
 
 
@@ -124,9 +126,24 @@ function InfoProductShipping(props) {
               </div>
       }).then(result=>{
         if(result.isConfirmed){
-          dispatch(reorder(order))
-          dispatch(addCart(order))
-          history.replace("/order-infomation")
+          let index = order.reference_items
+          for(let data of index){
+            CartService.add({
+              id          : data.id,
+              name        : data.name,
+              image       : data.image,
+              price       : data.price,
+              couponPrice : data.couponPrice,
+              weight      : data.weight,
+              minOrder    : data.minOrder,
+              quantity    : data.quantity
+            })
+          }
+          dispatch(addCart())
+          SnackbarHelper.show(t("productDetail.addCartSuccess"))
+          setTimeout(()=>{
+            history.replace("/order-infomation")
+          },1000)
         }
       })
     }
@@ -248,6 +265,7 @@ function InfoProductShipping(props) {
         </div>
       </div>
         <PopUpCancelReason  showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp} comfirm={getBooleanConfirm} id={order?._id}/>
+        <Snackbar />
     </div>
   );
 }

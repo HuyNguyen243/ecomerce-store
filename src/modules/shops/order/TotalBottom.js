@@ -26,30 +26,33 @@ function TotalBottom(props) {
         setShowPopUp(!props)
     }
 
+   const checkPromotion = React.useCallback(()=>{
+        let formData = new FormData();
+        formData.append('promo_id', codePromotion)
+        
+        for( let i = 0 ;i < promotionVoucher?.data.length;i++){
+            if(codePromotion === promotionVoucher?.data[i].code){
+                if(totalCartPrice < promotionVoucher?.data[i].payload.type.value){
+                    dispatch(applyPromotion(formData))
+                }
+            }
+        }
+
+        for( let i = 0 ;i < generalData?.data?.banners?.length;i++){
+            if(codePromotion === generalData?.data?.banners[i].code){
+                if(totalCartPrice < generalData?.data?.banners[i]?.payload.type.value){
+                    dispatch(applyPromotion(formData))
+                }
+            }
+        }
+   },[promotionVoucher,codePromotion,dispatch,totalCartPrice,generalData])
+
     React.useEffect(()=>{
-        for( let i = 0 ;i< promotionVoucher?.data.length;i++){
-            if(codePromotion){
-                if(codePromotion === promotionVoucher?.data[i].code){
-                    if(totalCartPrice < promotionVoucher?.data[i].payload.type.value){
-                        let formData = new FormData();
-                        formData.append('promo_id', codePromotion)
-                        dispatch(applyPromotion(formData))
-                    }
-                }
-            }
+        if(codePromotion !== ""){
+            checkPromotion()
         }
-        for( let i = 0 ;i< generalData?.data?.banners?.length;i++){
-            if(codePromotion){
-                if(codePromotion === generalData?.data?.banners[i].code){
-                    if(totalCartPrice < generalData?.data?.banners[i]?.payload.type.value){
-                        let formData = new FormData();
-                        formData.append('promo_id', codePromotion)
-                        dispatch(applyPromotion(formData))
-                    }
-                }
-            }
-        }
-    },[appliedPromotion,codePromotion,dispatch,promotionVoucher,totalCartPrice,generalData])
+    },[checkPromotion,codePromotion])
+
     return (
         <>
                     <PopUpPromotion showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp}/>
