@@ -25,7 +25,6 @@ const OrderProduct = ({ params, hideList = "" }) => {
   const dispatch = useDispatch();
   const history = useHistory()
   const { t } = useTranslation();
-  const isLoading = useSelector(state => state.isLoading);
   const orders = useSelector(state => state.orders);
   const idBtnTabs = useSelector(state => state.idBtnTabs);
   const [slider,setSlider] = useState()
@@ -147,12 +146,9 @@ const OrderProduct = ({ params, hideList = "" }) => {
       }
     }
   }
+  
   return (
     <div id={USER_ORDER_NAV} className="nav-right">
-      {
-        isLoading
-        && <div className="overlay-spinner"></div>
-      }
       <Header
         hasNavigation={true}
         doNavigation={hideList}
