@@ -111,25 +111,25 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
     return  (
         <div className="news-style-QTY">
         <div className=" item-quantity ">
-          <div className="flex-list quantity-options">
-            <span  className="quatiy-title ">
-              <p>{t("productDetail.selectQty")}</p>
-            </span>
-            <span
-              className="quantiy-action quantity-minus"
-              onClick={updateCartQuantity}
-              id="remove"
-            >
-              <img src="/images/add-.svg" alt="menu_icon" className="remove" id="remove" />
-            </span>
-            <span>{quantity}</span>
-            <span
-              className="quantiy-action quantity-add"
-              onClick={updateCartQuantity}
-              id="add"
-            >
-              <img src="/images/add+.svg" alt="menu_icon" className="add"  id="add"/>
-            </span>
+          <div className="quantity-options">
+              <p className="title_qty">{t("productDetail.selectQty")}</p>
+            <div className="dpl-flex">
+              <span
+                className="quantiy-action quantity-minus"
+                onClick={updateCartQuantity}
+                id="remove"
+              >
+                <img src="/images/add-.svg" alt="menu_icon" className="remove" id="remove" />
+              </span>
+              <span>{quantity}</span>
+              <span
+                className="quantiy-action quantity-add"
+                onClick={updateCartQuantity}
+                id="add"
+              >
+                <img src="/images/add+.svg" alt="menu_icon" className="add"  id="add"/>
+              </span>
+            </div>
           </div>
         </div>
       </div>

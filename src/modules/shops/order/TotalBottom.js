@@ -25,7 +25,7 @@ function TotalBottom(props) {
     const BooleanPopUp = (props)=>{
         setShowPopUp(!props)
     }
-
+    
    const checkPromotion = React.useCallback(()=>{
         let formData = new FormData();
         formData.append('promo_id', codePromotion)
@@ -110,6 +110,7 @@ function TotalBottom(props) {
                                 (totalCartPrice + shippingFee?.total_pay) - (appliedPromotion?.discount ? appliedPromotion?.discount : 0)
                             )
                     }
+
                     </span>
                 </div>
             </div>   

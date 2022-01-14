@@ -67,6 +67,8 @@ import {
 
   ON_CHANGE_LANG,
 
+  GET_ID_BUTTON_TABS,
+
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -139,7 +141,8 @@ const initState = {
     isLoaded : false,
     data : {}
   },
-  reOderProduct : ""
+  reOderProduct : "",
+  idBtnTabs: "",
 };
 
 const rootReducer = (state = initState, action) => {
@@ -444,6 +447,7 @@ const rootReducer = (state = initState, action) => {
           });
         }
       case GET_TITLE_CATEGORIES:
+          // LocaleHelper.parseData('name', [payload])
           return Object.assign({}, state, {
             getTitleCategories: payload
           });
@@ -455,6 +459,10 @@ const rootReducer = (state = initState, action) => {
           },
           order : payload.data,
           isLoading: false,
+        });
+      case GET_ID_BUTTON_TABS:
+        return Object.assign({}, state, {
+          idBtnTabs: payload
         });
     default:
       return Object.assign({}, state, {

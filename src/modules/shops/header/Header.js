@@ -3,13 +3,23 @@ import Search from './Search';
 import ChangeLanguage from './ChangeLanguage';
 import{Link}from 'react-router-dom'
 import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { useLocation } from 'react-router';
+import { getIdBtnTabs } from "./../../../redux/actions/index";
 
 const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
                   , doNavigation = '', showLeftNav, headerBg = 'header-primary'}) => {
   const usehistory =useHistory()
   const carts = useSelector(state => state.carts);
   const generalData = useSelector(state => state.generalData);
+  const location = useLocation()
+  const dispatch = useDispatch()
+  
+  React.useEffect(()=>{
+    if(location.pathname === "/" ){
+      dispatch(getIdBtnTabs(""))
+    }
+  })
 
   const showShoppingCart = () => {
       if (showCart !== '') {

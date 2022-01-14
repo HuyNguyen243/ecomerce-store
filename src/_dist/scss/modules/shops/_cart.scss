@@ -183,12 +183,28 @@
     }
   }
 }
+.bottom{
+  display: flex;
+}
+.bottom .new-text2:nth-child(2){
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.new-text2{
+  color: #f40000;
+  font-size: 16px;
+  width: 50%;
+  padding-left: 10px;
+  font-weight: bold;
+}
 
 .cart-total{
   color: #333;
   .new-text{
     color: #f40000;
-    font-size: 16px;
+    font-size: 16px !important;
   }
 }
 

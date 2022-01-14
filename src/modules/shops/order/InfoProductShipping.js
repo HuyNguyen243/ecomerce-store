@@ -26,6 +26,8 @@ import withReactContent from 'sweetalert2-react-content'
 import SnackbarHelper from './../../../_helpers/snackbar';
 import CartService from "../../../_services/cart";
 import Snackbar from "../../../_components/_snackbar.component";
+import Blankpage from "./../../../_components/_blankpage.component";
+
 const MySwal = withReactContent(Swal)
 
 
@@ -68,6 +70,7 @@ function InfoProductShipping(props) {
         return status
     }
   }
+ 
   const showCart = () => {
     if(order?.reference_items?.length >0){
         return order?.reference_items?.map((item,value)=>{
@@ -152,6 +155,7 @@ function InfoProductShipping(props) {
   const BooleanPopUp = (props)=>{
     setShowPopUp(!props)
   }
+
   
   const showheader =()=>{
     return(
@@ -173,99 +177,107 @@ function InfoProductShipping(props) {
         && <div className="overlay-spinner"></div>
       }
       {showheader()}
-      <div className="display-flex">
-        <div className="main_container">
-          <div className="title-inforShip">
-            <div className="nav_label">
-              <span>{t("inforProductShipping.titleReceive")}</span>
+      {
+        order ?
+        <>
+        <div className="display-flex">
+          <div className="main_container">
+            <div className="title-inforShip">
+              <div className="nav_label">
+                <span>{t("inforProductShipping.titleReceive")}</span>
+              </div>
+            </div>
+            <div className="user_info">
+                <div className="name_number">
+                  <p>{order?.user_info?.name}</p>
+                  <span>|</span>
+                  <p>{order?.user_info?.mobile}</p>
+                </div>
+                <p className="address">
+                  {order?.user_info?.address}
+                </p>
+            </div>
+            <div className="nav_label style-title">
+              <span>{t("inforProductShipping.titleTransport")}</span>
+              <span className={order?.status === "USER_CANCEL" ? "show" : "hide"}>{t("inforProductShipping.cancelOrder")}</span>
+            </div>
+            <div className="user_info ">
+                <p className="shipper">{t("inforProductShipping.shippingUnit")} AhaMove</p>
+                <p className={`id-product ${order?.order_id === undefined && "hide"}`}>{t("inforProductShipping.codeOder")} {order?.order_id}</p>
+                <p>{t("inforProductShipping.time")}: {order?.delivery_date}</p>
+            </div>
+            <div className="nav_label style-title">
+              <span>{t("inforProductShipping.statusOder")}</span>
+            </div>
+            <div className="user_info">
+              <p>{t("inforProductShipping.status")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? getOrderStatus(deleteoderproduct?.data?.status):getOrderStatus(order?.status)}</span></p>
+              <p className={order?.status === "USER_CANCEL" || deleteoderproduct?.isLoaded ? "show" : "hide" }>
+              {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
+                </span></p>
+            </div>
+            <div className="nav_label style-title">
+              <span>{t("inforProductShipping.oderList")}</span>
+            </div>
+            <div >
+              {
+                showCart()
+              }
             </div>
           </div>
-          <div className="user_info">
-              <div className="name_number">
-                <p>{order?.user_info?.name}</p>
-                <span>|</span>
-                <p>{order?.user_info?.mobile}</p>
+          <div className="fix-bottom">
+            <div className="divider"></div>
+              <>
+                <div className="row cart-total">
+                  <div className="row">
+                      <div className="col-6  text-sm ">{t("totalBottom.total")}</div>
+                      <div className="col-6 text-bold txt-right">
+                          <span className="text-nm">{NumberHelper.formatCurrency(order?.order_info?.total)}</span>
+                      </div>
+                      {
+                          order?.order_info?.shipping_fee > 0
+                          &&
+                          <>
+                              <div className="col-6  text-sm">{t("totalBottom.shippingFee")} {<span className="txt-style">({order?.shipping_info?.distance}km)</span>}</div>
+                              <div className="col-6 text-bold txt-right">
+                                  <span className="text-nm">+{ NumberHelper.formatCurrency(order?.order_info?.shipping_fee) }</span>
+                              </div>
+                          </>
+                      }
+                      {
+                          order?.promotion_info?.discount > 0
+                          && <>
+                                  <div className="col-6  text-sm">{t("totalBottom.promotion")}</div>
+                                  <div className="col-6 text-bold txt-right">
+                                      <span className="text-nm">-{ NumberHelper.formatCurrency(order?.promotion_info?.discount) }</span>
+                                  </div>
+                              </>
+                      }
+                  </div>
+                  <div className="row">
+                      <div className="col-6 text-bold text-sm new-text">{t("totalBottom.total")}</div>
+                      <div className="col-6 text-bold txt-right">
+                          <span className="text-nm new-text">{ NumberHelper.formatCurrency(
+                              (order?.user_info?.cod + order?.order_info?.shipping_fee ) - (order?.promotion_info?.discount  ? order?.promotion_info?.discount : 0)
+                          ) }</span>
+                      </div>
+                  </div>   
               </div>
-              <p className="address">
-                {order?.user_info?.address}
-              </p>
-          </div>
-          <div className="nav_label style-title">
-            <span>{t("inforProductShipping.titleTransport")}</span>
-            <span className={order?.status === "USER_CANCEL" ? "show" : "hide"}>{t("inforProductShipping.cancelOrder")}</span>
-          </div>
-          <div className="user_info ">
-              <p className="shipper">{t("inforProductShipping.shippingUnit")} AhaMove</p>
-              <p className={`id-product ${order?.order_id === undefined && "hide"}`}>{t("inforProductShipping.codeOder")} {order?.order_id}</p>
-              <p>{t("inforProductShipping.time")}: {order?.delivery_date}</p>
-          </div>
-          <div className="nav_label style-title">
-            <span>{t("inforProductShipping.statusOder")}</span>
-          </div>
-          <div className="user_info">
-            <p>{t("inforProductShipping.status")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? getOrderStatus(deleteoderproduct?.data?.status):getOrderStatus(order?.status)}</span></p>
-            <p className={order?.status === "USER_CANCEL" || deleteoderproduct?.isLoaded ? "show" : "hide" }>
-            {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
-              </span></p>
-          </div>
-          <div className="nav_label style-title">
-            <span>{t("inforProductShipping.oderList")}</span>
-          </div>
-          <div >
+            </>
             {
-              showCart()
+              (order?.status === STATUS_PENDING_VENDOR_APPROVE ||  order?.status === "USER_CANCEL") 
+              && <div className={`btn-with-icon right-icon`}>
+                      <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{order?.status === STATUS_PENDING_VENDOR_APPROVE ? t("totalBottom.CancelButton") : t("totalBottom.OderButton")}</button>
+                </div>
             }
           </div>
         </div>
-        <div className="fix-bottom">
-          <div className="divider"></div>
-            <>
-              <div className="row cart-total">
-                <div className="row">
-                    <div className="col-6  text-sm ">{t("totalBottom.total")}</div>
-                    <div className="col-6 text-bold txt-right">
-                        <span className="text-nm">{NumberHelper.formatCurrency(order?.order_info?.total)}</span>
-                    </div>
-                    {
-                        order?.order_info?.shipping_fee > 0
-                        &&
-                        <>
-                            <div className="col-6  text-sm">{t("totalBottom.shippingFee")} {<span className="txt-style">({order?.shipping_info?.distance}km)</span>}</div>
-                            <div className="col-6 text-bold txt-right">
-                                <span className="text-nm">+{ NumberHelper.formatCurrency(order?.order_info?.shipping_fee) }</span>
-                            </div>
-                        </>
-                    }
-                    {
-                        order?.promotion_info?.discount > 0
-                        && <>
-                                <div className="col-6  text-sm">{t("totalBottom.promotion")}</div>
-                                <div className="col-6 text-bold txt-right">
-                                    <span className="text-nm">-{ NumberHelper.formatCurrency(order?.promotion_info?.discount) }</span>
-                                </div>
-                            </>
-                    }
-                </div>
-                <div className="row">
-                    <div className="col-6 text-bold text-sm new-text">{t("totalBottom.total")}</div>
-                    <div className="col-6 text-bold txt-right">
-                        <span className="text-nm new-text">{ NumberHelper.formatCurrency(
-                            (order?.user_info?.cod + order?.order_info?.shipping_fee ) - (order?.promotion_info?.discount  ? order?.promotion_info?.discount : 0)
-                        ) }</span>
-                    </div>
-                </div>   
-            </div>
-          </>
-          {
-            (order?.status === STATUS_PENDING_VENDOR_APPROVE ||  order?.status === "USER_CANCEL") 
-            && <div className={`btn-with-icon right-icon`}>
-                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{order?.status === STATUS_PENDING_VENDOR_APPROVE ? t("totalBottom.CancelButton") : t("totalBottom.OderButton")}</button>
-              </div>
-          }
-        </div>
-      </div>
-        <PopUpCancelReason  showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp} comfirm={getBooleanConfirm} id={order?._id}/>
-        <Snackbar />
+          <PopUpCancelReason  showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp} comfirm={getBooleanConfirm} id={order?._id}/>
+          <Snackbar />
+        </>
+        :
+        <Blankpage message={t("error.found")} />
+      }
+  
     </div>
   );
 }

@@ -94,11 +94,23 @@ ul {
 
 }
 
-.flex-list {
- 
+.quantity-options,
+.dpl-flex{
+    display: flex;
+}
 
+.title_qty{
+    width: 50%;
+    margin: 0;
+    font-size: 14px;
     display: flex;
     align-items: center;
+}
+
+.flex-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     &.flex-center {
         justify-content: center;
     }

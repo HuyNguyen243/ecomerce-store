@@ -18,6 +18,7 @@ import {
 } from './../../../_config/shop.config';
 import Slider from "react-slick";
 import { useTranslation } from "react-i18next";
+import { getIdBtnTabs } from "./../../../redux/actions/index";
 
 const OrderProduct = ({ params, hideList = "" }) => {
   const[active,setActive] = useState(0)
@@ -26,13 +27,24 @@ const OrderProduct = ({ params, hideList = "" }) => {
   const { t } = useTranslation();
   const isLoading = useSelector(state => state.isLoading);
   const orders = useSelector(state => state.orders);
+  const idBtnTabs = useSelector(state => state.idBtnTabs);
+  const [slider,setSlider] = useState()
   const getOrdersCallback =  React.useCallback(() => {
     dispatch(getListOrders())
   }, [dispatch])
+  const [showTabs,setShowTabs] = useState()
 
   useEffect(() => {
     getOrdersCallback()
-  }, [getOrdersCallback])
+    if(idBtnTabs !== ""){
+      setActive(idBtnTabs)
+    }
+    if(idBtnTabs < 4){
+      setShowTabs(showTabs )
+    }else if( idBtnTabs === 4 || idBtnTabs ===  3 || idBtnTabs ===  2){
+      setShowTabs(idBtnTabs + 1)
+    }
+  }, [getOrdersCallback,idBtnTabs,slider,showTabs])
 
   const viewDetail = (order) => {
     history.push('/orders/'+order._id)
@@ -45,7 +57,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
     {id: 4, name: t("oderProduct.COMPLETED"), status : [STATUS_COMPLETED] },
     {id: 5, name: t("oderProduct.CANCELLED"), status : [STATUS_DENIED_BY_VENDOR, STATUS_USER_CANCEL, STATUS_CANCELLED] },
   ]
-  
+
   const showCart = () => {
     if(orders?.length >0){
         return orders.map((item,value)=>{
@@ -53,8 +65,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
           for(let i = 0 ;i < item.reference_items.length ;i++){
             totalContainer += item.reference_items[i].quantity
           }
-          
-          if(TABS[active].status.indexOf(item.status) !== -1) {
+          if(TABS[active]?.status?.indexOf(item.status) !== -1 ) {
             return(
               <div className="oder-item" key={value}>
                 <div className="oder-container">
@@ -93,6 +104,7 @@ const OrderProduct = ({ params, hideList = "" }) => {
   }
 
   const settings = {
+    initialSlide: showTabs,
     infinite: false,
     enterPadding: "60px",
     slidesToShow: 8,
@@ -123,9 +135,8 @@ const OrderProduct = ({ params, hideList = "" }) => {
       ]
   };
 
-
-  const [slider,setSlider] = useState()
   const handleButton = (index) =>{
+    dispatch(getIdBtnTabs(index))
     setActive(index)
     if(index !== 0 || index !== 4){
       if(index > active){

@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux"; 
 import { useDispatch } from "react-redux";
 import { getUserCarts } from './../../../redux/actions/index';
-import TotalBottom from "../order/TotalBottom";
 import { useTranslation } from "react-i18next";
+import NumberHelper from "./../../../_helpers/number";
 
 const Cart = ({
   hideCart,
@@ -17,6 +17,8 @@ const Cart = ({
   const dispatch = useDispatch();
   const [cartLoaded, setCartLoaded] = useState(false);
   const { t } = useTranslation();
+  const totalCartPrice = useSelector(state => state.totalCartPrice);
+
   const showCart=()=>{
     if(carts?.length >0){
         return carts.map((item,key)=>{
@@ -58,7 +60,12 @@ const Cart = ({
                   && <div className="fix-bottom">
                       <div>
                       <div className="divider"></div>
-                        <TotalBottom/>
+                        <div className="bottom">
+                          <div className="text-bold  new-text new-text2">{t("totalBottom.total")}</div>
+                              <span className=" new-text new-text2">
+                                   {   NumberHelper.formatCurrency(totalCartPrice)}
+                              </span>
+                      </div>   
                       </div>
                       <div className="btn-with-icon right-icon">
                         <Link to="/order-infomation">

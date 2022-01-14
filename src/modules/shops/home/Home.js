@@ -36,7 +36,7 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
               generalData?.data?.productByCategory?.length > 0
               && generalData?.data?.productByCategory.map((category, index) => {
                 return (
-                  <Slider key={index} type={'categories'} categoryId={category._id} addToCart={addToCart} getListData={getListData} data={category.products} title={category.name} showDetail={showDetail} />
+                  <Slider key={index} type={'categories'} categoryId={category._id} addToCart={addToCart} getListData={getListData} data={category.products} title={category.name} showDetail={showDetail} category={category}/>
                 );
               })
             }

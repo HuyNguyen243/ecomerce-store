@@ -24,6 +24,7 @@ import {
     GET_TITLE_CATEGORIES,
     DELETE_ORDER_PRODUCT,
     ON_CHANGE_LANG,
+    GET_ID_BUTTON_TABS,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -124,6 +125,10 @@ export const deleteParentOrderProduct = (id,reason) => {
 
 export const onLanguageChanged = (lang) => {
     return { type: ON_CHANGE_LANG, payload: lang };
+}
+
+export const getIdBtnTabs = (id) => {
+    return { type: GET_ID_BUTTON_TABS, payload: id };
 }
 
 

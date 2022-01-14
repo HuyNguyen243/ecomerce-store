@@ -3,7 +3,7 @@ import Item from "./../product/Item";
 import Blankpage from "./../../../_components/_blankpage.component";
 // import Icon from './../../../_components/_icon.component';
 import{ useHistory , useLocation } from "react-router-dom"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { headTitles } from './../../../redux/actions/index';
 import { getCategoriesByParentId } from "./../../../redux/actions/index";
 import { getParentTitleCategories } from "./../../../redux/actions/index";
@@ -15,6 +15,7 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
   const dispatch = useDispatch();
   const location = useLocation()
   const { t } = useTranslation();
+  const generalData = useSelector(state => state.generalData?.data.productByCategory);
 
   if (data.length > 0) {
     productList = data.map((product, index) => {
@@ -25,13 +26,17 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
       );
     });
   } else {
-    productList = <Blankpage message="Data not found!" />;
+    productList = <Blankpage message={t("error.found")} />;
   }
-
+ 
   const getByCategory = (id, listTitle) => {
     dispatch(headTitles(listTitle))
     if(location.pathname === "/"){
-      dispatch(getParentTitleCategories(listTitle))
+      for( let index of generalData){
+        if(id === index._id){
+          dispatch(getParentTitleCategories(index))
+        }
+      }
     }
     if(type === "products"){
       let url = '/products';
@@ -43,10 +48,8 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
       history.push(`/categories/${categoryId}`);
       dispatch(getCategoriesByParentId(id))
     }
-
+    
   }
-
-
   return (
     <div className="horizontal-wrapper">
         <div className="horizontal-header row">

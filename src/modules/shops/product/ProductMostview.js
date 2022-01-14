@@ -7,14 +7,16 @@ import {
   LIST_CART_NAV,
 } from "./../../../_config/shop.config";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router";
 
 const ProductMostview = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.isLoading);
   const mostview = useSelector(state => state.mostview);
   const headerTitles = useSelector(state => state.headerTitles);
+  const location = useLocation()
   const { t } = useTranslation();
-
+  
   var event;
   // Navigation
   const showNavigation = (elementId) => {
@@ -69,13 +71,14 @@ const ProductMostview = () => {
         
     }
   }
+  
   return (
     <>
       {isLoading && <div className="overlay-spinner"></div>}
       <div >
         <Header
           hasNavigation={true}
-          title={headerTitles}
+          title={location.pathname === "/products" && location.search === "" ? t("home.titlePromoted") :headerTitles}
           showCart={showIconcart}
         />
         <div className="main_container fix-images">

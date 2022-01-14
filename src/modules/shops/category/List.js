@@ -18,6 +18,7 @@ const ListCategory = () => {
   var event;
   // Navigation
   const showNavigation = (elementId) => {
+
     event = document.createEvent("HTMLEvents");
     let initEvent = `open_navigation_${elementId}`;
     event.initEvent(initEvent, true, true);
@@ -34,6 +35,7 @@ const ListCategory = () => {
   const isLoading = useSelector(state => state.isLoading);
   const categories = useSelector(state => state.categories);
   const getTitleCategories = useSelector(state =>state.getTitleCategories)
+
   const getCategoriesCallback = React.useCallback(() => {
     dispatch(getCategoriesByParentId(id))
 }, [dispatch, id]);
@@ -48,7 +50,7 @@ const ListCategory = () => {
     <div>
       <Header
         hasNavigation={true}
-        title={getTitleCategories}
+        title={getTitleCategories.name}
         showCart={showIconcart}
 
       />
