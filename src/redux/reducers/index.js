@@ -211,6 +211,7 @@ const rootReducer = (state = initState, action) => {
     case AUTHENTICATE_USER_SUCCESS:
       if (payload.success) {
         Auth.set(payload.data);
+        LocaleHelper.setLang(payload?.data?.lang)
       }
       return Object.assign({}, state, {
         isAuthenticated: payload.success,
