@@ -70,7 +70,7 @@ function InfoProductShipping(props) {
         return status
     }
   }
- 
+  console.log(order)
   const showCart = () => {
     if(order?.reference_items?.length >0){
         return order?.reference_items?.map((item,value)=>{
@@ -113,7 +113,7 @@ function InfoProductShipping(props) {
       }
     }
 
-    if(order?.status === "USER_CANCEL"){
+    if(order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED"){
       MySwal.fire({
         icon: 'info',
         showCancelButton: false,
@@ -264,7 +264,7 @@ function InfoProductShipping(props) {
               </div>
             </>
             {
-              (order?.status === STATUS_PENDING_VENDOR_APPROVE ||  order?.status === "USER_CANCEL") 
+              (order?.status === STATUS_PENDING_VENDOR_APPROVE ||  order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED") 
               && <div className={`btn-with-icon right-icon`}>
                       <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{order?.status === STATUS_PENDING_VENDOR_APPROVE ? t("totalBottom.CancelButton") : t("totalBottom.OderButton")}</button>
                 </div>

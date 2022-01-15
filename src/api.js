@@ -62,7 +62,6 @@ function apiRequest(url, requestOptions, isAuth = true) {
     const signal = controller.signal;
 
     requestOptions["signal"] = signal;
-
     let maxRequestTimeout = 15000;
 
     setTimeout(() => controller.abort(), maxRequestTimeout);
