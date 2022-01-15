@@ -39,12 +39,10 @@ const ListCategory = () => {
   const getCategoriesCallback = React.useCallback(() => {
     dispatch(getCategoriesByParentId(id))
 }, [dispatch, id]);
-
   useEffect(() => {
     if(!categories.isLoaded) {
       getCategoriesCallback()
     }
-
   }, [getCategoriesCallback, categories,]);
   return (
     <div>
