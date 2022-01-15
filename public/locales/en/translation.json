@@ -10,7 +10,8 @@
         "found" : "No matching information!",
         "searchPromotion" : "Incorrect search results!",
         "errorOder" : "Order failed",
-        "errorInformation" : "Please select shipping information"
+        "errorInformation" : "Please select shipping information",
+        "canCelReasonOfVendor" : "Your order was canceled by the distributor for the reason: Opps! Sorry, the product is currently not in stock. Please reorder later."
     },
     "home" : {
         "titlePromoted" : "Promoted products",
@@ -100,7 +101,7 @@
         "swalTitle" : "ORDER CONFIRMATION",
         "swalText" : "Are you sure to purchase this order?",
         "swalSuccess" : "ORDER SUCCESS",
-        "textThankFor" : "Thank you for ordering. Coca will deliver to you as soon as possible.",
+        "textThankFor" : "Thank you for ordering. Coca-Cola will deliver to you as soon as possible.",
         "expectedDelivery" : "Estimated delivery in 1 to 2 days!",
         "buttonSuccess" : "Order Confirmation"
     },

@@ -26,7 +26,6 @@ import withReactContent from 'sweetalert2-react-content'
 import SnackbarHelper from './../../../_helpers/snackbar';
 import CartService from "../../../_services/cart";
 import Snackbar from "../../../_components/_snackbar.component";
-import Blankpage from "./../../../_components/_blankpage.component";
 
 const MySwal = withReactContent(Swal)
 
@@ -70,7 +69,6 @@ function InfoProductShipping(props) {
         return status
     }
   }
-  console.log(order)
   const showCart = () => {
     if(order?.reference_items?.length >0){
         return order?.reference_items?.map((item,value)=>{
@@ -113,7 +111,7 @@ function InfoProductShipping(props) {
       }
     }
 
-    if(order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED"){
+    if(order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED"){
       MySwal.fire({
         icon: 'info',
         showCancelButton: false,
@@ -170,6 +168,7 @@ function InfoProductShipping(props) {
   const getBooleanConfirm = (props) => {
     setConfirmCancel(props)
   }
+
   return (
     <div className="body_wrapper ">
       {
@@ -178,7 +177,7 @@ function InfoProductShipping(props) {
       }
       {showheader()}
       {
-        order ?
+        order !== undefined ?
         <>
         <div className="display-flex">
           <div className="main_container">
@@ -199,21 +198,28 @@ function InfoProductShipping(props) {
             </div>
             <div className="nav_label style-title">
               <span>{t("inforProductShipping.titleTransport")}</span>
-              <span className={order?.status === "USER_CANCEL" ? "show" : "hide"}>{t("inforProductShipping.cancelOrder")}</span>
+              <span className={order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" ||  order?.status === "FAILED" || order?.status === "DENIED_BY_VENDOR" ? "show" : "hide"}>
+                {t("inforProductShipping.cancelOrder")}</span>
             </div>
             <div className="user_info ">
                 <p className="shipper">{t("inforProductShipping.shippingUnit")} AhaMove</p>
                 <p className={`id-product ${order?.order_id === undefined && "hide"}`}>{t("inforProductShipping.codeOder")} {order?.order_id}</p>
                 <p>{t("inforProductShipping.time")}: {order?.delivery_date}</p>
             </div>
-            <div className="nav_label style-title">
+            <div className={ `nav_label style-title ${order?.status !== undefined ? "show" : "hide"}`}>
               <span>{t("inforProductShipping.statusOder")}</span>
             </div>
             <div className="user_info">
-              <p>{t("inforProductShipping.status")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? getOrderStatus(deleteoderproduct?.data?.status):getOrderStatus(order?.status)}</span></p>
-              <p className={order?.status === "USER_CANCEL" || deleteoderproduct?.isLoaded ? "show" : "hide" }>
-              {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
-                </span></p>
+              <p className={order?.status !== undefined ? "show" : "hide"}>{t("inforProductShipping.status")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? getOrderStatus(deleteoderproduct?.data?.status):getOrderStatus(order?.status)}</span></p>
+              {
+                order?.status === "DENIED_BY_VENDOR" ?
+                <p className={order?.status !== undefined ? "show" : "hide" }>
+                {t("inforProductShipping.reason")}: <span className="strong-reason">{t("error.canCelReasonOfVendor")}</span></p>
+                  :
+                <p className={(order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED"  || deleteoderproduct?.isLoaded) && order?.status !== undefined ? "show" : "hide" }>
+                {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
+                  </span></p>
+              }
             </div>
             <div className="nav_label style-title">
               <span>{t("inforProductShipping.oderList")}</span>
@@ -264,7 +270,7 @@ function InfoProductShipping(props) {
               </div>
             </>
             {
-              (order?.status === STATUS_PENDING_VENDOR_APPROVE ||  order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED") 
+              (order?.status === STATUS_PENDING_VENDOR_APPROVE ||  order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED") 
               && <div className={`btn-with-icon right-icon`}>
                       <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{order?.status === STATUS_PENDING_VENDOR_APPROVE ? t("totalBottom.CancelButton") : t("totalBottom.OderButton")}</button>
                 </div>
@@ -275,7 +281,11 @@ function InfoProductShipping(props) {
           <Snackbar />
         </>
         :
-        <Blankpage message={t("error.found")} />
+        <div className="display-flex">
+          <div className="main_container">
+            <span className="error-messenger">{t("error.found")}</span>
+          </div>
+        </div>
       }
   
     </div>

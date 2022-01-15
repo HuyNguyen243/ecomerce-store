@@ -28,7 +28,7 @@ const Slider = ({ data, type, categoryId = '', title, showDetail, getListData, a
   } else {
     productList = <Blankpage message={t("error.found")} />;
   }
- 
+
   const getByCategory = (id, listTitle) => {
     dispatch(headTitles(listTitle))
     if(location.pathname === "/"){
