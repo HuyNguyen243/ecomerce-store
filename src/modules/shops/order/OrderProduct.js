@@ -56,10 +56,11 @@ const OrderProduct = ({ params, hideList = "" }) => {
     {id: 4, name: t("oderProduct.COMPLETED"), status : [STATUS_COMPLETED] },
     {id: 5, name: t("oderProduct.CANCELLED"), status : [STATUS_DENIED_BY_VENDOR, STATUS_USER_CANCEL, STATUS_CANCELLED] },
   ]
-
   const showCart = () => {
     if(orders?.length >0){
         return orders.map((item,value)=>{
+          if(item.status === "USER_CANCEL"){
+          }
           let totalContainer = 0
           for(let i = 0 ;i < item.reference_items.length ;i++){
             totalContainer += item.reference_items[i].quantity
@@ -74,12 +75,21 @@ const OrderProduct = ({ params, hideList = "" }) => {
                           <img className ="thumbnail-img" src={item.reference_items[0]?.image} alt="thumbnail" />
                           </div>
                           <div className ="item-info">
-                              <span className ={`id-product ${item.status === "PENDING_VENDOR_APPROVE" ? "show" : "hide"}`}>
-                                {t("inforProductShipping.statusOder")}: {t("inforProductShipping.VENDOR_APPROVE")}
-                              </span>
+                            {
+                              item.status === "PENDING_VENDOR_APPROVE" &&
+                              <span className ={`id-product`}>
+                              {t("inforProductShipping.statusOder")}: {t("inforProductShipping.VENDOR_APPROVE")}
+                            </span>
+                            }
+                            {
+                              item.status === "USER_CANCEL" &&
+                              <span className ={`id-product`}>
+                              {t("inforProductShipping.statusOder")}: {t("inforProductShipping.USER_CANCEL")}
+                            </span>
+                            }
                               <span className ={`id-product ${item?.order_id === undefined && "hide"}`}>{t("inforProductShipping.codeOder")} {item?.order_id !== undefined && item?.order_id}</span>
                               <span className ="item-qty">{t("inforProductShipping.qty")} <span>{totalContainer}</span></span>
-                              <span className ="item-qty">{t("totalBottom.total")}<span>&nbsp;
+                              <span className ="item-qty totalPrice">{t("totalBottom.total")}<span>&nbsp;
                               { NumberHelper.formatCurrency(
                                   (item?.order_info?.total + item?.order_info?.shipping_fee ) - (item?.promotion_info?.discount ? item?.promotion_info?.discount : 0)
                               )  }</span>
@@ -148,14 +158,14 @@ const OrderProduct = ({ params, hideList = "" }) => {
   }
   
   return (
-    <div id={USER_ORDER_NAV} className="nav-right">
+    <div className="body_wrapper">
       <Header
         hasNavigation={true}
         doNavigation={hideList}
         navId={USER_ORDER_NAV}
         title= {t("oderProduct.title")}
       />
-      <div className="main_container">
+      <div className="display-flex">
           <div  className="style-list">
             <Slider {...settings} ref={c => setSlider(c)}>
               {
@@ -167,9 +177,12 @@ const OrderProduct = ({ params, hideList = "" }) => {
               }
             </Slider>
           </div>
-      <div className="news-style-cart style-for-cart style-product">
-          {showCart()}
-        </div>
+          <div className="main_container_style">
+          
+          <div className="news-style-cart style-for-cart style-product">
+              {showCart()}
+            </div>
+          </div>
       </div>
     </div>
   );

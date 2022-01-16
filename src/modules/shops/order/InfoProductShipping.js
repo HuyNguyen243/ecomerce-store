@@ -111,7 +111,7 @@ function InfoProductShipping(props) {
       }
     }
 
-    if(order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED"){
+    if(order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED" || order?.status === "DENIED_BY_VENDOR" ){
       MySwal.fire({
         icon: 'info',
         showCancelButton: false,
@@ -168,7 +168,7 @@ function InfoProductShipping(props) {
   const getBooleanConfirm = (props) => {
     setConfirmCancel(props)
   }
-
+  
   return (
     <div className="body_wrapper ">
       {
@@ -199,7 +199,8 @@ function InfoProductShipping(props) {
             <div className="nav_label style-title">
               <span>{t("inforProductShipping.titleTransport")}</span>
               <span className={order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" ||  order?.status === "FAILED" || order?.status === "DENIED_BY_VENDOR" ? "show" : "hide"}>
-                {t("inforProductShipping.cancelOrder")}</span>
+                {t("inforProductShipping.cancelOrder")}
+              </span>
             </div>
             <div className="user_info ">
                 <p className="shipper">{t("inforProductShipping.shippingUnit")} AhaMove</p>
@@ -270,7 +271,7 @@ function InfoProductShipping(props) {
               </div>
             </>
             {
-              (order?.status === STATUS_PENDING_VENDOR_APPROVE ||  order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED") 
+              (order?.status === STATUS_PENDING_VENDOR_APPROVE ||  order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED" || order?.status === "DENIED_BY_VENDOR" ) 
               && <div className={`btn-with-icon right-icon`}>
                       <button type="submit" className="btn btn-primary" onClick={handleSubmit}>{order?.status === STATUS_PENDING_VENDOR_APPROVE ? t("totalBottom.CancelButton") : t("totalBottom.OderButton")}</button>
                 </div>

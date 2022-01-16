@@ -55,8 +55,6 @@ function TotalBottom(props) {
 
     return (
         <>
-                    <PopUpPromotion showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp}/>
-
             {
                 isLoading
                 && <div className="overlay-spinner"></div>
@@ -110,11 +108,11 @@ function TotalBottom(props) {
                                 (totalCartPrice + shippingFee?.total_pay) - (appliedPromotion?.discount ? appliedPromotion?.discount : 0)
                             )
                     }
-
                     </span>
                 </div>
             </div>   
             </div> 
+            <PopUpPromotion showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp}/>
         </>
     );
 }
