@@ -20,7 +20,6 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
       dispatch(getIdBtnTabs(""))
     }
   })
-
   const showShoppingCart = () => {
       if (showCart !== '') {
         let totalContainer = 0
@@ -39,6 +38,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
         )
     }
   }
+
   const handleGoBack = () => {
     if(doNavigation !== '') {
       doNavigation()
@@ -50,7 +50,6 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
       }
     }
   }
-
   return (
     <div className={`flex-list flex-stretch shop-header ${headerBg}`}>
       <div className="header-home">
@@ -64,7 +63,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
             title !== '' ?  title  : <Search handleSubmit={handleSubmit} />
           }
         </div>
-        <div className="header-cart">
+        <div className="header-cart" >
           { showShoppingCart() }
         </div>
         <div className="language">

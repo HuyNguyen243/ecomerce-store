@@ -25,6 +25,8 @@ import {
     DELETE_ORDER_PRODUCT,
     ON_CHANGE_LANG,
     GET_ID_BUTTON_TABS,
+    SHOW_LOADER,
+    SHOW_POPUP,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -130,5 +132,17 @@ export const onLanguageChanged = (lang) => {
 export const getIdBtnTabs = (id) => {
     return { type: GET_ID_BUTTON_TABS, payload: id };
 }
+
+export const getShowLoaded = (param) => {
+    return { type: SHOW_LOADER, payload: param };
+}
+
+export const getShowPopup = (param) => {
+    return { type: SHOW_POPUP, payload: param };
+}
+
+
+
+
 
 

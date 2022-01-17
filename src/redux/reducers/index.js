@@ -69,6 +69,10 @@ import {
 
   GET_ID_BUTTON_TABS,
 
+  SHOW_LOADER,
+  
+  SHOW_POPUP,
+
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -143,6 +147,8 @@ const initState = {
   },
   reOderProduct : "",
   idBtnTabs: "",
+  showSpinner:"",
+  showPopUpAdventisement: ""
 };
 
 const rootReducer = (state = initState, action) => {
@@ -464,6 +470,14 @@ const rootReducer = (state = initState, action) => {
         return Object.assign({}, state, {
           idBtnTabs: payload
         });
+      case SHOW_LOADER:
+          return Object.assign({}, state, {
+            showSpinner: payload
+          });
+      case SHOW_POPUP:
+          return Object.assign({}, state, {
+            showPopUpAdventisement: payload
+          });
     default:
       return Object.assign({}, state, {
         isLoading: false

@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 import SnackbarHelper from './../../../_helpers/snackbar';
 import Snackbar from "../../../_components/_snackbar.component";
 import { useTranslation } from "react-i18next";
+import { getShowLoaded } from "./../../../redux/actions/index";
 
 const ProductDetail = ({ product, quantity, changeQuantity }) => {
   const [confirmAddToCart,setConfirmAddToCart] = useState(true)
@@ -60,25 +61,7 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
             }
           }
         }
-        if(confirmAddToCart){
-            CartService.add({
-              id          : product._id,
-              name        : product.name,
-              image       : product.image,
-              price       : product.price,
-              couponPrice : product.couponPrice,
-              weight      : product.weight,
-              minOrder    : product.minOrder,
-              quantity    : quantity
-            })
-          SnackbarHelper.show(t("productDetail.addCartSuccess"))
-          dispatch(addCart())
-          setConfirmAddToCart(false)
-        }
         if(showCart){
-          if(confirmAddToCart){
-            history.push('/cart')
-          }else{
             setConfirmAddToCart(true)
             CartService.add({
               id          : product._id,
@@ -91,14 +74,29 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
               quantity    : quantity
             })
             dispatch(addCart())
-            SnackbarHelper.show(t("productDetail.moveCart"))
+            dispatch(getShowLoaded(true))
             setTimeout(()=>{
               history.push('/cart')
             },1500)
-          }
+        }else{
+            if(confirmAddToCart){
+              CartService.add({
+                id          : product._id,
+                name        : product.name,
+                image       : product.image,
+                price       : product.price,
+                couponPrice : product.couponPrice,
+                weight      : product.weight,
+                minOrder    : product.minOrder,
+                quantity    : quantity
+              })
+            SnackbarHelper.show(t("productDetail.addCartSuccess"))
+            dispatch(addCart())
+            setConfirmAddToCart(false)
+            }
         }
     }
-
+    
     React.useEffect(()=>{
       if(!confirmAddToCart){
         setTimeout(()=>{

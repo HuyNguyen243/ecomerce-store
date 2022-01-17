@@ -7,33 +7,33 @@ import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 import { useDispatch } from 'react-redux';
 import { getCodePromotion } from '../../../../redux/actions/index';
+import { getShowPopup } from '../../../../redux/actions/index';
 const MySwal = withReactContent(Swal)
 
 function PopUpAdventisement(props) {
-
     const generalData = useSelector(state => state.generalData);
     const [advertisement,setAdevertisement]= useState("")
     const dispatch = useDispatch()
     const modalPopup = useSelector(state => state.modalPopup);
+    const showPopUpAdventisement = useSelector(state => state.showPopUpAdventisement);
     const { t } = useTranslation();
+    
     React.useEffect(()=>{
+      if(showPopUpAdventisement === ""){
+        dispatch(getShowPopup(true))
+      }
         if(generalData?.data.banners?.length > 0){
           setAdevertisement(generalData.data.banners)
         }
-        
-      },[setAdevertisement,generalData.data.banners,])
+      },[setAdevertisement,generalData.data.banners,dispatch,showPopUpAdventisement])
 
-   
-    
       useEffect(() => {
-
         const actionUsePromotion = (id) => {
           let formData = new FormData();
           formData.append('promo_id', id)
           dispatch(applyPromotion(formData))
           dispatch(getCodePromotion(id))
       }
-
         const listSwal = () =>{
           if(advertisement!==""){
             return advertisement.map((item,value)=>{
@@ -73,10 +73,10 @@ function PopUpAdventisement(props) {
             })
           }
         }
-      
-          if(generalData.isLoaded && !modalPopup?.active){
+          if(showPopUpAdventisement){
             MySwal.fire({
               showCloseButton: true,
+              showCancelButton: false,
               showConfirmButton :false,
               html:  <div className='Offer-Shock'>
                         <div className='Offer-title'> 
@@ -90,14 +90,12 @@ function PopUpAdventisement(props) {
               ,
             }).then((result)=>{
               if(result.isDismissed){
-                if(generalData.isLoaded ){
-                    generalData.isLoaded = false
-                }
+                dispatch(getShowPopup(false))
               }
             })
           }
 
-        },[advertisement,setAdevertisement,generalData,dispatch,modalPopup,t]);
+        },[advertisement,setAdevertisement,generalData,dispatch,modalPopup,t,showPopUpAdventisement]);
         const handleAfterSubmit =  React.useCallback(() => {
             if(modalPopup.data.success) {
                 ModalService.success(t("popUpPromotion.success"))
