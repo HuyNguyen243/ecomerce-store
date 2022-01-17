@@ -1,3 +1,6 @@
+html{
+  overflow: hidden !important;
+}
 html,
 body {
   background-color: $color-bg;
@@ -17,6 +20,15 @@ body {
   height: 100%;
   margin: 0 auto;
   position: relative;
+}
+.main_container_style::-webkit-scrollbar{
+  display: none;
+}
+.main_container_style{
+  width: 100%;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: auto;
 }
 .main_container {
   width: 100%;

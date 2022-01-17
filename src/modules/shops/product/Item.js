@@ -44,10 +44,10 @@ const Item = ({id, data}) => {
     }
       
     if(showCart){
+      console.log(confirmAddToCart)
       if(confirmAddToCart){
         history.push('/cart')
       }else{
-        setConfirmAddToCart(true)
         CartService.add({
           id          : data._id,
           name        : data.name,

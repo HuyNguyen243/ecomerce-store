@@ -259,7 +259,7 @@
         justify-content: center;
         flex-direction: column;
         box-shadow: 3px 3px #2125291c;
-        
+        z-index: 1000;
         .title-swal{
             display: flex;
             justify-content: center;
@@ -296,6 +296,7 @@
     height: 100vh;
     position: absolute;
     background: #5b5b5b80;
+    z-index: 999;
 }
 
 .main-container-swal{
@@ -470,7 +471,11 @@
   }
 
   .style-list{
+      padding-top: 80px;
+      padding-bottom: 10px;
       overflow: auto;
+      box-shadow: 5px 5px 10px #fff;
+      z-index: 1;
       &::-webkit-scrollbar{
           display: none;
       }
@@ -486,9 +491,6 @@
       background: #e7e7e7;
   }
 
-  .style-list{
-      padding-bottom: 10px;
-  }
   .slick-dots li button:before{
     font-size: 10px;
   }

@@ -504,3 +504,13 @@
     font-size: 16px;
   }
 }
+
+.totalPrice{
+  display: flex !important;
+  justify-content: flex-start;
+  align-items: center;
+  span{
+    color: #f40000;
+    font-weight: bold;
+  }
+}

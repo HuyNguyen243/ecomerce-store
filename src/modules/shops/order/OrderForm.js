@@ -115,7 +115,7 @@ const OrderForm = ({ onSubmit, isLoading,
           icon: 'info',
           showCancelButton: false,
           showConfirmButton: false,
-          html : <div className="swal_deleteProduct">
+          html : <div className="swal_deleteProduct" >
                   <div>
                     <p className="text-danger">{t("oderForm.error1")}</p>
                   </div>
@@ -150,7 +150,8 @@ const OrderForm = ({ onSubmit, isLoading,
   }
   
   return (
-    <div id={LIST_CART_NAV} className="nav-right">
+    <div  className=" body_wrapper ">
+      {PopUpAdventisement()}
       <Header
         doNavigation={hideCart}
         navId={LIST_CART_NAV}
@@ -158,7 +159,6 @@ const OrderForm = ({ onSubmit, isLoading,
         title= {t("oderForm.title")}
         totalCart={totalCart}
       />
-            {PopUpAdventisement()}
       <div className="display-flex">
         <div className="main_container">
         <form className="basic-form" >
