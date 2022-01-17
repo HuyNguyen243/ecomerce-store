@@ -14,12 +14,12 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
   const generalData = useSelector(state => state.generalData);
   const location = useLocation()
   const dispatch = useDispatch()
-  
   React.useEffect(()=>{
     if(location.pathname === "/" ){
       dispatch(getIdBtnTabs(""))
     }
   })
+  
   const showShoppingCart = () => {
       if (showCart !== '') {
         let totalContainer = 0
