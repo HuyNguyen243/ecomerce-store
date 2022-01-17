@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneProduct } from './../../../redux/actions/index';
 import { useTranslation } from "react-i18next";
+import Spiner from "../../../_helpers/Spinner";
 
 
 const Detail = ({
@@ -86,6 +87,7 @@ const Detail = ({
               />
             : <Blankpage message= {t("error.found")} />
           }
+        <Spiner />
       </div>
     </div>
   );

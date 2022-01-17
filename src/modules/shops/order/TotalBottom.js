@@ -17,7 +17,7 @@ function TotalBottom(props) {
     const shippingFee = useSelector(state => state.shippingFee);
     const promotionVoucher = useSelector(state => state.promotionVoucher);
     const generalData = useSelector(state => state.generalData);
-
+    
     const { t } = useTranslation();
     const showPromotion = () =>{
         setShowPopUp(true)

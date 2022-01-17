@@ -5,6 +5,7 @@ import Offer from "./Offer";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { getInitData } from './../../../redux/actions/index';
+import Spiner from "../../../_helpers/Spinner";
 
 const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, addToCart }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
       getGeneralDataCallback()
     }
   }, [getGeneralDataCallback, generalData]);
+
   return (
     <div className="main_container fix-image">
       <Offer data={generalData?.data?.banners}/>
@@ -43,6 +45,7 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
             <LeftNav menu={[]} showLeftNav={showLeftNav} getListData={getListData} showNavigation={showNavigation} />
           </>
       }
+      <Spiner />
     </div>
   );
 };

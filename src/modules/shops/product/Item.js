@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PriceDisplay from './PriceDisplay';
 import ImageDisplay from './ImageDisplay';
 import {Link} from "react-router-dom"
@@ -8,15 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCart } from './../../../redux/actions/index';
 import SnackbarHelper from './../../../_helpers/snackbar';
 import { useTranslation } from "react-i18next";
+import { getShowLoaded } from "./../../../redux/actions/index";
 
 const Item = ({id, data}) => {
-  
   const history = useHistory();
   const dispatch = useDispatch();
   const carts = useSelector(state => state.carts);
-  const [confirmAddToCart,setConfirmAddToCart] = useState(true)
   const { t } = useTranslation();
-
   const addToCart = (showCart = false) => {
     for(let i = 0 ;i < carts.length ;i++){
       if(carts[i]["id"] === data._id){
@@ -26,28 +24,8 @@ const Item = ({id, data}) => {
         }
       }
     }
-    
-    if(confirmAddToCart){
-      CartService.add({
-        id          : data._id,
-        name        : data.name,
-        image       : data.image,
-        price       : data.price,
-        couponPrice : data.couponPrice,
-        weight      : data.weight,
-        minOrder    : data.minOrder,
-        quantity    : 1
-      })
-      dispatch(addCart())
-      setConfirmAddToCart(false)
-      SnackbarHelper.show(t("productDetail.addCartSuccess"))
-    }
-      
+
     if(showCart){
-      console.log(confirmAddToCart)
-      if(confirmAddToCart){
-        history.push('/cart')
-      }else{
         CartService.add({
           id          : data._id,
           name        : data.name,
@@ -59,22 +37,25 @@ const Item = ({id, data}) => {
           quantity    : 1
         })
         dispatch(addCart())
-        SnackbarHelper.show(t("productDetail.moveCart"))
+        dispatch(getShowLoaded(true))
         setTimeout(()=>{
           history.push('/cart')
         },1500)
-      }
+    }else{
+        CartService.add({
+          id          : data._id,
+          name        : data.name,
+          image       : data.image,
+          price       : data.price,
+          couponPrice : data.couponPrice,
+          weight      : data.weight,
+          minOrder    : data.minOrder,
+          quantity    : 1
+        })
+        dispatch(addCart())
+        SnackbarHelper.show(t("productDetail.addCartSuccess"))
     }
   }
-
-  React.useEffect (()=>{
-    if(!confirmAddToCart){
-      setTimeout(()=>{
-        setConfirmAddToCart(true)
-        },1500)
-    }
-  },[setConfirmAddToCart,confirmAddToCart,t])
-
 
   return (
       <div className="shop-item">
