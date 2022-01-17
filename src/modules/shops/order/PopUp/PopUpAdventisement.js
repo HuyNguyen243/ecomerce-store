@@ -17,15 +17,15 @@ function PopUpAdventisement(props) {
     const modalPopup = useSelector(state => state.modalPopup);
     const showPopUpAdventisement = useSelector(state => state.showPopUpAdventisement);
     const { t } = useTranslation();
-    
+
     React.useEffect(()=>{
-      if(showPopUpAdventisement === ""){
-        dispatch(getShowPopup(true))
-      }
+        if(showPopUpAdventisement === "" && !modalPopup.active){
+          dispatch(getShowPopup(true))
+        }
         if(generalData?.data.banners?.length > 0){
           setAdevertisement(generalData.data.banners)
         }
-      },[setAdevertisement,generalData.data.banners,dispatch,showPopUpAdventisement])
+      },[setAdevertisement,generalData.data.banners,dispatch,showPopUpAdventisement,modalPopup])
 
       useEffect(() => {
         const actionUsePromotion = (id) => {
@@ -73,7 +73,7 @@ function PopUpAdventisement(props) {
             })
           }
         }
-          if(showPopUpAdventisement){
+          if(showPopUpAdventisement && !modalPopup.active){
             MySwal.fire({
               showCloseButton: true,
               showCancelButton: false,
@@ -99,14 +99,14 @@ function PopUpAdventisement(props) {
         const handleAfterSubmit =  React.useCallback(() => {
             if(modalPopup.data.success) {
                 ModalService.success(t("popUpPromotion.success"))
-                generalData.isLoaded = false
+                dispatch(getShowPopup(false))
             }else {
                 ModalService.error(t("popUpPromotion.failed"))
             }
             setTimeout(() => {
                 dispatch(resetPopup())
             }, 1000);
-        }, [modalPopup, dispatch,generalData ,t])
+        }, [modalPopup, dispatch,t])
         React.useEffect(() => {
             if(modalPopup.active) {
                 handleAfterSubmit()
