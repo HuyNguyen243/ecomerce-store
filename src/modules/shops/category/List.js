@@ -8,6 +8,8 @@ import {
   LIST_CART_NAV,
 } from "./../../../_config/shop.config";
 import { useTranslation } from "react-i18next";
+import Spiner from "../../../_helpers/Spinner";
+import SpinnerAddToCart from "../../../_helpers/SpinnerAddToCart";
 
 
 const ListCategory = () => {
@@ -68,6 +70,8 @@ const ListCategory = () => {
               }
             </>
         }
+        <Spiner />
+        <SpinnerAddToCart />
         <div id="snackbar" className="">{t("productDetail.addCartSuccess")}</div>
       </div>
     </div>

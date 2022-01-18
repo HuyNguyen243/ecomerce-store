@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { getInitData } from './../../../redux/actions/index';
 import Spiner from "../../../_helpers/Spinner";
+import SpinnerAddToCart from "../../../_helpers/SpinnerAddToCart";
 
 const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, addToCart }) => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const Home = ({ params, showDetail, showLeftNav, getListData, showNavigation, ad
           </>
       }
       <Spiner />
+      <SpinnerAddToCart />
     </div>
   );
 };

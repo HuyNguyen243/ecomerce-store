@@ -73,6 +73,8 @@ import {
   
   SHOW_POPUP,
 
+  SHOW_LOADING_ADDTOCART,
+
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -148,7 +150,8 @@ const initState = {
   reOderProduct : "",
   idBtnTabs: "",
   showSpinner:"",
-  showPopUpAdventisement: ""
+  showPopUpAdventisement: "",
+  loadingAddtoCart:""
 };
 
 const rootReducer = (state = initState, action) => {
@@ -479,6 +482,10 @@ const rootReducer = (state = initState, action) => {
           return Object.assign({}, state, {
             showPopUpAdventisement: payload
           });
+      case SHOW_LOADING_ADDTOCART:
+        return Object.assign({}, state, {
+          loadingAddtoCart: payload
+        });
     default:
       return Object.assign({}, state, {
         isLoading: false
