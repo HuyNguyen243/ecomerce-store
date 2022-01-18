@@ -162,7 +162,7 @@ function PopUpPromotion(props) {
                             {/*  */}
                         </div>
                         <div className='Button-buttom'>
-                            <button onClick={buttonClose}>{t("cart.CloseButton")}</button>
+                            <span onClick={buttonClose}>{t("cart.CloseButton")}</span>
                         </div>
                     </div>
                     <span onClick={buttonClose} className='overlay-close'></span>

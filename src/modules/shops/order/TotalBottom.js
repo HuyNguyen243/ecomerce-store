@@ -65,7 +65,7 @@ function TotalBottom(props) {
                 <div className="col-6 text-bold txt-right">
                     <div className='border-promotion'>
                         {/* <input type="text" name="code"   placeholder="Nhập mã giảm giá" className={"btn-discount"} onClick={showPromotion} value={codePromotion? codePromotion.toUpperCase():""}/> */}
-                        <button className='code' onClick={showPromotion}>{codePromotion? codePromotion.toUpperCase(): t("totalBottom.placeholderPromotion")}</button>
+                        <span className='code' onClick={showPromotion}>{codePromotion? codePromotion.toUpperCase(): t("totalBottom.placeholderPromotion")}</span>
                     </div>
                 </div>
             </div>  

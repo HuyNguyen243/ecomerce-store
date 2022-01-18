@@ -112,8 +112,8 @@ function PopUpCancelReason(props) {
                     <span  className={`danger-popup txt-danger + ${input.replace(/\s/g, "").length === 0 && selectedReason === 3 ? "showw" : "hide"}`}>{t("popUpCancelReason.error")}</span>
                 </div>
                 <div className='Button-buttom'>
-                    <button onClick={buttonClose}>{t("cart.CloseButton")}</button>
-                    <button onClick={buttonSubmit}>{t("cart.SubmitButton")}</button>
+                    <span onClick={buttonClose}>{t("cart.CloseButton")}</span>
+                    <span onClick={buttonSubmit}>{t("cart.SubmitButton")}</span>
                 </div>
             </div>
             <span onClick={buttonClose} className='overlay-close'></span>

@@ -154,7 +154,6 @@ function InfoProductShipping(props) {
     setShowPopUp(!props)
   }
 
-  
   const showheader =()=>{
     return(
       <Header

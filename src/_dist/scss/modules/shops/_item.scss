@@ -486,7 +486,7 @@ $text-row: 2;
 
 
 .group-buttons{
-  display: flex;
+  display: flex; 
   .button-l{
     width: 50%;
     background-color: #f40000;
@@ -494,7 +494,7 @@ $text-row: 2;
     justify-content: center;
     align-items: center;
     border-radius: 5px 0 0 5px;
-    button{
+    span{
       color: #fff;
       font-size: 4.5vw;
     }
@@ -506,7 +506,8 @@ $text-row: 2;
     justify-content: center;
     align-items: center;
     border-radius:0 5px  5px 0;
-    button{
+    p{
+      margin: 0;
       img{
         width: 5.5vw;
         padding-right: 2px;

@@ -72,12 +72,12 @@ const Item = ({id, data}) => {
           </Link>
           <div className="item-button flex-list row">
             <div className="button-left">
-              <button type="button" onClick={() => addToCart(true)}>{t("home.buttonBuy")}</button>
+              <span type="button" onClick={() => addToCart(true)}>{t("home.buttonBuy")}</span>
             </div>
             <div className="button-right" >
-              <button type="button" onClick={() => addToCart()}>
+              <span type="button" onClick={() => addToCart()}>
                 <img src="/images/shopping-cart.png" alt="menu_icon" />
-              </button>
+              </span>
             </div>
           </div>
         </div>
