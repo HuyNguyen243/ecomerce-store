@@ -9,6 +9,7 @@ import { addCart } from './../../../redux/actions/index';
 import SnackbarHelper from './../../../_helpers/snackbar';
 import { useTranslation } from "react-i18next";
 import { getShowLoaded } from "./../../../redux/actions/index";
+import { getShowLoadingAddtoCart } from "./../../../redux/actions/index";
 
 const Item = ({id, data}) => {
   const history = useHistory();
@@ -24,7 +25,6 @@ const Item = ({id, data}) => {
         }
       }
     }
-
     if(showCart){
         CartService.add({
           id          : data._id,
@@ -53,6 +53,7 @@ const Item = ({id, data}) => {
           quantity    : 1
         })
         dispatch(addCart())
+        dispatch(getShowLoadingAddtoCart(true))
         SnackbarHelper.show(t("productDetail.addCartSuccess"))
     }
   }

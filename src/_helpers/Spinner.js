@@ -5,7 +5,7 @@ import { getShowLoaded } from '../redux/actions';
 function Spiner(props) {
     const showSpinner = useSelector(state => state.showSpinner);
     const dispatch = useDispatch()
-
+    
     React.useEffect(()=>{
         if(showSpinner){
             setTimeout(()=>{

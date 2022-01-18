@@ -27,6 +27,7 @@ import {
     GET_ID_BUTTON_TABS,
     SHOW_LOADER,
     SHOW_POPUP,
+    SHOW_LOADING_ADDTOCART,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -139,6 +140,10 @@ export const getShowLoaded = (param) => {
 
 export const getShowPopup = (param) => {
     return { type: SHOW_POPUP, payload: param };
+}
+
+export const getShowLoadingAddtoCart = (param) => {
+    return { type: SHOW_LOADING_ADDTOCART, payload: param };
 }
 
 

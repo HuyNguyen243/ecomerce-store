@@ -8,6 +8,8 @@ import {
 } from "./../../../_config/shop.config";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
+import Spiner from "../../../_helpers/Spinner";
+import SpinnerAddToCart from "../../../_helpers/SpinnerAddToCart";
 
 const ProductMostview = () => {
   const dispatch = useDispatch();
@@ -84,6 +86,8 @@ const ProductMostview = () => {
         <div className="main_container fix-images">
                   {DataMostView()}
         </div>
+        <Spiner />
+        <SpinnerAddToCart />
         <div id="snackbar" className="">{t("productDetail.addCartSuccess")}</div>
       </div>
     </>
