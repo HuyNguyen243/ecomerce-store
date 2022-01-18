@@ -360,7 +360,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      button{
+      span{
           width: 49%;
           border: none;
           font-size: 16px;
@@ -368,8 +368,9 @@
           color: #f40000;
           padding: 10px;
           border-radius: 5px;
+          text-align: center;
       }
-      button:nth-child(2){
+      span:nth-child(2){
         background: #f40000;
         color: #fff;
         margin-left: 1%;
