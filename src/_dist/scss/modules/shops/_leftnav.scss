@@ -72,6 +72,13 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
+    .group-buttons .button-r img{
+        width: 14px !important;
+    }
+    .group-buttons .button-r span,
+    .group-buttons .button-l span {
+        font-size: 14px !important;
+    }
     .header-search{
         font-size: 10px !important;
     }
@@ -351,6 +358,13 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
+    .group-buttons .button-r img{
+        width: 11px !important;
+    }
+    .group-buttons .button-r span,
+    .group-buttons .button-l span {
+        font-size: 11px !important;
+    }
     .danger-popup{
         padding-left: 10px;
     }
