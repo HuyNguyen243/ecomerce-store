@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PriceDisplay from "./PriceDisplay";
 import ImageDisplay from "./ImageDisplay";
 import Slideshow from "./ProductSlideshow";
@@ -12,7 +12,6 @@ import { useTranslation } from "react-i18next";
 import { getShowLoaded } from "./../../../redux/actions/index";
 
 const ProductDetail = ({ product, quantity, changeQuantity }) => {
-  const [confirmAddToCart,setConfirmAddToCart] = useState(true)
   const history = useHistory()
   const dispatch = useDispatch();
   const carts = useSelector(state => state.carts);
@@ -61,50 +60,27 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
             }
           }
         }
+        CartService.add({
+          id          : product._id,
+          name        : product.name,
+          image       : product.image,
+          price       : product.price,
+          couponPrice : product.couponPrice,
+          weight      : product.weight,
+          minOrder    : product.minOrder,
+          quantity    : quantity
+        })
+        dispatch(addCart())
+        dispatch(getShowLoaded(true))
         if(showCart){
-            setConfirmAddToCart(true)
-            CartService.add({
-              id          : product._id,
-              name        : product.name,
-              image       : product.image,
-              price       : product.price,
-              couponPrice : product.couponPrice,
-              weight      : product.weight,
-              minOrder    : product.minOrder,
-              quantity    : quantity
-            })
-            dispatch(addCart())
-            dispatch(getShowLoaded(true))
             setTimeout(()=>{
               history.push('/cart')
             },1500)
         }else{
-            if(confirmAddToCart){
-              CartService.add({
-                id          : product._id,
-                name        : product.name,
-                image       : product.image,
-                price       : product.price,
-                couponPrice : product.couponPrice,
-                weight      : product.weight,
-                minOrder    : product.minOrder,
-                quantity    : quantity
-              })
             SnackbarHelper.show(t("productDetail.addCartSuccess"))
-            dispatch(addCart())
-            setConfirmAddToCart(false)
-            }
         }
     }
     
-    React.useEffect(()=>{
-      if(!confirmAddToCart){
-        setTimeout(()=>{
-          setConfirmAddToCart(true)
-          },1500)
-      }
-    })
-
   const btnQTY = ()=>{
     return  (
         <div className="news-style-QTY">
@@ -165,7 +141,6 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
         <Snackbar />
       </div>
     );
- 
 };
 
 export default ProductDetail;

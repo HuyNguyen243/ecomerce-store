@@ -10,7 +10,7 @@ function SpinnerAddToCart(props) {
         if(loadingAddtoCart){
             setTimeout(()=>{
                 dispatch(getShowLoadingAddtoCart(false))
-            },500)
+            },1000)
         }
     })
     
