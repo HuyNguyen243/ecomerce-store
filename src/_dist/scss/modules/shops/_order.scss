@@ -475,6 +475,7 @@
       padding-top: 80px;
       padding-bottom: 10px;
       overflow: auto;
+      overflow-y: hidden;
       box-shadow: 5px 5px 10px #fff;
       z-index: 1;
       &::-webkit-scrollbar{

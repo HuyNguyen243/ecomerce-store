@@ -356,7 +356,7 @@ $text-row: 2;
 
 .container{
   margin: 0 15px;
-  padding-bottom: 15px;
+  // padding-bottom: 15px;
   .Offer-title{
     p{
       margin: 0px;
@@ -531,3 +531,44 @@ $text-row: 2;
   display: flex;
 }
 
+
+
+
+.slideshow {
+  margin: 0 auto;
+  overflow: hidden;
+  // max-width: 500px;
+  // width: 100%;
+}
+
+.slideshowSlider {
+  white-space: nowrap;
+  transition: ease 1000ms;
+}
+
+.slide {
+  display: inline-block;
+  clear: both;
+  width: 100%;
+  border-radius: 40px;
+}
+
+/* Buttons */
+
+.slideshowDots {
+  text-align: center;
+}
+
+.slideshowDot {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #c4c4c4;
+  margin: 0 5px;
+}
+
+.slideshowDot.active {
+  background-color: #6a0dad;
+}
