@@ -69,6 +69,7 @@ function InfoProductShipping(props) {
         return status
     }
   }
+  
   const showCart = () => {
     if(order?.reference_items?.length >0){
         return order?.reference_items?.map((item,value)=>{
