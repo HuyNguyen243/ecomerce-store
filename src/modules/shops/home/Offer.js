@@ -5,6 +5,7 @@ import { applyPromotion, resetPopup } from './../../../redux/actions/index';
 import ModalService from './../../../_services/modal';
 import { useTranslation } from "react-i18next";
 import { getCodePromotion } from './../../../redux/actions/index';
+import Slider from "react-slick";
 
 function Offer(data) {
     const dispatch = useDispatch();
@@ -12,32 +13,6 @@ function Offer(data) {
     const modalPopup = useSelector(state => state.modalPopup);
     const carts = useSelector(state => state.carts);
     const { t } = useTranslation();
-
-    const delay = 2500;
-
-    const [index, setIndex] = React.useState(0);
-    const timeoutRef = React.useRef(null);
-
-    function resetTimeout() {
-        if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        }
-    }
-    
-    React.useEffect(() => {
-        resetTimeout();
-        timeoutRef.current = setTimeout(
-          () =>
-            setIndex((prevIndex) =>
-              prevIndex === data?.data?.length - 1 ? 0 : prevIndex + 1
-            ),
-          delay
-        );
-    
-        return () => {
-          resetTimeout();
-        };
-      }, [index,data]);
 
     const actionUsePromotion = (id) => {
         if(carts.length > 0){
@@ -78,7 +53,7 @@ function Offer(data) {
                 });
                 
                 return(
-                    <div key={value} onClick={e => actionUsePromotion(item._id)} className="slide">
+                    <div key={value} onClick={e => actionUsePromotion(item._id)} >
                         <div className="Offer-Details" >
                             <img src={item.image} alt="img" />
                             <div className="Note-Details">
@@ -112,28 +87,24 @@ function Offer(data) {
         }
     }, [modalPopup, handleAfterSubmit])
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000
+      };
+
     return (
         <div className="container no-over">
             <div className="Offer-title">
                     <img src="/images/sale.png" alt="menu_icon" />
                     <p>{t("offer.title")}</p>
             </div>
-            <div className="slideshow">
-                <div className="slideshowSlider"  style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
+                <Slider {...settings}>
                         {showslide()}
-                </div>
-                <div className="slideshowDots">
-                        {data?.data?.map((_, idx) => (
-                                <div
-                                    key={idx}
-                                    className={`slideshowDot${index === idx ? " active" : ""}`}
-                                    onClick={() => {
-                                    setIndex(idx);
-                                    }}
-                            ></div>
-                        ))}
-                </div>
-            </div>
+                </Slider>
         </div>
     );
 }
