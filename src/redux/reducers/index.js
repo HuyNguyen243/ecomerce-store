@@ -366,6 +366,7 @@ const rootReducer = (state = initState, action) => {
             checkGetDeliveryUser: payload
           });
       case GET_PROMOTION_VOUCHERS_SUCCESS:
+          LocaleHelper.parseData('title', payload)
         return Object.assign({}, state, {
           promotionVoucher: {
             isLoaded: true,

@@ -10,6 +10,7 @@ var LocaleHelper = {
         }
         return lang;
     },
+    
     parseData: (key, data) => {
         let lang = LocaleHelper.getLang();
         for (let i = 0; i < data.length; i++) {
