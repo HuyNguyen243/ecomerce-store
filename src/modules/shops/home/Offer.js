@@ -67,7 +67,7 @@ function Offer(data) {
                     number.push(find[0])
                 }
                 number.forEach(element => {
-                    description = description.replace(element,"<span style='color:red;font-weight:bold;font-size:12px;padding:0 2px'  >"+ element +"</span>");
+                    description = description.replace(element,"<span style='color:red;font-weight:bold;font-size:14px;padding:0 2px'  >"+ element +"</span>");
                 });
 
                 while((title =findNumber.exec(item.title)) != null){
@@ -84,7 +84,7 @@ function Offer(data) {
                             <div className="Note-Details">
                                 <p className="Note-Details-titles" dangerouslySetInnerHTML={{__html: changeTitle}}></p>
                                 {/* <p className="Minimum-Order">Đơn tối thiểu : <span>{item?.price}</span></p> */}
-                                <p className="Product-Details" dangerouslySetInnerHTML={{__html: description}}></p>
+                                <p className="Product-Details " dangerouslySetInnerHTML={{__html: description}}></p>
                                 <img src="/images/Group227.svg" alt="menu_icon" />
                             </div>
                         </div>
