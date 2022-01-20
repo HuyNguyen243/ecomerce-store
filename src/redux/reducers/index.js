@@ -161,7 +161,12 @@ const rootReducer = (state = initState, action) => {
     case ON_CHANGE_LANG:
       if(state.generalData?.data?.productByPromotion?.length > 0) {
         LocaleHelper.parseData('name', state.generalData?.data?.productByPromotion)
+      }
+      if(state.generalData?.data?.banners?.length > 0) {
         LocaleHelper.parseData('title', state.generalData?.data?.banners)
+        LocaleHelper.parseData('description', state.generalData?.data?.banners)
+      }
+      if(state.generalData?.data?.productByCategory?.length > 0) {
         LocaleHelper.parseData('name', state.generalData?.data?.productByCategory)
       }
       if(state.categories?.data?.length > 0) {
@@ -172,12 +177,17 @@ const rootReducer = (state = initState, action) => {
       }
       if(state.product?.data?.name !== undefined) {
         LocaleHelper.parseData('name', [state.product?.data])
+        LocaleHelper.parseData('description', [state.product?.data])
       }
       if(state.carts?.length > 0) {
         LocaleHelper.parseData('name', state.carts)
       }
       if(state.order?.reference_items?.length > 0) {
         LocaleHelper.parseData('name', state.order?.reference_items)
+      }
+      if(state.promotionVoucher?.data?.length > 0) {
+        LocaleHelper.parseData('title', state.promotionVoucher?.data)
+        LocaleHelper.parseData('description', state.promotionVoucher?.data)
       }
       return Object.assign({}, state, {
         modalPopup: {
@@ -220,6 +230,7 @@ const rootReducer = (state = initState, action) => {
     case AUTHENTICATE_USER_SUCCESS:
       if (payload.success) {
         Auth.set(payload.data);
+        LocaleHelper.setLang(payload?.data?.lang)
       }
       return Object.assign({}, state, {
         isAuthenticated: payload.success,
@@ -230,6 +241,7 @@ const rootReducer = (state = initState, action) => {
       if(payload?.success) {
         LocaleHelper.parseData('name', payload?.data?.productByPromotion)
         LocaleHelper.parseData('title', payload?.data?.banners)
+        LocaleHelper.parseData('description', payload?.data?.banners)
         LocaleHelper.parseData('name', payload?.data?.productByCategory)
       }
       return Object.assign({}, state, {
@@ -242,7 +254,10 @@ const rootReducer = (state = initState, action) => {
         totalCartPrice : CartService.getTotalPrice()
       });
     case GET_ONE_PRODUCT_SUCCESS:
-      LocaleHelper.parseData('name', [payload.data])
+      if(payload?.success) {
+        LocaleHelper.parseData('name', [payload.data])
+        LocaleHelper.parseData('description', [payload.data])
+      }
       return Object.assign({}, state, {
         product: {
           isLoaded: true,
