@@ -68,13 +68,16 @@ function Preferential(props) {
             let title;
             let arrayTitle =[]
             let changeTitle = item.title
-
             while((find =findNumber.exec(item.description)) != null){
                 number.push(find[0])
             }
-            number.forEach(element => {
-                description = description.replace(element,"<span style='color:red;font-weight:bold;font-size:16px;padding:0 2px'  >"+ element +"</span><br/>");
-            });
+
+            for(let i = 0 ; i < number.length ; i++){
+                description.splice(number[i],1,"<span >"+ number[i] +"</span>");
+            }
+            // number.forEach(element => {
+            //     description = description.replace(element,"<span style='color:red;font-weight:bold;font-size:12px;padding:0 2px'  >"+ element +"</span>");
+            // });
 
             while((title =findNumber.exec(item.title)) != null){
                 arrayTitle.push(title[0])

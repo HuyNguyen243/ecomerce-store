@@ -409,18 +409,26 @@ $text-row: 2;
       color: #f40000;
     }
     .Product-Details{
+      // text-align: start;
+      // font-weight: 200px;
+      // font-size: 11px;
+      // padding: 2px 0;
+      // margin: 0;
+      // text-align: start;
+      // display: -webkit-box;
+      // -webkit-line-clamp: 2;
+      // -webkit-box-orient: vertical;
+      // text-overflow: ellipsis;
+      // overflow: hidden;
+      // line-height: 1;
       text-align: start;
       font-weight: 200px;
       font-size: 11px;
-      padding: 2px 0;
       margin: 0;
-      text-align: start;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      text-overflow: ellipsis;
-      overflow: hidden;
       line-height: 1.4;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
     }
     img{
       position: absolute;

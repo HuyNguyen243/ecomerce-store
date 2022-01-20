@@ -62,12 +62,12 @@ function Offer(data) {
                 let title;
                 let arrayTitle =[]
                 let changeTitle = item.title
- 
+            
                 while((find =findNumber.exec(item.description)) != null){
                     number.push(find[0])
                 }
                 number.forEach(element => {
-                    description = description.replace(element,"<span style='color:red;font-weight:bold;font-size:16px;padding:0 2px'  >"+ element +"</span><br/>");
+                    description = description.replace(element,"<span style='color:red;font-weight:bold;font-size:12px;padding:0 2px'  >"+ element +"</span>");
                 });
 
                 while((title =findNumber.exec(item.title)) != null){
