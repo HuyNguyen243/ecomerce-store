@@ -13,6 +13,7 @@ import OrderProduct from './modules/shops/order/OrderProduct';
 import InfoProductShipping from './modules/shops/order/InfoProductShipping';
 import ListCategory from './modules/shops/category/List';
 import ProductMostview from './modules/shops/product/ProductMostview';
+import Preferential from './modules/shops/Preferential';
 
 export const routes = [
     {
@@ -98,6 +99,12 @@ export const routes = [
         exact: true,
         isAuth: true,
         main: () => <ProductMostview />
+    },
+    {
+        path: "/preferential",
+        exact: true,
+        isAuth: true,
+        main: () => <Preferential />
     },
     
 ]

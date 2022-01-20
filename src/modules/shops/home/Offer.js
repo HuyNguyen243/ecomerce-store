@@ -123,16 +123,16 @@ function Offer(data) {
                         {showslide()}
                 </div>
                 <div className="slideshowDots">
-            {data?.data?.map((_, idx) => (
-                    <div
-                        key={idx}
-                        className={`slideshowDot${index === idx ? " active" : ""}`}
-                        onClick={() => {
-                        setIndex(idx);
-                        }}
-                ></div>
-            ))}
-      </div>
+                        {data?.data?.map((_, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`slideshowDot${index === idx ? " active" : ""}`}
+                                    onClick={() => {
+                                    setIndex(idx);
+                                    }}
+                            ></div>
+                        ))}
+                </div>
             </div>
         </div>
     );

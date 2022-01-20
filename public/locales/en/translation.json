@@ -21,7 +21,8 @@
     },
     "leftNav" : {
         "inforUserAddress" : "ORDER INFORMATION",
-        "oderList" : "ORDER LIST"
+        "oderList" : "ORDER LIST",
+        "Preferential" : "PREFERENTIAL" 
     },
     "productDetail" : {
         "selectQty" : "Select quantity:",
@@ -53,7 +54,8 @@
         "notification" : "No coupons yet!",
         "searchPromotion" : "Enter discount code",
         "success" : "Apply code successfully",
-        "failed" : "Your order has not reached the minimum value!"
+        "failed" : "Your order has not reached the minimum value!",
+        "Preferential" : "There are no offers yet"
     },
     "popUpCancelReason" : {
         "title" : "CANCEL ORDER",
@@ -160,5 +162,8 @@
         "deleteAdress" : "Do you agree to delete this address information?",
         "default" : "[Default]",
         "error" : "Please create shipping information"
+    },
+    "Preferential" :{
+        "title" : "GOOD VOUCHER - USE NOW"
     }
 }

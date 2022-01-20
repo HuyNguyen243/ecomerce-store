@@ -25,9 +25,14 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
     setIsToggled(false);
   }
 
+  const moveToPreferential = () =>{
+    history.push("/preferential")
+  }
+
   return (
     <div id={LEFT_MENU_NAV} className="overlay nav-left">
       <div className="menu-left-nav">
+
           <div className="menu-left-item" onClick={e => toggleCategory()}>
             <img src='/images/information.svg' alt="category"/>
             <span>{t("leftNav.inforUserAddress")}</span>
@@ -39,6 +44,12 @@ const LeftNav = ({ menu, getListData, showNavigation, showLeftNav }) => {
             <span>{t("leftNav.oderList")}</span>
           </div>
         </Link>
+
+          <div className="menu-left-item" onClick={e => moveToPreferential()}>
+            <img src='/images/sale.png' alt="category"/>
+            <span style={{color: "#f40000"}}>{t("leftNav.Preferential")}</span>
+          </div>
+
       </div>
       <div onClick={e => hideLeftNav()} className="empty-space"></div>
     </div>

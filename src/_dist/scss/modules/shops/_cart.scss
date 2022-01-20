@@ -464,9 +464,14 @@
   }
 }
 
+.no-over1{
+  overflow: inherit !important;
+  height: inherit !important;
+}
+
 .no-over{
-  overflow-y: hidden;
-  overflow-x: hidden;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
   &::-webkit-scrollbar{
     display: none;
   }
@@ -516,4 +521,8 @@
     color: #f40000;
     font-weight: bold;
   }
+}
+
+.position{
+    top: -45px !important; 
 }
