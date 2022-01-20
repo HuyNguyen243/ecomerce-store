@@ -21,7 +21,8 @@
     },
     "leftNav" : {
         "inforUserAddress" : "THÔNG TIN ĐẶT HÀNG",
-        "oderList" : "DANH SÁCH ĐƠN HÀNG"
+        "oderList" : "DANH SÁCH ĐƠN HÀNG",
+        "Preferential" : "ƯU ĐÃI"
     },
     "productDetail" : {
         "selectQty" : "Chọn số lượng:",
@@ -52,7 +53,8 @@
         "notification" : "Chưa có voucher nào cả !",
         "searchPromotion" : "Nhập mã giảm giá",
         "success" : "Nhập mã thành công",
-        "failed" : "Nhập mã thất bại"
+        "failed" : "Nhập mã thất bại",
+        "Preferential" : "Chưa có ưu đãi nào cả"
     },
     "popUpCancelReason" : {
         "title" : "HUỶ ĐƠN HÀNG",
@@ -157,5 +159,8 @@
         "deleteAdress" : "Bạn có đồng ý xóa thông tin địa chỉ này?",
         "default" : "[Mặc định]",
         "error" : "Vui lòng tạo thông tin đặt giao hàng"
+    },
+    "Preferential" :{
+        "title" : "VOUCHER XỊN - GIẬT LIỀN TAY"
     }
 }
