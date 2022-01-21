@@ -101,7 +101,11 @@ function PopUpAdventisement(props) {
                 ModalService.success(t("popUpPromotion.success"))
                 dispatch(getShowPopup(false))
             }else {
-                ModalService.error(t("popUpPromotion.failed"))
+                if(modalPopup.data?.data?.error) {
+                  ModalService.error(t("AfterSubmit",modalPopup.data?.data?.error))
+              }else {
+                   ModalService.error(t("popUpPromotion.failed"))
+              }
             }
             setTimeout(() => {
                 dispatch(resetPopup())

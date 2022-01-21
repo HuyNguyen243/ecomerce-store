@@ -185,7 +185,11 @@ function Newaddress() {
             ModalService.success(t("swal.success"))
             history.goBack()
         }else {
-            ModalService.error(t("swal.failed"))
+            if(modalPopup.data?.data?.error) {
+                ModalService.error(t("AfterSubmit",modalPopup.data?.data?.error))
+              }else {
+                ModalService.error(t("swal.failed"))
+              }
         }
         setTimeout(() => {
             dispatch(resetPopup())

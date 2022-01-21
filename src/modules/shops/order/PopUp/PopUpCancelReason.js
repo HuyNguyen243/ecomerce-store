@@ -47,7 +47,11 @@ function PopUpCancelReason(props) {
         if(modalPopup.data.success) {
             ModalService.success(t("popUpPromotion.success"))
         }else {
-            ModalService.error(t("popUpPromotion.failed"))
+            if(modalPopup.data?.data?.error) {
+                ModalService.error(t("AfterSubmit",modalPopup.data?.data?.error))
+              }else {
+                ModalService.error(t("popUpPromotion.failed"))
+              }
         }
         setTimeout(() => {
             dispatch(resetPopup())

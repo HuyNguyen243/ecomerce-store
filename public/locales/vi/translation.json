@@ -3,7 +3,7 @@
         "search_text" : "Tìm sản phẩm ..."
     },
     "offer" : {
-        "title" : "ƯU ĐÃI SỐC CHỈ HÔM NAY"
+        "title" : "ƯU ĐÃI SỐC CHỈ HÔM NAY" 
     },
     "error" : {
         "errorCart" : "Không có sản phẩm nào trong giỏ hàng của bạn!",
@@ -162,5 +162,17 @@
     },
     "Preferential" :{
         "title" : "VOUCHER XỊN - GIẬT LIỀN TAY"
+    },
+    "AfterSubmit" :{
+        "UNKNOWN_ERR" : "Đã có lỗi xảy ra, vui lòng thử lại ",
+        "EMPTY_CART" : "Giỏ hàng của bạn đang trống",
+        "INVALID_VENDOR_ADDRESS" : "Không tìm được nhà phân phối",
+        "INVALID_USER_ADDRESS" : "Địa chỉ của bạn không hợp lệ",
+        "CALC_SHIPING_ERR" : "Tính phí vận chuyển thất bại",
+        "INVALID_PROMOTION_CODE" : "Mã ưu đãi không hợp lệ",
+        "EXPIRED_PROMOTION_CODE" : "Mã ưu đãi đã hết hạn",
+        "LIMITED_PROMOTION_CODE" : "Mã ưu đãi đã sử dụng hết",
+        "NOT_REACH_MIN_VALUE_PRO" : "Đơn hàng chưa đạt điều kiện tối thiểu ",
+        "EXCEED_PROMOTION_PRO" : "Giỏ hàng có sản phẩm đã hết hoặc vượt quá giới hạn ưu đãi"
     }
 }

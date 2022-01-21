@@ -128,7 +128,11 @@ const OderConfirm = () => {
                   </div>
         })
     }else {
-      ModalService.error(modalPopup?.data?.message)
+      if(modalPopup.data?.data?.error) {
+        ModalService.error(t("AfterSubmit",modalPopup.data?.data?.error))
+      }else {
+          ModalService.error(modalPopup?.data?.message)
+      }
     }
     setTimeout(() => {
         dispatch(resetPopup())

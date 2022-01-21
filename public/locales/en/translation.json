@@ -85,7 +85,7 @@
         "time" : "Order time",
         "statusOder" : "Order status",
         "oderList" : "Product information",
-        "status" : "Status",
+        "status" : "Status", 
         "reason" : "Reason"
 
     },
@@ -165,5 +165,17 @@
     },
     "Preferential" :{
         "title" : "GOOD VOUCHER - USE NOW"
+    },
+    "AfterSubmit" :{
+        "UNKNOWN_ERR" : "An error occurred, Please try again",
+        "EMPTY_CART" : "Your cart is empty",
+        "INVALID_VENDOR_ADDRESS" : "Couldn't find a distributor",
+        "INVALID_USER_ADDRESS" : "Your address is not valid",
+        "CALC_SHIPING_ERR" : "Shipping fee failed",
+        "INVALID_PROMOTION_CODE" : "Promo code is not valid",
+        "EXPIRED_PROMOTION_CODE" : "Promo code has expired",
+        "LIMITED_PROMOTION_CODE" : "Promo code has been used up",
+        "NOT_REACH_MIN_VALUE_PRO" : "The order has not met the minimum condition",
+        "EXCEED_PROMOTION_PRO" : "The cart has products that are out of stock or have exceeded the offer limit"
     }
 }
