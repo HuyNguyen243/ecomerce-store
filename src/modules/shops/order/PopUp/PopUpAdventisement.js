@@ -19,7 +19,7 @@ function PopUpAdventisement(props) {
     const { t } = useTranslation();
 
     React.useEffect(()=>{
-        if(showPopUpAdventisement === "" && !modalPopup.active){
+        if(showPopUpAdventisement === "" && !modalPopup.active && generalData?.data?.banners?.length > 0){
           dispatch(getShowPopup(true))
         }
         if(generalData?.data.banners?.length > 0){
