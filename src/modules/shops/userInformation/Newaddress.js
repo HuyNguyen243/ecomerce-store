@@ -186,7 +186,7 @@ function Newaddress() {
             history.goBack()
         }else {
             if(modalPopup.data?.data?.error) {
-                ModalService.error(t("AfterSubmit",modalPopup.data?.data?.error))
+                ModalService.error(t(modalPopup.data?.data?.error))
               }else {
                 ModalService.error(t("swal.failed"))
               }

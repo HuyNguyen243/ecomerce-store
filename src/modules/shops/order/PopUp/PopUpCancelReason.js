@@ -48,7 +48,7 @@ function PopUpCancelReason(props) {
             ModalService.success(t("popUpPromotion.success"))
         }else {
             if(modalPopup.data?.data?.error) {
-                ModalService.error(t("AfterSubmit",modalPopup.data?.data?.error))
+                ModalService.error(t(modalPopup.data?.data?.error))
               }else {
                 ModalService.error(t("popUpPromotion.failed"))
               }

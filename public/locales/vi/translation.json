@@ -163,7 +163,6 @@
     "Preferential" :{
         "title" : "VOUCHER XỊN - GIẬT LIỀN TAY"
     },
-    "AfterSubmit" :{
         "UNKNOWN_ERR" : "Đã có lỗi xảy ra, vui lòng thử lại ",
         "EMPTY_CART" : "Giỏ hàng của bạn đang trống",
         "INVALID_VENDOR_ADDRESS" : "Không tìm được nhà phân phối",
@@ -174,5 +173,4 @@
         "LIMITED_PROMOTION_CODE" : "Mã ưu đãi đã sử dụng hết",
         "NOT_REACH_MIN_VALUE_PRO" : "Đơn hàng chưa đạt điều kiện tối thiểu ",
         "EXCEED_PROMOTION_PRO" : "Giỏ hàng có sản phẩm đã hết hoặc vượt quá giới hạn ưu đãi"
-    }
 }
