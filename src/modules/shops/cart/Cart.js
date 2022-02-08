@@ -74,7 +74,7 @@ const Cart = ({
                             <div className={`button-r button-right-block radius_btn`} onClick={handleMoveHome}>
                               <p type="button" className="btn btn-red" >
                               <img src="/images/shopping-cart.png" alt="menu_icon" />
-                              <span>{t("home.addToCard")}</span>
+                              <span>{t("cart.AddCart")}</span>
                               </p>
                             </div>
                           </div>

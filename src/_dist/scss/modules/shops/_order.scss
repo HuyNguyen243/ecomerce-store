@@ -204,11 +204,12 @@
 }
 
 .radius_btn{
+    width: inherit !important;
     border-radius: 5px !important;
 }
 
 .center-icon{
-    justify-content: flex-end;
+    justify-content: center;
     padding: 6.5px 10px;
 }
 
