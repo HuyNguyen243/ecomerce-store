@@ -8,11 +8,13 @@ import { useDispatch } from "react-redux";
 import { getUserCarts } from './../../../redux/actions/index';
 import { useTranslation } from "react-i18next";
 import NumberHelper from "./../../../_helpers/number";
+import { useHistory } from "react-router";
 
 const Cart = ({
   hideCart,
   totalCart
 }) => {
+  const history = useHistory()
   const carts = useSelector(state => state.carts);
   const dispatch = useDispatch();
   const [cartLoaded, setCartLoaded] = useState(false);
@@ -40,6 +42,10 @@ const Cart = ({
     }
   },[dispatch, cartLoaded, setCartLoaded])
 
+  const handleMoveHome = () =>{
+    history.goBack()
+  }
+
   return (
     <div id={LIST_CART_NAV} className="nav-right">
       <Header
@@ -55,6 +61,26 @@ const Cart = ({
               {showCart()}
               </div>
           </div>
+
+          {
+                  carts?.length > 0
+                  && <div className="fix-bottom">
+                      <div>
+                      {/* <div className="divider"></div> */}
+                        <div className="bottom">
+                      </div>   
+                      </div>
+                           <div className="group-buttons center-icon">
+                            <div className={`button-r button-right-block radius_btn`} onClick={handleMoveHome}>
+                              <p type="button" className="btn btn-red" >
+                              <img src="/images/shopping-cart.png" alt="menu_icon" />
+                              <span>{t("home.addToCard")}</span>
+                              </p>
+                            </div>
+                          </div>
+                    </div>
+                }
+
           {
                   carts?.length > 0
                   && <div className="fix-bottom">

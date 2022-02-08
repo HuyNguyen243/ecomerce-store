@@ -41,7 +41,8 @@
         "AccessDeleteProduct" : "Đồng ý",
         "CancelDeleteProduct" : "Huỷ bỏ",
         "CloseButton" : "Đóng",
-        "SubmitButton" : "Đồng ý"
+        "SubmitButton" : "Đồng ý",
+        "AddCart": "Thêm vào giỏ"
     },
     "popUpAdventisement" : {
         "title" : "Bạn ơi bạn có quên ưu đãi này?"

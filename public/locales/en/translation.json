@@ -42,7 +42,8 @@
         "AccessDeleteProduct" : "Agree",
         "CancelDeleteProduct" : "Cancel",
         "CloseButton" : "Close",
-        "SubmitButton" : "Agree"
+        "SubmitButton" : "Agree",
+        "AddCart": "Add to cart"
     },
     "popUpAdventisement" : {
         "title" : "Hey, have you forget these offers?"

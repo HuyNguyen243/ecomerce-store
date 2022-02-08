@@ -199,6 +199,19 @@
     height: 100%;
 }
 
+.fnt_size img {
+  width: 14px;
+}
+
+.radius_btn{
+    border-radius: 5px !important;
+}
+
+.center-icon{
+    justify-content: flex-end;
+    padding: 6.5px 10px;
+}
+
 .btn-left-icon{
     width: 49%;
     background-color: #ffdada !important;

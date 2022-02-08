@@ -181,7 +181,7 @@ function Preferential(props) {
         <div className="main_container">
                 <div className="container">
                     {
-                        generalData?.data?.banners!== undefined &&
+                        generalData?.data?.banners?.length > 0 &&
                         <>
                             <div className="Offer-title">
                                 <img src="/images/sale.png" alt="menu_icon" />

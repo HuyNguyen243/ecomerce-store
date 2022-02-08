@@ -27,6 +27,7 @@ function Offer(data) {
             }, 1000);
         }
     }
+
     const showslide =() =>{
         if(data.data!== undefined){
             return data.data.map((item,value)=>{
@@ -51,7 +52,7 @@ function Offer(data) {
                 arrayTitle.forEach(element2 => {
                     changeTitle = changeTitle.replace(element2,"<span style='color:red' class='span-element'>"+ element2 +"</span>");
                 });
-                
+
                 return(
                     <div key={value} onClick={e => actionUsePromotion(item._id)} >
                         <div className="Offer-Details" >
@@ -102,13 +103,18 @@ function Offer(data) {
 
     return (
         <div className="container no-over">
-            <div className="Offer-title">
-                    <img src="/images/sale.png" alt="menu_icon" />
-                    <p>{t("offer.title")}</p>
-            </div>
-                <Slider {...settings}>
-                        {showslide()}
-                </Slider>
+            {data?.data?.length > 0 && 
+            <>
+                    <div className="Offer-title">
+                        <img src="/images/sale.png" alt="menu_icon" />
+                        <p>{t("offer.title")}</p>
+                    </div>
+                    <Slider {...settings}>
+                            {showslide()}
+                    </Slider>
+            </>
+        }
+      
         </div>
     );
 }
