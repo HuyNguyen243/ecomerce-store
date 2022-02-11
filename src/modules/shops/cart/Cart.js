@@ -73,13 +73,13 @@ const Cart = ({
                            <div className="group-buttons center-icon">
                             <div className={`button-r button-right-block radius_btn`} onClick={handleMoveHome}>
                               <p type="button" className="btn btn-red" >
-                              <img src="/images/shopping-cart.png" alt="menu_icon" />
+                              <img src="/images/shopping-cart.png" alt="menu_icon" /> 
                               <span>{t("cart.AddCart")}</span>
                               </p>
                             </div>
                           </div>
                     </div>
-                }
+          }
 
           {
                   carts?.length > 0

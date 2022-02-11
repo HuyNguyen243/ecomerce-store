@@ -267,6 +267,12 @@ $top-space: 44px;
     }
 }
 
+@media (max-width : 412px){
+        .horizontal-wrapper{
+            margin-left: 12px;
+        }
+}
+
 @media (max-height: 700px) {
     .fix-style{
         position:inherit;

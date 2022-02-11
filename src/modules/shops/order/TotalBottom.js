@@ -60,6 +60,7 @@ function TotalBottom(props) {
                 && <div className="overlay-spinner"></div>
             }
             <div className="row cart-total">
+                <PopUpPromotion showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp}/>
             <div className={location.pathname === "/cart" ? "row hide" : "row"}>  
                 <div className="col-6 text-bold text-sm">{t("totalBottom.promotion")}</div>
                 <div className="col-6 text-bold txt-right">
@@ -112,7 +113,6 @@ function TotalBottom(props) {
                 </div>
             </div>   
             </div> 
-            <PopUpPromotion showPopUp={showPopUp} ChangeshowPopup={BooleanPopUp}/>
         </>
     );
 }
