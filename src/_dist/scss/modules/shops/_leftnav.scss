@@ -188,7 +188,7 @@ $top-space: 44px;
     .cart-total{
         div:nth-child(3){
             div  {
-                font-size: 15px;
+                font-size: 12px;
             }
         }
     }
@@ -366,6 +366,14 @@ $top-space: 44px;
 
 @media (max-width:280px){
 
+    .cart-total{
+        div:nth-child(3){
+            div  {
+                font-size: 10px;
+            }
+        }
+    }
+    
     .group-buttons .button-r img{
         width: 11px !important;
     }
