@@ -112,7 +112,9 @@ $text-row: 2;
       text-align: left;
       display: block;
       font-size: 13px;
-
+      &:focus-visible{
+        outline: none;
+      }
     }
     .item-discount {
       display: flex;
@@ -505,6 +507,9 @@ $text-row: 2;
     span{
       color: #fff;
       font-size: 16px;
+      &:focus-visible{
+        outline: none;
+      }
     }
   }
   .button-r{
@@ -525,6 +530,9 @@ $text-row: 2;
       align-items: center;
       color: #f40000;
       font-size: 16px;
+      &:focus-visible{
+        outline: none;
+      }
     }
   }
 }

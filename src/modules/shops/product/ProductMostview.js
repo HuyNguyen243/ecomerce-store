@@ -18,7 +18,7 @@ const ProductMostview = () => {
   const headerTitles = useSelector(state => state.headerTitles);
   const location = useLocation()
   const { t } = useTranslation();
-  
+
   var event;
   // Navigation
   const showNavigation = (elementId) => {
