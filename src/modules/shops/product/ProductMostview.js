@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
 import Spiner from "../../../_helpers/Spinner";
 import SpinnerAddToCart from "../../../_helpers/SpinnerAddToCart";
+import { getProductsearch } from "./../../../redux/actions/index";
 
 const ProductMostview = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,10 @@ const ProductMostview = () => {
   const location = useLocation()
   const { t } = useTranslation();
   const generalData = useSelector(state => state.generalData);
+  const productSearch = useSelector (state => state.productSearch)
   let fullUrl = window.location.href;
   let url = new URL(fullUrl);
   let keyword = url.searchParams.get("keyword");
-
   var event;
   // Navigation
   const showNavigation = (elementId) => {
@@ -39,7 +40,6 @@ const ProductMostview = () => {
     showNavigation(LIST_CART_NAV);
   }
   //
-
   const getMostviewCallback = React.useCallback(() => {
     let params = '';
     let fullUrl = window.location.href;
@@ -59,6 +59,35 @@ const ProductMostview = () => {
   useEffect(() => {
     getMostviewCallback()
   }, [getMostviewCallback]);
+
+  React.useEffect(()=>{
+    let allData= [];
+    let dataSearch = []
+    let productByPromotion = generalData?.data?.productByPromotion
+    let productByCategory = generalData?.data?.productByCategory
+
+    for(let i = 0 ; i < productByPromotion?.length; i++){
+      allData.push(productByPromotion[i])
+    }
+
+    for(let i = 0 ; i < productByCategory?.length; i++){
+      for(let index of productByCategory[i]?.products){
+        if(index?.discount === 0 || index?.discount === undefined){
+          allData.push(index)
+        }
+      }
+    }
+
+    if(allData.length > 0 && keyword){
+      for(let index of allData){
+        if(index?.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1){
+          dataSearch.push(index)
+        }
+      }
+    }
+
+    dispatch(getProductsearch(dataSearch))
+  },[dispatch,generalData,keyword])
 
   const DataMostView = ()=>{
     let allData= [];
@@ -80,31 +109,19 @@ const ProductMostview = () => {
                <List data={mostview.data}/>
                </>
             )
-    }else if(keyword){
-        let data2 = []
-        for(let index of allData){
-          if(index.name.toLowerCase().indexOf(keyword.toLowerCase())!== -1){
-            data2.push(index)
-          }
-        }
-        if(data2.length > 0 && keyword){
-          return(
-            <>
-              <List data={data2}/>
-            </>
-         )
-        }else{
-            return(
-              <span className="error-messenger">{t("error.found")}</span>
-            )
-        }
+    }else if(productSearch.length > 0 && keyword){
+      return(
+        <>
+          <List data={productSearch}/>
+        </>
+     )
     }else{
       return(
         <span className="error-messenger">{t("error.found")}</span>
         )
     }
   }
-  
+
   return (
     <>
       {isLoading && <div className="overlay-spinner"></div>}

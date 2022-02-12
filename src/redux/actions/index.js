@@ -28,6 +28,7 @@ import {
     SHOW_LOADER,
     SHOW_POPUP,
     SHOW_LOADING_ADDTOCART,
+    PRODUCT_SEARCH_KEYWORD,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -144,6 +145,10 @@ export const getShowPopup = (param) => {
 
 export const getShowLoadingAddtoCart = (param) => {
     return { type: SHOW_LOADING_ADDTOCART, payload: param };
+}
+
+export const getProductsearch = (param) => {
+    return { type: PRODUCT_SEARCH_KEYWORD, payload: param };
 }
 
 

@@ -75,12 +75,14 @@ import {
 
   SHOW_LOADING_ADDTOCART,
 
+  PRODUCT_SEARCH_KEYWORD,
+
 } from "../constants";
 
 import Auth from "../../_services/auth";
 import CartService from "../../_services/cart";
 import LocaleHelper from './../../_helpers/locale';
-
+ 
 const initState = {
   isLoading: false,
   isAuthenticated: false,
@@ -151,7 +153,8 @@ const initState = {
   idBtnTabs: "",
   showSpinner:"",
   showPopUpAdventisement: "",
-  loadingAddtoCart:""
+  loadingAddtoCart:"",
+  productSearch : []
 };
 
 const rootReducer = (state = initState, action) => {
@@ -500,6 +503,10 @@ const rootReducer = (state = initState, action) => {
       case SHOW_LOADING_ADDTOCART:
         return Object.assign({}, state, {
           loadingAddtoCart: payload
+        });
+      case PRODUCT_SEARCH_KEYWORD:
+        return Object.assign({}, state, {
+          productSearch: payload
         });
     default:
       return Object.assign({}, state, {
