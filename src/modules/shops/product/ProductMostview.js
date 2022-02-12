@@ -18,6 +18,10 @@ const ProductMostview = () => {
   const headerTitles = useSelector(state => state.headerTitles);
   const location = useLocation()
   const { t } = useTranslation();
+  const generalData = useSelector(state => state.generalData);
+  let fullUrl = window.location.href;
+  let url = new URL(fullUrl);
+  let keyword = url.searchParams.get("keyword");
 
   var event;
   // Navigation
@@ -41,11 +45,10 @@ const ProductMostview = () => {
     let fullUrl = window.location.href;
     let url = new URL(fullUrl);
     let categoryId = url.searchParams.get("category_id");
-    let keyword = url.searchParams.get("keyword");
 
-    if(keyword){
-      params = '&keyword='+ keyword
-    }
+    // if(keyword){
+    //   params = '&keyword='+ keyword
+    // }
     
     if(categoryId) {
       params = '&category_id='+categoryId
@@ -58,19 +61,47 @@ const ProductMostview = () => {
   }, [getMostviewCallback]);
 
   const DataMostView = ()=>{
-    if(mostview.data.length > 0){
+    let allData= [];
+    let productByPromotion = generalData?.data?.productByPromotion
+    let productByCategory = generalData?.data?.productByCategory
+    for(let i = 0 ; i < productByPromotion?.length; i++){
+      allData.push(productByPromotion[i])
+    }
+
+    for(let i = 0 ; i < productByCategory?.length; i++){
+        for(let index of productByCategory[i]?.products){
+          allData.push(index)
+        }
+    }
+
+    if(mostview.data.length > 0 && !keyword){
             return(
                <>
                <List data={mostview.data}/>
                </>
             )
+    }else if(keyword){
+        let data2 = []
+        for(let index of allData){
+          if(index.name.toLowerCase().indexOf(keyword.toLowerCase())!== -1){
+            data2.push(index)
+          }
+        }
+        if(data2.length > 0 && keyword){
+          return(
+            <>
+              <List data={data2}/>
+            </>
+         )
+        }else{
+            return(
+              <span className="error-messenger">{t("error.found")}</span>
+            )
+        }
     }else{
-    
-        return(
-          <span className="error-messenger">{t("error.found")}</span>
-          )
-         
-        
+      return(
+        <span className="error-messenger">{t("error.found")}</span>
+        )
     }
   }
   
