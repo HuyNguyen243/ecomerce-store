@@ -69,7 +69,6 @@ const ProductMostview = () => {
     for(let i = 0 ; i < productByPromotion?.length; i++){
       allData.push(productByPromotion[i])
     }
-
     for(let i = 0 ; i < productByCategory?.length; i++){
       for(let index of productByCategory[i]?.products){
         if(index?.discount === 0 || index?.discount === undefined){
@@ -79,10 +78,44 @@ const ProductMostview = () => {
     }
 
     if(allData.length > 0 && keyword){
+      let AccentsMap = [
+        "aàảãáạăằẳẵắặâầẩẫấậ",
+        "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
+        "dđ", "DĐ",
+        "eèẻẽéẹêềểễếệ",
+        "EÈẺẼÉẸÊỀỂỄẾỆ",
+        "iìỉĩíị",
+        "IÌỈĨÍỊ",
+        "oòỏõóọôồổỗốộơờởỡớợ",
+        "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
+        "uùủũúụưừửữứự",
+        "UÙỦŨÚỤƯỪỬỮỨỰ",
+        "yỳỷỹýỵ",
+        "YỲỶỸÝỴ"    
+      ];
+
       for(let index of allData){
-        if(index?.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1){
-          dataSearch.push(index)
+        let ChangeProduct = index.name.replace(/[.,#!$%&;:^{}=\-_`~()]/g," ")
+        let finalString = ChangeProduct.replace(/\s{2,}/g," ");
+        for (let i=0; i<AccentsMap.length; i++) {
+            let re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
+            let char = AccentsMap[i][0];
+            finalString = finalString.replace(re, char);
+          }
+        /// End NameString---------------
+        if(keyword?.length > 0){
+          let changeKeyword = keyword.replace(/[.,#!$%&;:^{}=\-_`~()]/g," ")
+          let finalKeyword = changeKeyword.replace(/\s{2,}/g," ");
+          for (let i = 0; i<AccentsMap.length; i++) {
+            let re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
+            let char = AccentsMap[i][0];
+            finalKeyword = finalKeyword.replace(re, char);
+          }
+          if(finalString.toLowerCase().indexOf(finalKeyword.toLowerCase()) !== -1){
+            dataSearch.push(index)
+          }
         }
+        
       }
     }
 
