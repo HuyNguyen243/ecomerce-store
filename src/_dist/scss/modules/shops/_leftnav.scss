@@ -72,6 +72,9 @@ $top-space: 44px;
 }
 
 @media (max-width: 320px) {
+    .item-name {
+        line-height: 5.2vw !important;
+      }
    
     .group-buttons .button-r img{
         width: 14px !important;
@@ -365,7 +368,9 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
-
+    .item-name {
+        line-height: 6.2vw !important;
+      }
     .cart-total{
         div:nth-child(3){
             div  {
