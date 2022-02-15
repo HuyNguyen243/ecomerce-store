@@ -104,7 +104,7 @@ const ProductMostview = () => {
           }
         /// End NameString---------------
         if(keyword?.length > 0){
-          let changeKeyword = keyword.replace(/[@.,#!$%&;:^{}=\\/-_`"'~||()*]/g," ")
+          let changeKeyword = keyword.replace(/[.,#!$%&;:^{}=\-_`~()]/g," ")
           let finalKeyword = changeKeyword.replace(/\s{2,}/g," ");
           for (let i = 0; i<AccentsMap.length; i++) {
             let re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
