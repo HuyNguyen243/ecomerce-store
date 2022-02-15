@@ -368,6 +368,9 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
+    .button-l,.button-r{
+        font-size: 13px !important;
+    }
     .item-name {
         line-height: 6.2vw !important;
       }

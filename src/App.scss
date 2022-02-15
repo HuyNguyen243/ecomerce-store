@@ -15,6 +15,16 @@ body {
 
 .pointer {
     cursor: pointer;
+    &:focus-visible{
+        outline: none;
+      }
+      -webkit-tap-highlight-color: transparent !important;
+    img{
+        &:focus-visible{
+            outline: none;
+          }
+        -webkit-tap-highlight-color: transparent !important;
+    }
 }
 
 input, button, textarea {

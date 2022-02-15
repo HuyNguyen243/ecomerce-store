@@ -3,6 +3,10 @@
   border: none;
   cursor: pointer;
   background-color: #fff4;
+  &:focus-visible{
+    outline: none;
+  }
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 .dropdown {
@@ -14,6 +18,10 @@
 .dropbtn img{
   width: 30px;
   height: 20px;
+  &:focus-visible{
+    outline: none;
+  }
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 .dropdown-content {

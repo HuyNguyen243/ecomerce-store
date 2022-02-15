@@ -17,6 +17,10 @@
 }
 
 .prev, .next {
+    &:focus-visible{
+        outline: none;
+      }
+      -webkit-tap-highlight-color: transparent !important;
     cursor: pointer;
     position: absolute;
     top: 50%;

@@ -63,10 +63,16 @@
         width: 15%;
         display: flex;
         justify-content: flex-end;
+        -webkit-tap-highlight-color: transparent !important;
+
         i {
         color: #f40000;
         font-size: 30px;
         text-shadow: 0 4px 4px #ccc;
+        -webkit-tap-highlight-color: transparent !important;
+          &:focus-visible{
+            outline:none
+          }
         }
       }
     }
@@ -89,10 +95,13 @@
     // width: 5%;
     text-align: right;
     padding: 0 17px;
+    &:focus-visible{
+      outline: none;
+    }
     span {
       position: relative;
       display: inherit;
-      font-size: 30px;
+      font-size: 30px; 
       .total-cart {
         background: #dc3545;
         color: #ffffff;
@@ -107,6 +116,12 @@
         justify-content: center;
         align-items: center;
       }
+    }
+    a{
+      &:focus-visible{
+        outline: none;
+      }
+      -webkit-tap-highlight-color: transparent !important;
     }
   }
 }

@@ -315,3 +315,10 @@ body{
   touch-action: pan-y;
 }
 
+span,img,div,a,p,i{
+  &:focus-visible{
+    outline: none !important;
+  }
+  -webkit-tap-highlight-color: transparent !important;
+}
+

@@ -121,16 +121,14 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
         <div className="group-buttons">
           <div className={`button-l ${blockBtnLeft}`} onClick={()=>addToCart(true)}>
             {/* <Icon name="work_outline" /> */}
-            <span type="button" className="btn" >{t("home.buttonBuy")}</span>
+            {t("home.buttonBuy")}
           </div>
           <div className={`button-r ${blockBtnRight}`} onClick={()=>addToCart()}>
             {/* <Icon name="add_shopping_cart" />
              */}
           
-            <p type="button" className="btn btn-red" >
             <img src="/images/shopping-cart.png" alt="menu_icon" />
-            <span>{t("home.addToCard")}</span>
-            </p>
+            {t("home.addToCard")}
           </div>
         </div>
         {btnQTY()}
