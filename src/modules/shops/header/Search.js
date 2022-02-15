@@ -39,7 +39,7 @@ const Search = ({handleSubmit}) => {
         <img style={{cursor: 'pointer'}} onClick={e => history.push('/') } src="/images/Logo-coca.png" className="form-title" alt="logo" />
         <span className={isShow ? "add-border": ""}>
         <input ref={searchInput }  className={`app-input `} type="text" placeholder={isShow ? t("header.search_text") : ""} onChange={updateSearchInput} />
-        <button  type="submit" className={`btn search-btn `}><i className={`material-icons + ${isShow ? "add-padding": ""}`}>search</i></button>
+        <button  type="submit" className={`btn search-btn `}><img className={`material-icons + ${isShow ? "add-padding": ""}`} src="/images/search.svg" alt="menu_icon" /></button>
         </span >
       </form>
     </div>

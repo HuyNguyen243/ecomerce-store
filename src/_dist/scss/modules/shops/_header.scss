@@ -44,7 +44,7 @@
     }
     .app-search {
       position: relative;
-      padding: 10px 0;
+      padding: 8px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -64,7 +64,9 @@
         display: flex;
         justify-content: flex-end;
         -webkit-tap-highlight-color: transparent !important;
-
+        img{
+          padding-top: 3px;
+        }
         i {
         color: #f40000;
         font-size: 30px;
@@ -101,14 +103,15 @@
     span {
       position: relative;
       display: inherit;
-      font-size: 30px; 
+      width: 100%;
+      // font-size: 30px; 
       .total-cart {
         background: #dc3545;
         color: #ffffff;
         border-radius: 50% 50% 50% 50%;
         position: absolute;
         right: 15px;
-        top: 0px;
+        top: -20px;
         font-size: 14px;
         width: 20px;
         height: 20px;

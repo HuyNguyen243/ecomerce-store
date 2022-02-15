@@ -102,7 +102,7 @@ $top-space: 44px;
         padding: 5px 5px !important;
     }
     .shop-header .header-search .app-search .app-input {
-        width: 82%;
+        width: 77%;
     }
     // .btn-button{
     //     font-size: 11px !important;
@@ -368,6 +368,9 @@ $top-space: 44px;
 }
 
 @media (max-width:280px){
+    .header-cart{
+        padding: 0px 5px !important;
+    }
     .button-l,.button-r{
         font-size: 13px !important;
     }
@@ -412,7 +415,7 @@ $top-space: 44px;
     }
    
     .shop-header .header-search .app-search .app-input {
-        width: 80%;
+        width: 74%;
     }
     .btn-button{
         font-size: .6em !important;
