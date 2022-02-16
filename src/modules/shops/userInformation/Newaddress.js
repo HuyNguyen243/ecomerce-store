@@ -7,11 +7,13 @@ import { postDeliveryUser, putDeliveryUser, resetPopup } from './../../../redux/
 import { useHistory } from 'react-router';
 import ModalService from './../../../_services/modal';
 import { useTranslation } from "react-i18next";
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
 
 function Newaddress() {
     const history = useHistory()
     const dispatch = useDispatch();
-    
+    const MySwal = withReactContent(Swal)
     const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
     const modalPopup = useSelector(state => state.modalPopup);
     const isLoading = useSelector(state => state.isLoading);
@@ -71,8 +73,27 @@ function Newaddress() {
         setChecked(isDefault)
     }
 
+    const handleCancel =()=>{
+        MySwal.close()
+      }
+
     const getCityKey =(e)=>{
         let key = Number(e.target.value);
+            if(key !== 0 && key !== -1){
+                    MySwal.fire({
+                        icon: 'info',
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        html : <div className="swal_deleteProduct" >
+                                <div>
+                                <p className="text-danger">{t("oderForm.error1")}</p>
+                                </div>
+                                <div className="group-btn">
+                                <button className="cancelBtn" onClick={handleCancel}>{t("cart.CloseButton")}</button>
+                                </div>
+                            </div>
+                })
+            }
         setCityKey(key)
         if(key === UNSELECTED_KEY){
             setDistricts([])
@@ -128,45 +149,60 @@ function Newaddress() {
 
     const showNameCity = () =>{
         return city.map((item,value)=>{
-            return(
-                <option  value={value}  id={item.id} key={value} name={item.name} >{item.name}</option>
-            )
+                    return(
+                        <option  value={value}  id={item.id} key={value} name={item.name} >{item.name}</option>
+                    )
         })
     }
 
     const onSubmit =(data)=>{
-        let ward = ""
-        if(selectWard !== ""){
-            ward = selectWard
-        }
-        if(data){
-            if((data.city) === ""||  data.district === ""){
-                setAddressDelivery(false)
-            }else{
-                setAddressDelivery(true)
-                let formData = new FormData();
-                formData.append('fullname',data.name)
-                formData.append('phone',data.phone)
-                formData.append('address',data.address)
-
-                formData.append('province[code]',data.city)
-                formData.append('province[name]',selectCity)
-
-                formData.append('district[code]',data.district)
-                formData.append('district[name]',selectDistrict)
-
-                formData.append('ward[code]',data.ward)
-                formData.append('ward[name]',ward)
-
-                formData.append('note',note)
-                formData.append('is_default',checked)
-                if(oneDeliveryUser?._id){
-                    dispatch(putDeliveryUser(oneDeliveryUser._id, formData))
-                }else{
-                    dispatch(postDeliveryUser(formData))
+                let ward = ""
+                if(selectWard !== ""){
+                    ward = selectWard
                 }
+
+                if(data){
+                    if(parseInt(data.city) === -1||  parseInt(data.district) === -1){
+                        setAddressDelivery(false)
+                    }else if(parseInt(data.city) === 0){
+                            setAddressDelivery(true)
+                            let formData = new FormData();
+                            formData.append('fullname',data.name)
+                            formData.append('phone',data.phone)
+                            formData.append('address',data.address)
+            
+                            formData.append('province[code]',data.city)
+                            formData.append('province[name]',selectCity)
+            
+                            formData.append('district[code]',data.district)
+                            formData.append('district[name]',selectDistrict)
+            
+                            formData.append('ward[code]',data.ward)
+                            formData.append('ward[name]',ward)
+            
+                            formData.append('note',note)
+                            formData.append('is_default',checked)
+                            if(oneDeliveryUser?._id){
+                                dispatch(putDeliveryUser(oneDeliveryUser._id, formData))
+                            }else{
+                                dispatch(postDeliveryUser(formData))
+                            }
+                    }else{
+                        MySwal.fire({
+                            icon: 'info',
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            html : <div className="swal_deleteProduct" >
+                                    <div>
+                                    <p className="text-danger">{t("oderForm.error1")}</p>
+                                    </div>
+                                    <div className="group-btn">
+                                    <button className="cancelBtn" onClick={handleCancel}>{t("cart.CloseButton")}</button>
+                                    </div>
+                                </div>
+                        })
+                    }
             }
-        }
     }
 
     const handleTargetName =(e)=>{
@@ -215,7 +251,11 @@ function Newaddress() {
         if(modalPopup.active) {
             handleAfterSubmit()
         }
-    }, [city, setCity, oneDeliveryUser, defaultAddressData, modalPopup, handleAfterSubmit])
+        if(parseInt(cityKey) === 0 ){
+            setAddressDelivery(true)
+        }
+       
+    }, [city, setCity, oneDeliveryUser, defaultAddressData, modalPopup, handleAfterSubmit,cityKey,])
 
     return (
         <>
