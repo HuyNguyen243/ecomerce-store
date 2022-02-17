@@ -145,6 +145,7 @@ function InfoProductShipping(props) {
           SnackbarHelper.show(t("productDetail.addCartSuccess"))
           setTimeout(()=>{
             history.replace("/order-infomation")
+            deleteoderproduct.isLoaded = false
           },1000)
         }
       })
@@ -168,7 +169,32 @@ function InfoProductShipping(props) {
   const getBooleanConfirm = (props) => {
     setConfirmCancel(props)
   }
-  
+
+  const showCancelStatus = () =>{
+    if((order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED"  || deleteoderproduct?.isLoaded) && order?.status !== undefined){
+      if((deleteoderproduct?.data?.cancel_reason === "Muốn thay đổi địa chỉ giao hàng" || order?.cancel_reason === "Muốn thay đổi địa chỉ giao hàng")){
+          return(
+            <p>
+            {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsOne")}
+          </span></p>
+        )
+      }else if((deleteoderproduct?.data?.cancel_reason === "Đổi ý không muốn mua nữa" || order?.cancel_reason === "Đổi ý không muốn mua nữa")){
+          return(
+            <p>
+              {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsTwo")}
+            </span></p>
+        )
+      }else{
+          return(
+            <p>
+            {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
+          </span></p>
+        )
+      }
+
+    }
+  }
+
   return (
     <div className="body_wrapper ">
       {
@@ -217,9 +243,9 @@ function InfoProductShipping(props) {
                 <p className={order?.status !== undefined ? "show" : "hide" }>
                 {t("inforProductShipping.reason")}: <span className="strong-reason">{t("error.canCelReasonOfVendor")}</span></p>
                   :
-                <p className={(order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED"  || deleteoderproduct?.isLoaded) && order?.status !== undefined ? "show" : "hide" }>
-                {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
-                  </span></p>
+                  <>
+                  {showCancelStatus()}
+                  </>
               }
             </div>
             <div className="nav_label style-title">

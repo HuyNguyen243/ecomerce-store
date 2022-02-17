@@ -12,6 +12,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
   const usehistory =useHistory()
   const carts = useSelector(state => state.carts);
   const generalData = useSelector(state => state.generalData);
+  const deleteoderproduct = useSelector(state=>state.deleteoderproduct)
   const location = useLocation()
   const dispatch = useDispatch()
   React.useEffect(()=>{
@@ -40,6 +41,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
   }
 
   const handleGoBack = () => {
+    deleteoderproduct.isLoaded = false
     if(doNavigation !== '') {
       doNavigation()
     }else {
