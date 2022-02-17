@@ -184,13 +184,26 @@ function InfoProductShipping(props) {
               {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsTwo")}
             </span></p>
         )
-      }else{
-          return(
-            <p>
-            {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
+      }else if((deleteoderproduct?.data?.cancel_reason === "Want to change shipping address?" || order?.cancel_reason === "Want to change shipping address?")){
+        return(
+          <p>
+            {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsOne")}
           </span></p>
-        )
-      }
+      )
+    }else if((deleteoderproduct?.data?.cancel_reason === "Change your mind and don't want to buy anymore?" || order?.cancel_reason === "Change your mind and don't want to buy anymore?")){
+      return(
+        <p>
+          {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsTwo")}
+        </span></p>
+    )
+  }
+    else{
+        return(
+          <p>
+          {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
+        </span></p>
+      )
+    }
 
     }
   }
