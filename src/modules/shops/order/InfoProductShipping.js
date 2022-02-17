@@ -172,39 +172,31 @@ function InfoProductShipping(props) {
 
   const showCancelStatus = () =>{
     if((order?.status === "USER_CANCEL" ||  order?.status === "CANCELLED" || order?.status === "FAILED"  || deleteoderproduct?.isLoaded) && order?.status !== undefined){
-      if((deleteoderproduct?.data?.cancel_reason === "Muốn thay đổi địa chỉ giao hàng" || order?.cancel_reason === "Muốn thay đổi địa chỉ giao hàng")){
+      if((deleteoderproduct?.data?.cancel_reason === "Muốn thay đổi địa chỉ giao hàng" 
+      || order?.cancel_reason === "Muốn thay đổi địa chỉ giao hàng" ||
+      deleteoderproduct?.data?.cancel_reason === "Want to change shipping address?" 
+      || order?.cancel_reason === "Want to change shipping address?")){
           return(
             <p>
             {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsOne")}
           </span></p>
         )
-      }else if((deleteoderproduct?.data?.cancel_reason === "Đổi ý không muốn mua nữa" || order?.cancel_reason === "Đổi ý không muốn mua nữa")){
+      }else if((deleteoderproduct?.data?.cancel_reason === "Đổi ý không muốn mua nữa" 
+      || order?.cancel_reason === "Đổi ý không muốn mua nữa"
+      || deleteoderproduct?.data?.cancel_reason === "Change your mind and don't want to buy anymore?" 
+      || order?.cancel_reason === "Change your mind and don't want to buy anymore?")){
           return(
             <p>
               {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsTwo")}
             </span></p>
         )
-      }else if((deleteoderproduct?.data?.cancel_reason === "Want to change shipping address?" || order?.cancel_reason === "Want to change shipping address?")){
-        return(
-          <p>
-            {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsOne")}
-          </span></p>
-      )
-    }else if((deleteoderproduct?.data?.cancel_reason === "Change your mind and don't want to buy anymore?" || order?.cancel_reason === "Change your mind and don't want to buy anymore?")){
-      return(
-        <p>
-          {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsTwo")}
-        </span></p>
-    )
-  }
-    else{
+      }else{
         return(
           <p>
           {t("inforProductShipping.reason")}: <span className="strong-reason">{deleteoderproduct?.isLoaded? deleteoderproduct?.data?.cancel_reason : order?.cancel_reason}
         </span></p>
-      )
-    }
-
+        )
+      }
     }
   }
 
