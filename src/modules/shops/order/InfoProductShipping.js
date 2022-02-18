@@ -183,8 +183,8 @@ function InfoProductShipping(props) {
         )
       }else if((deleteoderproduct?.data?.cancel_reason === "Đổi ý không muốn mua nữa" 
       || order?.cancel_reason === "Đổi ý không muốn mua nữa"
-      || deleteoderproduct?.data?.cancel_reason === "Change your mind and don't want to buy anymore?" 
-      || order?.cancel_reason === "Change your mind and don't want to buy anymore?")){
+      || deleteoderproduct?.data?.cancel_reason === "Change your mind and don't want to buy anymore" 
+      || order?.cancel_reason === "Change your mind and don't want to buy anymore")){
           return(
             <p>
               {t("inforProductShipping.reason")}: <span className="strong-reason">{t("popUpCancelReason.cancelReasonsTwo")}
