@@ -77,22 +77,26 @@ function Newaddress() {
         MySwal.close()
       }
 
+    const errorSelectCity = () =>{
+        MySwal.fire({
+            icon: 'info',
+            showCancelButton: false,
+            showConfirmButton: false,
+            html : <div className="swal_deleteProduct" >
+                    <div>
+                    <p className="text-danger">{t("oderForm.error1")}</p>
+                    </div>
+                    <div className="group-btn">
+                    <button className="cancelBtn" onClick={handleCancel}>{t("cart.CloseButton")}</button>
+                    </div>
+                </div>
+        })
+    }
+
     const getCityKey =(e)=>{
         let key = Number(e.target.value);
-            if(key !== 0 && key !== -1){
-                    MySwal.fire({
-                        icon: 'info',
-                        showCancelButton: false,
-                        showConfirmButton: false,
-                        html : <div className="swal_deleteProduct" >
-                                <div>
-                                <p className="text-danger">{t("oderForm.error1")}</p>
-                                </div>
-                                <div className="group-btn">
-                                <button className="cancelBtn" onClick={handleCancel}>{t("cart.CloseButton")}</button>
-                                </div>
-                            </div>
-                })
+            if(key !== 3 && key !== 0 && key !== 4 && key !== -1){
+                errorSelectCity()
             }
         setCityKey(key)
         if(key === UNSELECTED_KEY){
@@ -161,10 +165,12 @@ function Newaddress() {
                     ward = selectWard
                 }
 
+                console.log(parseInt(data.city))
+
                 if(data){
                     if(parseInt(data.city) === -1||  parseInt(data.district) === -1){
                         setAddressDelivery(false)
-                    }else if(parseInt(data.city) === 0){
+                    }else if(parseInt(data.city) === 0 || parseInt(data.city) === 3 || parseInt(data.city) === 4){
                             setAddressDelivery(true)
                             let formData = new FormData();
                             formData.append('fullname',data.name)
