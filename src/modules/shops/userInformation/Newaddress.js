@@ -289,7 +289,8 @@ function Newaddress() {
                                                 <input placeholder={t("newAddress.phone")}  name="phone" type="text" defaultValue={phone} onChange={handlePhone}
                                                     ref={register({
                                                         required: true,
-                                                        pattern: /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/
+                                                        // pattern: /(03|07|05|08|09|01[2|6|8|9])+([0-9]{8})\b/
+                                                        pattern: /(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/
                                                     })}
                                                 />
                                                     {errors.phone && errors.phone.type === "pattern" && (
