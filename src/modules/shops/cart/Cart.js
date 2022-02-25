@@ -9,6 +9,7 @@ import { getUserCarts } from './../../../redux/actions/index';
 import { useTranslation } from "react-i18next";
 import NumberHelper from "./../../../_helpers/number";
 import { useHistory } from "react-router";
+import { deleteCartTrue } from "./../../../redux/actions/index";
 
 const Cart = ({
   hideCart,
@@ -44,6 +45,7 @@ const Cart = ({
 
   const handleMoveHome = () =>{
     history.goBack()
+    dispatch(deleteCartTrue(false))
   }
 
   return (

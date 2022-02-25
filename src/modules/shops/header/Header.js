@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import { useSelector,useDispatch } from "react-redux";
 import { useLocation } from 'react-router';
 import { getIdBtnTabs } from "./../../../redux/actions/index";
+import { deleteCartTrue } from "./../../../redux/actions/index";
 
 const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
                   , doNavigation = '', showLeftNav, headerBg = 'header-primary'}) => {
@@ -32,7 +33,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
         return (
           <Link to="/cart">
             <span onClick={e => {  showCart() }}>
-              <img src="/images/shopping-cart.png" alt="menu_icon" />
+              <img src="/images/shopping-cart.svg" alt="menu_icon" />
               { carts?.length > 0 ? <span className={`total-cart + ${totalContainer > 99 ? "fix-total-cart" : ""}`}> {totalContainer} </span> : '' }
             </span>
           </Link>
@@ -49,6 +50,7 @@ const Header = ({ handleSubmit, showCart = '', title = '', hasNavigation
         usehistory.push('/')
       }else {
         usehistory.goBack()
+        dispatch(deleteCartTrue(false))
       }
     }
   }

@@ -20,7 +20,7 @@ const Slideshow = ({gallery}) => {
     slideShowItem = gallery.map((slide, key) => {
         return (
             <div key={key} className="mySlides fade">
-                <div className="numbertext">{key+1} / {gallery.length}</div>
+                {/* <div className="numbertext">{key+1} / {gallery.length}</div> */}
                 <ImageDisplay src={slide} alt={`slide-${key}`} />
             </div>
         )

@@ -77,6 +77,8 @@ import {
 
   PRODUCT_SEARCH_KEYWORD,
 
+  GET_DELETE_CART,
+
 } from "../constants";
 
 import Auth from "../../_services/auth";
@@ -154,7 +156,8 @@ const initState = {
   showSpinner:"",
   showPopUpAdventisement: "",
   loadingAddtoCart:"",
-  productSearch : []
+  productSearch : [],
+  getdeletecart: "",
 };
 
 const rootReducer = (state = initState, action) => {
@@ -508,6 +511,10 @@ const rootReducer = (state = initState, action) => {
         return Object.assign({}, state, {
           productSearch: payload
         });
+      case GET_DELETE_CART:
+          return Object.assign({}, state, {
+            getdeletecart: payload
+          });
     default:
       return Object.assign({}, state, {
         isLoading: false

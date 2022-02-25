@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import LocaleHelper from './../../../_helpers/locale';
 import { onLanguageChanged } from './../../../redux/actions/index';
 import { useDispatch } from "react-redux";
+import { deleteCartTrue } from "./../../../redux/actions/index";
 
 const ChangeLanguage = ({pAbsolute = true}) => {
     const { i18n } = useTranslation();
@@ -26,6 +27,7 @@ const ChangeLanguage = ({pAbsolute = true}) => {
     }, [selectedLang, i18n,show])
 
     const changeLang = (lang) => {
+        dispatch(deleteCartTrue(false))
         setSelectedLang(lang)
         LocaleHelper.setLang(lang)
         dispatch(onLanguageChanged(lang))

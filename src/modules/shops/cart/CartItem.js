@@ -2,18 +2,20 @@ import React from "react";
 import PriceDisplay from "./../product/PriceDisplay";
 import ImageDisplay from "./../product/ImageDisplay";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import CartService from '../../../_services/cart';
 import { addCart } from './../../../redux/actions/index';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content';
 import { useTranslation } from "react-i18next";
+import { deleteCartTrue } from "./../../../redux/actions/index";
 
 const CartItem = ({item,index}) => {
   const MySwal = withReactContent(Swal)
   const history = useHistory();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const getdeletecart = useSelector(state => state.getdeletecart)
 
   const updateQuantity = (quantity) => {
     if(quantity === 0) {
@@ -52,6 +54,7 @@ const CartItem = ({item,index}) => {
             </div>
     }).then((result)=>{
         if(result.isConfirmed){
+          dispatch(deleteCartTrue(true))
           CartService.remove(index);
           dispatch(addCart())
         }
@@ -61,7 +64,9 @@ const CartItem = ({item,index}) => {
   const removeCartItem = () => {
     Showpopup()
   }
-  
+
+  const getlang = localStorage.getItem("i18nextLng")
+
   return (
     <div className="shop-item cart">
       <ImageDisplay src={item.image} alt={item.name} />
@@ -70,7 +75,10 @@ const CartItem = ({item,index}) => {
           className="item-name"
           onClick={(e) => history.push('/product/'+item.id)}
         >
-          {item.name}
+          {getdeletecart && getlang === "vi" && item.name_vi}
+          {getdeletecart && getlang === "vi" && item.name_vi === undefined && item.name}
+          {getdeletecart && getlang === "en" && item.name_en}
+          {!getdeletecart && item.name}
         </span>
         <div className="news-style-QTY">
           <PriceDisplay coupon={item.couponPrice} price={item.price} />

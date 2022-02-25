@@ -29,6 +29,7 @@ import {
     SHOW_POPUP,
     SHOW_LOADING_ADDTOCART,
     PRODUCT_SEARCH_KEYWORD,
+    GET_DELETE_CART,
 } from '../constants';
 
 export const resetPopup = (id) => {
@@ -151,6 +152,9 @@ export const getProductsearch = (param) => {
     return { type: PRODUCT_SEARCH_KEYWORD, payload: param };
 }
 
+export const deleteCartTrue = (param) => {
+    return { type: GET_DELETE_CART, payload: param };
+}
 
 
 
