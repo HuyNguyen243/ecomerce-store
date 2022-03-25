@@ -51,7 +51,6 @@ function UserAddress() {
             }
         }
     }, [getUserAddress,userAddress,dispatch,oneDeliveryUser,delDeliveryUser]);
-
     const handleFixUserAddress = (e)=>{
         const DeliveryUser = userAddress.data[e.target.id]
         dispatch(getParentInformationDeviveryUser(DeliveryUser))

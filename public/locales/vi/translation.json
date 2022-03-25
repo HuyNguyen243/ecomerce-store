@@ -173,5 +173,6 @@
         "EXPIRED_PROMOTION_CODE" : "Mã ưu đãi đã hết hạn",
         "LIMITED_PROMOTION_CODE" : "Mã ưu đãi đã sử dụng hết",
         "NOT_REACH_MIN_VALUE_PRO" : "Đơn hàng chưa đạt điều kiện tối thiểu ",
-        "EXCEED_PROMOTION_PRO" : "Giỏ hàng có sản phẩm đã hết hoặc vượt quá giới hạn ưu đãi"
+        "EXCEED_PROMOTION_PRO" : "Giỏ hàng có sản phẩm đã hết hoặc vượt quá giới hạn ưu đãi",
+        "EXCEED_QUANTITY_PRO" : "Bạn đã chọn vượt quá số lượng sản phẩm tối đa : 9 thùng."
 }

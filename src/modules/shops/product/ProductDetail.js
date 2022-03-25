@@ -39,8 +39,8 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
     let id = e.target.id
     if(id === "add"){
       quantity += 1
-      if(quantity > 99){
-        quantity = 99
+      if(quantity > 9){
+        quantity = 9
       }
     }
     if(id === "remove"){
@@ -54,7 +54,7 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
     const addToCart = (showCart = false) =>{
         for(let i = 0 ;i < carts.length ;i++){
           if(carts[i]["id"] === product._id){
-            if(carts[i]["quantity"] + quantity  > 99 ){
+            if(carts[i]["quantity"] + quantity  > 9 ){
               SnackbarHelper.show(t("productDetail.maxQty"))
               return false
             }

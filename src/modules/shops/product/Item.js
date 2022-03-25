@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PriceDisplay from './PriceDisplay';
 import ImageDisplay from './ImageDisplay';
 import {Link} from "react-router-dom"
@@ -12,19 +12,22 @@ import { getShowLoaded } from "./../../../redux/actions/index";
 import { getShowLoadingAddtoCart } from "./../../../redux/actions/index";
 
 const Item = ({id, data}) => {
+
   const history = useHistory();
   const dispatch = useDispatch();
   const carts = useSelector(state => state.carts);
   const { t } = useTranslation();
+
   const addToCart = (showCart = false) => {
     for(let i = 0 ;i < carts.length ;i++){
       if(carts[i]["id"] === data._id){
-        if(carts[i]["quantity"] + 1  > 99 ){
+        if(carts[i]["quantity"] + 1  > 9 ){
           SnackbarHelper.show(t("productDetail.maxQty"))
           return false
         }
       }
     }
+
     if(showCart){
         CartService.add({
           id          : data._id,
@@ -57,7 +60,6 @@ const Item = ({id, data}) => {
         SnackbarHelper.show(t("productDetail.addCartSuccess"))
     }
   }
-
   return (
       <div className="shop-item">
         <Link to={"/product/"+id}>

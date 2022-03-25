@@ -176,5 +176,7 @@
         "EXPIRED_PROMOTION_CODE" : "Promo code has expired",
         "LIMITED_PROMOTION_CODE" : "Promo code has been used up",
         "NOT_REACH_MIN_VALUE_PRO" : "The order has not met the minimum condition",
-        "EXCEED_PROMOTION_PRO" : "The cart has products that are out of stock or have exceeded the offer limit"
+        "EXCEED_PROMOTION_PRO" : "The cart has products that are out of stock or have exceeded the offer limit",
+        "EXCEED_QUANTITY_PRO" : "You have selected the maximum number of products (9)"
+        
 }
