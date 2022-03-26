@@ -20,30 +20,17 @@ const CartItem = ({item,index}) => {
   const { t } = useTranslation();
   const getdeletecart = useSelector(state => state.getdeletecart)
   const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
+  const carts = useSelector(state => state.carts);
 
   const handleCancel =(e)=>{
     MySwal.close()
   }
-
   const updateQuantity = (quantity) => {
     if(quantity === 0) {
       Showpopup()
     }else {
       if(quantity > 9){
         quantity = 9
-        MySwal.fire({
-          icon: 'info',
-          showCancelButton: false,
-          showConfirmButton: false,
-          html : <div className="swal_deleteProduct">
-                  <div>
-                    <p className="text-danger">{t("EXCEED_QUANTITY_PRO")}</p>
-                  </div>
-                  <div className="group-btn">
-                    <button className="cancelBtn" onClick={handleCancel}>{t("cart.CloseButton")}</button>
-                  </div>
-                </div>
-        })
       }
       CartService.updateQuantity(index, quantity)
     }
@@ -80,16 +67,67 @@ const CartItem = ({item,index}) => {
           dispatch(deleteCartTrue(true))
           CartService.remove(index);
           dispatch(addCart())
+          dispatch(getParentInformationDeviveryUser(oneDeliveryUser))
         }
     })
   }
   
   const removeCartItem = () => {
     Showpopup()
-    dispatch(getParentInformationDeviveryUser(oneDeliveryUser))
   }
 
   const getlang = localStorage.getItem("i18nextLng")
+
+  const maximumCart = ()=>{
+    MySwal.fire({
+      icon: 'info',
+      showCancelButton: false,
+      showConfirmButton: false,
+      html : <div className="swal_deleteProduct">
+              <div>
+                <p className="text-danger">{t("EXCEED_QUANTITY_PRO")}</p>
+              </div>
+              <div className="group-btn">
+                <button className="cancelBtn" onClick={handleCancel}>{t("cart.CloseButton")}</button>
+              </div>
+            </div>
+    })
+  }
+
+  const buttonAddtocart = ()=>{
+    let totalContainer = 0;
+      for(let i = 0;i < carts?.length ; i++){
+          totalContainer +=carts[i].quantity
+      }
+        return (
+            <div className="col-7 item-quantity flex-list">
+              <div className="flex-list quantity-options">
+                <span
+                  className="quantiy-action quantity-minus"
+                  onClick={() => updateQuantity(item.quantity - 1)}
+                >
+                  <img src="/images/add-.svg" alt="menu_icon" className="add" />
+
+                </span>
+                <span>{item.quantity}</span>
+                <span
+                  className="quantiy-action quantity-add"
+                  onClick={() => (totalContainer < 9 ? updateQuantity(item.quantity + 1):maximumCart())}
+                >
+                  <img src="/images/add+.svg" alt="menu_icon" className="add" />
+                </span>
+              </div>
+              <div
+                className="col-2"
+                onClick={() => {
+                  removeCartItem();
+                }}
+              >
+                <img src="/images/delete.svg" alt="menu_icon" className="delete" />
+              </div>
+          </div>
+        )
+  }
 
   return (
     <div className="shop-item cart">
@@ -107,32 +145,7 @@ const CartItem = ({item,index}) => {
         </span>
         <div className="news-style-QTY">
           <PriceDisplay coupon={item.couponPrice} price={item.price} />
-          <div className="col-7 item-quantity flex-list">
-            <div className="flex-list quantity-options">
-              <span
-                className="quantiy-action quantity-minus"
-                onClick={() => updateQuantity(item.quantity - 1)}
-              >
-                <img src="/images/add-.svg" alt="menu_icon" className="add" />
-
-              </span>
-              <span>{item.quantity}</span>
-              <span
-                className="quantiy-action quantity-add"
-                onClick={() => updateQuantity(item.quantity + 1)}
-              >
-                <img src="/images/add+.svg" alt="menu_icon" className="add" />
-              </span>
-            </div>
-            <div
-              className="col-2"
-              onClick={() => {
-                removeCartItem();
-              }}
-            >
-              <img src="/images/delete.svg" alt="menu_icon" className="delete" />
-            </div>
-          </div>
+          {buttonAddtocart()}
         </div>
       </div>
     </div>

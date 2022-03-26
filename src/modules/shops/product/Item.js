@@ -26,8 +26,8 @@ const Item = ({id, data}) => {
           return false
         }
       }
-    }
 
+    }
     if(showCart){
         CartService.add({
           id          : data._id,
@@ -60,6 +60,31 @@ const Item = ({id, data}) => {
         SnackbarHelper.show(t("productDetail.addCartSuccess"))
     }
   }
+
+  const maximumCart = ()=>{
+    SnackbarHelper.show(t("productDetail.maxQty"))
+  }
+  
+  const buttonAddtocart = ()=>{
+    let totalContainer = 0;
+      for(let i = 0;i < carts?.length ; i++){
+          totalContainer +=carts[i].quantity
+      }
+        return (
+            <div className="item-button flex-list row">
+              <div className="button-left">
+                <span type="button" onClick={()=>(totalContainer < 9 ? addToCart(true):maximumCart())}>{t("home.buttonBuy")}</span>
+              </div>
+              <div className="button-right" >
+                <span type="button" onClick={()=>(totalContainer < 9 ? addToCart():maximumCart())}>
+                  <img src="/images/shopping-cart.png" alt="menu_icon" />
+                </span>
+              </div>
+            </div>
+        )
+  }
+  
+
   return (
       <div className="shop-item">
         <Link to={"/product/"+id}>
@@ -72,16 +97,7 @@ const Item = ({id, data}) => {
             <PriceDisplay coupon={data.couponPrice} price={data.price} />
           </div>
           </Link>
-          <div className="item-button flex-list row">
-            <div className="button-left">
-              <span type="button" onClick={() => addToCart(true)}>{t("home.buttonBuy")}</span>
-            </div>
-            <div className="button-right" >
-              <span type="button" onClick={() => addToCart()}>
-                <img src="/images/shopping-cart.png" alt="menu_icon" />
-              </span>
-            </div>
-          </div>
+          {buttonAddtocart()}
         </div>
       </div>
   );

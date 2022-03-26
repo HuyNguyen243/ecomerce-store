@@ -80,6 +80,29 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
             SnackbarHelper.show(t("productDetail.addCartSuccess"))
         }
     }
+    const maximumCart = ()=>{
+      SnackbarHelper.show(t("productDetail.maxQty"))
+    }
+
+    const buttonAddtocart = ()=>{
+      let totalContainer = 0;
+        for(let i = 0;i < carts?.length ; i++){
+            totalContainer +=carts[i].quantity
+        }
+          return (
+              <div className="group-buttons">
+                <div className={`button-l ${blockBtnLeft}`} 
+                onClick={()=>(totalContainer < 9 && quantity + totalContainer <= 9 ? addToCart(true):maximumCart())}>
+                  {t("home.buttonBuy")}
+                </div>
+                <div className={`button-r ${blockBtnRight}`} 
+                onClick={()=>(totalContainer < 9 && quantity + totalContainer <= 9 ? addToCart():maximumCart())}>
+                  <img src="/images/shopping-cart.png" alt="menu_icon" />
+                  {t("home.addToCard")}
+                </div>
+              </div>
+          )
+    }
     
   const btnQTY = ()=>{
     return  (
@@ -118,19 +141,7 @@ const ProductDetail = ({ product, quantity, changeQuantity }) => {
             <PriceDisplay coupon={product.couponPrice} price={product.price} />
           </div>
         </div>
-        <div className="group-buttons">
-          <div className={`button-l ${blockBtnLeft}`} onClick={()=>addToCart(true)}>
-            {/* <Icon name="work_outline" /> */}
-            {t("home.buttonBuy")}
-          </div>
-          <div className={`button-r ${blockBtnRight}`} onClick={()=>addToCart()}>
-            {/* <Icon name="add_shopping_cart" />
-             */}
-          
-            <img src="/images/shopping-cart.png" alt="menu_icon" />
-            {t("home.addToCard")}
-          </div>
-        </div>
+        {buttonAddtocart()}
         {btnQTY()}
         <div className="item-description">
           <label>{t("productDetail.infomationProduct")}</label>
