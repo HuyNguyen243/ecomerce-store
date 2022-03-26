@@ -42,7 +42,6 @@ const OrderForm = ({ onSubmit, isLoading,
     }
   })
 
-
   useEffect(() => {
     if(!userAddress.isLoaded) {
         getUserAddress()

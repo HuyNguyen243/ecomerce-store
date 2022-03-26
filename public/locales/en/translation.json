@@ -27,7 +27,7 @@
     "productDetail" : {
         "selectQty" : "Select quantity:",
         "infomationProduct":"Product information",
-        "maxQty" : "Products reached the maximum",
+        "maxQty" : "Cart reached the maximum",
         "addCartSuccess": "Add to cart successfully",
         "outOfStock": "Out of stock",
         "stocking": "products available",

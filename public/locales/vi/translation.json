@@ -27,7 +27,7 @@
     "productDetail" : {
         "selectQty" : "Chọn số lượng:",
         "infomationProduct":"Thông tin sản phẩm",
-        "maxQty" : "Sản phẩm đạt số lượng tối đa!",
+        "maxQty" : "Giỏ hàng đạt số lượng tối đa!",
         "addCartSuccess": "Thêm vào giỏ hàng thành công",
         "outOfStock": "Hết hàng",
         "stocking": "sản phẩm có sẵn",

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CartItem from "./CartItem";
 import Header from "./../header/Header";
 import { LIST_CART_NAV } from "./../../../_config/shop.config";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux"; 
 import { useDispatch } from "react-redux";
 import { getUserCarts } from './../../../redux/actions/index';
@@ -10,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import NumberHelper from "./../../../_helpers/number";
 import { useHistory } from "react-router";
 import { deleteCartTrue } from "./../../../redux/actions/index";
+import { getParentInformationDeviveryUser } from './../../../redux/actions/index';
 
 const Cart = ({
   hideCart,
@@ -21,6 +21,7 @@ const Cart = ({
   const [cartLoaded, setCartLoaded] = useState(false);
   const { t } = useTranslation();
   const totalCartPrice = useSelector(state => state.totalCartPrice);
+  const oneDeliveryUser = useSelector(state => state.oneDeliveryUser);
 
   const showCart=()=>{
     if(carts?.length >0){
@@ -35,7 +36,6 @@ const Cart = ({
       )
     }
   }
-
   React.useEffect(()=>{
     if(!cartLoaded) {
       setCartLoaded(true)
@@ -46,6 +46,14 @@ const Cart = ({
   const handleMoveHome = () =>{
     history.goBack()
     dispatch(deleteCartTrue(false))
+  }
+
+  const btnSubmit = () =>{
+    history.push({ pathname: "/order-infomation" })
+    if(oneDeliveryUser){
+      dispatch(getParentInformationDeviveryUser(oneDeliveryUser))
+    }
+    
   }
 
   return (
@@ -96,13 +104,12 @@ const Cart = ({
                       </div>   
                       </div>
                       <div className="btn-with-icon right-icon">
-                        <Link to="/order-infomation">
                         <button
                           className="btn btn-primary btn-payment"
+                          onClick={btnSubmit}
                         >
                           {t("home.buttonBuy")}
                         </button>
-                        </Link>
                       </div>
                     </div>
                 }
